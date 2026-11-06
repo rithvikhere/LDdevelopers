@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -17,7 +18,7 @@ const dmSans = DM_Sans({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#202622",
+  themeColor: "#0B0F0D",
   width: "device-width",
   initialScale: 1,
 };
@@ -25,13 +26,12 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "[COMPANY NAME] — Architectural Excellence & Property Development",
   description:
-    "Distinguished architectural design, construction, and property development. Crafting bespoke independent houses, luxury duplexes, villas, and commercial spaces.",
+    "Distinguished architectural design, construction, and property development. Crafting timeless spaces, luxury villas, duplexes, and commercial landmarks.",
   keywords: [
-    "construction",
+    "architecture",
     "property development",
-    "villas",
-    "duplex",
-    "independent houses",
+    "bespoke villas",
+    "luxury duplex",
     "commercial construction",
     "land investment",
   ],
@@ -47,8 +47,31 @@ export default function RootLayout({
       lang="en"
       className={`${cormorantGaramond.variable} ${dmSans.variable} scroll-smooth`}
     >
-      <body className="min-h-screen bg-[#F3F0E8] text-[#202622] font-sans antialiased selection:bg-[#B49A68]/30 selection:text-[#202622]">
+      <head>
+        {/* Guard script to eliminate any external runtime watermark overlays */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var observer = new MutationObserver(function(mutations) {
+                  var wm = document.querySelector('[data-aifx-wm], a[href*="aidesigner.ai"]');
+                  if (wm) wm.remove();
+                });
+                observer.observe(document.documentElement, { childList: true, subtree: true });
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className="min-h-screen bg-[#0B0F0D] text-[#F5F3EF] font-sans antialiased selection:bg-[#C5B083] selection:text-[#0B0F0D]">
         {children}
+
+        {/* Load AI Designer Runtime Once at Root */}
+        <Script
+          src="https://cdn.aidesigner.ai/effects/runtime/v1.js"
+          strategy="afterInteractive"
+          data-aifx-key="aifx_pk_dfa803a90d2e42acbb073c8474b14bba"
+        />
       </body>
     </html>
   );

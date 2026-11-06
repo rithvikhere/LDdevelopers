@@ -1,388 +1,283 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import { siteAssets } from "@/config/site-assets";
-import { siteContent } from "@/config/site-content";
-import { MotionReveal } from "@/components/ui/MotionReveal";
-import { ArrowUpRight } from "lucide-react";
+import {
+  KairosDepthReveal,
+  KairosMaskedText,
+} from "@/components/ui/KairosScrollReveal";
+import { ArrowUpRight, Check, Compass, Layers, Building, Trees, Landmark, Sparkles } from "lucide-react";
+
+interface Discipline {
+  number: string;
+  category: string;
+  title: string;
+  tagline: string;
+  description: string;
+  deliverables: string[];
+  specs: { label: string; value: string }[];
+  accent: string;
+  icon: React.ElementType;
+}
 
 export const ServicesSection: React.FC = () => {
   const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const el = document.getElementById("contact");
     if (el) {
-      const offset = el.getBoundingClientRect().top + window.pageYOffset - 72;
+      const offset = el.getBoundingClientRect().top + window.pageYOffset - 80;
       window.scrollTo({ top: offset, behavior: "smooth" });
     }
   };
 
-  // Six defined capabilities from centralized configuration
-  const residentialServices = siteAssets.services.slice(0, 3);
-  const commercialServices = siteAssets.services.slice(3, 6);
-
-  const housesService = residentialServices[0]; // Houses / Independent Houses
-  const duplexesService = residentialServices[1]; // Duplexes
-  const villasService = residentialServices[2]; // Villas
+  const disciplines: Discipline[] = [
+    {
+      number: "01",
+      category: "PRIVATE RESIDENCES",
+      title: "Bespoke Residential Architecture",
+      tagline: "Individual custom residences engineered around climate, light, and personal legacy.",
+      description:
+        "Full-scope architectural conception and turnkey realization for distinguished independent residences. We harmonize passive thermal design, expansive cantilevers, and artisan masonry.",
+      deliverables: [
+        "Site solar & wind vector analysis",
+        "Custom structural BIM drafting",
+        "Artisan stone & timber detailing",
+        "Turnkey master EPC construction",
+      ],
+      specs: [
+        { label: "Typology", value: "Custom Mansions & Estates" },
+        { label: "Footprint", value: "3,500 – 15,000+ sq.ft" },
+        { label: "Delivery", value: "Turnkey Master Build" },
+      ],
+      accent: "#2E5A44",
+      icon: Compass,
+    },
+    {
+      number: "02",
+      category: "MULTI-LEVEL TYPOLOGY",
+      title: "Duplexes & Multi-Level Living",
+      tagline: "Intelligent vertical volume, double-height voids, and acoustic privacy.",
+      description:
+        "Architectural duplex homes optimizing urban parcels through dramatic double-height light wells, cascading terrace gardens, and acoustic zoning that isolates social salons from private suites.",
+      deliverables: [
+        "Volumetric split-level planning",
+        "Double-height atrium engineering",
+        "Acoustic floor-slab dampening",
+        "Integrated green terrace courts",
+      ],
+      specs: [
+        { label: "Levels", value: "G+1 / G+2 Split Volume" },
+        { label: "Light Wells", value: "Biophilic Sky Atriums" },
+        { label: "Efficiency", value: "Zero Corridor Waste" },
+      ],
+      accent: "#1F4E4B",
+      icon: Layers,
+    },
+    {
+      number: "03",
+      category: "HIGH-END REPOSITORIES",
+      title: "Luxury Villas & Private Estates",
+      tagline: "Ultra-luxury sanctuaries balancing monumental scale with intimate craftsmanship.",
+      description:
+        "Private villa compounds featuring infinity plunge pools, landscaped internal courtyards, subterranean entertainment lounges, and smart biometric security envelopes.",
+      deliverables: [
+        "Master site landscape masterplanning",
+        "Infinity pool & water wall hydraulics",
+        "Home automation & HVAC integration",
+        "Imported Italian marble & cladding",
+      ],
+      specs: [
+        { label: "Scale", value: "4 to 7 Bedroom Ensuites" },
+        { label: "Amenities", value: "Pool, Spa & Private Screening" },
+        { label: "Security", value: "Multi-Tier Smart Access" },
+      ],
+      accent: "#C5B083",
+      icon: Sparkles,
+    },
+    {
+      number: "04",
+      category: "CIVIC & INSTITUTIONAL",
+      title: "Commercial Buildings & Landmarks",
+      tagline: "High-performance office complexes, corporate headquarters, and retail flagships.",
+      description:
+        "Post-tensioned concrete structural frames, energy-efficient double-glazed curtain walls, and column-free floor plates designed to maximize asset yields and corporate prestige.",
+      deliverables: [
+        "Column-free structural grid planning",
+        "Double-glazed facade engineering",
+        "LEED Gold sustainability modeling",
+        "MEP, fire safety & high-speed lift shafts",
+      ],
+      specs: [
+        { label: "Footprint", value: "15,000 – 120,000+ sq.ft" },
+        { label: "Floors", value: "G+4 to G+10" },
+        { label: "Certification", value: "IGBC / LEED Ready" },
+      ],
+      accent: "#24322A",
+      icon: Building,
+    },
+    {
+      number: "05",
+      category: "ASSET ALLOCATION",
+      title: "Strategic Land Investing",
+      tagline: "High-growth corridor acquisition, legal title due diligence, and parcel syndication.",
+      description:
+        "Strategic identification of high-yield parcels in emerging urban corridors. We conduct forensic 30-year title clearances, zoning feasibility studies, and master development roadmaps.",
+      deliverables: [
+        "Forensic 30-year legal due diligence",
+        "Master plan master-surveying",
+        "Zoning & municipal sanction roadmaps",
+        "Infrastructure appreciation modeling",
+      ],
+      specs: [
+        { label: "Corridors", value: "Hyderabad & Bengaluru Growth Belts" },
+        { label: "Title", value: "100% Clear & Freehold" },
+        { label: "Horizon", value: "Medium to Long-Term Yield" },
+      ],
+      accent: "#382E47",
+      icon: Trees,
+    },
+    {
+      number: "06",
+      category: "TRANSACTION ADVISORY",
+      title: "Property Acquisition & Portfolio Sale",
+      tagline: "Discreet advisory for prime architectural assets and verified commercial plots.",
+      description:
+        "End-to-end representation for high-net-worth individuals and corporate funds seeking off-market architectural residences, luxury penthouses, or prime development land.",
+      deliverables: [
+        "Off-market discrete representation",
+        "Valuation & structural auditing",
+        "Regulatory & registration escrow",
+        "Asset handover & concierge transition",
+      ],
+      specs: [
+        { label: "Confidentiality", value: "Strict Non-Disclosure" },
+        { label: "Advisory", value: "End-to-End Legal & Fiscal" },
+        { label: "Asset Quality", value: "Curated Architectural Grade" },
+      ],
+      accent: "#41785D",
+      icon: Landmark,
+    },
+  ];
 
   return (
     <section
       id="services"
-      className="py-24 sm:py-32 bg-[#F4F1E8] text-[#1F2924] relative overflow-hidden transition-colors"
+      className="py-28 sm:py-36 lg:py-44 bg-[#0B0F0D] text-[#F5F3EF] relative overflow-hidden transition-colors"
     >
-      {/* Top architectural hairline divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#DCD6C9] to-transparent" />
+      {/* Top Hairline Separator */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#24322A] to-transparent" />
+      <div className="absolute inset-0 bg-architectural-grid opacity-15 pointer-events-none" />
 
-      {/* Expansive Full-Width Container (90-92% viewport on desktop, max-w-[1720px]) */}
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12">
-        {/* ========================================================================= */}
-        {/* SECTION INTRODUCTION (Editorial Split Header)                             */}
-        {/* ========================================================================= */}
-        <MotionReveal className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-12 sm:pb-16 border-b border-[#DCD6C9] mb-12 sm:mb-16">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-1.5 h-1.5 bg-[#536957]" />
-              <span className="text-xs uppercase tracking-[0.25em] text-[#536957] font-semibold font-mono">
-                03 / CAPABILITIES
-              </span>
-            </div>
-            <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#1F2924] tracking-tight leading-[1.12]">
-              {siteContent.services.title}
-            </h2>
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 sm:mb-28">
+          <div>
+            <KairosDepthReveal delay={0.05}>
+              <div className="flex items-center gap-4 mb-4">
+                <span className="text-[11px] font-mono tracking-[0.25em] text-[#C5B083] uppercase">
+                  02 / CORE DISCIPLINES &amp; SERVICES
+                </span>
+                <div className="h-px bg-[#24322A] w-16" />
+              </div>
+            </KairosDepthReveal>
+
+            <KairosMaskedText delay={0.15} as="h2" className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight max-w-3xl leading-[1.12]">
+              Architectural Mastery across Residential &amp; Civic Horizons.
+            </KairosMaskedText>
           </div>
-          <div className="lg:max-w-lg">
-            <p className="text-sm sm:text-base text-[#626A66] font-light leading-relaxed">
-              {siteContent.services.subtitle}
+
+          <KairosDepthReveal delay={0.25}>
+            <p className="text-xs sm:text-sm text-[#9EA8A1] max-w-md font-light leading-relaxed font-mono">
+              Each discipline operates as a dedicated center of architectural innovation, ensuring seamless transitions from preliminary blueprint sketches to turnkey structural completion.
             </p>
-          </div>
-        </MotionReveal>
-
-        {/* ========================================================================= */}
-        {/* 1. RESIDENTIAL PORTFOLIO — BALANCED ASYMMETRICAL EDITORIAL GRID           */}
-        {/* Desktop: Houses (50% / 6-cols) + Duplexes (25% / 3-cols) + Villas (25% / 3-cols) */}
-        {/* ========================================================================= */}
-        <div className="mb-16 sm:mb-24">
-          <MotionReveal delay={0.06} className="flex items-center justify-between gap-4 mb-6 sm:mb-8">
-            <div className="flex items-center gap-2.5">
-              <span className="w-2 h-px bg-[#B89A62]" />
-              <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-[#B89A62] font-semibold">
-                01 &bull; BESPOKE RESIDENTIAL ARCHITECTURE
-              </span>
-            </div>
-            <span className="hidden sm:inline-block text-xs font-mono text-[#626A66] tracking-wider uppercase">
-              Single-Family &bull; Duplex &bull; Estate Villas
-            </span>
-          </MotionReveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
-            {/* ------------------------------------------------------------------- */}
-            {/* HOUSES / INDEPENDENT HOUSES (50% Desktop Width: lg:col-span-6)      */}
-            {/* ------------------------------------------------------------------- */}
-            <div className="col-span-1 md:col-span-2 lg:col-span-6">
-              <MotionReveal delay={0.1} className="h-full">
-                <div className="bg-[#FAF9F5] border border-[#DCD6C9] p-6 sm:p-8 flex flex-col justify-between h-full group hover:border-[#B89A62] transition-all duration-300 relative shadow-2xs">
-                  {/* Subtle Top-Right Brass Geometric Accent */}
-                  <div className="absolute top-0 right-0 w-7 h-7 border-t-2 border-r-2 border-[#B89A62] pointer-events-none" />
-
-                  <div>
-                    {/* Generous Architectural Imagery */}
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#1F2924] border border-[#DCD6C9]/80 mb-6">
-                      <Image
-                        src={housesService.image}
-                        alt={housesService.title}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
-                      <div className="absolute top-3.5 left-3.5 bg-[#1F2924]/90 text-[#FAF9F5] px-2.5 py-1 text-[10px] uppercase tracking-[0.2em] font-semibold border border-[#B89A62]/40 backdrop-blur-sm font-mono">
-                        01 &bull; {housesService.category}
-                      </div>
-                      <div className="absolute bottom-3 right-3 bg-black/60 text-[#DCD6C9] px-2 py-0.5 text-[9px] uppercase tracking-wider backdrop-blur-xs font-mono">
-                        Sample Architectural Visual
-                      </div>
-                    </div>
-
-                    {/* Typography */}
-                    <h3 className="font-display text-2xl sm:text-3xl text-[#1F2924] font-light group-hover:text-[#536957] transition-colors leading-snug">
-                      {housesService.title}
-                    </h3>
-                    <p className="text-xs uppercase tracking-[0.16em] text-[#B89A62] mt-1 font-light italic">
-                      {housesService.tagline}
-                    </p>
-                    <p className="mt-3.5 text-xs sm:text-sm text-[#626A66] font-light leading-relaxed">
-                      {housesService.description}
-                    </p>
-
-                    {/* Specifications: 2-Column Balanced Grid */}
-                    <div className="mt-6 pt-5 border-t border-[#DCD6C9]">
-                      <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#1F2924] font-medium block mb-2.5">
-                        Architectural Deliverables
-                      </span>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {housesService.features.map((feat, idx) => (
-                          <div key={idx} className="flex items-center gap-2 text-xs text-[#1F2924]/85">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#536957] shrink-0" />
-                            <span className="font-light">{feat}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Proposal Action Bar */}
-                  <div className="mt-8 pt-5 border-t border-[#DCD6C9] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-                    <span className="text-xs text-[#626A66] font-light font-mono">
-                      Architectural brief tailored to plot contour
-                    </span>
-                    <a
-                      href="#contact"
-                      onClick={scrollToContact}
-                      className="inline-flex items-center justify-center gap-2 bg-[#536957] hover:bg-[#1F2924] active:scale-[0.98] text-[#FAF9F5] px-5 py-2.5 border border-[#B89A62]/40 hover:border-[#B89A62] text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300 shadow-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B89A62]"
-                    >
-                      <span>Request Proposal</span>
-                      <ArrowUpRight className="w-4 h-4 text-[#B89A62] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </a>
-                  </div>
-                </div>
-              </MotionReveal>
-            </div>
-
-            {/* ------------------------------------------------------------------- */}
-            {/* DUPLEXES (25% Desktop Width: lg:col-span-3)                         */}
-            {/* ------------------------------------------------------------------- */}
-            <div className="col-span-1 md:col-span-1 lg:col-span-3">
-              <MotionReveal delay={0.16} className="h-full">
-                <div className="bg-[#FAF9F5] border border-[#DCD6C9] p-6 sm:p-7 flex flex-col justify-between h-full group hover:border-[#B89A62] transition-all duration-300 shadow-2xs relative">
-                  <div>
-                    {/* Architectural Imagery */}
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#1F2924] border border-[#DCD6C9]/80 mb-5">
-                      <Image
-                        src={duplexesService.image}
-                        alt={duplexesService.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
-                      <div className="absolute top-3 left-3 bg-[#1F2924]/90 text-[#FAF9F5] px-2.5 py-1 text-[9px] uppercase tracking-[0.18em] font-semibold border border-[#B89A62]/40 backdrop-blur-sm font-mono">
-                        02 &bull; {duplexesService.category}
-                      </div>
-                      <div className="absolute bottom-2.5 right-2.5 bg-black/60 text-[#DCD6C9] px-2 py-0.5 text-[9px] uppercase tracking-wider backdrop-blur-xs font-mono">
-                        Sample Concept
-                      </div>
-                    </div>
-
-                    {/* Typography */}
-                    <h3 className="font-display text-xl sm:text-2xl text-[#1F2924] font-light group-hover:text-[#536957] transition-colors leading-snug">
-                      {duplexesService.title}
-                    </h3>
-                    <p className="text-[11px] uppercase tracking-[0.14em] text-[#B89A62] mt-1 font-light italic">
-                      {duplexesService.tagline}
-                    </p>
-                    <p className="mt-3 text-xs sm:text-sm text-[#626A66] font-light leading-relaxed">
-                      {duplexesService.description}
-                    </p>
-
-                    {/* Specifications List */}
-                    <div className="mt-5 pt-4 border-t border-[#DCD6C9]">
-                      <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#1F2924] font-medium block mb-2">
-                        Core Specifications
-                      </span>
-                      <div className="space-y-1.5">
-                        {duplexesService.features.map((feat, idx) => (
-                          <div key={idx} className="flex items-center gap-2 text-xs text-[#626A66]">
-                            <span className="w-1 h-1 rounded-full bg-[#B89A62] shrink-0" />
-                            <span className="font-light">{feat}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Proposal Action Link */}
-                  <div className="mt-6 pt-4 border-t border-[#DCD6C9] flex items-center justify-between">
-                    <span className="text-[11px] font-mono text-[#626A66]">
-                      Multi-level scope
-                    </span>
-                    <a
-                      href="#contact"
-                      onClick={scrollToContact}
-                      className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.16em] text-[#536957] hover:text-[#1F2924] font-semibold transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#536957]"
-                    >
-                      <span>Request Proposal</span>
-                      <ArrowUpRight className="w-4 h-4 text-[#B89A62] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </a>
-                  </div>
-                </div>
-              </MotionReveal>
-            </div>
-
-            {/* ------------------------------------------------------------------- */}
-            {/* VILLAS (25% Desktop Width: lg:col-span-3)                           */}
-            {/* ------------------------------------------------------------------- */}
-            <div className="col-span-1 md:col-span-1 lg:col-span-3">
-              <MotionReveal delay={0.22} className="h-full">
-                <div className="bg-[#FAF9F5] border border-[#DCD6C9] p-6 sm:p-7 flex flex-col justify-between h-full group hover:border-[#B89A62] transition-all duration-300 shadow-2xs relative">
-                  <div>
-                    {/* Architectural Imagery */}
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#1F2924] border border-[#DCD6C9]/80 mb-5">
-                      <Image
-                        src={villasService.image}
-                        alt={villasService.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
-                      <div className="absolute top-3 left-3 bg-[#1F2924]/90 text-[#FAF9F5] px-2.5 py-1 text-[9px] uppercase tracking-[0.18em] font-semibold border border-[#B89A62]/40 backdrop-blur-sm font-mono">
-                        03 &bull; {villasService.category}
-                      </div>
-                      <div className="absolute bottom-2.5 right-2.5 bg-black/60 text-[#DCD6C9] px-2 py-0.5 text-[9px] uppercase tracking-wider backdrop-blur-xs font-mono">
-                        Sample Concept
-                      </div>
-                    </div>
-
-                    {/* Typography */}
-                    <h3 className="font-display text-xl sm:text-2xl text-[#1F2924] font-light group-hover:text-[#536957] transition-colors leading-snug">
-                      {villasService.title}
-                    </h3>
-                    <p className="text-[11px] uppercase tracking-[0.14em] text-[#B89A62] mt-1 font-light italic">
-                      {villasService.tagline}
-                    </p>
-                    <p className="mt-3 text-xs sm:text-sm text-[#626A66] font-light leading-relaxed">
-                      {villasService.description}
-                    </p>
-
-                    {/* Specifications List */}
-                    <div className="mt-5 pt-4 border-t border-[#DCD6C9]">
-                      <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#1F2924] font-medium block mb-2">
-                        Core Specifications
-                      </span>
-                      <div className="space-y-1.5">
-                        {villasService.features.map((feat, idx) => (
-                          <div key={idx} className="flex items-center gap-2 text-xs text-[#626A66]">
-                            <span className="w-1 h-1 rounded-full bg-[#B89A62] shrink-0" />
-                            <span className="font-light">{feat}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Proposal Action Link */}
-                  <div className="mt-6 pt-4 border-t border-[#DCD6C9] flex items-center justify-between">
-                    <span className="text-[11px] font-mono text-[#626A66]">
-                      Private estate brief
-                    </span>
-                    <a
-                      href="#contact"
-                      onClick={scrollToContact}
-                      className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.16em] text-[#536957] hover:text-[#1F2924] font-semibold transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#536957]"
-                    >
-                      <span>Request Proposal</span>
-                      <ArrowUpRight className="w-4 h-4 text-[#B89A62] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </a>
-                  </div>
-                </div>
-              </MotionReveal>
-            </div>
-          </div>
+          </KairosDepthReveal>
         </div>
 
-        {/* ========================================================================= */}
-        {/* 2. COMMERCIAL, LAND & ADVISORY — FULL-WIDTH 3-COLUMN EDITORIAL GRID        */}
-        {/* ========================================================================= */}
-        <div>
-          {/* Subtle Editorial Header Divider */}
-          <MotionReveal delay={0.24} className="pb-8 border-t border-[#DCD6C9] pt-12 sm:pt-16 mb-8 sm:mb-10">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-              <div>
-                <div className="inline-flex items-center gap-2.5 mb-2">
-                  <span className="w-2 h-px bg-[#B89A62]" />
-                  <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-[#B89A62] font-semibold">
-                    02 &bull; STRATEGIC COMMERCIAL &amp; LAND DISCIPLINES
-                  </span>
-                </div>
-                <h3 className="font-display text-2xl sm:text-4xl text-[#1F2924] font-light">
-                  Commercial Infrastructure, Land &amp; Property Advisory
-                </h3>
-              </div>
-              <p className="text-xs sm:text-sm text-[#626A66] font-light max-w-lg">
-                Institutional-grade development, high-yield land acquisitions, and discreet private brokerage managed under single-window accountability.
-              </p>
-            </div>
-          </MotionReveal>
+        {/* Asymmetrical Editorial Service Rows */}
+        <div className="space-y-6 sm:space-y-8">
+          {disciplines.map((item, index) => {
+            const Icon = item.icon;
+            const isEven = index % 2 === 0;
 
-          {/* Equal-Height 3-Column Architectural Ledger */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-            {commercialServices.map((service, idx) => (
-              <MotionReveal key={service.id} delay={0.28 + idx * 0.08} className="h-full">
-                <div className="bg-[#FAF9F5] border border-[#DCD6C9] p-6 sm:p-8 flex flex-col justify-between h-full group hover:border-[#B89A62] transition-all duration-300 shadow-2xs">
-                  <div>
-                    {/* Generous Architectural Imagery (~40-45% Visual Impact) */}
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#1F2924] border border-[#DCD6C9]/80 mb-5">
-                      <Image
-                        src={service.image}
-                        alt={service.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
-                      <div className="absolute top-3 left-3 bg-[#1F2924]/90 text-[#FAF9F5] px-2.5 py-1 text-[9px] uppercase tracking-[0.18em] font-semibold border border-[#B89A62]/40 backdrop-blur-sm font-mono">
-                        0{idx + 4} &bull; {service.category}
+            return (
+              <KairosDepthReveal
+                key={item.number}
+                delay={0.1 + (index % 3) * 0.08}
+                withFrame={false}
+              >
+                <div className="group relative border border-[#24322A]/60 bg-[#121815]/50 backdrop-blur-sm p-8 sm:p-12 hover:border-[#C5B083]/50 transition-all duration-500 overflow-hidden">
+                  {/* Subtle hover gradient wash */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#2E5A44]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start relative z-10">
+                    {/* Column 1-4: Number, Category & Title */}
+                    <div className="lg:col-span-5 space-y-4">
+                      <div className="flex items-center gap-4">
+                        <span className="font-display text-3xl sm:text-4xl font-light text-[#C5B083]">
+                          {item.number}
+                        </span>
+                        <span className="text-[10px] font-mono tracking-[0.25em] text-[#9EA8A1] uppercase">
+                          {item.category}
+                        </span>
                       </div>
-                      <div className="absolute bottom-2.5 right-2.5 bg-black/60 text-[#DCD6C9] px-2 py-0.5 text-[9px] uppercase tracking-wider backdrop-blur-xs font-mono">
-                        Sample Architecture
-                      </div>
+
+                      <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-light text-[#F5F3EF] group-hover:text-[#C5B083] transition-colors duration-300 tracking-tight leading-tight">
+                        {item.title}
+                      </h3>
+
+                      <p className="text-xs sm:text-sm text-[#C5B083]/90 font-light italic leading-relaxed">
+                        &ldquo;{item.tagline}&rdquo;
+                      </p>
+
+                      <p className="text-xs sm:text-sm text-[#9EA8A1] font-light leading-relaxed pt-2">
+                        {item.description}
+                      </p>
                     </div>
 
-                    {/* Titles */}
-                    <h4 className="font-display text-xl sm:text-2xl text-[#1F2924] group-hover:text-[#536957] transition-colors font-light leading-snug">
-                      {service.title}
-                    </h4>
-                    <p className="text-[11px] uppercase tracking-[0.14em] text-[#B89A62] mt-1 font-light italic">
-                      {service.tagline}
-                    </p>
-                    <p className="mt-3.5 text-xs sm:text-sm text-[#626A66] font-light leading-relaxed">
-                      {service.description}
-                    </p>
-
-                    {/* Parameters / Specifications */}
-                    <div className="mt-5 pt-4 border-t border-[#DCD6C9]">
-                      <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#1F2924] font-medium block mb-2">
-                        Core Parameters
-                      </span>
-                      <div className="space-y-1.5">
-                        {service.features.map((feat, fIdx) => (
-                          <div key={fIdx} className="flex items-center gap-2 text-xs text-[#626A66]">
-                            <span className="w-1 h-1 rounded-full bg-[#536957] shrink-0" />
-                            <span className="font-light">{feat}</span>
-                          </div>
+                    {/* Column 5-8: Key Deliverables Checklist */}
+                    <div className="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-[#24322A]/60 pt-6 lg:pt-0 lg:pl-8 space-y-4">
+                      <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9EA8A1]/80">
+                        KEY DELIVERABLES &amp; RIGOR
+                      </div>
+                      <ul className="space-y-2.5">
+                        {item.deliverables.map((del, dIdx) => (
+                          <li key={dIdx} className="flex items-start gap-2.5 text-xs text-[#E8E4DC] font-light">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#2E5A44] mt-1.5 shrink-0 group-hover:bg-[#C5B083] transition-colors" />
+                            <span>{del}</span>
+                          </li>
                         ))}
+                      </ul>
+                    </div>
+
+                    {/* Column 9-12: Architectural Specs & CTA Trigger */}
+                    <div className="lg:col-span-3 border-t lg:border-t-0 lg:border-l border-[#24322A]/60 pt-6 lg:pt-0 lg:pl-8 flex flex-col justify-between h-full space-y-6">
+                      <div>
+                        <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9EA8A1]/80 mb-3">
+                          SPECIFICATIONS
+                        </div>
+                        <div className="space-y-2 text-xs font-mono">
+                          {item.specs.map((spec, sIdx) => (
+                            <div key={sIdx} className="flex justify-between border-b border-[#24322A]/40 pb-1.5">
+                              <span className="text-[#9EA8A1]">{spec.label}</span>
+                              <span className="text-[#F5F3EF] font-medium">{spec.value}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
+
+                      <a
+                        href="#contact"
+                        onClick={scrollToContact}
+                        className="inline-flex items-center justify-between py-2.5 px-4 bg-[#17201B] hover:bg-[#2E5A44] border border-[#24322A] hover:border-[#C5B083]/40 text-[#F5F3EF] text-[10px] font-mono uppercase tracking-[0.2em] transition-all duration-300"
+                      >
+                        <span>Commission Project</span>
+                        <ArrowUpRight className="w-3.5 h-3.5 text-[#C5B083]" />
+                      </a>
                     </div>
                   </div>
-
-                  {/* Proposal Action Link */}
-                  <div className="mt-6 pt-4 border-t border-[#DCD6C9] flex items-center justify-between">
-                    <span className="text-[11px] font-mono text-[#626A66]">
-                      {idx === 0 ? "Commercial Feasibility" : idx === 1 ? "Land Due Diligence" : "Advisory Mandate"}
-                    </span>
-                    <a
-                      href="#contact"
-                      onClick={scrollToContact}
-                      className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.16em] text-[#536957] hover:text-[#1F2924] font-semibold transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#536957]"
-                    >
-                      <span>Request Proposal</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-[#B89A62] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </a>
-                  </div>
                 </div>
-              </MotionReveal>
-            ))}
-          </div>
+              </KairosDepthReveal>
+            );
+          })}
         </div>
       </div>
     </section>

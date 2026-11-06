@@ -1,17 +1,27 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import { siteAssets } from "@/config/site-assets";
-import { MotionReveal } from "@/components/ui/MotionReveal";
+import { motion, useReducedMotion } from "framer-motion";
+import { HalftoneBackground } from "@/components/ui/HalftoneBackground";
+import { KairosMaskedText, KairosDepthReveal } from "@/components/ui/KairosScrollReveal";
 import { ArrowDown, ArrowUpRight, Compass } from "lucide-react";
 
+/**
+ * HeroSection Component — Kairos Minimalist Cinematic Master Redesign
+ * - 100% photo-free; atmospheric halftone background with emerald, teal, & champagne ambiance
+ * - Centered architectural composition
+ * - Forward-moving masked reveal typography
+ * - Two minimalist rectangular CTAs
+ * - Minimal animated scroll indicator
+ */
 export const HeroSection: React.FC = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const el = document.getElementById("contact");
     if (el) {
-      const offset = el.getBoundingClientRect().top + window.pageYOffset - 72;
+      const offset = el.getBoundingClientRect().top + window.pageYOffset - 80;
       window.scrollTo({ top: offset, behavior: "smooth" });
     }
   };
@@ -20,7 +30,7 @@ export const HeroSection: React.FC = () => {
     e.preventDefault();
     const el = document.getElementById("projects");
     if (el) {
-      const offset = el.getBoundingClientRect().top + window.pageYOffset - 72;
+      const offset = el.getBoundingClientRect().top + window.pageYOffset - 80;
       window.scrollTo({ top: offset, behavior: "smooth" });
     }
   };
@@ -29,7 +39,7 @@ export const HeroSection: React.FC = () => {
     e.preventDefault();
     const el = document.getElementById("about");
     if (el) {
-      const offset = el.getBoundingClientRect().top + window.pageYOffset - 72;
+      const offset = el.getBoundingClientRect().top + window.pageYOffset - 80;
       window.scrollTo({ top: offset, behavior: "smooth" });
     }
   };
@@ -37,120 +47,94 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative isolate min-h-[92vh] flex flex-col justify-between overflow-hidden bg-[#F4F0E7] text-[#252A26] pt-28 sm:pt-36 lg:pt-40 transition-colors"
+      className="relative isolate min-h-screen flex flex-col justify-between overflow-hidden bg-[#0B0F0D] text-[#F5F3EF] pt-32 sm:pt-40 pb-10"
     >
       {/* ========================================================================= */}
-      {/* HERO BACKGROUND IMAGE — Handshake & Skyline with Subtle Editorial Blur     */}
+      {/* AMBIENT HALFTONE BACKGROUND — Zero Stock Photos, Pure Organic Atmosphere   */}
       {/* ========================================================================= */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <Image
-          src="/assets/images/hero-background-4k.webp"
-          alt="Architectural partnership double-exposure handshake and modern city skyline"
-          fill
-          priority
-          quality={100}
-          unoptimized
-          sizes="100vw"
-          className="object-cover object-right lg:object-center select-none scale-[1.02]"
-          style={{
-            filter: "blur(1.5px)",
-          }}
-        />
-        {/* Soft Left Edge Gradient Overlay — Guarantees 100% typography contrast on Warm Ivory */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#F4F0E7] via-[#F4F0E7]/80 to-transparent lg:w-[58%] pointer-events-none" />
-      </div>
+      <HalftoneBackground opacity="opacity-45" dotScale={0.88} speed={0.12} />
 
-      {/* Main Content Container */}
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 flex-1 flex flex-col justify-center py-6 sm:py-10 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* ===================================================================== */}
-          {/* LEFT SIDE: Monograph, Headlines, and CTAs (6 of 12 columns)           */}
-          {/* ===================================================================== */}
-          <div className="lg:col-span-7 xl:col-span-6 flex flex-col justify-center">
-            {/* Top Eyebrow Badge */}
-            <MotionReveal delay={0.05}>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#1D2923] text-[#B89A60] border border-[#B89A60]/40 text-[10px] sm:text-[11px] uppercase tracking-[0.22em] font-mono shadow-xs mb-5">
-                <Compass className="w-3.5 h-3.5 text-[#B89A60]" />
-                <span>ARCHITECTURAL EXCELLENCE &amp; TURNKEY CONSTRUCTION</span>
-              </div>
-            </MotionReveal>
+      {/* Subtle Depth Gradient Overlay to guarantee pristine readability */}
+      <div className="absolute inset-0 bg-radial from-transparent via-[#0B0F0D]/60 to-[#0B0F0D] pointer-events-none" />
 
-            {/* Sub-label with Hairline Extension */}
-            <MotionReveal delay={0.1}>
-              <div className="flex items-center gap-4 mb-5">
-                <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.22em] text-[#69716C] uppercase font-medium">
-                  BESPOKE RESIDENTIAL &amp; COMMERCIAL DEVELOPMENT
-                </span>
-                <div className="hidden sm:block h-px bg-[#DDD6C8] flex-1 max-w-[100px]" />
-              </div>
-            </MotionReveal>
+      {/* Subtle Architectural Hairline Grid Overlay */}
+      <div className="absolute inset-0 bg-architectural-grid opacity-35 pointer-events-none" />
 
-            {/* Main Editorial Headline */}
-            <MotionReveal delay={0.15}>
-              <h1 className="font-display text-4xl sm:text-6xl lg:text-[4.5rem] xl:text-[5rem] font-light text-[#252A26] tracking-tight leading-[1.08] mb-6">
-                Sculpting Enduring <br />
-                Spaces, <br />
-                <span className="italic text-[#B89A60] font-light">
-                  Defining Modern Living.
-                </span>
-              </h1>
-            </MotionReveal>
-
-            {/* Supporting Description */}
-            <MotionReveal delay={0.2}>
-              <p className="text-base sm:text-lg text-[#69716C] font-light leading-relaxed max-w-xl mb-9">
-                A distinguished property developer and master builder dedicated to crafting bespoke
-                residences, luxury duplexes, villas, and commercial landmarks.
-              </p>
-            </MotionReveal>
-
-            {/* Sophisticated Rectangular CTA Buttons */}
-            <MotionReveal delay={0.25}>
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                <a
-                  href="#contact"
-                  onClick={scrollToContact}
-                  className="group inline-flex items-center justify-center gap-3 bg-[#506653] hover:bg-[#1D2923] active:scale-[0.98] text-[#FAF9F5] px-8 py-3.5 border border-[#B89A60]/50 hover:border-[#B89A60] text-xs uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-sm"
-                >
-                  <span>LET&apos;S BUILD</span>
-                  <ArrowUpRight className="w-4 h-4 text-[#B89A60] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
-
-                <a
-                  href="#projects"
-                  onClick={scrollToProjects}
-                  className="inline-flex items-center justify-center bg-transparent hover:bg-[#1D2923]/5 active:scale-[0.98] text-[#252A26] px-7 py-3.5 border border-[#252A26]/40 hover:border-[#506653] text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300"
-                >
-                  <span>EXPLORE OUR PROJECTS</span>
-                </a>
-              </div>
-            </MotionReveal>
+      {/* ========================================================================= */}
+      {/* CENTERED HERO CONTENT CONTAINER                                          */}
+      {/* ========================================================================= */}
+      <div className="w-full max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col items-center justify-center text-center relative z-10 py-12">
+        {/* Minimal Architectural Eyebrow Badge */}
+        <KairosDepthReveal delay={0.1} withFrame={false}>
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 border border-[#24322A] bg-[#121815]/60 backdrop-blur-sm text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.26em] text-[#C5B083] mb-8">
+            <Compass className="w-3.5 h-3.5 text-[#C5B083]" />
+            <span>ARCHITECTURAL STUDIO &amp; PROPERTY DEVELOPMENT</span>
           </div>
+        </KairosDepthReveal>
 
-          {/* RIGHT SIDE: Open space showcasing the handshake and skyline from the background image */}
-          <div className="hidden lg:block lg:col-span-5 xl:col-span-6 h-[480px] pointer-events-none" />
+        {/* Master Editorial Serif Headline with Masked Depth Reveal */}
+        <div className="max-w-4xl mx-auto space-y-1 mb-6">
+          <KairosMaskedText delay={0.2} as="h1" className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.2rem] font-light text-[#F5F3EF] tracking-tight leading-[1.06]">
+            Crafting Timeless Spaces.
+          </KairosMaskedText>
+          <KairosMaskedText delay={0.35} as="h1" className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.2rem] font-light tracking-tight leading-[1.06]">
+            <span className="italic text-[#C5B083] font-light">Shaping Tomorrow.</span>
+          </KairosMaskedText>
         </div>
+
+        {/* Supporting Editorial Monograph */}
+        <KairosDepthReveal delay={0.5} highlight={true}>
+          <p className="text-sm sm:text-base md:text-lg text-[#9EA8A1] font-light max-w-2xl mx-auto leading-relaxed mb-10">
+            From visionary architecture to enduring developments, we create spaces that elevate
+            the way people live, work, and experience the world.
+          </p>
+        </KairosDepthReveal>
+
+        {/* Minimalist CTA Buttons */}
+        <KairosDepthReveal delay={0.65}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+            <a
+              href="#projects"
+              onClick={scrollToProjects}
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#17201B] hover:bg-[#2E5A44] border border-[#24322A] hover:border-[#C5B083]/60 text-[#F5F3EF] px-8 py-3.5 text-xs font-mono uppercase tracking-[0.2em] font-medium transition-all duration-300 shadow-lg hover:shadow-[#2E5A44]/20"
+            >
+              <span>Explore Our Projects</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#C5B083] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+
+            <a
+              href="#contact"
+              onClick={scrollToContact}
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-transparent hover:bg-[#121815] border border-[#24322A] hover:border-[#9EA8A1] text-[#9EA8A1] hover:text-[#F5F3EF] px-8 py-3.5 text-xs font-mono uppercase tracking-[0.2em] font-medium transition-all duration-300"
+            >
+              <span>Begin Your Journey</span>
+            </a>
+          </div>
+        </KairosDepthReveal>
       </div>
 
       {/* ========================================================================= */}
-      {/* HERO FOOTER STRIP                                                         */}
+      {/* SUBTLE SCROLL INDICATOR                                                  */}
       {/* ========================================================================= */}
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 pt-6 pb-6 border-t border-[#DDD6C8] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#69716C] z-10 relative">
-        <div className="flex items-center gap-2.5">
-          <span className="w-2 h-2 rounded-full bg-[#506653]" />
-          <span className="tracking-[0.2em] uppercase text-[10px] sm:text-[11px]">
-            BESPOKE RESIDENTIAL &amp; COMMERCIAL DEVELOPMENT
-          </span>
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] font-mono text-[#9EA8A1]/70 relative z-10 pt-4 border-t border-[#24322A]/40">
+        <div className="flex items-center gap-2 tracking-[0.22em] uppercase">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#2E5A44] animate-pulse" />
+          <span>ESTABLISHED TO ENDURE &bull; BENGALURU &amp; HYDERABAD</span>
         </div>
 
         <a
           href="#about"
           onClick={scrollToAbout}
-          className="group inline-flex items-center gap-2 hover:text-[#B89A60] transition-colors tracking-[0.2em] uppercase text-[10px] sm:text-[11px] cursor-pointer"
-          aria-label="Scroll to About section"
+          className="group inline-flex items-center gap-2 hover:text-[#C5B083] transition-colors tracking-[0.22em] uppercase cursor-pointer"
+          aria-label="Scroll to narrative"
         >
-          <span>EXPLORE ARCHITECTURE</span>
-          <ArrowDown className="w-3.5 h-3.5 text-[#B89A60] transition-transform duration-300 group-hover:translate-y-0.5" />
+          <span>DISCOVER PHILOSOPHY</span>
+          <motion.div
+            animate={shouldReduceMotion ? {} : { y: [0, 4, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          >
+            <ArrowDown className="w-3.5 h-3.5 text-[#C5B083]" />
+          </motion.div>
         </a>
       </div>
     </section>

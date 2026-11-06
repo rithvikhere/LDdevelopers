@@ -39,12 +39,12 @@ export const CompanyLogo: React.FC<CompanyLogoProps> = ({
             width="40"
             height="3"
             rx="1.5"
-            fill={isDark ? "#B89A60" : "#506653"}
+            fill={isDark ? "#C5B083" : "#2E5A44"}
           />
           {/* Architectural structural arch */}
           <path
             d="M8 38V14L24 6L40 14V38"
-            stroke={isDark ? "#FAF9F5" : "#252A26"}
+            stroke={isDark ? "#F5F3EF" : "#121815"}
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -52,7 +52,7 @@ export const CompanyLogo: React.FC<CompanyLogoProps> = ({
           {/* Inner sanctum lines */}
           <path
             d="M16 38V20L24 16L32 20V38"
-            stroke="#B89A60"
+            stroke="#C5B083"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -62,7 +62,7 @@ export const CompanyLogo: React.FC<CompanyLogoProps> = ({
             cx="24"
             cy="6"
             r="2.5"
-            fill={isDark ? "#B89A60" : "#506653"}
+            fill={isDark ? "#C5B083" : "#2E5A44"}
           />
         </svg>
       </div>
@@ -70,16 +70,16 @@ export const CompanyLogo: React.FC<CompanyLogoProps> = ({
       {/* Brand Name & Architectural Subtitle */}
       <div className="flex flex-col">
         <span
-          className={`font-display text-lg sm:text-xl font-semibold tracking-[0.16em] leading-tight transition-colors ${
-            isDark ? "text-[#FAF9F5]" : "text-[#252A26]"
+          className={`font-display text-lg sm:text-xl font-medium tracking-[0.18em] leading-tight transition-colors ${
+            isDark ? "text-[#F5F3EF]" : "text-[#0B0F0D]"
           }`}
         >
           [COMPANY NAME]
         </span>
         {showSubtitle && (
           <span
-            className={`text-[9px] tracking-[0.26em] font-medium uppercase leading-tight ${
-              isDark ? "text-[#B89A60]" : "text-[#506653]"
+            className={`text-[9px] tracking-[0.28em] font-medium uppercase leading-tight ${
+              isDark ? "text-[#C5B083]" : "text-[#2E5A44]"
             }`}
           >
             ARCHITECTURE &amp; DEVELOPMENTS

@@ -1,55 +1,48 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { CompanyLogo } from "@/components/brand/CompanyLogo";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
-import { ArrowUp, Phone, Mail, MapPin, Clock } from "lucide-react";
+import { ArrowUp, ArrowUpRight, Phone, Mail, MapPin, Clock } from "lucide-react";
 
-/**
- * Footer Component — Phase 5 Premium Refinement
- * - Solid Deep Charcoal (#1E2521) background
- * - Exactly the 9 planned sections in specified order
- * - Clean company placeholders (phone, email, address, consultation hours)
- * - Restrained typography and smooth back-to-top trigger
- */
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <footer className="bg-[#1E2521] text-[#FAF9F5] border-t border-[#343B33] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-16 border-b border-[#343B33]">
+    <footer className="bg-[#0B0F0D] text-[#F5F3EF] border-t border-[#24322A] relative overflow-hidden">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-20 pb-12 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 pb-16 border-b border-[#24322A]">
           {/* Column 1: Brand & Philosophy */}
           <div className="lg:col-span-2 flex flex-col pr-0 lg:pr-8">
             <CompanyLogo theme="dark" className="mb-6" />
-            <p className="text-sm text-[#FAF9F5]/75 leading-relaxed font-light mb-6 max-w-md">
-              A bespoke master builder and property developer creating timeless architectural
-              landmarks. Dedicated to precision engineering, tactile craftsmanship, and transparent client partnerships.
+            <p className="text-xs sm:text-sm text-[#9EA8A1] leading-relaxed font-light mb-8 max-w-md">
+              A bespoke architectural practice and master builder creating timeless residences, duplexes, villas, and commercial landmarks. Dedicated to structural purity, precision engineering, and enduring client partnerships.
             </p>
-            <div className="flex items-center gap-3 mt-auto pt-2">
-              <span className="text-[11px] uppercase tracking-[0.2em] text-[#B49A65] font-medium font-mono">
-                Registration / RERA:
+            <div className="flex items-center gap-3 mt-auto text-xs font-mono">
+              <span className="uppercase tracking-[0.2em] text-[#C5B083]">
+                RERA / REGISTRATION:
               </span>
-              <span className="text-xs text-[#FAF9F5]/60 font-mono">
+              <span className="text-[#9EA8A1]">
                 {siteContent.company.registrationNumberPlaceholder}
               </span>
             </div>
           </div>
 
-          {/* Column 2: Exact 9 Landing Page Sections */}
+          {/* Column 2: 9 Landing Page Sections */}
           <div>
-            <h4 className="text-xs uppercase tracking-[0.22em] text-[#B49A65] font-semibold mb-6">
+            <h4 className="text-[11px] uppercase tracking-[0.22em] text-[#C5B083] font-mono mb-6">
               Navigation
             </h4>
-            <ul className="space-y-2.5 text-xs uppercase tracking-wider">
+            <ul className="space-y-2.5 text-xs font-mono uppercase tracking-wider">
               {siteContent.navigation.map((item) => (
                 <li key={item.id}>
                   <a
                     href={item.href}
-                    className="text-[#FAF9F5]/70 hover:text-[#B49A65] transition-colors inline-block py-0.5"
+                    className="text-[#9EA8A1] hover:text-[#C5B083] transition-colors inline-block py-0.5"
                   >
                     {item.label}
                   </a>
@@ -58,73 +51,91 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Column 3: Construction Services */}
+          {/* Column 3: Portals & Client Governance */}
           <div>
-            <h4 className="text-xs uppercase tracking-[0.22em] text-[#B49A65] font-semibold mb-6">
-              Services
+            <h4 className="text-[11px] uppercase tracking-[0.22em] text-[#C5B083] font-mono mb-6">
+              Client &amp; Governance
             </h4>
-            <ul className="space-y-2.5 text-xs text-[#FAF9F5]/75">
-              {siteAssets.services.map((service) => (
-                <li key={service.id}>
-                  <a
-                    href="#services"
-                    className="hover:text-[#B49A65] transition-colors inline-block py-0.5"
-                  >
-                    {service.title}
-                  </a>
-                </li>
-              ))}
+            <ul className="space-y-2.5 text-xs font-mono uppercase tracking-wider">
+              <li>
+                <Link
+                  href="/login"
+                  className="text-[#9EA8A1] hover:text-[#C5B083] transition-colors inline-flex items-center gap-1.5 py-0.5"
+                >
+                  <span>Client Portal</span>
+                  <ArrowUpRight className="w-3 h-3 text-[#C5B083]" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/register"
+                  className="text-[#9EA8A1] hover:text-[#C5B083] transition-colors inline-flex items-center gap-1.5 py-0.5"
+                >
+                  <span>Register Account</span>
+                  <ArrowUpRight className="w-3 h-3 text-[#C5B083]" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/login"
+                  className="text-[#9EA8A1] hover:text-[#C5B083] transition-colors inline-flex items-center gap-1.5 py-0.5"
+                >
+                  <span>Admin Console</span>
+                  <ArrowUpRight className="w-3 h-3 text-[#C5B083]" />
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  className="text-[#9EA8A1] hover:text-[#C5B083] transition-colors inline-block py-0.5"
+                >
+                  Book Private Consultation
+                </a>
+              </li>
             </ul>
           </div>
 
-          {/* Column 4: Office & Desk Contact Details */}
+          {/* Column 4: Contact & Locations */}
           <div>
-            <h4 className="text-xs uppercase tracking-[0.22em] text-[#B49A65] font-semibold mb-6">
-              Contact &amp; Desk
+            <h4 className="text-[11px] uppercase tracking-[0.22em] text-[#C5B083] font-mono mb-6">
+              Studio Locations
             </h4>
-            <div className="space-y-4 text-xs text-[#FAF9F5]/75">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#B49A65] shrink-0 mt-0.5" />
-                <span className="leading-relaxed">
-                  {siteAssets.contact.addressPlaceholder}
-                </span>
+            <div className="space-y-4 text-xs font-mono text-[#9EA8A1]">
+              <div>
+                <span className="text-[#F5F3EF] block font-medium">Bengaluru Studio</span>
+                <span className="text-[11px] block mt-0.5">{siteAssets.contact.addressPlaceholder}</span>
               </div>
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#B49A65] shrink-0" />
-                <span className="font-mono">{siteAssets.contact.phonePlaceholder}</span>
+              <div>
+                <span className="text-[#F5F3EF] block font-medium">Hyderabad Desk</span>
+                <span className="text-[11px] block mt-0.5">Jubilee Hills, Road No. 36</span>
               </div>
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#B49A65] shrink-0" />
-                <span>{siteAssets.contact.emailPlaceholder}</span>
-              </div>
-              <div className="flex items-start gap-2.5">
-                <Clock className="w-4 h-4 text-[#B49A65] shrink-0 mt-0.5" />
-                <span>{siteAssets.contact.businessHoursPlaceholder}</span>
+              <div className="pt-2">
+                <span className="text-[10px] text-[#C5B083] uppercase block">Direct Line</span>
+                <a href={`tel:${siteAssets.contact.phonePlaceholder}`} className="text-[#F5F3EF] hover:text-[#C5B083] transition-colors">
+                  {siteAssets.contact.phonePlaceholder}
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Back-to-Top */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#FAF9F5]/60">
-          <p>
-            &copy; {new Date().getFullYear()} {siteContent.company.name}. All rights reserved.
-            {" "}<span className="text-[#B49A65]/80 text-[11px] block sm:inline mt-1 sm:mt-0 font-mono">Sample imagery &amp; placeholder copy.</span>
-          </p>
-
-          <div className="flex items-center gap-6">
-            <span className="hover:text-[#FAF9F5] cursor-pointer transition-colors">Privacy Policy</span>
-            <span className="hover:text-[#FAF9F5] cursor-pointer transition-colors">Terms of Service</span>
-            <button
-              onClick={scrollToTop}
-              type="button"
-              className="inline-flex items-center gap-2 text-[#B49A65] hover:text-[#FAF9F5] transition-colors ml-2 py-1 px-2.5 border border-[#343B33] hover:border-[#B49A65] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B49A65]"
-              aria-label="Back to top"
-            >
-              <span className="text-[11px] uppercase tracking-wider">Top</span>
-              <ArrowUp className="w-3.5 h-3.5" />
-            </button>
+        {/* Bottom Bar with Back to Top */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#9EA8A1]/70">
+          <div>
+            &copy; {new Date().getFullYear()} [COMPANY NAME] ARCHITECTURE &amp; PROPERTY DEVELOPMENTS &bull; ALL RIGHTS RESERVED
           </div>
+
+          <button
+            onClick={scrollToTop}
+            type="button"
+            className="group inline-flex items-center gap-2 hover:text-[#C5B083] transition-colors cursor-pointer uppercase tracking-widest text-[10px]"
+            aria-label="Scroll back to the top of the page"
+          >
+            <span>Back to Summit</span>
+            <span className="p-1.5 border border-[#24322A] group-hover:border-[#C5B083] transition-colors">
+              <ArrowUp className="w-3 h-3" />
+            </span>
+          </button>
         </div>
       </div>
     </footer>

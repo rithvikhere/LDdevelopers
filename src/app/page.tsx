@@ -13,7 +13,7 @@ import { ContactSection } from "@/components/landing/ContactSection";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#F3F0E8] text-[#202622]">
+    <div className="min-h-screen flex flex-col bg-[#0B0F0D] text-[#F5F3EF]">
       {/* Dynamic Header & Navigation */}
       <Navbar />
 

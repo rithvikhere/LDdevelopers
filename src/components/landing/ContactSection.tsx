@@ -1,9 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
-import { MotionReveal } from "@/components/ui/MotionReveal";
+import {
+  KairosDepthReveal,
+  KairosMaskedText,
+} from "@/components/ui/KairosScrollReveal";
 import {
   Phone,
   Mail,
@@ -11,11 +15,11 @@ import {
   Clock,
   MessageCircle,
   ArrowUpRight,
-  Send,
   CheckCircle2,
   AlertCircle,
   RotateCcw,
   Sparkles,
+  Lock,
 } from "lucide-react";
 
 interface FormDataState {
@@ -35,7 +39,7 @@ export const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState<FormDataState>({
     fullName: "",
     phone: "",
-    buildingType: "Houses / Independent Houses",
+    buildingType: "Bespoke Residential Architecture",
     location: "",
     visionNotes: "",
   });
@@ -48,24 +52,22 @@ export const ContactSection: React.FC = () => {
     timestamp: string;
   } | null>(null);
 
-  // Validate form inputs according to architectural enquiry rules
   const validate = (): boolean => {
     const newErrors: FormErrorsState = {};
 
-    // Full name validation
     if (!formData.fullName.trim()) {
       newErrors.fullName = "Please provide your full legal or representative name.";
     } else if (formData.fullName.trim().length < 2) {
       newErrors.fullName = "Name must contain at least 2 characters.";
     }
 
-    // Phone number validation (international or local 10+ digit check)
-    const phoneClean = formData.phone.replace(/[\s\-\(\)\.]/g, "");
-    const phoneRegex = /^[+]?[0-9]{10,15}$/;
     if (!formData.phone.trim()) {
-      newErrors.phone = "A valid telephone or WhatsApp number is required for consultation.";
-    } else if (!phoneRegex.test(phoneClean)) {
-      newErrors.phone = "Please enter a valid phone number (at least 10 digits).";
+      newErrors.phone = "Phone number is required for architectural consultation.";
+    } else {
+      const cleaned = formData.phone.replace(/[\s\-\(\)\+]/g, "");
+      if (cleaned.length < 10 || cleaned.length > 15) {
+        newErrors.phone = "Please enter a valid 10-digit phone number.";
+      }
     }
 
     setErrors(newErrors);
@@ -78,20 +80,24 @@ export const ContactSection: React.FC = () => {
 
     setIsSubmitting(true);
 
-    // Realistic frontend consultation handling
     setTimeout(() => {
-      const randomCode = Math.floor(1000 + Math.random() * 9000);
+      const randomSuffix = Math.floor(1000 + Math.random() * 9000);
+      const generatedRef = `LD-ENQ-2026-${randomSuffix}`;
+
       setSubmittedData({
         data: { ...formData },
-        refCode: `LD-ENQ-${new Date().getFullYear()}-${randomCode}`,
-        timestamp: new Date().toLocaleDateString("en-US", {
-          month: "short",
+        refCode: generatedRef,
+        timestamp: new Date().toLocaleDateString("en-IN", {
           day: "numeric",
+          month: "short",
           year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
         }),
       });
+
       setIsSubmitting(false);
-    }, 500);
+    }, 600);
   };
 
   const handleReset = () => {
@@ -99,415 +105,322 @@ export const ContactSection: React.FC = () => {
     setFormData({
       fullName: "",
       phone: "",
-      buildingType: "Houses / Independent Houses",
+      buildingType: "Bespoke Residential Architecture",
       location: "",
       visionNotes: "",
     });
     setErrors({});
   };
 
-  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
-    siteAssets.contact.whatsappDefaultMessage
+  const rawPhone = siteAssets.contact.phonePlaceholder.replace(/[^0-9]/g, "");
+  const whatsappUrl = `https://wa.me/${rawPhone}?text=${encodeURIComponent(
+    "Hello LD Developers, I am interested in commissioning an architectural and turnkey construction consultation."
   )}`;
 
   return (
     <section
       id="contact"
-      className="py-24 sm:py-32 bg-[#1E2521] text-[#FAF9F5] relative overflow-hidden transition-colors"
+      className="py-28 sm:py-36 lg:py-44 bg-[#0B0F0D] text-[#F5F3EF] relative overflow-hidden transition-colors"
     >
-      {/* Subtle architectural hairline dividers */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#343B33] to-transparent" />
+      {/* Top Hairline Divider */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#24322A] to-transparent" />
+      <div className="absolute inset-0 bg-architectural-grid opacity-15 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         {/* Section Header */}
-        <MotionReveal className="max-w-3xl mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-1.5 h-1.5 bg-[#B49A65]" />
-            <span className="text-xs uppercase tracking-[0.25em] text-[#B49A65] font-semibold">
-              {siteContent.contact.tag}
-            </span>
-          </div>
-          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#FAF9F5] tracking-tight leading-[1.12]">
-            {siteContent.contact.title}
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#FAF9F5]/80 font-light leading-relaxed max-w-2xl">
-            {siteContent.contact.subtitle}
-          </p>
-        </MotionReveal>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 sm:mb-24">
+          <div>
+            <KairosDepthReveal delay={0.05}>
+              <div className="flex items-center gap-4 mb-4">
+                <span className="text-[11px] font-mono tracking-[0.25em] text-[#C5B083] uppercase">
+                  08 / ARCHITECTURAL INTAKE &amp; CONTACT
+                </span>
+                <div className="h-px bg-[#24322A] w-16" />
+              </div>
+            </KairosDepthReveal>
 
-        {/* Two-Column Layout: Direct Desk & Refined Consultation Intake */}
+            <KairosMaskedText delay={0.15} as="h2" className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight max-w-2xl leading-[1.12]">
+              {siteContent.contact.title}
+            </KairosMaskedText>
+          </div>
+
+          <KairosDepthReveal delay={0.25}>
+            <p className="text-xs sm:text-sm text-[#9EA8A1] max-w-md font-light leading-relaxed font-mono">
+              Initiate a confidential consultation with our principal design desk, or submit your land parcel specifications for architectural feasibility review.
+            </p>
+          </KairosDepthReveal>
+        </div>
+
+        {/* Asymmetrical Contact Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Direct Architectural Desk */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-8">
-            <MotionReveal delay={0.1}>
+          {/* Left Column: Studio Information & Direct Outreach (Columns 1-5) */}
+          <div className="lg:col-span-5 space-y-8">
+            <KairosDepthReveal delay={0.2} withFrame={true}>
               <div className="space-y-6">
-                <div className="border-l-2 border-[#B49A65] pl-4">
-                  <h3 className="font-display text-2xl sm:text-3xl text-[#FAF9F5] font-light">
-                    Principal Architectural Desk
+                <div>
+                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C5B083]">
+                    PRINCIPAL STUDIO
+                  </span>
+                  <h3 className="font-display text-2xl font-light text-[#F5F3EF] mt-1">
+                    Design Desk &amp; Consultation
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#FAF9F5]/70 font-light mt-1">
-                    Direct access to structural engineers, zoning consultants, and master planners.
+                  <p className="text-xs sm:text-sm text-[#9EA8A1] font-light mt-2 leading-relaxed">
+                    Available for site visits, zoning assessments, and private client architectural briefings across Telangana and Karnataka.
                   </p>
                 </div>
 
-                <p className="text-sm text-[#FAF9F5]/80 font-light leading-relaxed">
-                  We review site dimensions, municipal compliance, and architectural feasibility before any commercial commitment is initiated.
-                </p>
-
-                {/* Contact Information Details */}
-                <div className="space-y-4 pt-4 border-t border-[#343B33]">
+                <div className="space-y-4 pt-4 border-t border-[#24322A]/60 text-xs font-mono">
                   <div className="flex items-start gap-4">
-                    <div className="w-9 h-9 bg-[#252C27] border border-[#343B33] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-                      <Phone className="w-4 h-4 text-[#B49A65]" />
+                    <div className="w-8 h-8 bg-[#17201B] border border-[#24322A] flex items-center justify-center shrink-0">
+                      <MapPin className="w-4 h-4 text-[#C5B083]" />
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase tracking-wider text-[#B49A65] block font-mono">
-                        Telephone / Mobile
-                      </span>
-                      <span className="text-sm text-[#FAF9F5] font-mono">
+                      <span className="text-[10px] uppercase text-[#9EA8A1] block">Location</span>
+                      <span className="text-[#F5F3EF]">{siteAssets.contact.addressPlaceholder}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 bg-[#17201B] border border-[#24322A] flex items-center justify-center shrink-0">
+                      <Phone className="w-4 h-4 text-[#C5B083]" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] uppercase text-[#9EA8A1] block">Direct Studio Line</span>
+                      <a href={`tel:${siteAssets.contact.phonePlaceholder}`} className="text-[#F5F3EF] hover:text-[#C5B083] transition-colors">
                         {siteAssets.contact.phonePlaceholder}
-                      </span>
+                      </a>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-9 h-9 bg-[#252C27] border border-[#343B33] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-                      <Mail className="w-4 h-4 text-[#B49A65]" />
+                    <div className="w-8 h-8 bg-[#17201B] border border-[#24322A] flex items-center justify-center shrink-0">
+                      <Mail className="w-4 h-4 text-[#C5B083]" />
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase tracking-wider text-[#B49A65] block font-mono">
-                        Email Address
-                      </span>
-                      <span className="text-sm text-[#FAF9F5] font-mono">
+                      <span className="text-[10px] uppercase text-[#9EA8A1] block">Inquiries</span>
+                      <a href={`mailto:${siteAssets.contact.emailPlaceholder}`} className="text-[#F5F3EF] hover:text-[#C5B083] transition-colors">
                         {siteAssets.contact.emailPlaceholder}
-                      </span>
+                      </a>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-9 h-9 bg-[#252C27] border border-[#343B33] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-                      <MapPin className="w-4 h-4 text-[#B49A65]" />
+                    <div className="w-8 h-8 bg-[#17201B] border border-[#24322A] flex items-center justify-center shrink-0">
+                      <Clock className="w-4 h-4 text-[#C5B083]" />
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase tracking-wider text-[#B49A65] block font-mono">
-                        Corporate Office Address
-                      </span>
-                      <span className="text-xs sm:text-sm text-[#FAF9F5]/80 leading-relaxed">
-                        {siteAssets.contact.addressPlaceholder}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-9 h-9 bg-[#252C27] border border-[#343B33] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-                      <Clock className="w-4 h-4 text-[#B49A65]" />
-                    </div>
-                    <div>
-                      <span className="text-[10px] uppercase tracking-wider text-[#B49A65] block font-mono">
-                        Consultation Hours
-                      </span>
-                      <span className="text-xs text-[#FAF9F5]/80">
-                        {siteAssets.contact.businessHoursPlaceholder}
-                      </span>
+                      <span className="text-[10px] uppercase text-[#9EA8A1] block">Hours</span>
+                      <span className="text-[#F5F3EF]">{siteAssets.contact.businessHoursPlaceholder}</span>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Direct WhatsApp CTA Button */}
-              <div className="pt-6">
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group w-full inline-flex items-center justify-center gap-3 bg-[#252C27] hover:bg-[#1E2521] active:scale-[0.98] text-[#FAF9F5] py-4 px-6 border border-[#B49A65]/70 hover:border-[#B49A65] text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300 shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A65]"
-                >
-                  <MessageCircle className="w-4 h-4 text-[#25D366] group-hover:scale-110 transition-transform" />
-                  <span>Contact via WhatsApp</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#B49A65]" />
-                </a>
-                <p className="text-[11px] text-[#FAF9F5]/60 mt-2 text-center font-mono">
-                  Manual WhatsApp consultation with our principal project desk
-                </p>
+                {/* Direct WhatsApp CTA Button */}
+                <div className="pt-4 border-t border-[#24322A]/60">
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group w-full inline-flex items-center justify-center gap-3 bg-[#17201B] hover:bg-[#2E5A44] border border-[#24322A] hover:border-[#C5B083]/60 text-[#F5F3EF] py-3.5 px-6 text-xs font-mono uppercase tracking-[0.2em] font-medium transition-all duration-300"
+                  >
+                    <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                    <span>WhatsApp Consultation</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-[#C5B083]" />
+                  </a>
+                </div>
+
+                {/* Link to Full Client Portal */}
+                <div className="pt-2 text-center text-xs font-mono">
+                  <Link href="/login" className="text-[#9EA8A1] hover:text-[#C5B083] underline decoration-[#24322A] underline-offset-4 transition-colors">
+                    Access Client Portal &bull; Live Project Tracker &rarr;
+                  </Link>
+                </div>
               </div>
-            </MotionReveal>
+            </KairosDepthReveal>
           </div>
 
-          {/* Right Column: Premium Soft White Consultation Form Card (Variation A) */}
-          <div className="lg:col-span-7 bg-[#FAF9F5] text-[#1E2521] p-8 sm:p-12 shadow-2xl border border-[#DCD6C9] relative">
-            {/* Fine Champagne Corner Accent */}
-            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#B49A65] pointer-events-none" />
-
-            <MotionReveal delay={0.15}>
-              <div className="pb-6 border-b border-[#DCD6C9] mb-8">
-                <div className="flex items-center gap-2 mb-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-[#506653]" />
-                  <span className="text-[11px] uppercase tracking-[0.2em] text-[#506653] font-semibold">
-                    Architectural Consultation Intake
-                  </span>
+          {/* Right Column: Architectural Intake Form (Columns 6-12) */}
+          <div className="lg:col-span-7">
+            <KairosDepthReveal delay={0.25} withFrame={false}>
+              <div className="border border-[#24322A] bg-[#121815]/70 backdrop-blur-md p-8 sm:p-12 relative overflow-hidden">
+                <div className="pb-6 border-b border-[#24322A]/60 mb-8">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sparkles className="w-3.5 h-3.5 text-[#C5B083]" />
+                    <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#C5B083]">
+                      INTAKE DESK
+                    </span>
+                  </div>
+                  <h3 className="font-display text-2xl sm:text-3xl font-light text-[#F5F3EF]">
+                    Initiate Construction Enquiry
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#9EA8A1] font-light mt-1.5 leading-relaxed">
+                    Submit your plot parameters or development vision for preliminary zoning and structural review.
+                  </p>
                 </div>
-                <h3 className="font-display text-2xl sm:text-3xl text-[#1E2521] font-light">
-                  Initiate Construction Enquiry
-                </h3>
-                <p className="text-xs sm:text-sm text-[#626A66] font-light mt-1.5 leading-relaxed">
-                  Provide your plot parameters or development vision. Our architectural team reviews each enquiry for structural feasibility and zoning parameters.
-                </p>
-              </div>
 
-              {submittedData ? (
-                /* Elegant Architectural Consultation Confirmation Card */
-                <div className="p-8 sm:p-10 bg-[#FFFFFF] border border-[#506653]/30 shadow-sm text-left space-y-6">
-                  <div className="flex items-start justify-between gap-4 border-b border-[#DCD6C9] pb-6">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-[#506653]/15 text-[#506653] flex items-center justify-center shrink-0">
-                        <CheckCircle2 className="w-6 h-6 text-[#506653]" />
+                {submittedData ? (
+                  /* Confirmation State */
+                  <div className="space-y-6">
+                    <div className="p-4 bg-[#2E5A44]/15 border border-[#2E5A44]/40 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-[#C5B083]" />
+                        <div>
+                          <span className="text-xs font-display text-[#F5F3EF]">Consultation Registered</span>
+                          <span className="block text-[10px] font-mono text-[#9EA8A1]">{submittedData.timestamp}</span>
+                        </div>
                       </div>
-                      <div>
-                        <span className="text-[10px] uppercase tracking-[0.2em] text-[#506653] font-semibold block">
-                          Consultation Registered
-                        </span>
-                        <h4 className="font-display text-2xl text-[#1E2521] font-light">
-                          Enquiry Summary
-                        </h4>
-                      </div>
-                    </div>
-
-                    <div className="text-right">
-                      <span className="text-[10px] uppercase tracking-wider text-[#626A66] block font-mono">
-                        Reference Number
-                      </span>
-                      <span className="text-xs sm:text-sm font-mono font-semibold text-[#506653] bg-[#F3F0E7] px-2.5 py-1 border border-[#DCD6C9]">
+                      <span className="font-mono text-xs font-semibold text-[#C5B083] bg-[#0B0F0D] px-2.5 py-1 border border-[#24322A]">
                         {submittedData.refCode}
                       </span>
                     </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+                      <div className="p-3.5 bg-[#17201B] border border-[#24322A]">
+                        <span className="text-[10px] text-[#9EA8A1] uppercase block mb-1">Client Name</span>
+                        <span className="text-[#F5F3EF]">{submittedData.data.fullName}</span>
+                      </div>
+                      <div className="p-3.5 bg-[#17201B] border border-[#24322A]">
+                        <span className="text-[10px] text-[#9EA8A1] uppercase block mb-1">Contact Phone</span>
+                        <span className="text-[#F5F3EF]">{submittedData.data.phone}</span>
+                      </div>
+                      <div className="p-3.5 bg-[#17201B] border border-[#24322A]">
+                        <span className="text-[10px] text-[#9EA8A1] uppercase block mb-1">Selected Discipline</span>
+                        <span className="text-[#C5B083]">{submittedData.data.buildingType}</span>
+                      </div>
+                      <div className="p-3.5 bg-[#17201B] border border-[#24322A]">
+                        <span className="text-[10px] text-[#9EA8A1] uppercase block mb-1">Location / Parcel</span>
+                        <span className="text-[#F5F3EF]">{submittedData.data.location || "Consultation review"}</span>
+                      </div>
+                    </div>
+
+                    {submittedData.data.visionNotes && (
+                      <div className="p-3.5 bg-[#17201B] border border-[#24322A] text-xs font-mono">
+                        <span className="text-[10px] text-[#9EA8A1] uppercase block mb-1">Preliminary Vision Scope</span>
+                        <p className="text-[#E8E4DC] font-light italic">&ldquo;{submittedData.data.visionNotes}&rdquo;</p>
+                      </div>
+                    )}
+
+                    <div className="pt-4 border-t border-[#24322A]/60 flex items-center justify-between">
+                      <button
+                        type="button"
+                        onClick={handleReset}
+                        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#9EA8A1] hover:text-[#C5B083] transition-colors cursor-pointer"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                        <span>Submit Another Enquiry</span>
+                      </button>
+                      <Link
+                        href="/login"
+                        className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#C5B083] hover:text-[#F5F3EF] transition-colors"
+                      >
+                        <span>Open Client Portal</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
                   </div>
-
-                  {/* Summary Parameter Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                    <div className="p-3 bg-[#F3F0E7] border border-[#DCD6C9]">
-                      <span className="text-[10px] uppercase tracking-wider text-[#626A66] block mb-0.5">
-                        Client Representative
-                      </span>
-                      <span className="font-semibold text-[#1E2521]">
-                        {submittedData.data.fullName}
-                      </span>
-                    </div>
-
-                    <div className="p-3 bg-[#F3F0E7] border border-[#DCD6C9]">
-                      <span className="text-[10px] uppercase tracking-wider text-[#626A66] block mb-0.5">
-                        Contact Number
-                      </span>
-                      <span className="font-mono font-semibold text-[#1E2521]">
-                        {submittedData.data.phone}
-                      </span>
-                    </div>
-
-                    <div className="p-3 bg-[#F3F0E7] border border-[#DCD6C9]">
-                      <span className="text-[10px] uppercase tracking-wider text-[#626A66] block mb-0.5">
-                        Selected Typology
-                      </span>
-                      <span className="font-semibold text-[#506653]">
-                        {submittedData.data.buildingType}
-                      </span>
-                    </div>
-
-                    <div className="p-3 bg-[#F3F0E7] border border-[#DCD6C9]">
-                      <span className="text-[10px] uppercase tracking-wider text-[#626A66] block mb-0.5">
-                        Location / Plot Area
-                      </span>
-                      <span className="text-[#1E2521]">
-                        {submittedData.data.location || "Location to be detailed in consultation"}
-                      </span>
-                    </div>
-                  </div>
-
-                  {submittedData.data.visionNotes && (
-                    <div className="p-3.5 bg-[#F3F0E7] border border-[#DCD6C9] text-xs">
-                      <span className="text-[10px] uppercase tracking-wider text-[#626A66] block mb-1">
-                        Preliminary Scope / Plot Notes
-                      </span>
-                      <p className="text-[#1E2521]/85 italic font-light leading-relaxed">
-                        &ldquo;{submittedData.data.visionNotes}&rdquo;
-                      </p>
-                    </div>
-                  )}
-
-                  <div className="p-4 bg-[#506653]/10 border-l-2 border-[#506653] text-xs text-[#1E2521]/80 leading-relaxed space-y-1">
-                    <p className="font-medium text-[#506653]">
-                      Next Step in Customer Journey:
-                    </p>
-                    <p>
-                      Your consultation parameters have been logged on the architectural desk. Our principal team will review local zoning bylaws and plot feasibility, then contact you directly via phone or WhatsApp.
-                    </p>
-                  </div>
-
-                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <span className="text-[11px] text-[#626A66] font-mono">
-                      Timestamp: {submittedData.timestamp}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={handleReset}
-                      className="inline-flex items-center gap-2 px-6 py-2.5 text-xs uppercase tracking-wider text-[#506653] border border-[#506653]/50 hover:bg-[#506653] hover:text-[#FAF9F5] active:scale-[0.98] transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-[#506653]"
-                    >
-                      <RotateCcw className="w-3.5 h-3.5" />
-                      <span>Submit Another Consultation</span>
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                /* Interactive Consultation Form with Frontend Validation */
-                <form onSubmit={handleSubmit} noValidate className="space-y-6">
-                  {/* Row 1: Full Name & Phone Number */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                ) : (
+                  /* Active Form */
+                  <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
-                      <label className="block text-xs uppercase tracking-[0.14em] text-[#1E2521] font-semibold mb-2">
-                        Full Name <span className="text-[#506653]">*</span>
+                      <label className="block text-[11px] font-mono tracking-wider text-[#9EA8A1] uppercase mb-1.5">
+                        Client Representative Name *
                       </label>
                       <input
                         type="text"
-                        name="fullName"
                         value={formData.fullName}
                         onChange={(e) => {
                           setFormData({ ...formData, fullName: e.target.value });
                           if (errors.fullName) setErrors({ ...errors, fullName: undefined });
                         }}
-                        placeholder="e.g. Alexander Reed"
-                        className={`w-full bg-[#FFFFFF] border px-4 py-3 text-sm text-[#1E2521] transition-colors focus:outline-none ${
-                          errors.fullName
-                            ? "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-500"
-                            : "border-[#DCD6C9] focus:border-[#B49A65] focus:ring-1 focus:ring-[#B49A65]"
-                        }`}
-                        aria-invalid={!!errors.fullName}
-                        aria-describedby={errors.fullName ? "name-error" : undefined}
+                        placeholder="e.g., Rajeshwari Rao"
+                        className={`w-full bg-[#17201B] border ${
+                          errors.fullName ? "border-red-500" : "border-[#24322A]"
+                        } focus:border-[#C5B083] text-[#F5F3EF] text-sm px-4 py-2.5 transition-colors placeholder:text-[#9EA8A1]/40 outline-none`}
                       />
                       {errors.fullName && (
-                        <p id="name-error" className="mt-1.5 text-xs text-red-600 flex items-center gap-1">
-                          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                          <span>{errors.fullName}</span>
-                        </p>
+                        <p className="text-red-400 text-xs font-mono mt-1">{errors.fullName}</p>
                       )}
                     </div>
 
-                    <div>
-                      <label className="block text-xs uppercase tracking-[0.14em] text-[#1E2521] font-semibold mb-2">
-                        Phone Number <span className="text-[#506653]">*</span>
-                      </label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={(e) => {
-                          setFormData({ ...formData, phone: e.target.value });
-                          if (errors.phone) setErrors({ ...errors, phone: undefined });
-                        }}
-                        placeholder="+91 98765 43210"
-                        className={`w-full bg-[#FFFFFF] border px-4 py-3 text-sm text-[#1E2521] font-mono transition-colors focus:outline-none ${
-                          errors.phone
-                            ? "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-500"
-                            : "border-[#DCD6C9] focus:border-[#B49A65] focus:ring-1 focus:ring-[#B49A65]"
-                        }`}
-                        aria-invalid={!!errors.phone}
-                        aria-describedby={errors.phone ? "phone-error" : undefined}
-                      />
-                      {errors.phone && (
-                        <p id="phone-error" className="mt-1.5 text-xs text-red-600 flex items-center gap-1">
-                          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                          <span>{errors.phone}</span>
-                        </p>
-                      )}
-                    </div>
-                  </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-[11px] font-mono tracking-wider text-[#9EA8A1] uppercase mb-1.5">
+                          Direct Contact Phone *
+                        </label>
+                        <input
+                          type="tel"
+                          value={formData.phone}
+                          onChange={(e) => {
+                            setFormData({ ...formData, phone: e.target.value });
+                            if (errors.phone) setErrors({ ...errors, phone: undefined });
+                          }}
+                          placeholder="+91 98450 12345"
+                          className={`w-full bg-[#17201B] border ${
+                            errors.phone ? "border-red-500" : "border-[#24322A]"
+                          } focus:border-[#C5B083] text-[#F5F3EF] text-sm px-4 py-2.5 transition-colors placeholder:text-[#9EA8A1]/40 outline-none`}
+                        />
+                        {errors.phone && (
+                          <p className="text-red-400 text-xs font-mono mt-1">{errors.phone}</p>
+                        )}
+                      </div>
 
-                  {/* Row 2: Building Typology & Site / City Location */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-xs uppercase tracking-[0.14em] text-[#1E2521] font-semibold mb-2">
-                        Building Typology
-                      </label>
-                      <select
-                        name="buildingType"
-                        value={formData.buildingType}
-                        onChange={(e) =>
-                          setFormData({ ...formData, buildingType: e.target.value })
-                        }
-                        className="w-full bg-[#FFFFFF] border border-[#DCD6C9] px-4 py-3 text-sm text-[#1E2521] focus:outline-none focus:border-[#B49A65] focus:ring-1 focus:ring-[#B49A65] transition-colors"
-                      >
-                        <option value="Houses / Independent Houses">Houses / Independent Houses</option>
-                        <option value="Duplexes">Duplexes</option>
-                        <option value="Villas">Villas</option>
-                        <option value="Commercial Buildings">Commercial Buildings</option>
-                        <option value="Land Investing">Land Investing</option>
-                        <option value="Custom Construction Requirements">Custom Construction Requirements</option>
-                      </select>
+                      <div>
+                        <label className="block text-[11px] font-mono tracking-wider text-[#9EA8A1] uppercase mb-1.5">
+                          Architectural Typology
+                        </label>
+                        <select
+                          value={formData.buildingType}
+                          onChange={(e) => setFormData({ ...formData, buildingType: e.target.value })}
+                          className="w-full bg-[#17201B] border border-[#24322A] focus:border-[#C5B083] text-[#F5F3EF] text-sm px-4 py-2.5 transition-colors outline-none cursor-pointer"
+                        >
+                          <option value="Bespoke Residential Architecture">Bespoke Residential Architecture</option>
+                          <option value="Duplexes & Multi-Level Living">Duplexes &amp; Multi-Level Living</option>
+                          <option value="Luxury Villas & Private Estates">Luxury Villas &amp; Private Estates</option>
+                          <option value="Commercial Buildings & Landmarks">Commercial Buildings &amp; Landmarks</option>
+                          <option value="Strategic Land Investing">Strategic Land Investing</option>
+                          <option value="Property Buying & Selling">Property Buying &amp; Selling</option>
+                        </select>
+                      </div>
                     </div>
 
                     <div>
-                      <label className="block text-xs uppercase tracking-[0.14em] text-[#1E2521] font-semibold mb-2">
-                        Site / City Location
+                      <label className="block text-[11px] font-mono tracking-wider text-[#9EA8A1] uppercase mb-1.5">
+                        Site Location or Plot Parameters
                       </label>
                       <input
                         type="text"
-                        name="location"
                         value={formData.location}
-                        onChange={(e) =>
-                          setFormData({ ...formData, location: e.target.value })
-                        }
-                        placeholder="e.g. North Enclave, City"
-                        className="w-full bg-[#FFFFFF] border border-[#DCD6C9] px-4 py-3 text-sm text-[#1E2521] focus:outline-none focus:border-[#B49A65] focus:ring-1 focus:ring-[#B49A65] transition-colors"
+                        onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                        placeholder="e.g., Jubilee Hills, Hyderabad (4,800 sq.ft plot)"
+                        className="w-full bg-[#17201B] border border-[#24322A] focus:border-[#C5B083] text-[#F5F3EF] text-sm px-4 py-2.5 transition-colors placeholder:text-[#9EA8A1]/40 outline-none"
                       />
                     </div>
-                  </div>
 
-                  {/* Row 3: Project Vision / Plot Details */}
-                  <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <label className="block text-xs uppercase tracking-[0.14em] text-[#1E2521] font-semibold">
-                        Project Vision / Plot Details
+                    <div>
+                      <label className="block text-[11px] font-mono tracking-wider text-[#9EA8A1] uppercase mb-1.5">
+                        Preliminary Scope &amp; Vision Notes
                       </label>
-                      <span className="text-[11px] text-[#626A66] font-mono">
-                        Optional parameter guidance
-                      </span>
-                    </div>
-                    <textarea
-                      name="visionNotes"
-                      rows={3}
-                      value={formData.visionNotes}
-                      onChange={(e) =>
-                        setFormData({ ...formData, visionNotes: e.target.value })
-                      }
-                      placeholder="Outline land dimensions (e.g. 2,400 sq.ft), preferred architectural style, floors, or expected project timeline..."
-                      className="w-full bg-[#FFFFFF] border border-[#DCD6C9] px-4 py-3 text-sm text-[#1E2521] focus:outline-none focus:border-[#B49A65] focus:ring-1 focus:ring-[#B49A65] transition-colors resize-none leading-relaxed"
-                    />
-                  </div>
-
-                  {/* Submission Row */}
-                  <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border-t border-[#DCD6C9]/70 pt-5">
-                    <div className="text-[11px] text-[#626A66] font-mono leading-relaxed">
-                      Consultation details handled with strict architectural confidentiality.
+                      <textarea
+                        rows={3}
+                        value={formData.visionNotes}
+                        onChange={(e) => setFormData({ ...formData, visionNotes: e.target.value })}
+                        placeholder="Describe your design aspirations, timeline requirements, or structural preferences..."
+                        className="w-full bg-[#17201B] border border-[#24322A] focus:border-[#C5B083] text-[#F5F3EF] text-sm px-4 py-2.5 transition-colors placeholder:text-[#9EA8A1]/40 outline-none resize-none"
+                      />
                     </div>
 
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="inline-flex items-center justify-center gap-2.5 bg-[#506653] hover:bg-[#1E2521] active:scale-[0.98] disabled:opacity-75 disabled:cursor-wait text-[#FAF9F5] px-8 py-3.5 text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A65]"
+                      className="w-full mt-2 inline-flex items-center justify-center gap-2 bg-[#2E5A44] hover:bg-[#17201B] border border-[#24322A] hover:border-[#C5B083] text-[#F5F3EF] py-4 text-xs font-mono uppercase tracking-[0.2em] font-medium transition-all duration-300 cursor-pointer shadow-lg hover:shadow-[#2E5A44]/20"
                     >
-                      {isSubmitting ? (
-                        <>
-                          <span className="w-3.5 h-3.5 border-2 border-[#FAF9F5]/40 border-t-[#FAF9F5] rounded-full animate-spin" />
-                          <span>Processing...</span>
-                        </>
-                      ) : (
-                        <>
-                          <span>Submit Request</span>
-                          <Send className="w-3.5 h-3.5 text-[#B49A65]" />
-                        </>
-                      )}
+                      <span>{isSubmitting ? "TRANSMITTING ENQUIRY..." : "TRANSMIT ARCHITECTURAL BRIEF"}</span>
+                      <ArrowUpRight className="w-4 h-4 text-[#C5B083]" />
                     </button>
-                  </div>
-                </form>
-              )}
-            </MotionReveal>
+                  </form>
+                )}
+              </div>
+            </KairosDepthReveal>
           </div>
         </div>
       </div>

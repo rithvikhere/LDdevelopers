@@ -1,164 +1,161 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
-import { MotionReveal } from "@/components/ui/MotionReveal";
+import {
+  KairosDepthReveal,
+  KairosMaskedText,
+  KairosStaggerContainer,
+  kairosChildVariant,
+} from "@/components/ui/KairosScrollReveal";
+import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
+/**
+ * AboutSection Component — Kairos Editorial Narrative
+ * - Pure typographic & architectural spatial composition (no generic 2-column image layout)
+ * - Large editorial typography with forward-moving scroll reveals
+ * - Generous spacing, asymmetric chapter blocks, and minimal geometric hairline frames
+ */
 export const AboutSection: React.FC = () => {
-  const scrollToServices = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const el = document.getElementById("services");
-    if (el) {
-      const offset = el.getBoundingClientRect().top + window.pageYOffset - 72;
-      window.scrollTo({ top: offset, behavior: "smooth" });
-    }
-  };
-
   const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const el = document.getElementById("contact");
     if (el) {
-      const offset = el.getBoundingClientRect().top + window.pageYOffset - 72;
+      const offset = el.getBoundingClientRect().top + window.pageYOffset - 80;
       window.scrollTo({ top: offset, behavior: "smooth" });
     }
   };
 
+  const scrollToServices = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const el = document.getElementById("services");
+    if (el) {
+      const offset = el.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: offset, behavior: "smooth" });
+    }
+  };
+
+  const metrics = [
+    { value: "14+", label: "Years of Practice", sub: "Since 2012" },
+    { value: "2.4M+", label: "Square Feet Built", sub: "Residential & Commercial" },
+    { value: "180+", label: "Curated Landmarks", sub: "Delivered On Schedule" },
+    { value: "100%", label: "Structural Compliance", sub: "Seismic & LEED Certified" },
+  ];
+
   return (
     <section
       id="about"
-      className="py-24 sm:py-32 bg-[#F3F0E7] text-[#1E2521] relative overflow-hidden transition-colors"
+      className="py-28 sm:py-36 lg:py-44 bg-[#0B0F0D] text-[#F5F3EF] relative overflow-hidden transition-colors"
     >
-      {/* Subtle architectural hairline divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#DCD6C9] to-transparent" />
+      {/* Subtle Hairline Dividers */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#24322A] to-transparent" />
+      <div className="absolute inset-0 bg-architectural-grid opacity-20 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header Tag */}
-        <MotionReveal className="mb-14 sm:mb-20">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-1.5 h-1.5 bg-[#506653]" />
-            <span className="text-xs uppercase tracking-[0.25em] text-[#506653] font-semibold">
-              {siteContent.about.tag}
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+        {/* Section Index & Eyebrow */}
+        <KairosDepthReveal delay={0.05}>
+          <div className="flex items-center gap-4 mb-8">
+            <span className="text-[11px] font-mono tracking-[0.25em] text-[#C5B083] uppercase">
+              01 / ARCHITECTURAL PROVENANCE
             </span>
+            <div className="h-px bg-[#24322A] flex-1 max-w-[80px]" />
           </div>
-          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#1E2521] tracking-tight leading-[1.12] max-w-4xl">
-            {siteContent.about.title}
-          </h2>
-        </MotionReveal>
+        </KairosDepthReveal>
 
-        {/* Editorial Asymmetric Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Narrative Copy & Minimal List Pillars */}
-          <div className="lg:col-span-6 flex flex-col justify-center">
-            <MotionReveal delay={0.1}>
-              <p className="font-display text-2xl sm:text-3xl text-[#1E2521] italic font-light leading-[1.3] mb-8 border-l-2 border-[#B49A65] pl-5">
-                &ldquo;{siteContent.about.lead}&rdquo;
-              </p>
-            </MotionReveal>
+        {/* Large Editorial Headline */}
+        <div className="max-w-4xl mb-16 sm:mb-24">
+          <KairosMaskedText delay={0.1} as="h2" className="font-display text-3xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] leading-[1.14] tracking-tight">
+            Rooted in structural integrity, spatial purity, and enduring permanence.
+          </KairosMaskedText>
+        </div>
 
-            {/* Structured Editorial Paragraphs with Generous Whitespace */}
-            <MotionReveal delay={0.15}>
-              <div className="space-y-4 text-sm sm:text-base text-[#626A66] font-light leading-relaxed mb-10 max-w-xl">
-                {siteContent.about.paragraphs.map((p, i) => (
-                  <div
-                    key={i}
-                    className={
-                      i === 0
-                        ? "p-4 bg-[#FAF9F5] border-l-2 border-[#506653] text-xs font-mono text-[#506653] leading-relaxed shadow-2xs"
-                        : "leading-relaxed"
-                    }
-                  >
-                    <p>{p}</p>
-                  </div>
-                ))}
+        {/* Asymmetrical Narrative Section — Unfolds Gradually */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-24">
+          {/* Left Hero Statement (Columns 1-7) */}
+          <div className="lg:col-span-7">
+            <KairosDepthReveal delay={0.2} withFrame={true} highlight={true}>
+              <div className="space-y-6">
+                <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[#C5B083]">
+                  MANIFESTO
+                </span>
+                <p className="font-display text-2xl sm:text-3xl text-[#F5F3EF] font-light italic leading-relaxed">
+                  &ldquo;We do not merely construct enclosures; we curate light, shadow, and materiality into living spaces designed to outlive ephemeral trends.&rdquo;
+                </p>
+                <div className="h-px bg-[#24322A] w-24 pt-2" />
+                <p className="text-sm sm:text-base text-[#9EA8A1] font-light leading-relaxed">
+                  Founded on the conviction that timeless architecture demands an uncompromising balance between aesthetic poise and engineering rigor. Every commission—from bespoke private residences to commercial towers—is conceived from the ground up as a bespoke masterwork.
+                </p>
               </div>
-            </MotionReveal>
-
-            {/* Three Foundational Pillars as Minimal List-Based Content (Variation D) */}
-            <div className="space-y-2 pt-6 border-t border-[#DCD6C9]">
-              {siteContent.about.pillars.map((pillar, idx) => (
-                <MotionReveal key={idx} delay={0.2 + idx * 0.08}>
-                  <div className="py-4 border-b border-[#DCD6C9]/60 flex items-start gap-5 group hover:border-[#B49A65] transition-colors duration-300">
-                    <span className="text-xs font-mono text-[#B49A65] font-semibold tracking-wider pt-0.5">
-                      0{idx + 1}
-                    </span>
-                    <div className="flex-1">
-                      <h3 className="text-xs sm:text-sm font-semibold tracking-[0.12em] uppercase text-[#1E2521] group-hover:text-[#506653] transition-colors">
-                        {pillar.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-[#626A66] font-light mt-1.5 leading-relaxed">
-                        {pillar.description}
-                      </p>
-                    </div>
-                  </div>
-                </MotionReveal>
-              ))}
-            </div>
-
-            {/* Navigation & Customer Journey CTAs */}
-            <MotionReveal delay={0.4}>
-              <div className="mt-10 flex flex-wrap items-center gap-6 pt-4 border-t border-[#DCD6C9]">
-                <a
-                  href="#services"
-                  onClick={scrollToServices}
-                  className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-semibold text-[#506653] hover:text-[#1E2521] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#506653]"
-                >
-                  <span>Explore Capabilities</span>
-                  <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </a>
-
-                <span className="text-[#DCD6C9]">&bull;</span>
-
-                <a
-                  href="#contact"
-                  onClick={scrollToContact}
-                  className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-medium text-[#626A66] hover:text-[#B49A65] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B49A65]"
-                >
-                  <span>Consult An Architect</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#B49A65]" />
-                </a>
-              </div>
-            </MotionReveal>
+            </KairosDepthReveal>
           </div>
 
-          {/* Right Column: Architectural Photography Pairing */}
-          <div className="lg:col-span-6 relative pt-4 sm:pt-0">
-            <MotionReveal delay={0.2} direction="right">
-              <div className="relative">
-                {/* Primary Large Image */}
-                <div className="relative aspect-[4/5] w-full overflow-hidden shadow-xl bg-[#FAF9F5] border border-[#DCD6C9]">
-                  <Image
-                    src={siteAssets.about.primaryImage}
-                    alt={siteAssets.about.altPrimary}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                  <div className="absolute bottom-4 left-4 bg-[#1E2521]/85 text-[#FAF9F5] px-3.5 py-1.5 text-[10px] tracking-[0.2em] uppercase backdrop-blur-md font-mono border border-[#B49A65]/30">
-                    Sample Architectural Concept
-                  </div>
+          {/* Right Narrative Pillar (Columns 8-12) */}
+          <div className="lg:col-span-5 space-y-8 lg:pt-8">
+            {siteContent.about.pillars.map((pillar, idx) => (
+              <KairosDepthReveal key={idx} delay={0.25 + idx * 0.12}>
+                <div className="p-6 border-l border-[#24322A] hover:border-[#C5B083] transition-colors duration-300 bg-[#121815]/30">
+                  <span className="text-[10px] font-mono text-[#C5B083] tracking-widest uppercase">
+                    DISCIPLINE 0{idx + 1}
+                  </span>
+                  <h3 className="font-display text-xl text-[#F5F3EF] font-normal tracking-wide mt-1.5 mb-2">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#9EA8A1] font-light leading-relaxed">
+                    {pillar.description}
+                  </p>
                 </div>
-
-                {/* Overlapping Secondary Inset Image */}
-                <div className="hidden sm:block absolute -bottom-10 -left-10 w-2/5 aspect-[3/4] overflow-hidden shadow-2xl border-4 border-[#F3F0E7] bg-[#1E2521]">
-                  <Image
-                    src={siteAssets.about.secondaryImage}
-                    alt={siteAssets.about.altSecondary}
-                    fill
-                    sizes="(max-width: 640px) 0vw, 25vw"
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-[#1E2521]/20" />
-                </div>
-
-                {/* Champagne Brass Architectural Graphic Accent */}
-                <div className="absolute -top-4 -right-4 w-20 h-20 border-t-2 border-r-2 border-[#B49A65] pointer-events-none" />
-              </div>
-            </MotionReveal>
+              </KairosDepthReveal>
+            ))}
           </div>
         </div>
+
+        {/* Minimalist Architectural Metric Matrix */}
+        <KairosStaggerContainer
+          staggerDelay={0.1}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-16 border-t border-[#24322A]/60"
+        >
+          {metrics.map((metric, i) => (
+            <motion.div
+              key={i}
+              variants={kairosChildVariant}
+              className="p-6 sm:p-8 bg-[#121815]/50 border border-[#24322A]/40 hover:border-[#C5B083]/40 transition-colors duration-400"
+            >
+              <div className="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-[#C5B083] mb-2 tracking-tight">
+                {metric.value}
+              </div>
+              <div className="text-xs sm:text-sm font-medium tracking-wider text-[#F5F3EF] uppercase font-mono">
+                {metric.label}
+              </div>
+              <div className="text-[11px] text-[#9EA8A1]/70 font-mono mt-1">
+                {metric.sub}
+              </div>
+            </motion.div>
+          ))}
+        </KairosStaggerContainer>
+
+        {/* Narrative Flow CTAs */}
+        <KairosDepthReveal delay={0.4}>
+          <div className="mt-16 flex flex-wrap items-center justify-between gap-6 pt-8 border-t border-[#24322A]/40 text-xs font-mono uppercase tracking-[0.2em]">
+            <a
+              href="#services"
+              onClick={scrollToServices}
+              className="group inline-flex items-center gap-2 text-[#C5B083] hover:text-[#F5F3EF] transition-colors"
+            >
+              <span>Explore Architectural Disciplines</span>
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+
+            <a
+              href="#contact"
+              onClick={scrollToContact}
+              className="inline-flex items-center gap-2 text-[#9EA8A1] hover:text-[#C5B083] transition-colors"
+            >
+              <span>Commission A Consultation</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        </KairosDepthReveal>
       </div>
     </section>
   );

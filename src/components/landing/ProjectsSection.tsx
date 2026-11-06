@@ -2,26 +2,33 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { siteAssets } from "@/config/site-assets";
+import { siteAssets, ProjectAsset } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
-import { MotionReveal } from "@/components/ui/MotionReveal";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import {
+  KairosDepthReveal,
+  KairosMaskedText,
+} from "@/components/ui/KairosScrollReveal";
+import { ArrowUpRight, MapPin, Maximize2 } from "lucide-react";
 
 export const ProjectsSection: React.FC = () => {
   const [filter, setFilter] = useState<string>("All");
 
   const categories = ["All", "Residential", "Villas", "Commercial", "Duplex"];
 
-  const filteredProjects =
+  const filteredProjects: ProjectAsset[] =
     filter === "All"
       ? siteAssets.projects
       : siteAssets.projects.filter((p) => p.category === filter);
+
+  const featured = filteredProjects[0];
+  const secondary = filteredProjects.slice(1, 3);
+  const remaining = filteredProjects.slice(3);
 
   const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const el = document.getElementById("contact");
     if (el) {
-      const offset = el.getBoundingClientRect().top + window.pageYOffset - 72;
+      const offset = el.getBoundingClientRect().top + window.pageYOffset - 80;
       window.scrollTo({ top: offset, behavior: "smooth" });
     }
   };
@@ -29,150 +36,207 @@ export const ProjectsSection: React.FC = () => {
   return (
     <section
       id="projects"
-      className="py-24 sm:py-32 bg-[#FAF9F5] text-[#1E2521] relative overflow-hidden transition-colors"
+      className="py-28 sm:py-36 lg:py-44 bg-[#0B0F0D] text-[#F5F3EF] relative overflow-hidden transition-colors"
     >
-      {/* Architectural subtle hairline top border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#DCD6C9] to-transparent" />
+      {/* Top Hairline Divider */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#24322A] to-transparent" />
+      <div className="absolute inset-0 bg-architectural-grid opacity-15 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <MotionReveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-1.5 h-1.5 bg-[#506653]" />
-              <span className="text-xs uppercase tracking-[0.25em] text-[#506653] font-semibold">
-                {siteContent.projects.tag}
-              </span>
-            </div>
-            <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#1E2521] tracking-tight leading-[1.12]">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+        {/* Header & Filter Bar */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 sm:mb-24">
+          <div>
+            <KairosDepthReveal delay={0.05}>
+              <div className="flex items-center gap-4 mb-4">
+                <span className="text-[11px] font-mono tracking-[0.25em] text-[#C5B083] uppercase">
+                  03 / CURATED PORTFOLIO
+                </span>
+                <div className="h-px bg-[#24322A] w-16" />
+              </div>
+            </KairosDepthReveal>
+
+            <KairosMaskedText delay={0.15} as="h2" className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight max-w-2xl leading-[1.12]">
               {siteContent.projects.title}
-            </h2>
-            <p className="mt-4 text-sm sm:text-base text-[#626A66] font-light leading-relaxed max-w-xl">
-              {siteContent.projects.subtitle}
-            </p>
+            </KairosMaskedText>
           </div>
 
-          {/* Category Filter Pills (Refined architectural tabs) */}
-          <div className="flex flex-wrap gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setFilter(cat)}
-                type="button"
-                className={`px-4 py-2 text-xs uppercase tracking-[0.16em] transition-all duration-200 border focus:outline-none focus-visible:ring-1 focus-visible:ring-[#506653] ${
-                  filter === cat
-                    ? "bg-[#1E2521] text-[#FAF9F5] border-[#1E2521] font-semibold shadow-xs"
-                    : "bg-[#FFFFFF] text-[#626A66] border-[#DCD6C9] hover:border-[#506653] hover:text-[#1E2521]"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </MotionReveal>
+          {/* Minimalist Architectural Category Tabs */}
+          <KairosDepthReveal delay={0.25}>
+            <div className="flex flex-wrap gap-2 border-b border-[#24322A]/60 pb-3">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setFilter(cat)}
+                  className={`py-1.5 px-3 text-[11px] font-mono uppercase tracking-[0.2em] transition-all cursor-pointer ${
+                    filter === cat
+                      ? "text-[#C5B083] border-b-2 border-[#C5B083] -mb-[13px] font-medium"
+                      : "text-[#9EA8A1] hover:text-[#F5F3EF]"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </KairosDepthReveal>
+        </div>
 
-        {/* Clear Sample Project Notice Banner */}
-        <MotionReveal delay={0.1}>
-          <div className="mb-10 p-3.5 bg-[#FFFFFF] border border-[#DCD6C9] border-l-4 border-l-[#506653] flex items-center justify-between text-xs text-[#506653] font-mono shadow-2xs">
-            <span>{siteContent.projects.sampleNotice}</span>
-            <span className="uppercase text-[10px] tracking-widest hidden sm:inline text-[#626A66]">Visual Demonstration</span>
-          </div>
-        </MotionReveal>
-
-        {/* Projects Editorial Showcase Grid (Design Variation C — Image-led Feature Panels) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {filteredProjects.map((project, idx) => (
-            <MotionReveal key={project.id} delay={idx * 0.08}>
-              <article
-                className="group bg-[#1E2521] text-[#FAF9F5] overflow-hidden shadow-xl border border-[#343B33] hover:border-[#B49A65]/70 transition-all duration-500 flex flex-col justify-between relative"
-              >
-                {/* Subtle Champagne Corner Accent */}
-                <div className="absolute top-0 right-0 w-6 h-6 border-t border-r border-[#B49A65]/40 group-hover:border-[#B49A65] transition-colors z-10 pointer-events-none" />
-
-                {/* Image Container with Framing */}
-                <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#1E2521]">
+        {/* 1. Primary Featured Project (Full-Width Asymmetrical Showcase) */}
+        {featured && (
+          <KairosDepthReveal delay={0.1} withFrame={false} className="mb-12 sm:mb-16">
+            <div className="group relative border border-[#24322A] bg-[#121815]/60 overflow-hidden hover:border-[#C5B083]/50 transition-colors duration-500">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
+                {/* Image Aspect Box */}
+                <div className="lg:col-span-7 relative min-h-[360px] sm:min-h-[460px] lg:min-h-[540px] overflow-hidden bg-[#0B0F0D]">
                   <Image
-                    src={project.image}
-                    alt={project.title}
+                    src={featured.image}
+                    alt={featured.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1E2521] via-[#1E2521]/20 to-transparent" />
-
-                  {/* Sample Tag Badge */}
-                  <div className="absolute top-4 left-4 bg-[#B49A65] text-[#1E2521] px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-bold">
-                    Sample Project
-                  </div>
-
-                  <div className="absolute top-4 right-4 bg-[#1E2521]/80 text-[#DCD6C9] px-2.5 py-1 text-[10px] uppercase tracking-wider backdrop-blur-xs font-mono">
-                    {project.category}
-                  </div>
-
-                  {/* Location Placeholder Overlay */}
-                  <div className="absolute bottom-4 left-4 flex items-center gap-1.5 text-xs text-[#FAF9F5]/90 backdrop-blur-sm bg-black/40 px-2.5 py-1 font-mono text-[11px]">
-                    <MapPin className="w-3.5 h-3.5 text-[#B49A65]" />
-                    <span>{project.locationPlaceholder}</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0D] via-transparent to-transparent lg:hidden" />
+                  <div className="absolute top-4 left-4 bg-[#0B0F0D]/85 backdrop-blur-md px-3 py-1 border border-[#24322A] text-[10px] font-mono tracking-widest text-[#C5B083] uppercase">
+                    FEATURED LANDMARK
                   </div>
                 </div>
 
-                {/* Text Meta Content */}
-                <div className="p-6 sm:p-8 flex flex-col justify-between flex-1">
-                  <div>
-                    <h3 className="font-display text-2xl sm:text-3xl text-[#FAF9F5] group-hover:text-[#B49A65] transition-colors font-light">
-                      {project.title}
+                {/* Editorial Content Column */}
+                <div className="lg:col-span-5 p-8 sm:p-12 lg:p-14 flex flex-col justify-between space-y-6">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-xs font-mono text-[#C5B083]">
+                      <MapPin className="w-3.5 h-3.5" />
+                      <span className="tracking-widest uppercase">{featured.locationPlaceholder}</span>
+                    </div>
+
+                    <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-[#F5F3EF] leading-tight">
+                      {featured.title}
                     </h3>
-                    <p className="text-xs uppercase tracking-[0.18em] text-[#B49A65] mt-1 font-light italic">
-                      {project.tagline}
+
+                    <p className="text-xs sm:text-sm text-[#C5B083]/90 font-light italic">
+                      &ldquo;{featured.tagline}&rdquo;
                     </p>
-                    <p className="mt-4 text-xs sm:text-sm text-[#FAF9F5]/80 font-light leading-relaxed">
-                      {project.description}
+
+                    <p className="text-xs sm:text-sm text-[#9EA8A1] font-light leading-relaxed pt-2">
+                      {featured.description}
                     </p>
                   </div>
 
-                  <div className="mt-8 pt-5 border-t border-[#343B33] flex items-center justify-between">
-                    <div className="flex items-center gap-4 text-xs text-[#FAF9F5]/70 font-mono">
-                      <span>{project.specifications.area}</span>
-                      <span>&bull;</span>
-                      <span>{project.specifications.style}</span>
+                  <div className="pt-6 border-t border-[#24322A]/60 space-y-4">
+                    <div className="grid grid-cols-2 gap-4 text-xs font-mono">
+                      <div>
+                        <span className="text-[#9EA8A1]/70 block text-[10px] uppercase">AREA</span>
+                        <span className="text-[#F5F3EF]">{featured.specifications.area}</span>
+                      </div>
+                      <div>
+                        <span className="text-[#9EA8A1]/70 block text-[10px] uppercase">STYLE</span>
+                        <span className="text-[#F5F3EF]">{featured.specifications.style}</span>
+                      </div>
                     </div>
 
                     <a
                       href="#contact"
                       onClick={scrollToContact}
-                      className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.16em] text-[#B49A65] hover:text-[#FAF9F5] transition-colors font-medium focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B49A65]"
+                      className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-[#C5B083] hover:text-[#F5F3EF] pt-2 transition-colors group"
                     >
-                      <span>Enquire</span>
+                      <span>Inquire About Commission</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </KairosDepthReveal>
+        )}
+
+        {/* 2. Secondary Complementary Project Grid (Asymmetrical 2-Column) */}
+        {secondary.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 mb-12 sm:mb-16">
+            {secondary.map((proj, idx) => (
+              <KairosDepthReveal key={proj.id} delay={0.15 + idx * 0.1} withFrame={false}>
+                <div className="group border border-[#24322A] bg-[#121815]/50 overflow-hidden hover:border-[#C5B083]/50 transition-all duration-500">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0B0F0D]">
+                    <Image
+                      src={proj.image}
+                      alt={proj.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute top-3 left-3 bg-[#0B0F0D]/85 backdrop-blur-md px-2.5 py-1 border border-[#24322A] text-[9px] font-mono tracking-widest text-[#C5B083] uppercase">
+                      {proj.category}
+                    </div>
+                  </div>
+
+                  <div className="p-6 sm:p-8 space-y-4">
+                    <div className="flex items-center gap-2 text-[10px] font-mono text-[#9EA8A1]">
+                      <MapPin className="w-3 h-3 text-[#C5B083]" />
+                      <span>{proj.locationPlaceholder}</span>
+                    </div>
+
+                    <h4 className="font-display text-2xl font-light text-[#F5F3EF] group-hover:text-[#C5B083] transition-colors leading-tight">
+                      {proj.title}
+                    </h4>
+
+                    <p className="text-xs text-[#9EA8A1] font-light leading-relaxed line-clamp-2">
+                      {proj.description}
+                    </p>
+
+                    <div className="pt-4 border-t border-[#24322A]/60 flex items-center justify-between text-xs font-mono">
+                      <span className="text-[#C5B083]">{proj.specifications.area}</span>
+                      <a
+                        href="#contact"
+                        onClick={scrollToContact}
+                        className="inline-flex items-center gap-1.5 text-[#9EA8A1] hover:text-[#F5F3EF] uppercase text-[10px] tracking-wider transition-colors"
+                      >
+                        <span>Details</span>
+                        <ArrowUpRight className="w-3 h-3" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </KairosDepthReveal>
+            ))}
+          </div>
+        )}
+
+        {/* 3. Editorial Ledger List for Remaining Projects */}
+        {remaining.length > 0 && (
+          <div className="pt-10 border-t border-[#24322A]/60 space-y-3">
+            <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#9EA8A1] mb-4">
+              ADDITIONAL ARCHITECTURAL COMMISSIONS
+            </div>
+            {remaining.map((item, rIdx) => (
+              <KairosDepthReveal key={item.id} delay={0.1 + rIdx * 0.05}>
+                <div className="group py-4 px-6 border border-[#24322A]/40 hover:border-[#C5B083]/40 bg-[#121815]/30 hover:bg-[#121815]/70 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300">
+                  <div className="flex items-center gap-4">
+                    <span className="text-xs font-mono text-[#C5B083]">0{4 + rIdx}</span>
+                    <div>
+                      <h5 className="font-display text-xl text-[#F5F3EF] group-hover:text-[#C5B083] transition-colors">
+                        {item.title}
+                      </h5>
+                      <span className="text-[10px] font-mono text-[#9EA8A1]">
+                        {item.category} &bull; {item.locationPlaceholder}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-6 text-xs font-mono">
+                    <span className="text-[#9EA8A1] hidden md:block">{item.specifications.style}</span>
+                    <span className="text-[#C5B083]">{item.specifications.area}</span>
+                    <a
+                      href="#contact"
+                      onClick={scrollToContact}
+                      className="p-1.5 border border-[#24322A] text-[#9EA8A1] group-hover:text-[#F5F3EF] group-hover:border-[#C5B083] transition-colors"
+                      aria-label={`Inquire about ${item.title}`}
+                    >
                       <ArrowUpRight className="w-3.5 h-3.5" />
                     </a>
                   </div>
                 </div>
-              </article>
-            </MotionReveal>
-          ))}
-        </div>
-
-        {/* Customer Journey Bridge Callout */}
-        <MotionReveal delay={0.2}>
-          <div className="mt-16 pt-8 border-t border-[#DCD6C9] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-            <div>
-              <p className="text-xs sm:text-sm text-[#1E2521] font-medium">
-                Envisioning a distinctive architectural residence or commercial development?
-              </p>
-              <p className="text-xs text-[#626A66] font-light mt-0.5">
-                Our principal team conducts site evaluations and custom volumetric studies.
-              </p>
-            </div>
-            <a
-              href="#contact"
-              onClick={scrollToContact}
-              className="inline-flex items-center gap-2 bg-[#506653] hover:bg-[#1E2521] text-[#FAF9F5] px-6 py-3 text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300 shadow-sm shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A65]"
-            >
-              <span>Discuss Your Plot</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#B49A65]" />
-            </a>
+              </KairosDepthReveal>
+            ))}
           </div>
-        </MotionReveal>
+        )}
       </div>
     </section>
   );
