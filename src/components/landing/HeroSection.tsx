@@ -2,7 +2,6 @@
 
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { HalftoneBackground } from "@/components/ui/HalftoneBackground";
 import { KairosMaskedText, KairosDepthReveal } from "@/components/ui/KairosScrollReveal";
 import { ArrowDown, ArrowUpRight, Compass } from "lucide-react";
 
@@ -47,18 +46,10 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative isolate min-h-screen flex flex-col justify-between overflow-hidden bg-[#0B0F0D] text-[#F5F3EF] pt-32 sm:pt-40 pb-10"
+      className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-transparent text-[#F5F3EF] pt-32 sm:pt-40 pb-10"
     >
-      {/* ========================================================================= */}
-      {/* AMBIENT HALFTONE BACKGROUND — Zero Stock Photos, Pure Organic Atmosphere   */}
-      {/* ========================================================================= */}
-      <HalftoneBackground opacity="opacity-45" dotScale={0.88} speed={0.12} />
-
-      {/* Subtle Depth Gradient Overlay to guarantee pristine readability */}
-      <div className="absolute inset-0 bg-radial from-transparent via-[#0B0F0D]/60 to-[#0B0F0D] pointer-events-none" />
-
       {/* Subtle Architectural Hairline Grid Overlay */}
-      <div className="absolute inset-0 bg-architectural-grid opacity-35 pointer-events-none" />
+      <div className="absolute inset-0 bg-architectural-grid opacity-25 pointer-events-none" />
 
       {/* ========================================================================= */}
       {/* CENTERED HERO CONTENT CONTAINER                                          */}

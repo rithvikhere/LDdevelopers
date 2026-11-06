@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#0B0F0D] text-[#F5F3EF] border-t border-[#24322A] relative overflow-hidden">
+    <footer className="bg-[#0B0F0D] text-[#F5F3EF] border-t border-[#24322A] relative z-20 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-20 pb-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 pb-16 border-b border-[#24322A]">
           {/* Column 1: Brand & Philosophy */}
