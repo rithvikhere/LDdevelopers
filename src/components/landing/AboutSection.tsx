@@ -52,107 +52,141 @@ export const AboutSection: React.FC = () => {
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         {/* Section Index & Eyebrow — Centered & Prominent */}
-        <KairosDepthReveal delay={0.05}>
-          <div className="flex flex-col items-center justify-center text-center mx-auto mb-6">
-            <span className="text-sm sm:text-base md:text-lg font-mono tracking-[0.3em] text-[#C5B083] uppercase font-semibold">
-              01 / ARCHITECTURAL PROVENANCE
-            </span>
-          </div>
-        </KairosDepthReveal>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-center justify-center text-center mx-auto mb-4"
+        >
+          <span className="text-sm sm:text-base md:text-lg font-mono tracking-[0.3em] text-[#C5B083] uppercase font-semibold">
+            01 / ARCHITECTURAL PROVENANCE
+          </span>
+        </motion.div>
 
-        {/* Large Editorial Headline — Centered */}
-        <div className="max-w-4xl mx-auto text-center mb-16 sm:mb-24">
-          <KairosMaskedText delay={0.1} as="h2" className="font-display text-3xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] leading-[1.14] tracking-tight">
+        {/* Large Editorial Headline — Centered & Fully Visible */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="max-w-4xl mx-auto text-center mb-12 sm:mb-16"
+        >
+          <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] leading-[1.14] tracking-tight">
             Rooted in structural integrity, spatial purity, and enduring permanence.
-          </KairosMaskedText>
-        </div>
+          </h2>
+        </motion.div>
 
-        {/* Asymmetrical Narrative Section — Unfolds Gradually */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-24">
-          {/* Left Hero Statement (Columns 1-7) */}
-          <div className="lg:col-span-7">
-            <KairosDepthReveal delay={0.2} withFrame={true} highlight={true}>
-              <div className="space-y-6">
-                <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[#2E5A44] font-semibold">
-                  MANIFESTO
-                </span>
-                <p className="font-display text-2xl sm:text-3xl text-[#0B0F0D] font-light italic leading-relaxed">
+        {/* Perfectly Aligned Equal-Height 2-Column Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto mb-20">
+          {/* Left Column: Manifesto Card (Full Height) */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="h-full"
+          >
+            <div className="h-full border border-[#24322A]/15 bg-white/90 backdrop-blur-md p-8 sm:p-12 shadow-xl hover:shadow-2xl hover:border-[#2E5A44]/50 transition-all duration-300 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="w-2 h-2 rounded-full bg-[#2E5A44]" />
+                  <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-[#2E5A44] font-semibold">
+                    MANIFESTO
+                  </span>
+                </div>
+                <blockquote className="font-display text-2xl sm:text-3xl lg:text-4xl text-[#0B0F0D] font-light italic leading-relaxed">
                   &ldquo;We do not merely construct enclosures; we curate light, shadow, and materiality into living spaces designed to outlive ephemeral trends.&rdquo;
-                </p>
-                <div className="h-px bg-[#2E5A44]/30 w-24 pt-2" />
-                <p className="text-sm sm:text-base text-[#2A332E] font-light leading-relaxed">
+                </blockquote>
+              </div>
+
+              <div className="pt-8">
+                <div className="h-px bg-[#2E5A44]/20 w-24 mb-6" />
+                <p className="text-xs sm:text-sm text-[#2A332E] font-light leading-relaxed">
                   Founded on the conviction that timeless architecture demands an uncompromising balance between aesthetic poise and engineering rigor. Every commission—from bespoke private residences to commercial towers—is conceived from the ground up as a bespoke masterwork.
                 </p>
               </div>
-            </KairosDepthReveal>
-          </div>
+            </div>
+          </motion.div>
 
-          {/* Right Narrative Pillar (Columns 8-12) */}
-          <div className="lg:col-span-5 space-y-8 lg:pt-8">
+          {/* Right Column: 3 Balanced Discipline Cards (Exact Same Top & Bottom Alignment) */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.25 }}
+            className="h-full flex flex-col justify-between gap-4"
+          >
             {siteContent.about.pillars.map((pillar, idx) => (
-              <KairosDepthReveal key={idx} delay={0.25 + idx * 0.12}>
-                <div className="p-6 border border-[#24322A]/15 border-l-4 border-l-[#2E5A44] bg-white/90 backdrop-blur-md shadow-lg hover:shadow-xl transition-all duration-300">
+              <div
+                key={idx}
+                className="flex-1 border border-[#24322A]/15 border-l-4 border-l-[#2E5A44] bg-white/90 backdrop-blur-md p-6 sm:p-7 shadow-lg hover:shadow-xl hover:border-[#2E5A44]/50 transition-all duration-300 flex flex-col justify-center"
+              >
+                <div className="flex items-center justify-between mb-2">
                   <span className="text-[10px] font-mono text-[#2E5A44] font-semibold tracking-widest uppercase">
                     DISCIPLINE 0{idx + 1}
                   </span>
-                  <h3 className="font-display text-xl text-[#0B0F0D] font-normal tracking-wide mt-1.5 mb-2">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#2A332E] font-light leading-relaxed">
-                    {pillar.description}
-                  </p>
+                  <span className="text-[10px] font-mono text-[#5A6B62] uppercase tracking-wider">
+                    Core Standard
+                  </span>
                 </div>
-              </KairosDepthReveal>
+                <h3 className="font-display text-xl sm:text-2xl text-[#0B0F0D] font-light tracking-tight mb-2">
+                  {pillar.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#2A332E] font-light leading-relaxed">
+                  {pillar.description}
+                </p>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Minimalist Architectural Metric Matrix */}
+        <div className="max-w-6xl mx-auto pt-16 border-t border-[#24322A]/60">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {metrics.map((metric, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 * i }}
+                className="p-6 sm:p-8 bg-white/90 backdrop-blur-md border border-[#24322A]/15 hover:border-[#2E5A44]/50 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <div className="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-[#2E5A44] mb-2 tracking-tight">
+                  {metric.value}
+                </div>
+                <div className="text-xs sm:text-sm font-semibold tracking-wider text-[#0B0F0D] uppercase font-mono">
+                  {metric.label}
+                </div>
+                <div className="text-[11px] text-[#41554A] font-mono mt-1 font-medium">
+                  {metric.sub}
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Minimalist Architectural Metric Matrix */}
-        <KairosStaggerContainer
-          staggerDelay={0.1}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-16 border-t border-[#24322A]/60"
-        >
-          {metrics.map((metric, i) => (
-            <motion.div
-              key={i}
-              variants={kairosChildVariant}
-              className="p-6 sm:p-8 bg-white/90 backdrop-blur-md border border-[#24322A]/15 hover:border-[#2E5A44]/50 shadow-lg hover:shadow-xl transition-all duration-400"
-            >
-              <div className="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-[#2E5A44] mb-2 tracking-tight">
-                {metric.value}
-              </div>
-              <div className="text-xs sm:text-sm font-semibold tracking-wider text-[#0B0F0D] uppercase font-mono">
-                {metric.label}
-              </div>
-              <div className="text-[11px] text-[#41554A] font-mono mt-1 font-medium">
-                {metric.sub}
-              </div>
-            </motion.div>
-          ))}
-        </KairosStaggerContainer>
-
         {/* Narrative Flow CTAs */}
-        <KairosDepthReveal delay={0.4}>
-          <div className="mt-16 flex flex-wrap items-center justify-between gap-6 pt-8 border-t border-[#24322A]/40 text-xs font-mono uppercase tracking-[0.2em]">
-            <a
-              href="#services"
-              onClick={scrollToServices}
-              className="group inline-flex items-center gap-2 text-[#C5B083] hover:text-[#F5F3EF] transition-colors"
-            >
-              <span>Explore Architectural Disciplines</span>
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
+        <div className="max-w-6xl mx-auto mt-16 flex flex-wrap items-center justify-between gap-6 pt-8 border-t border-[#24322A]/40 text-xs font-mono uppercase tracking-[0.2em]">
+          <a
+            href="#services"
+            onClick={scrollToServices}
+            className="group inline-flex items-center gap-2 text-[#C5B083] hover:text-[#F5F3EF] transition-colors"
+          >
+            <span>Explore Architectural Disciplines</span>
+            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </a>
 
-            <a
-              href="#contact"
-              onClick={scrollToContact}
-              className="inline-flex items-center gap-2 text-[#9EA8A1] hover:text-[#C5B083] transition-colors"
-            >
-              <span>Commission A Consultation</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </a>
-          </div>
-        </KairosDepthReveal>
+          <a
+            href="#contact"
+            onClick={scrollToContact}
+            className="inline-flex items-center gap-2 text-[#9EA8A1] hover:text-[#C5B083] transition-colors"
+          >
+            <span>Commission A Consultation</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
+        </div>
       </div>
     </section>
   );
