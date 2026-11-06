@@ -1,4 +1,5 @@
 // @ts-nocheck
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
@@ -173,7 +174,7 @@ export const SplitText: React.FC<SplitTextProps> = ({
       let pieces: any[] = [];
       let movers: any[] = [];
       let order = gsap.utils.distribute({ each: delay / 1000, from: staggerFrom });
-      let revealed = completedTextRef.current === text;
+      let revealed = false;
       let intro: any = null;
       let busy: any = null;
       let queued: any = null;
@@ -359,12 +360,21 @@ export const SplitText: React.FC<SplitTextProps> = ({
             busy.kill();
             busy = null;
           }
-          if (revealed) return undefined;
+          const useScroll = trigger === 'view' || trigger === 'load';
           intro = reveal(true, {
-            scrollTrigger:
-              trigger === 'load'
-                ? undefined
-                : { trigger: el, start, once: true, fastScrollEnd: true, anticipatePin: 0.4 },
+            scrollTrigger: useScroll
+              ? {
+                  trigger: el,
+                  start,
+                  once: false,
+                  toggleActions: 'restart none restart none',
+                  fastScrollEnd: true,
+                  anticipatePin: 0.4
+                }
+              : undefined,
+            onStart: () => {
+              revealed = false;
+            },
             onComplete: () => {
               revealed = true;
               intro = null;
@@ -452,3 +462,4 @@ export const SplitText: React.FC<SplitTextProps> = ({
 };
 
 export default SplitText;
+

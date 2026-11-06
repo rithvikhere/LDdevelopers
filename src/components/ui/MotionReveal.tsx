@@ -14,7 +14,7 @@ interface MotionRevealProps {
 /**
  * MotionReveal Component
  * Restrained, architectural entrance animation.
- * - Triggers once when the element enters the viewport (once: true)
+ * - Triggers whenever the element enters the viewport (once: false)
  * - Subtle movement (defaults to 16px) with clean opacity fade
  * - Strictly respects prefers-reduced-motion (renders static if preferred)
  * - Ensures content is never stuck in hidden state
@@ -60,7 +60,7 @@ export const MotionReveal: React.FC<MotionRevealProps> = ({
         x: 0,
         y: 0,
       }}
-      viewport={{ once: true, margin: "-40px" }}
+      viewport={{ once: false, margin: "-40px" }}
       transition={{
         duration: 0.6,
         delay: Math.min(delay, 0.4), // Cap delay to prevent perceived lag
@@ -88,7 +88,7 @@ export const MotionStaggerContainer: React.FC<{
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-40px" }}
+      viewport={{ once: false, margin: "-40px" }}
       variants={{
         hidden: {},
         visible: {

@@ -44,7 +44,7 @@ export const KairosDepthReveal: React.FC<KairosDepthRevealProps> = ({
         y: 0,
         scale: 1,
       }}
-      viewport={{ once: true, margin: "-8% 0px -8% 0px" }}
+      viewport={{ once: false, margin: "-8% 0px -8% 0px" }}
       transition={{
         duration: 0.85,
         delay,
@@ -60,7 +60,7 @@ export const KairosDepthReveal: React.FC<KairosDepthRevealProps> = ({
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: [0, 0.15, 0] }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 1.2, delay: delay + 0.3 }}
           className="absolute inset-0 bg-radial from-[#C5B083]/20 via-transparent to-transparent pointer-events-none"
         />
@@ -100,7 +100,7 @@ export const KairosMaskedText: React.FC<KairosMaskedTextProps> = ({
     <MotionComponent
       initial={{ y: 24, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
-      viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+      viewport={{ once: false, margin: "0px 0px -8% 0px" }}
       transition={{
         duration: 0.85,
         delay,
@@ -138,7 +138,7 @@ export const KairosStaggerContainer: React.FC<KairosStaggerContainerProps> = ({
     <motion.div
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "-8% 0px -8% 0px" }}
+      viewport={{ once: false, margin: "-8% 0px -8% 0px" }}
       variants={{
         hidden: { opacity: 0 },
         show: {

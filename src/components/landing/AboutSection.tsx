@@ -55,7 +55,7 @@ export const AboutSection: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-40px" }}
           transition={{ duration: 0.6 }}
           className="flex flex-col items-center justify-center text-center mx-auto mb-4"
         >
@@ -68,7 +68,7 @@ export const AboutSection: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-40px" }}
           transition={{ duration: 0.7, delay: 0.1 }}
           className="max-w-4xl mx-auto text-center mb-12 sm:mb-16"
         >
@@ -83,7 +83,7 @@ export const AboutSection: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "-40px" }}
             transition={{ duration: 0.8, delay: 0.15 }}
             className="h-full"
           >
@@ -113,7 +113,7 @@ export const AboutSection: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "-40px" }}
             transition={{ duration: 0.8, delay: 0.25 }}
             className="h-full flex flex-col justify-between gap-4"
           >
@@ -149,7 +149,7 @@ export const AboutSection: React.FC = () => {
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, margin: "-40px" }}
                 transition={{ duration: 0.6, delay: 0.1 * i }}
                 className="p-6 sm:p-8 bg-white/90 backdrop-blur-md border border-[#24322A]/15 hover:border-[#2E5A44]/50 shadow-lg hover:shadow-xl transition-all duration-300"
               >
