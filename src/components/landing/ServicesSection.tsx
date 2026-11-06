@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
+import { MotionReveal } from "@/components/ui/MotionReveal";
 import { ArrowUpRight, Check } from "lucide-react";
 
 export const ServicesSection: React.FC = () => {
@@ -16,6 +16,15 @@ export const ServicesSection: React.FC = () => {
     siteAssets.services.find((s) => s.id === selectedServiceId) ||
     siteAssets.services[0];
 
+  const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const el = document.getElementById("contact");
+    if (el) {
+      const offset = el.getBoundingClientRect().top + window.pageYOffset - 72;
+      window.scrollTo({ top: offset, behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="services"
@@ -23,7 +32,7 @@ export const ServicesSection: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16 sm:mb-20">
+        <MotionReveal className="max-w-3xl mb-16 sm:mb-20">
           <span className="text-xs uppercase tracking-[0.25em] text-[#526653] font-semibold block mb-3">
             {siteContent.services.tag}
           </span>
@@ -33,7 +42,7 @@ export const ServicesSection: React.FC = () => {
           <p className="mt-4 text-base sm:text-lg text-[#202622]/75 font-light leading-relaxed">
             {siteContent.services.subtitle}
           </p>
-        </div>
+        </MotionReveal>
 
         {/* Editorial Interactive Layout: Tabs & Large Feature Showcase */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
@@ -46,7 +55,7 @@ export const ServicesSection: React.FC = () => {
                   key={service.id}
                   onClick={() => setSelectedServiceId(service.id)}
                   type="button"
-                  className={`text-left p-5 transition-all duration-300 border-l-2 flex items-center justify-between group ${
+                  className={`text-left p-5 transition-all duration-300 border-l-2 flex items-center justify-between group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#526653] ${
                     isSelected
                       ? "bg-[#D9D2C4]/60 border-[#526653] shadow-xs"
                       : "bg-transparent border-transparent hover:bg-[#D9D2C4]/25 hover:border-[#B49A68]/50"
@@ -84,7 +93,7 @@ export const ServicesSection: React.FC = () => {
           </div>
 
           {/* Active Service Showcase Card (Right Column) */}
-          <div className="lg:col-span-7 bg-[#202622] text-[#F3F0E8] overflow-hidden shadow-2xl relative">
+          <MotionReveal className="lg:col-span-7 bg-[#202622] text-[#F3F0E8] overflow-hidden shadow-2xl relative">
             <div className="relative aspect-[16/10] w-full overflow-hidden">
               <Image
                 src={activeService.image}
@@ -97,7 +106,7 @@ export const ServicesSection: React.FC = () => {
               <div className="absolute top-4 left-4 bg-[#526653] text-[#F3F0E8] px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-semibold">
                 {activeService.category}
               </div>
-              <div className="absolute top-4 right-4 bg-black/60 text-[#D9D2C4] px-2.5 py-1 text-[10px] uppercase tracking-wider backdrop-blur-xs">
+              <div className="absolute top-4 right-4 bg-black/60 text-[#D9D2C4] px-2.5 py-1 text-[10px] uppercase tracking-wider backdrop-blur-xs font-mono">
                 Sample Architectural Visual
               </div>
             </div>
@@ -133,19 +142,19 @@ export const ServicesSection: React.FC = () => {
                 <span className="text-xs text-[#D9D2C4]/70">
                   Ready to construct a {activeService.title.toLowerCase()}?
                 </span>
-                <Link
+                <a
                   href="#contact"
-                  className="inline-flex items-center justify-center gap-2 bg-[#526653] hover:bg-[#343B33] text-[#F3F0E8] px-6 py-3 border border-[#B49A68]/40 text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300"
+                  onClick={scrollToContact}
+                  className="inline-flex items-center justify-center gap-2 bg-[#526653] hover:bg-[#343B33] active:scale-[0.98] text-[#F3F0E8] px-6 py-3 border border-[#B49A68]/40 hover:border-[#B49A68] text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A68]"
                 >
                   <span>Request Proposal</span>
                   <ArrowUpRight className="w-4 h-4 text-[#B49A68]" />
-                </Link>
+                </a>
               </div>
             </div>
-          </div>
+          </MotionReveal>
         </div>
       </div>
     </section>
   );
 };
-
