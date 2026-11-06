@@ -94,22 +94,22 @@ export const KairosMaskedText: React.FC<KairosMaskedTextProps> = ({
     return <Component className={className}>{children}</Component>;
   }
 
+  const MotionComponent = (motion as Record<string, any>)[Component] || motion.div;
+
   return (
-    <div className="overflow-hidden">
-      <motion.div
-        initial={{ y: "110%", opacity: 0, scale: 0.98 }}
-        whileInView={{ y: 0, opacity: 1, scale: 1 }}
-        viewport={{ once: true, margin: "-6% 0px -6% 0px" }}
-        transition={{
-          duration: 0.9,
-          delay,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-        className={className}
-      >
-        {children}
-      </motion.div>
-    </div>
+    <MotionComponent
+      initial={{ y: 24, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+      transition={{
+        duration: 0.85,
+        delay,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className={className}
+    >
+      {children}
+    </MotionComponent>
   );
 };
 

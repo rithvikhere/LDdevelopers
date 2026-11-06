@@ -3,6 +3,7 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
+import SplitText from "@/components/ui/SplitText";
 
 /**
  * HeroSection Component — Kairos Minimalist Cinematic Master Redesign
@@ -52,22 +53,24 @@ export const HeroSection: React.FC = () => {
       {/* CENTERED HERO CONTENT CONTAINER                                          */}
       {/* ========================================================================= */}
       <div className="w-full max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col items-center justify-center text-center relative z-10 py-8 sm:py-16">
-        {/* Monumental Gold Architectural Headline (Main Visual Centerpiece) */}
-        <motion.div
-          initial={{ opacity: 0, y: 32, scale: 0.97 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{
-            duration: 1.1,
-            delay: 0.15,
-            ease: [0.16, 1, 0.3, 1],
-          }}
-          className="max-w-5xl mx-auto mb-10 sm:mb-14"
-        >
-          <h1 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4.6rem] font-light text-[#C5B083] tracking-tight leading-[1.18] sm:leading-[1.12] drop-shadow-[0_10px_40px_rgba(197,176,131,0.2)]">
-            From visionary architecture to enduring developments, we create spaces that elevate
-            the way people live, work, and experience the world.
-          </h1>
-        </motion.div>
+        {/* Monumental Gold Architectural Headline (SplitText from React Bits) */}
+        <div className="max-w-5xl mx-auto mb-10 sm:mb-14">
+          <SplitText
+            tag="h1"
+            text="From visionary architecture to enduring developments, we create spaces that elevate the way people live, work, and experience the world."
+            className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4.6rem] font-light text-[#C5B083] tracking-tight leading-[1.18] sm:leading-[1.12] drop-shadow-[0_10px_40px_rgba(197,176,131,0.2)]"
+            effect="rise"
+            splitType="chars"
+            delay={25}
+            duration={1.25}
+            staggerFrom="start"
+            trigger="load"
+            hoverEffect="lift"
+            loop={false}
+            mask={false}
+            textAlign="center"
+          />
+        </div>
 
         {/* Minimalist CTA Buttons */}
         <motion.div
