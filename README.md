@@ -7,9 +7,9 @@ A premium, bespoke website and lead-management platform designed for a construct
 ## 1. Project Overview
 
 The project is structured into three integrated applications:
-1. **Public Architectural Company Website:** A nine-section, cinematic single-page experience showcasing services, plot construction options, sample concepts, amenities, photography archive, verified achievements, and contact channels.
-2. **Customer Portal (`/dashboard`):** Client registration, authentication, multi-step construction enquiry submission, and live status tracking.
-3. **Admin Lead-Management Console (`/admin/dashboard`):** Isolated administrative login, real database statistics, comprehensive enquiry table with search/filtering, detailed lead viewer, and manual click-to-chat WhatsApp, call, and email integration.
+1. **Public Architectural Company Website (Phase 02 Completed):** A nine-section, cinematic single-page experience showcasing services, plot construction options, sample concepts, amenities, photography archive, verified achievements, and direct contact channels.
+2. **Customer Portal (`/dashboard`):** Client registration, authentication, multi-step construction enquiry submission, and live status tracking (Planned for later phases).
+3. **Admin Lead-Management Console (`/admin/dashboard`):** Isolated administrative login, real database statistics, comprehensive enquiry table with search/filtering, detailed lead viewer, and manual click-to-chat WhatsApp, call, and email integration (Planned for later phases).
 
 ---
 
@@ -23,7 +23,7 @@ The project is structured into three integrated applications:
   - Supporting Font: [DM Sans](https://fonts.google.com/specimen/DM+Sans) (Google Fonts)
 - **Icons:** [Lucide React](https://lucide.dev/)
 - **Animations:** [Framer Motion](https://www.framer.com/motion/)
-- **Database & Auth (Phases 2–4):** [Supabase](https://supabase.com/) PostgreSQL with Row Level Security (RLS)
+- **Database & Auth (Subsequent Phases):** Supabase PostgreSQL with Row Level Security (RLS)
 - **Forms & Validation:** React Hook Form with Zod
 
 ---
@@ -37,33 +37,57 @@ The visual identity follows the creative direction defined in `PHASE_01_BRAND_ID
 | **Deep Charcoal** | `#202622` | Navigation, dark sections, hero overlay, footer |
 | **Warm Ivory** | `#F3F0E8` | Primary page backgrounds and spacious reading surfaces |
 | **Muted Forest** | `#526653` | Primary action buttons, CTA elements, and selected states |
-| **Champagne Brass** | `#B49A68` | Subtle borders, badges, dividers, and premium highlights |
+| **Champagne Brass** | `#B49A68` | Subtle borders, badges, dividers, and active indicators |
 | **Stone Beige** | `#D9D2C4` | Secondary cards, subtle containers, and hover fills |
 | **Olive Charcoal** | `#343B33` | Dark elevation, secondary borders, and deep surfaces |
 
 ---
 
-## 4. The 9 Landing Page Sections
+## 4. Navigation Bar Specification (Phase 02)
 
-1. **Hero Section (`#home`):** Cinematic full-screen architectural photography, layered dark gradient overlay, temporary logo badge, headline (*"Sculpting Enduring Spaces, Defining Modern Living"*), primary *"Let's Build"* CTA, and *"Explore Our Projects"* navigation.
-2. **About Section (`#about`):** Craftsmanship philosophy, vision, three foundational pillars (*Architectural Integrity, Engineering Rigor, Transparent Governance*), and dual-photo editorial layout.
-3. **Services Section (`#services`):** Six key disciplines:
-   - *Independent Houses*
-   - *Duplex Houses*
-   - *Villas*
-   - *Commercial Buildings*
-   - *Land Investment*
-   - *Property Buying & Selling*
-4. **Construction Options (`#options`):** Deep charcoal section detailing recommended plot dimensions, house types, duplex/villa formats, commercial frameworks, and custom turnkey briefs.
-5. **Projects Showcase (`#projects`):** Curated architectural concept gallery with category filters (*All, Residential, Villas, Commercial, Duplex*), specifications, and prominent *"Sample Project"* identification.
-6. **Amenities & Quality (`#amenities`):** Six engineering benchmarks: Seismic foundations, artisanal finishes, thermal/acoustic insulation, home automation, rainwater harvesting, and certified structural assurance.
-7. **Gallery (`#gallery`):** Responsive architectural photography grid with interactive lightbox zoom modal.
-8. **Achievements (`#achievements`):** Transparent milestone metrics with strict `"--"` placeholders awaiting verified client figures (zero fake metrics).
-9. **Contact Section (`#contact`):** Telephone, email, corporate office address, consultation hours, manual WhatsApp click-to-chat action, and interactive preliminary enquiry card.
+- **Desktop Navigation:**
+  - **Company Logo:** Clean minimal geometric mark on the left.
+  - **Centered Links:** All nine sections in exact sequence:
+    1. Home (`#home`)
+    2. About (`#about`)
+    3. Services (`#services`)
+    4. Construction Options (`#options`)
+    5. Projects (`#projects`)
+    6. Amenities (`#amenities`)
+    7. Gallery (`#gallery`)
+    8. Achievements (`#achievements`)
+    9. Contact (`#contact`)
+  - **Active Section Indication:** Restrained Champagne Brass (`#B49A68`) underline following the in-view section smoothly without flicker.
+  - **Scroll State:** Transparent over the hero image; transitions smoothly to solid Deep Charcoal (`#202622`) upon scrolling.
+  - **Primary CTA:** Muted Forest (`#526653`) *"Let's Build"* button leading to `#contact`.
+- **Mobile Navigation:**
+  - Full-screen architectural overlay in Deep Charcoal (`#202622`).
+  - Smooth entrance/exit, background scroll lock, and Escape-to-close accessibility.
+  - Automatically dismisses upon section selection.
 
 ---
 
-## 5. Replacing Placeholder Assets & Logo
+## 5. The Exactly 9 Landing-Page Sections
+
+1. **Section 1 — Home / Hero (`#home`):** Cinematic full-screen architectural photography, dark ambient gradient overlay, temporary logo badge, headline (*"Sculpting Enduring Spaces, Defining Modern Living"*), primary *"Let's Build"* CTA, and *"Explore Our Projects"* navigation.
+2. **Section 2 — About (`#about`):** Craftsmanship philosophy, vision, dual-photo architectural layout, clearly marked placeholder notices, and three foundational pillars (*Architectural Integrity, Engineering Rigor, Transparent Governance*).
+3. **Section 3 — Services (`#services`):** Six key disciplines:
+   - *Houses / Independent Houses*
+   - *Duplexes*
+   - *Villas*
+   - *Commercial Buildings*
+   - *Land Investing*
+   - *Property Buying and Selling*
+4. **Section 4 — Construction Options (`#options`):** Deep charcoal section detailing recommended plot dimensions, house types, duplex/villa formats, commercial frameworks, and custom turnkey briefs.
+5. **Section 5 — Projects (`#projects`):** Curated architectural concept gallery with category filters (*All, Residential, Villas, Commercial, Duplex*), specifications, and prominent *"Sample Project"* identification.
+6. **Section 6 — Amenities & Quality (`#amenities`):** Six engineering benchmarks: Seismic foundations, artisanal finishes, thermal/acoustic insulation, intelligent infrastructure, rainwater harvesting, and certified structural assurance.
+7. **Section 7 — Gallery (`#gallery`):** Responsive architectural photography grid with an interactive, accessible lightbox modal.
+8. **Section 8 — Achievements (`#achievements`):** Transparent milestone metrics with strict `"--"` placeholders awaiting verified client figures (zero fake metrics).
+9. **Section 9 — Contact (`#contact`):** Telephone, email, corporate office address, consultation hours placeholders, manual WhatsApp click-to-chat action with prefilled message, and an interactive preliminary enquiry intake card.
+
+---
+
+## 6. Replacing Placeholder Assets & Logo
 
 All temporary assets are centralized in single-point configuration files. **You do not need to edit multiple components to change assets.**
 
@@ -90,7 +114,7 @@ All temporary assets are centralized in single-point configuration files. **You 
 
 ---
 
-## 6. Local Development Setup
+## 7. Local Development Setup
 
 ### Prerequisites
 - Node.js `18.18+` or `20+` (tested on Node `v24.19.0`)
@@ -113,22 +137,12 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to inspect t
 
 ---
 
-## 7. Production Build
+## 8. Roadmap Status
 
-To verify type safety and build optimized static assets:
-```bash
-npm run build
-npm run start
-```
-
----
-
-## 8. Next Phases Roadmap
-
-- [x] **Phase 0:** Project inspection, GitHub repository setup, brand identity alignment.
-- [x] **Phase 1:** Brand system, design tokens, typography, centralized asset configuration, and complete 9-section public landing page.
-- [ ] **Phase 2:** Supabase database migrations, Row Level Security (RLS), Customer Auth, and Admin Auth.
-- [ ] **Phase 3:** Customer Portal & Multi-Step Construction Enquiry Form with Zod validation.
-- [ ] **Phase 4:** Admin Lead Management Dashboard, searchable/filterable enquiry table, detailed lead viewer, and manual WhatsApp launcher.
-- [ ] **Phase 5:** End-to-end user journey verification, security audits, and QA.
-- [ ] **Phase 6:** Production deployment, domain linkage, and client handover.
+- [x] **Phase 01:** Brand identity, creative direction tokens, typography foundations.
+- [x] **Phase 02:** Public Landing Page UI/UX, updated 9-section navigation, editorial layouts, centralized asset configuration, and accessibility compliance.
+- [ ] **Phase 03:** Customer Authentication & Database Integration (Supabase PostgreSQL, RLS).
+- [ ] **Phase 04:** Customer Portal & Multi-Step Construction Enquiry Form.
+- [ ] **Phase 05:** Admin Lead Management Dashboard, searchable/filterable lead table, and manual WhatsApp launcher.
+- [ ] **Phase 06:** End-to-end testing, security audit, and quality assurance.
+- [ ] **Phase 07:** Production deployment and client handover.

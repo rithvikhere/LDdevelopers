@@ -1,25 +1,29 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { CompanyLogo } from "@/components/brand/CompanyLogo";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
-import { ArrowUp, Phone, Mail, MapPin, Clock, MessageSquare } from "lucide-react";
+import { ArrowUp, Phone, Mail, MapPin, Clock } from "lucide-react";
 
+/**
+ * Footer Component — Phase 02 Specification
+ * - Solid Deep Charcoal (#202622) background
+ * - Exactly the 9 planned sections in specified order
+ * - Clean company placeholders (phone, email, address, consultation hours)
+ * - Restrained typography and smooth back-to-top trigger
+ * - No premature portal or mock admin links
+ */
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <footer className="bg-[#202622] text-[#F3F0E8] border-t border-[#B49A68]/20 relative overflow-hidden">
-      {/* Subtle architectural ambient accent */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#526653]/10 rounded-full blur-3xl pointer-events-none" />
-
+    <footer className="bg-[#202622] text-[#F3F0E8] border-t border-[#343B33] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-16 border-b border-[#343B33]">
-          {/* Column 1: Brand & Bio */}
+          {/* Column 1: Brand & Philosophy */}
           <div className="lg:col-span-2 flex flex-col pr-0 lg:pr-8">
             <CompanyLogo theme="dark" className="mb-6" />
             <p className="text-sm text-[#D9D2C4]/80 leading-relaxed font-light mb-6 max-w-md">
@@ -36,38 +40,22 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Column 2: Navigation Links */}
+          {/* Column 2: Exact 9 Landing Page Sections */}
           <div>
             <h4 className="text-xs uppercase tracking-[0.22em] text-[#B49A68] font-semibold mb-6">
               Navigation
             </h4>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-2.5 text-xs uppercase tracking-wider">
               {siteContent.navigation.map((item) => (
-                <li key={item.href}>
-                  <Link
+                <li key={item.id}>
+                  <a
                     href={item.href}
-                    className="text-[#D9D2C4]/75 hover:text-[#F3F0E8] transition-colors inline-block py-0.5"
+                    className="text-[#D9D2C4]/75 hover:text-[#B49A68] transition-colors inline-block py-0.5"
                   >
                     {item.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/login"
-                  className="text-[#B49A68] hover:text-[#F3F0E8] transition-colors inline-block py-0.5 font-medium"
-                >
-                  Client Portal
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/admin/login"
-                  className="text-[#D9D2C4]/50 hover:text-[#B49A68] transition-colors inline-block py-0.5 text-xs"
-                >
-                  Admin Portal
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -76,24 +64,24 @@ export const Footer: React.FC = () => {
             <h4 className="text-xs uppercase tracking-[0.22em] text-[#B49A68] font-semibold mb-6">
               Services
             </h4>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-2.5 text-xs text-[#D9D2C4]/80">
               {siteAssets.services.map((service) => (
                 <li key={service.id}>
-                  <Link
+                  <a
                     href="#services"
-                    className="text-[#D9D2C4]/75 hover:text-[#F3F0E8] transition-colors inline-block py-0.5"
+                    className="hover:text-[#B49A68] transition-colors inline-block py-0.5"
                   >
                     {service.title}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 4: Contact & Office */}
+          {/* Column 4: Office & Desk Contact Details */}
           <div>
             <h4 className="text-xs uppercase tracking-[0.22em] text-[#B49A68] font-semibold mb-6">
-              Contact &amp; Office
+              Contact &amp; Desk
             </h4>
             <div className="space-y-4 text-xs text-[#D9D2C4]/80">
               <div className="flex items-start gap-2.5">
@@ -104,7 +92,7 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#B49A68] shrink-0" />
-                <span>{siteAssets.contact.phonePlaceholder}</span>
+                <span className="font-mono">{siteAssets.contact.phonePlaceholder}</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#B49A68] shrink-0" />
@@ -118,11 +106,11 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom Bar: Copyright & Back-to-Top */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#D9D2C4]/60">
           <p>
             &copy; {new Date().getFullYear()} {siteContent.company.name}. All rights reserved.
-            {" "}<span className="text-[#B49A68]/80 text-[11px] block sm:inline mt-1 sm:mt-0">Sample imagery &amp; placeholder copy.</span>
+            {" "}<span className="text-[#B49A68]/80 text-[11px] block sm:inline mt-1 sm:mt-0 font-mono">Sample imagery &amp; placeholder copy.</span>
           </p>
 
           <div className="flex items-center gap-6">
@@ -131,10 +119,10 @@ export const Footer: React.FC = () => {
             <button
               onClick={scrollToTop}
               type="button"
-              className="inline-flex items-center gap-2 text-[#B49A68] hover:text-[#F3F0E8] transition-colors ml-2 py-1 px-2 border border-[#343B33] hover:border-[#B49A68]"
+              className="inline-flex items-center gap-2 text-[#B49A68] hover:text-[#F3F0E8] transition-colors ml-2 py-1 px-2.5 border border-[#343B33] hover:border-[#B49A68]"
               aria-label="Back to top"
             >
-              <span>Top</span>
+              <span className="text-[11px] uppercase tracking-wider">Top</span>
               <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>

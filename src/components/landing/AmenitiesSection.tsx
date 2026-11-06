@@ -78,3 +78,4 @@ export const AmenitiesSection: React.FC = () => {
     </section>
   );
 };
+

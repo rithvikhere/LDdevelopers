@@ -111,3 +111,4 @@ export const AboutSection: React.FC = () => {
     </section>
   );
 };
+

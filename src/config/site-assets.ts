@@ -1,5 +1,5 @@
 /**
- * CENTRALIZED ASSET CONFIGURATION
+ * CENTRALIZED ASSET CONFIGURATION — PHASE 02
  *
  * All temporary and production images, logos, and visual assets are defined here.
  * DO NOT hardcode image URLs directly into components.
@@ -59,7 +59,6 @@ export const siteAssets = {
 
   // Section 1: Hero
   hero: {
-    // Architectural, warm dusk facade with ambient interior lighting
     mainBackground:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=85",
     alt: "Sample Architectural Landmark Facade - Hero",
@@ -68,7 +67,6 @@ export const siteAssets = {
 
   // Section 2: About
   about: {
-    // Minimalist concrete, glass, and landscaped courtyard
     primaryImage:
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85",
     secondaryImage:
@@ -77,11 +75,11 @@ export const siteAssets = {
     altSecondary: "Refined Interior Proportions and Natural Light",
   },
 
-  // Section 3: Services (6 Categories)
+  // Section 3: Services (6 Categories strictly following Phase 02 scope)
   services: [
     {
       id: "independent-houses",
-      title: "Independent Houses",
+      title: "Houses / Independent Houses",
       category: "Bespoke Residential",
       tagline: "Sanctuaries of individuality and enduring permanence",
       description:
@@ -96,8 +94,8 @@ export const siteAssets = {
       ],
     },
     {
-      id: "duplex-houses",
-      title: "Duplex Houses",
+      id: "duplexes",
+      title: "Duplexes",
       category: "Multi-Level Living",
       tagline: "Dramatic vertical volumes with functional zoning",
       description:
@@ -144,8 +142,8 @@ export const siteAssets = {
       ],
     },
     {
-      id: "land-investment",
-      title: "Land Investment",
+      id: "land-investing",
+      title: "Land Investing",
       category: "Strategic Real Estate",
       tagline: "High-growth corridors and verified land acquisitions",
       description:
@@ -160,8 +158,8 @@ export const siteAssets = {
       ],
     },
     {
-      id: "property-buying-selling",
-      title: "Property Buying & Selling",
+      id: "property-buying-and-selling",
+      title: "Property Buying and Selling",
       category: "Brokerage & Advisory",
       tagline: "Transparent transactions for premium properties",
       description:
@@ -177,11 +175,11 @@ export const siteAssets = {
     },
   ] as ServiceAsset[],
 
-  // Section 4: Construction Options
+  // Section 4: Construction Options (5 Categories strictly following Phase 02 scope)
   constructionOptions: [
     {
-      id: "opt-independent",
-      type: "Independent Residence",
+      id: "opt-houses",
+      type: "Houses",
       recommendedPlotSize: "1,200 – 3,000 sq.ft",
       idealFor: "Individual families seeking complete autonomy & privacy",
       description:
@@ -191,8 +189,8 @@ export const siteAssets = {
       features: ["Custom floor configurations", "Private compound perimeter", "Solar-ready roof deck"],
     },
     {
-      id: "opt-duplex",
-      type: "Modern Duplex",
+      id: "opt-duplexes",
+      type: "Duplexes",
       recommendedPlotSize: "1,500 – 4,000 sq.ft",
       idealFor: "Modern families desiring dramatic spatial volume and entertainment zones",
       description:
@@ -202,8 +200,8 @@ export const siteAssets = {
       features: ["Double-height ceilings", "Multi-car sheltered garage", "Private media/study rooms"],
     },
     {
-      id: "opt-villa",
-      type: "Luxury Villa",
+      id: "opt-villas",
+      type: "Villas",
       recommendedPlotSize: "3,000 – 10,000+ sq.ft",
       idealFor: "Exclusive estates, multi-generational luxury living, and bespoke leisure",
       description:
@@ -214,7 +212,7 @@ export const siteAssets = {
     },
     {
       id: "opt-commercial",
-      type: "Commercial Complex",
+      type: "Commercial Buildings",
       recommendedPlotSize: "4,000 – 25,000+ sq.ft",
       idealFor: "Corporate offices, retail outlets, banks, and healthcare facilities",
       description:
@@ -225,8 +223,8 @@ export const siteAssets = {
     },
     {
       id: "opt-custom",
-      type: "Bespoke / Custom Development",
-      recommendedPlotSize: "Custom dimensions",
+      type: "Custom Construction Requirements",
+      recommendedPlotSize: "Custom dimensions & irregular plots",
       idealFor: "Unconventional plots, mixed-use buildings, and complex architectural briefs",
       description:
         "Collaborative turnkey architectural design and construction tailored strictly to your specific topographical constraints and spatial vision.",
@@ -337,10 +335,10 @@ export const siteAssets = {
     },
     {
       id: "amenity-smart",
-      title: "Intelligent Home Automation",
+      title: "Intelligent Infrastructure",
       subtitle: "Modern Infrastructure",
       description:
-        "Integrated KNX/Zigbee infrastructure for motorized solar louvers, smart climate zones, biometric access, and app-controlled lighting scenes.",
+        "Integrated infrastructure for motorized solar louvers, smart climate zones, biometric access, and app-controlled lighting scenes.",
       icon: "Cpu",
     },
     {
@@ -369,7 +367,6 @@ export const siteAssets = {
       category: "Interior Architecture",
       image:
         "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
-      aspect: "wide",
     },
     {
       id: "gal-02",
@@ -377,7 +374,6 @@ export const siteAssets = {
       category: "Exterior Detail",
       image:
         "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
-      aspect: "tall",
     },
     {
       id: "gal-03",
@@ -385,7 +381,6 @@ export const siteAssets = {
       category: "Bath Architecture",
       image:
         "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200&q=80",
-      aspect: "square",
     },
     {
       id: "gal-04",
@@ -393,7 +388,6 @@ export const siteAssets = {
       category: "Landscape Design",
       image:
         "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80",
-      aspect: "wide",
     },
     {
       id: "gal-05",
@@ -401,7 +395,6 @@ export const siteAssets = {
       category: "Structural Detail",
       image:
         "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
-      aspect: "tall",
     },
     {
       id: "gal-06",
@@ -409,7 +402,6 @@ export const siteAssets = {
       category: "Commercial Spaces",
       image:
         "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
-      aspect: "square",
     },
   ],
 

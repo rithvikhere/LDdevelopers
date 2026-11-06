@@ -1,5 +1,5 @@
 /**
- * CENTRALIZED SITE CONTENT & COPY CONFIGURATION
+ * CENTRALIZED SITE CONTENT & COPY CONFIGURATION — PHASE 02
  *
  * All marketing copy, headlines, navigation labels, and placeholders are stored here.
  * When official client copy and company history are received, edit the strings in this file.
@@ -8,6 +8,7 @@
 export interface NavLink {
   label: string;
   href: string;
+  id: string;
 }
 
 export const siteContent = {
@@ -19,15 +20,17 @@ export const siteContent = {
     registrationNumberPlaceholder: "[RERA / REGISTRATION NO.]",
   },
 
+  // Exactly the 9 planned sections in specified order
   navigation: [
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Options", href: "#options" },
-    { label: "Projects", href: "#projects" },
-    { label: "Amenities", href: "#amenities" },
-    { label: "Gallery", href: "#gallery" },
-    { label: "Achievements", href: "#achievements" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "#home", id: "home" },
+    { label: "About", href: "#about", id: "about" },
+    { label: "Services", href: "#services", id: "services" },
+    { label: "Construction Options", href: "#options", id: "options" },
+    { label: "Projects", href: "#projects", id: "projects" },
+    { label: "Amenities", href: "#amenities", id: "amenities" },
+    { label: "Gallery", href: "#gallery", id: "gallery" },
+    { label: "Achievements", href: "#achievements", id: "achievements" },
+    { label: "Contact", href: "#contact", id: "contact" },
   ] as NavLink[],
 
   hero: {
@@ -35,7 +38,7 @@ export const siteContent = {
     titleLine1: "Sculpting Enduring Spaces,",
     titleLine2: "Defining Modern Living.",
     subtitle:
-      "A distinguished property developer and master builder dedicated to crafting bespoke independent houses, duplex residences, luxury villas, and commercial landmarks.",
+      "A distinguished property developer and master builder dedicated to crafting bespoke residences, luxury duplexes, villas, and commercial landmarks.",
     primaryCta: "Let's Build",
     secondaryCta: "Explore Our Projects",
     ctaTarget: "#contact",
@@ -49,8 +52,8 @@ export const siteContent = {
       "At [COMPANY NAME], we believe every structure is an enduring dialogue between architectural ambition and human emotion.",
     paragraphs: [
       "[Company Overview Placeholder: Company was founded with a foundational commitment to architectural integrity, uncompromising structural engineering, and transparent client partnerships.]",
-      "We transcend conventional construction by coordinating every discipline—from initial topographical soil analysis and architectural spatial modeling to artisanal interior detailing and final handover—under one unified standard of perfection.",
-      "Whether envisioning a private multi-generational villa, a contemporary duplex with dramatic light volumes, or an iconic commercial address, our multidisciplinary team transforms raw land into landmarks of lasting value.",
+      "We coordinate every discipline—from initial topographical soil analysis and architectural spatial modeling to artisanal detailing and final handover—under one unified standard of excellence.",
+      "Whether envisioning a private villa, a contemporary duplex with dramatic light volumes, or an iconic commercial address, our multidisciplinary team transforms raw land into landmarks of lasting value.",
     ],
     pillars: [
       {

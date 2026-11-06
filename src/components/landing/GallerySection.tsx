@@ -131,3 +131,4 @@ export const GallerySection: React.FC = () => {
     </section>
   );
 };
+

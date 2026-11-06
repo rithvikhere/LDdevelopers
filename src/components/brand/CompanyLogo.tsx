@@ -89,3 +89,4 @@ export const CompanyLogo: React.FC<CompanyLogoProps> = ({
     </Link>
   );
 };
+
