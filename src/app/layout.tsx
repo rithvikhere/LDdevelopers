@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -18,7 +17,7 @@ const dmSans = DM_Sans({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#1F2924",
+  themeColor: "#202622",
   width: "device-width",
   initialScale: 1,
 };
@@ -48,34 +47,8 @@ export default function RootLayout({
       lang="en"
       className={`${cormorantGaramond.variable} ${dmSans.variable} scroll-smooth`}
     >
-      <body className="min-h-screen bg-[#F4F1E8] text-[#252B27] font-sans antialiased selection:bg-[#B89A62]/30 selection:text-[#252B27]">
+      <body className="min-h-screen bg-[#F3F0E8] text-[#202622] font-sans antialiased selection:bg-[#B49A68]/30 selection:text-[#202622]">
         {children}
-
-        {/* AI Designer Halftone Runtime Script — Loaded once in app root */}
-        <Script
-          src="https://cdn.aidesigner.ai/effects/runtime/v1.js"
-          strategy="afterInteractive"
-          data-aifx-key="aifx_pk_dfa803a90d2e42acbb073c8474b14bba"
-        />
-
-        {/* Branding & Watermark Disabler */}
-        <Script id="aifx-branding-remover" strategy="afterInteractive">
-          {`
-            (function() {
-              function purgeBranding() {
-                var badges = document.querySelectorAll('[data-aifx-wm]');
-                for (var i = 0; i < badges.length; i++) {
-                  badges[i].remove();
-                }
-              }
-              purgeBranding();
-              if (typeof MutationObserver !== 'undefined' && document.body) {
-                var obs = new MutationObserver(function() { purgeBranding(); });
-                obs.observe(document.body, { childList: true, subtree: true });
-              }
-            })();
-          `}
-        </Script>
       </body>
     </html>
   );

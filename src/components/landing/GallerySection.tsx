@@ -6,7 +6,6 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
 import { MotionReveal } from "@/components/ui/MotionReveal";
-import { HalftoneBackground } from "@/components/ui/HalftoneBackground";
 import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
 
 export const GallerySection: React.FC = () => {
@@ -100,27 +99,24 @@ export const GallerySection: React.FC = () => {
   return (
     <section
       id="gallery"
-      className="py-24 sm:py-32 bg-[#1F2924] text-[#F4F1E8] relative isolate overflow-hidden transition-colors"
+      className="py-24 sm:py-32 bg-[#202622] text-[#F3F0E8] relative overflow-hidden transition-colors"
     >
-      {/* Halftone — Subtle Champagne Gold on Forest Green (Zero Orange / Violet) */}
-      <HalftoneBackground variant="dark" opacity="opacity-30" />
-
       {/* Subtle top architectural hairline divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#B89A62]/30 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#B49A68]/30 to-transparent" />
 
-      <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <MotionReveal className="max-w-3xl mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-1.5 h-1.5 bg-[#B89A62]" />
-            <span className="text-xs uppercase tracking-[0.25em] text-[#B89A62] font-semibold">
+            <span className="w-1.5 h-1.5 bg-[#B49A68]" />
+            <span className="text-xs uppercase tracking-[0.25em] text-[#B49A68] font-semibold">
               {siteContent.gallery.tag}
             </span>
           </div>
-          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#F4F1E8] tracking-tight leading-[1.12]">
+          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#F3F0E8] tracking-tight leading-[1.12]">
             {siteContent.gallery.title}
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#D8D8CC] font-light leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg text-[#D9D2C4]/80 font-light leading-relaxed">
             {siteContent.gallery.subtitle}
           </p>
         </MotionReveal>

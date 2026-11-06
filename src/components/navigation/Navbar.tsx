@@ -108,13 +108,11 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-[#1F2924] shadow-md py-3.5 border-b border-[#343B33]"
-            : "bg-[#1F2924]/85 backdrop-blur-md py-4 sm:py-5 border-b border-[#343B33]/40"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#1D2923] border-b border-[#DDD6C8]/20 ${
+          isScrolled ? "py-3 shadow-lg" : "py-4 sm:py-5"
         }`}
       >
-        <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12">
           <div className="flex items-center justify-between">
             {/* 1. Company Logo Placeholder on Left */}
             <div className="shrink-0">
@@ -123,7 +121,7 @@ export const Navbar: React.FC = () => {
 
             {/* 2. Centered Desktop Navigation (All 9 sections in exact planned order) */}
             <nav
-              className="hidden xl:flex items-center gap-5 lg:gap-6 text-xs uppercase tracking-[0.14em] font-medium"
+              className="hidden xl:flex items-center gap-5 lg:gap-7 text-xs uppercase tracking-[0.16em] font-medium"
               aria-label="Main Navigation"
             >
               {siteContent.navigation.map((item) => {
@@ -133,10 +131,10 @@ export const Navbar: React.FC = () => {
                     key={item.id}
                     href={item.href}
                     onClick={(e) => scrollToSection(e, item.href, item.id)}
-                    className={`relative py-1.5 transition-colors duration-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B49A65] rounded-xs ${
+                    className={`relative py-1.5 transition-colors duration-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B89A60] rounded-xs ${
                       isActive
-                        ? "text-[#B49A65] font-semibold"
-                        : "text-[#FAF9F5]/85 hover:text-[#FAF9F5]"
+                        ? "text-[#B89A60] font-semibold"
+                        : "text-[#FAF9F5]/85 hover:text-[#B89A60]"
                     }`}
                   >
                     <span>{item.label}</span>
@@ -145,7 +143,7 @@ export const Navbar: React.FC = () => {
                     {isActive && (
                       <motion.span
                         layoutId={shouldReduceMotion ? undefined : "activeNavbarIndicator"}
-                        className="absolute -bottom-0.5 left-0 right-0 h-[1.5px] bg-[#B49A65] rounded-full"
+                        className="absolute -bottom-0.5 left-0 right-0 h-[1.5px] bg-[#B89A60] rounded-full"
                         transition={{
                           type: "spring",
                           stiffness: 400,
@@ -164,10 +162,10 @@ export const Navbar: React.FC = () => {
               <a
                 href="#contact"
                 onClick={(e) => scrollToSection(e, "#contact", "contact")}
-                className="group inline-flex items-center gap-2 bg-[#506653] hover:bg-[#1E2521] active:scale-[0.98] text-[#FAF9F5] px-5 py-2.5 border border-[#B49A65]/40 hover:border-[#B49A65] text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A65]"
+                className="group inline-flex items-center gap-2 bg-[#506653] hover:bg-[#1D2923] active:scale-[0.98] text-[#FAF9F5] px-6 py-2.5 border border-[#B89A60]/40 hover:border-[#B89A60] text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B89A60]"
               >
-                <span>Let&apos;s Build</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#B49A65] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <span>LET&apos;S BUILD</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#B89A60] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>
 

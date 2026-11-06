@@ -4,34 +4,30 @@ import React from "react";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
 import { MotionReveal } from "@/components/ui/MotionReveal";
-import { HalftoneBackground } from "@/components/ui/HalftoneBackground";
 import { Award } from "lucide-react";
 
 export const AchievementsSection: React.FC = () => {
   return (
     <section
       id="achievements"
-      className="py-24 sm:py-32 bg-[#1F2924] text-[#F4F1E8] relative isolate overflow-hidden transition-colors"
+      className="py-24 sm:py-32 bg-[#1E2521] text-[#FAF9F5] relative overflow-hidden transition-colors"
     >
-      {/* Halftone — Subtle Champagne Gold on Forest Green (Zero Orange / Violet) */}
-      <HalftoneBackground variant="dark" opacity="opacity-35" />
-
       {/* Subtle top architectural hairline divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#343B33] to-transparent" />
 
-      <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <MotionReveal className="max-w-3xl mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-1.5 h-1.5 bg-[#B89A62]" />
-            <span className="text-xs uppercase tracking-[0.25em] text-[#B89A62] font-semibold">
+            <span className="w-1.5 h-1.5 bg-[#B49A65]" />
+            <span className="text-xs uppercase tracking-[0.25em] text-[#B49A65] font-semibold">
               {siteContent.achievements.tag}
             </span>
           </div>
-          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#F4F1E8] tracking-tight leading-[1.12]">
+          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#FAF9F5] tracking-tight leading-[1.12]">
             {siteContent.achievements.title}
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#D8D8CC] font-light leading-relaxed max-w-2xl">
+          <p className="mt-4 text-base sm:text-lg text-[#FAF9F5]/75 font-light leading-relaxed max-w-2xl">
             {siteContent.achievements.subtitle}
           </p>
         </MotionReveal>

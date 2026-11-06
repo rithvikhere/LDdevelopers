@@ -11,10 +11,10 @@ interface HalftoneBackgroundProps {
 /**
  * HalftoneBackground Component
  * Renders the AI Designer halftone effect tailored strictly to the architectural brand palette:
- * - Eliminates orange and violet completely
- * - Uses Muted Sage (#536957) on Warm Ivory (#F4F1E8)
- * - Uses Champagne Gold (#B89A62) on Forest Green (#1F2924)
- * - Configures background color, contrast, glow, and dot-scale via official data-aifx-* API
+ * - Completely eliminates orange and violet
+ * - Uses Forest Green (#506653) on Warm Ivory (#F4F0E7)
+ * - Uses Muted Gold (#B89A60) on Deep Forest Green (#1D2923)
+ * - Controlled via supported data-aifx-* API parameters
  */
 export const HalftoneBackground: React.FC<HalftoneBackgroundProps> = ({
   variant = "ivory",
@@ -28,17 +28,17 @@ export const HalftoneBackground: React.FC<HalftoneBackgroundProps> = ({
 
   // Strict Brand Colors — Zero Orange or Violet
   const colors = isDark
-    ? "#B89A62,#B89A62" // Champagne Gold on Dark Forest Green
-    : "#536957,#536957"; // Muted Sage on Warm Ivory
+    ? "#B89A60,#B89A60" // Muted Gold on Deep Forest Green
+    : "#506653,#506653"; // Forest Green on Warm Ivory
 
-  const bg = isDark ? "#1F2924" : "#F4F1E8";
+  const bg = isDark ? "#1D2923" : "#F4F0E7";
   const defaultDotScale = isDark ? 0.85 : 0.9;
   const effectiveDotScale = dotScale ?? defaultDotScale;
   const contrast = isDark ? 0.9 : 0.8;
   const glow = isDark ? 0.25 : 0.15;
 
   // Visual density / opacity based on variant
-  const defaultOpacity = isDark ? "opacity-35" : isSoft ? "opacity-20" : "opacity-25";
+  const defaultOpacity = isDark ? "opacity-35" : isSoft ? "opacity-15" : "opacity-20";
   const effectiveOpacity = opacity || defaultOpacity;
 
   return (
@@ -57,3 +57,4 @@ export const HalftoneBackground: React.FC<HalftoneBackgroundProps> = ({
     />
   );
 };
+
