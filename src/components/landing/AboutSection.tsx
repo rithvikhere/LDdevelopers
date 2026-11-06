@@ -48,23 +48,20 @@ export const AboutSection: React.FC = () => {
       id="about"
       className="py-28 sm:py-36 lg:py-44 bg-transparent text-[#F5F3EF] relative overflow-hidden transition-colors"
     >
-      {/* Subtle Hairline Dividers */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#24322A] to-transparent" />
       <div className="absolute inset-0 bg-architectural-grid opacity-20 pointer-events-none" />
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-        {/* Section Index & Eyebrow */}
+        {/* Section Index & Eyebrow — Centered & Prominent */}
         <KairosDepthReveal delay={0.05}>
-          <div className="flex items-center gap-4 mb-8">
-            <span className="text-[11px] font-mono tracking-[0.25em] text-[#C5B083] uppercase">
+          <div className="flex flex-col items-center justify-center text-center mx-auto mb-6">
+            <span className="text-sm sm:text-base md:text-lg font-mono tracking-[0.3em] text-[#C5B083] uppercase font-semibold">
               01 / ARCHITECTURAL PROVENANCE
             </span>
-            <div className="h-px bg-[#24322A] flex-1 max-w-[80px]" />
           </div>
         </KairosDepthReveal>
 
-        {/* Large Editorial Headline */}
-        <div className="max-w-4xl mb-16 sm:mb-24">
+        {/* Large Editorial Headline — Centered */}
+        <div className="max-w-4xl mx-auto text-center mb-16 sm:mb-24">
           <KairosMaskedText delay={0.1} as="h2" className="font-display text-3xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] leading-[1.14] tracking-tight">
             Rooted in structural integrity, spatial purity, and enduring permanence.
           </KairosMaskedText>

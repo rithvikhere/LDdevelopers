@@ -6,8 +6,6 @@ import { HeroSection } from "@/components/landing/HeroSection";
 import { AboutSection } from "@/components/landing/AboutSection";
 import { ServicesSection } from "@/components/landing/ServicesSection";
 import { ConstructionOptionsSection } from "@/components/landing/ConstructionOptionsSection";
-import { ProjectsSection } from "@/components/landing/ProjectsSection";
-import { AmenitiesSection } from "@/components/landing/AmenitiesSection";
 import { GallerySection } from "@/components/landing/GallerySection";
 import { AchievementsSection } from "@/components/landing/AchievementsSection";
 import { ContactSection } from "@/components/landing/ContactSection";
@@ -27,7 +25,7 @@ export default function HomePage() {
       {/* Dynamic Header & Navigation */}
       <Navbar />
 
-      {/* Main Landing Page Experience (All 9 Sections) */}
+      {/* Main Landing Page Experience */}
       <main className="flex-1 relative z-10">
         {/* Section 1: Cinematic Architectural Hero */}
         <HeroSection />
@@ -41,19 +39,13 @@ export default function HomePage() {
         {/* Section 4: Engineered Plot Formats & Construction Options */}
         <ConstructionOptionsSection />
 
-        {/* Section 5: Architectural Projects Showcase (Sample Concepts) */}
-        <ProjectsSection />
-
-        {/* Section 6: Quality Assurance & Material Specifications */}
-        <AmenitiesSection />
-
-        {/* Section 7: Immersive Architectural Photography Gallery */}
+        {/* Section 5: Immersive Architectural Photography Gallery */}
         <GallerySection />
 
-        {/* Section 8: Verified Milestones & Achievements */}
+        {/* Section 6: Verified Milestones & Achievements */}
         <AchievementsSection />
 
-        {/* Section 9: Direct Consultation Desk & WhatsApp Integration */}
+        {/* Section 7: Direct Consultation Desk & WhatsApp Integration */}
         <ContactSection />
       </main>
 

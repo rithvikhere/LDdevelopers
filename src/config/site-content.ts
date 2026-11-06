@@ -20,14 +20,12 @@ export const siteContent = {
     registrationNumberPlaceholder: "[RERA / REGISTRATION NO.]",
   },
 
-  // Exactly the 9 planned sections in specified order
+  // Clean architectural navigation
   navigation: [
     { label: "Home", href: "#home", id: "home" },
     { label: "About", href: "#about", id: "about" },
     { label: "Services", href: "#services", id: "services" },
     { label: "Construction Options", href: "#options", id: "options" },
-    { label: "Projects", href: "#projects", id: "projects" },
-    { label: "Amenities", href: "#amenities", id: "amenities" },
     { label: "Gallery", href: "#gallery", id: "gallery" },
     { label: "Achievements", href: "#achievements", id: "achievements" },
     { label: "Contact", href: "#contact", id: "contact" },
@@ -40,9 +38,9 @@ export const siteContent = {
     subtitle:
       "A distinguished property developer and master builder dedicated to crafting bespoke residences, luxury duplexes, villas, and commercial landmarks.",
     primaryCta: "Let's Build",
-    secondaryCta: "Explore Our Projects",
+    secondaryCta: "Explore Our Services",
     ctaTarget: "#contact",
-    projectsTarget: "#projects",
+    projectsTarget: "#services",
   },
 
   about: {

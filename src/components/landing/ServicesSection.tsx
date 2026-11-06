@@ -163,30 +163,25 @@ export const ServicesSection: React.FC = () => {
       id="services"
       className="py-28 sm:py-36 lg:py-44 bg-transparent text-[#F5F3EF] relative overflow-hidden transition-colors"
     >
-      {/* Top Hairline Separator */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#24322A] to-transparent" />
       <div className="absolute inset-0 bg-architectural-grid opacity-15 pointer-events-none" />
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 sm:mb-28">
-          <div>
-            <KairosDepthReveal delay={0.05}>
-              <div className="flex items-center gap-4 mb-4">
-                <span className="text-[11px] font-mono tracking-[0.25em] text-[#C5B083] uppercase">
-                  02 / CORE DISCIPLINES &amp; SERVICES
-                </span>
-                <div className="h-px bg-[#24322A] w-16" />
-              </div>
-            </KairosDepthReveal>
+        {/* Section Header — Centered & Prominent */}
+        <div className="flex flex-col items-center text-center mx-auto max-w-4xl mb-20 sm:mb-28">
+          <KairosDepthReveal delay={0.05}>
+            <div className="flex flex-col items-center justify-center text-center mx-auto mb-6">
+              <span className="text-sm sm:text-base md:text-lg font-mono tracking-[0.3em] text-[#C5B083] uppercase font-semibold">
+                02 / CORE DISCIPLINES &amp; SERVICES
+              </span>
+            </div>
+          </KairosDepthReveal>
 
-            <KairosMaskedText delay={0.15} as="h2" className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight max-w-3xl leading-[1.12]">
-              Architectural Mastery across Residential &amp; Civic Horizons.
-            </KairosMaskedText>
-          </div>
+          <KairosMaskedText delay={0.15} as="h2" className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight leading-[1.12] mb-6">
+            Architectural Mastery across Residential &amp; Civic Horizons.
+          </KairosMaskedText>
 
           <KairosDepthReveal delay={0.25}>
-            <p className="text-xs sm:text-sm text-[#9EA8A1] max-w-md font-light leading-relaxed font-mono">
+            <p className="text-xs sm:text-sm text-[#9EA8A1] max-w-2xl mx-auto font-light leading-relaxed font-mono">
               Each discipline operates as a dedicated center of architectural innovation, ensuring seamless transitions from preliminary blueprint sketches to turnkey structural completion.
             </p>
           </KairosDepthReveal>

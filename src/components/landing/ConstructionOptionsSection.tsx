@@ -29,38 +29,33 @@ export const ConstructionOptionsSection: React.FC = () => {
       id="options"
       className="py-28 sm:py-36 lg:py-44 bg-transparent text-[#F5F3EF] relative overflow-hidden transition-colors"
     >
-      {/* Top Hairline Divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#24322A] to-transparent" />
       <div className="absolute inset-0 bg-architectural-grid opacity-15 pointer-events-none" />
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 sm:mb-20">
-          <div>
-            <KairosDepthReveal delay={0.05}>
-              <div className="flex items-center gap-4 mb-4">
-                <span className="text-[11px] font-mono tracking-[0.25em] text-[#C5B083] uppercase">
-                  04 / EXECUTION FRAMEWORKS
-                </span>
-                <div className="h-px bg-[#24322A] w-16" />
-              </div>
-            </KairosDepthReveal>
+        {/* Section Header — Centered & Prominent */}
+        <div className="flex flex-col items-center text-center mx-auto max-w-4xl mb-16 sm:mb-20">
+          <KairosDepthReveal delay={0.05}>
+            <div className="flex flex-col items-center justify-center text-center mx-auto mb-6">
+              <span className="text-sm sm:text-base md:text-lg font-mono tracking-[0.3em] text-[#C5B083] uppercase font-semibold">
+                03 / EXECUTION FRAMEWORKS
+              </span>
+            </div>
+          </KairosDepthReveal>
 
-            <KairosMaskedText delay={0.15} as="h2" className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight max-w-2xl leading-[1.12]">
-              {siteContent.constructionOptions.title}
-            </KairosMaskedText>
-          </div>
+          <KairosMaskedText delay={0.15} as="h2" className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight leading-[1.12] mb-6">
+            {siteContent.constructionOptions.title}
+          </KairosMaskedText>
 
           <KairosDepthReveal delay={0.25}>
-            <p className="text-xs sm:text-sm text-[#9EA8A1] max-w-md font-light leading-relaxed font-mono">
+            <p className="text-xs sm:text-sm text-[#9EA8A1] max-w-2xl mx-auto font-light leading-relaxed font-mono">
               Tailored structural delivery modalities accommodating varied land parcel dimensions, regulatory parameters, and bespoke client timelines.
             </p>
           </KairosDepthReveal>
         </div>
 
-        {/* Minimalist Typology Switcher Tabs */}
+        {/* Minimalist Typology Switcher Tabs — Centered */}
         <KairosDepthReveal delay={0.2}>
-          <div className="flex flex-wrap gap-2 sm:gap-3 mb-12 border-b border-[#24322A]/60 pb-6">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12 border-b border-[#24322A]/60 pb-6">
             {siteAssets.constructionOptions.map((opt, index) => (
               <button
                 key={opt.id}
