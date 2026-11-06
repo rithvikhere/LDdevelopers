@@ -5,7 +5,7 @@ import Image from "next/image";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
 import { MotionReveal } from "@/components/ui/MotionReveal";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight, MapPin, Sparkles } from "lucide-react";
 
 export const ProjectsSection: React.FC = () => {
   const [filter, setFilter] = useState<string>("All");
@@ -29,15 +29,21 @@ export const ProjectsSection: React.FC = () => {
   return (
     <section
       id="projects"
-      className="py-24 sm:py-32 bg-[#F3F0E8] text-[#202622] relative"
+      className="py-24 sm:py-32 bg-[#F3F0E8] text-[#202622] relative overflow-hidden transition-colors"
     >
+      {/* Architectural subtle hairline top border */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D9D2C4] to-transparent" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <MotionReveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
           <div className="max-w-2xl">
-            <span className="text-xs uppercase tracking-[0.25em] text-[#526653] font-semibold block mb-3">
-              {siteContent.projects.tag}
-            </span>
+            <div className="inline-flex items-center gap-2 mb-3">
+              <span className="w-1.5 h-1.5 bg-[#526653]" />
+              <span className="text-xs uppercase tracking-[0.25em] text-[#526653] font-semibold">
+                {siteContent.projects.tag}
+              </span>
+            </div>
             <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-normal text-[#202622] tracking-tight leading-[1.12]">
               {siteContent.projects.title}
             </h2>
@@ -55,8 +61,8 @@ export const ProjectsSection: React.FC = () => {
                 type="button"
                 className={`px-4 py-2 text-xs uppercase tracking-[0.16em] transition-all duration-200 border focus:outline-none focus-visible:ring-2 focus-visible:ring-[#526653] ${
                   filter === cat
-                    ? "bg-[#202622] text-[#F3F0E8] border-[#202622] font-semibold"
-                    : "bg-transparent text-[#202622]/70 border-[#D9D2C4] hover:border-[#526653] hover:text-[#202622]"
+                    ? "bg-[#202622] text-[#F3F0E8] border-[#202622] font-semibold shadow-xs"
+                    : "bg-[#FFFFFF] text-[#202622]/75 border-[#D9D2C4] hover:border-[#526653] hover:text-[#202622]"
                 }`}
               >
                 {cat}
@@ -67,7 +73,7 @@ export const ProjectsSection: React.FC = () => {
 
         {/* Clear Sample Project Notice Banner */}
         <MotionReveal delay={0.1}>
-          <div className="mb-10 p-3.5 bg-[#D9D2C4]/40 border-l-2 border-[#526653] flex items-center justify-between text-xs text-[#526653] font-mono">
+          <div className="mb-10 p-3.5 bg-[#FFFFFF] border border-[#D9D2C4] border-l-4 border-l-[#526653] flex items-center justify-between text-xs text-[#526653] font-mono shadow-xs">
             <span>{siteContent.projects.sampleNotice}</span>
             <span className="uppercase text-[10px] tracking-widest hidden sm:inline">Visual Demonstration</span>
           </div>
@@ -78,7 +84,7 @@ export const ProjectsSection: React.FC = () => {
           {filteredProjects.map((project, idx) => (
             <MotionReveal key={project.id} delay={idx * 0.08}>
               <article
-                className="group bg-[#202622] text-[#F3F0E8] overflow-hidden shadow-xl border border-transparent hover:border-[#B49A68]/40 transition-all duration-500 flex flex-col justify-between"
+                className="group bg-[#202622] text-[#F3F0E8] overflow-hidden shadow-xl border border-[#343B33] hover:border-[#B49A68]/70 transition-all duration-500 flex flex-col justify-between relative"
               >
                 {/* Image Container with Framing */}
                 <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#202622]">
@@ -142,6 +148,28 @@ export const ProjectsSection: React.FC = () => {
             </MotionReveal>
           ))}
         </div>
+
+        {/* Customer Journey Bridge Callout */}
+        <MotionReveal delay={0.2}>
+          <div className="mt-16 pt-8 border-t border-[#D9D2C4] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+              <p className="text-xs sm:text-sm text-[#202622] font-medium">
+                Envisioning a distinctive architectural residence or commercial development?
+              </p>
+              <p className="text-xs text-[#202622]/65 font-light mt-0.5">
+                Our principal team conducts site evaluations and custom volumetric studies.
+              </p>
+            </div>
+            <a
+              href="#contact"
+              onClick={scrollToContact}
+              className="inline-flex items-center gap-2 bg-[#526653] hover:bg-[#343B33] text-[#F3F0E8] px-6 py-3 text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300 shadow-sm shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A68]"
+            >
+              <span>Discuss Your Plot</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#B49A68]" />
+            </a>
+          </div>
+        </MotionReveal>
       </div>
     </section>
   );

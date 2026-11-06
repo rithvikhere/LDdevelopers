@@ -5,7 +5,7 @@ import Image from "next/image";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
 import { MotionReveal } from "@/components/ui/MotionReveal";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight, Check, Compass } from "lucide-react";
 
 export const ServicesSection: React.FC = () => {
   const [selectedServiceId, setSelectedServiceId] = useState(
@@ -28,14 +28,20 @@ export const ServicesSection: React.FC = () => {
   return (
     <section
       id="services"
-      className="py-24 sm:py-32 bg-[#F3F0E8] text-[#202622] border-t border-[#D9D2C4] relative"
+      className="py-24 sm:py-32 bg-[#F3F0E8] text-[#202622] relative overflow-hidden transition-colors"
     >
+      {/* Subtle top architectural hairline divider */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D9D2C4] to-transparent" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <MotionReveal className="max-w-3xl mb-16 sm:mb-20">
-          <span className="text-xs uppercase tracking-[0.25em] text-[#526653] font-semibold block mb-3">
-            {siteContent.services.tag}
-          </span>
+          <div className="inline-flex items-center gap-2 mb-3">
+            <span className="w-1.5 h-1.5 bg-[#526653]" />
+            <span className="text-xs uppercase tracking-[0.25em] text-[#526653] font-semibold">
+              {siteContent.services.tag}
+            </span>
+          </div>
           <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-normal text-[#202622] tracking-tight leading-[1.12]">
             {siteContent.services.title}
           </h2>
@@ -47,7 +53,7 @@ export const ServicesSection: React.FC = () => {
         {/* Editorial Interactive Layout: Tabs & Large Feature Showcase */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           {/* Service Selector List (Left Column) */}
-          <div className="lg:col-span-5 flex flex-col space-y-2">
+          <div className="lg:col-span-5 flex flex-col space-y-2.5">
             {siteAssets.services.map((service, index) => {
               const isSelected = service.id === selectedServiceId;
               return (
@@ -57,8 +63,8 @@ export const ServicesSection: React.FC = () => {
                   type="button"
                   className={`text-left p-5 transition-all duration-300 border-l-2 flex items-center justify-between group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#526653] ${
                     isSelected
-                      ? "bg-[#D9D2C4]/60 border-[#526653] shadow-xs"
-                      : "bg-transparent border-transparent hover:bg-[#D9D2C4]/25 hover:border-[#B49A68]/50"
+                      ? "bg-[#FFFFFF] border-[#526653] shadow-md"
+                      : "bg-[#FFFFFF]/40 border-transparent hover:bg-[#FFFFFF] hover:border-[#B49A68]/60 shadow-xs"
                   }`}
                 >
                   <div>
@@ -71,7 +77,7 @@ export const ServicesSection: React.FC = () => {
                       </span>
                     </div>
                     <h3
-                      className={`font-display text-xl sm:text-2xl mt-1 transition-colors ${
+                      className={`font-display text-xl sm:text-2xl mt-1.5 transition-colors ${
                         isSelected
                           ? "text-[#202622] font-semibold"
                           : "text-[#202622]/80 group-hover:text-[#202622]"
@@ -81,7 +87,7 @@ export const ServicesSection: React.FC = () => {
                     </h3>
                   </div>
                   <ArrowUpRight
-                    className={`w-5 h-5 transition-transform ${
+                    className={`w-5 h-5 transition-transform duration-300 ${
                       isSelected
                         ? "text-[#526653] translate-x-0.5 -translate-y-0.5"
                         : "text-[#202622]/30 group-hover:text-[#526653]"
@@ -93,7 +99,10 @@ export const ServicesSection: React.FC = () => {
           </div>
 
           {/* Active Service Showcase Card (Right Column) */}
-          <MotionReveal className="lg:col-span-7 bg-[#202622] text-[#F3F0E8] overflow-hidden shadow-2xl relative">
+          <MotionReveal className="lg:col-span-7 bg-[#202622] text-[#F3F0E8] overflow-hidden shadow-2xl relative border border-[#343B33]">
+            {/* Fine Champagne Brass Corner Mark */}
+            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#B49A68] pointer-events-none z-10" />
+
             <div className="relative aspect-[16/10] w-full overflow-hidden">
               <Image
                 src={activeService.image}
@@ -137,7 +146,7 @@ export const ServicesSection: React.FC = () => {
                 ))}
               </div>
 
-              {/* Service Action CTA */}
+              {/* Service Action CTA Guiding Toward Enquiry */}
               <div className="mt-10 pt-6 border-t border-[#343B33] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
                 <span className="text-xs text-[#D9D2C4]/70">
                   Ready to construct a {activeService.title.toLowerCase()}?

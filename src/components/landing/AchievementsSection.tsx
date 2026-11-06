@@ -69,6 +69,32 @@ export const AchievementsSection: React.FC = () => {
               Integrity First Policy
             </span>
           </div>
+
+          {/* Customer Journey Bridge to Contact */}
+          <div className="mt-12 pt-8 border-t border-[#343B33] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+              <p className="text-sm text-[#F3F0E8] font-medium font-display text-lg">
+                Ready to transform architectural precision into your next landmark?
+              </p>
+              <p className="text-xs text-[#D9D2C4]/60 font-light mt-0.5">
+                Our principal desk reviews site dimensions, bylaws, and engineering viability.
+              </p>
+            </div>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById("contact");
+                if (el) {
+                  const offset = el.getBoundingClientRect().top + window.pageYOffset - 72;
+                  window.scrollTo({ top: offset, behavior: "smooth" });
+                }
+              }}
+              className="inline-flex items-center gap-2 bg-[#526653] hover:bg-[#343B33] text-[#F3F0E8] px-6 py-3 text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300 shadow-md border border-[#B49A68]/40 hover:border-[#B49A68] shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A68]"
+            >
+              <span>Initiate Consultation Below</span>
+            </a>
+          </div>
         </MotionReveal>
       </div>
     </section>

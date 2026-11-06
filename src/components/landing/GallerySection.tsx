@@ -148,6 +148,30 @@ export const GallerySection: React.FC = () => {
             </MotionReveal>
           ))}
         </div>
+
+        {/* Customer Journey Link */}
+        <MotionReveal delay={0.2}>
+          <div className="mt-16 pt-8 border-t border-[#343B33] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <span className="text-xs text-[#D9D2C4]/70">
+              Captivated by our volumetric forms and light studies? Discuss an original architectural brief.
+            </span>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById("contact");
+                if (el) {
+                  const offset = el.getBoundingClientRect().top + window.pageYOffset - 72;
+                  window.scrollTo({ top: offset, behavior: "smooth" });
+                }
+              }}
+              className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-semibold text-[#B49A68] hover:text-[#F3F0E8] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B49A68]"
+            >
+              <span>Initiate Project Consultation</span>
+              <ZoomIn className="w-4 h-4" />
+            </a>
+          </div>
+        </MotionReveal>
       </div>
 
       {/* Accessible Interactive Lightbox Modal */}
