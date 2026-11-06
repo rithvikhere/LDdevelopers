@@ -216,7 +216,7 @@ export const GallerySection: React.FC = () => {
               <button
                 ref={closeButtonRef}
                 onClick={closeModal}
-                className="p-2.5 bg-[#17201B] text-[#F5F3EF] hover:text-[#C5B083] border border-[#24322A] hover:border-[#C5B083]/60 transition-colors cursor-pointer"
+                className="p-2.5 bg-white/95 text-[#0B0F0D] hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 shadow-md transition-colors cursor-pointer"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
@@ -225,7 +225,7 @@ export const GallerySection: React.FC = () => {
 
             <button
               onClick={handlePrev}
-              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-3 bg-[#17201B]/80 hover:bg-[#2E5A44] border border-[#24322A] text-[#F5F3EF] transition-colors cursor-pointer z-10"
+              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-3 bg-white/95 hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] shadow-md transition-colors cursor-pointer z-10"
               aria-label="Previous photograph"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -233,7 +233,7 @@ export const GallerySection: React.FC = () => {
 
             <button
               onClick={handleNext}
-              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-3 bg-[#17201B]/80 hover:bg-[#2E5A44] border border-[#24322A] text-[#F5F3EF] transition-colors cursor-pointer z-10"
+              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-3 bg-white/95 hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] shadow-md transition-colors cursor-pointer z-10"
               aria-label="Next photograph"
             >
               <ChevronRight className="w-5 h-5" />
@@ -244,7 +244,7 @@ export const GallerySection: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
               className="relative max-w-5xl w-full max-h-[85vh] flex flex-col items-center"
             >
-              <div className="relative w-full aspect-[16/10] max-h-[75vh] overflow-hidden border border-[#24322A] bg-[#0B0F0D]">
+              <div className="relative w-full aspect-[16/10] max-h-[75vh] overflow-hidden border border-[#24322A]/20 bg-[#0B0F0D] shadow-2xl">
                 <Image
                   src={activeItem.image}
                   alt={activeItem.title}
@@ -254,14 +254,14 @@ export const GallerySection: React.FC = () => {
                 />
               </div>
 
-              <div className="w-full mt-4 flex items-center justify-between text-xs font-mono">
+              <div className="w-full mt-4 p-4 bg-white/95 backdrop-blur-md border border-[#24322A]/15 shadow-xl flex items-center justify-between text-xs font-mono">
                 <div>
-                  <span className="text-[#C5B083] block text-[10px] uppercase tracking-widest">
+                  <span className="text-[#2E5A44] block text-[10px] uppercase tracking-widest font-semibold">
                     {activeItem.category}
                   </span>
-                  <span className="text-[#F5F3EF] text-sm font-display">{activeItem.title}</span>
+                  <span className="text-[#0B0F0D] text-base font-display font-medium">{activeItem.title}</span>
                 </div>
-                <span className="text-[#9EA8A1]">
+                <span className="text-[#5A6B62] font-semibold">
                   {selectedIndex + 1} / {siteAssets.gallery.length}
                 </span>
               </div>
