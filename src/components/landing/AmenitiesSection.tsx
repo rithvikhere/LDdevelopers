@@ -36,12 +36,19 @@ export const AmenitiesSection: React.FC = () => {
   return (
     <section
       id="amenities"
-      className="py-24 sm:py-32 bg-[#F3F0E7] text-[#1E2521] relative overflow-hidden transition-colors"
+      className="py-24 sm:py-32 bg-[#F3F0E7] text-[#1E2521] relative isolate overflow-hidden transition-colors"
     >
+      {/* Halftone — AI Designer Architectural Background Effect */}
+      <div
+        data-aifx="halftone"
+        className="absolute inset-0 -z-10 pointer-events-none opacity-20"
+        aria-hidden="true"
+      />
+
       {/* Subtle top architectural hairline divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#DCD6C9] to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header */}
         <MotionReveal className="max-w-3xl mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 mb-3">

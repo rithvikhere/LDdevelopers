@@ -28,8 +28,15 @@ export const ServicesSection: React.FC = () => {
   return (
     <section
       id="services"
-      className="py-24 sm:py-32 bg-[#F4F1E8] text-[#1F2924] relative overflow-hidden transition-colors"
+      className="py-24 sm:py-32 bg-[#F4F1E8] text-[#1F2924] relative isolate overflow-hidden transition-colors"
     >
+      {/* Halftone — AI Designer Architectural Background Effect */}
+      <div
+        data-aifx="halftone"
+        className="absolute inset-0 -z-10 pointer-events-none opacity-20"
+        aria-hidden="true"
+      />
+
       {/* Top architectural hairline divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#DCD6C9] to-transparent" />
 

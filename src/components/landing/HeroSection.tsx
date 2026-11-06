@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
 import { MotionReveal } from "@/components/ui/MotionReveal";
@@ -38,22 +37,16 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1E2521]"
+      className="relative isolate min-h-screen flex items-center justify-center overflow-hidden bg-[#1E2521]"
     >
-      {/* Background Architectural Image — Clean Edge-to-Edge Composition */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src={siteAssets.hero.mainBackground}
-          alt={siteAssets.hero.alt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center scale-105 transition-transform duration-1000 ease-out"
-        />
-        {/* Architectural Vignette & Atmospheric Contrast Layer */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1E2521] via-[#1E2521]/70 to-black/80" />
-        <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#1E2521]/40 to-[#1E2521]/95" />
-      </div>
+      {/* Halftone — AI Designer Architectural Background Effect */}
+      <div
+        data-aifx="halftone"
+        className="absolute inset-0 -z-10 pointer-events-none opacity-40"
+        aria-hidden="true"
+      />
+      {/* Subtle Architectural Vignette & Atmospheric Contrast Layer */}
+      <div className="absolute inset-0 -z-10 bg-radial-at-c from-transparent via-[#1E2521]/30 to-[#1E2521]/90 pointer-events-none" />
 
       {/* Hero Content Container — Unobstructed by any vertical side rails */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16 sm:pt-40 sm:pb-24 text-center sm:text-left flex flex-col justify-between min-h-[90vh] w-full">

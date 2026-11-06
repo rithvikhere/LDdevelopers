@@ -29,12 +29,19 @@ export const ProjectsSection: React.FC = () => {
   return (
     <section
       id="projects"
-      className="py-24 sm:py-32 bg-[#FAF9F5] text-[#1E2521] relative overflow-hidden transition-colors"
+      className="py-24 sm:py-32 bg-[#FAF9F5] text-[#1E2521] relative isolate overflow-hidden transition-colors"
     >
+      {/* Halftone — AI Designer Architectural Background Effect */}
+      <div
+        data-aifx="halftone"
+        className="absolute inset-0 -z-10 pointer-events-none opacity-25"
+        aria-hidden="true"
+      />
+
       {/* Architectural subtle hairline top border */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#DCD6C9] to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header */}
         <MotionReveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
           <div className="max-w-2xl">

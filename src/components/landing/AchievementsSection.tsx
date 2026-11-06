@@ -10,12 +10,19 @@ export const AchievementsSection: React.FC = () => {
   return (
     <section
       id="achievements"
-      className="py-24 sm:py-32 bg-[#1E2521] text-[#FAF9F5] relative overflow-hidden transition-colors"
+      className="py-24 sm:py-32 bg-[#1E2521] text-[#FAF9F5] relative isolate overflow-hidden transition-colors"
     >
+      {/* Halftone — AI Designer Architectural Background Effect */}
+      <div
+        data-aifx="halftone"
+        className="absolute inset-0 -z-10 pointer-events-none opacity-35"
+        aria-hidden="true"
+      />
+
       {/* Subtle top architectural hairline divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#343B33] to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <MotionReveal className="max-w-3xl mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 mb-3">
