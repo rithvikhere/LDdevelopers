@@ -7,9 +7,9 @@ import { siteContent } from "@/config/site-content";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 
 /**
- * Navbar Component — Phase 03 Motion, Interactions & Navigation
- * - Seamless transparent-to-solid transition with Deep Charcoal (#202622)
- * - Animated sliding Champagne Brass (#B49A68) active-section indicator
+ * Navbar Component — Phase 5 Premium Refinement
+ * - Seamless transparent-to-solid transition with Deep Architectural Charcoal (#1E2521)
+ * - Animated sliding Muted Antique Gold (#B49A65) active-section indicator
  * - Smooth scroll handler accounting for the sticky navbar height (~72px)
  * - Accessible mobile overlay with smooth open/close, focus management, and Escape key dismissal
  * - Strict adherence to the 9 planned sections in specified order
@@ -58,7 +58,6 @@ export const Navbar: React.FC = () => {
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
-      // Focus first link after opening
       setTimeout(() => {
         firstNavLinkRef.current?.focus();
       }, 100);
@@ -78,6 +77,7 @@ export const Navbar: React.FC = () => {
         menuButtonRef.current?.focus();
       }
     };
+
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [mobileMenuOpen]);
@@ -110,7 +110,7 @@ export const Navbar: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
           isScrolled
-            ? "bg-[#202622] shadow-md py-3.5 border-b border-[#343B33]"
+            ? "bg-[#1E2521] shadow-md py-3.5 border-b border-[#343B33]"
             : "bg-transparent py-5 sm:py-6"
         }`}
       >
@@ -133,19 +133,19 @@ export const Navbar: React.FC = () => {
                     key={item.id}
                     href={item.href}
                     onClick={(e) => scrollToSection(e, item.href, item.id)}
-                    className={`relative py-1.5 transition-colors duration-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B49A68] rounded-xs ${
+                    className={`relative py-1.5 transition-colors duration-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B49A65] rounded-xs ${
                       isActive
-                        ? "text-[#B49A68] font-semibold"
-                        : "text-[#F3F0E8]/85 hover:text-[#F3F0E8]"
+                        ? "text-[#B49A65] font-semibold"
+                        : "text-[#FAF9F5]/85 hover:text-[#FAF9F5]"
                     }`}
                   >
                     <span>{item.label}</span>
 
-                    {/* Architectural Sliding Champagne Brass Underline */}
+                    {/* Architectural Sliding Antique Gold Indicator */}
                     {isActive && (
                       <motion.span
                         layoutId={shouldReduceMotion ? undefined : "activeNavbarIndicator"}
-                        className="absolute -bottom-0.5 left-0 right-0 h-[1.5px] bg-[#B49A68] rounded-full"
+                        className="absolute -bottom-0.5 left-0 right-0 h-[1.5px] bg-[#B49A65] rounded-full"
                         transition={{
                           type: "spring",
                           stiffness: 400,
@@ -159,15 +159,15 @@ export const Navbar: React.FC = () => {
               })}
             </nav>
 
-            {/* 3. Primary "Let's Build" CTA on Right (Muted Forest #526653) */}
+            {/* 3. Primary "Let's Build" CTA on Right (Muted Forest #506653) */}
             <div className="hidden sm:flex items-center gap-4">
               <a
                 href="#contact"
                 onClick={(e) => scrollToSection(e, "#contact", "contact")}
-                className="group inline-flex items-center gap-2 bg-[#526653] hover:bg-[#343B33] active:scale-[0.98] text-[#F3F0E8] px-5 py-2.5 border border-[#B49A68]/30 hover:border-[#B49A68] text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A68]"
+                className="group inline-flex items-center gap-2 bg-[#506653] hover:bg-[#1E2521] active:scale-[0.98] text-[#FAF9F5] px-5 py-2.5 border border-[#B49A65]/40 hover:border-[#B49A65] text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A65]"
               >
                 <span>Let&apos;s Build</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#B49A68] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#B49A65] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>
 
@@ -176,7 +176,7 @@ export const Navbar: React.FC = () => {
               <a
                 href="#contact"
                 onClick={(e) => scrollToSection(e, "#contact", "contact")}
-                className="sm:hidden inline-flex items-center bg-[#526653] text-[#F3F0E8] px-3 py-1.5 text-[11px] uppercase tracking-wider font-semibold border border-[#B49A68]/30 mr-1"
+                className="sm:hidden inline-flex items-center bg-[#506653] text-[#FAF9F5] px-3 py-1.5 text-[11px] uppercase tracking-wider font-semibold border border-[#B49A65]/30 mr-1"
               >
                 Enquire
               </a>
@@ -184,7 +184,7 @@ export const Navbar: React.FC = () => {
                 ref={menuButtonRef}
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 text-[#F3F0E8] hover:text-[#B49A68] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A68]"
+                className="p-2 text-[#FAF9F5] hover:text-[#B49A65] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A65]"
                 aria-expanded={mobileMenuOpen}
                 aria-controls="mobile-navigation-drawer"
                 aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -212,11 +212,11 @@ export const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed inset-0 z-40 bg-[#202622] flex flex-col justify-between p-6 sm:p-10 xl:hidden"
+            className="fixed inset-0 z-40 bg-[#1E2521] flex flex-col justify-between p-6 sm:p-10 xl:hidden"
             style={{ top: "0px" }}
           >
             <div className="pt-20 overflow-y-auto">
-              <p className="text-[11px] tracking-[0.25em] text-[#B49A68] uppercase font-semibold mb-6">
+              <p className="text-[11px] tracking-[0.25em] text-[#B49A65] uppercase font-semibold mb-6">
                 Navigation
               </p>
               <nav className="flex flex-col gap-3.5" aria-label="Mobile Links">
@@ -228,19 +228,19 @@ export const Navbar: React.FC = () => {
                       ref={index === 0 ? firstNavLinkRef : undefined}
                       href={item.href}
                       onClick={(e) => scrollToSection(e, item.href, item.id)}
-                      className={`font-display text-xl sm:text-2xl transition-colors flex items-center justify-between border-b border-[#343B33] pb-2.5 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B49A68] ${
+                      className={`font-display text-xl sm:text-2xl transition-colors flex items-center justify-between border-b border-[#343B33] pb-2.5 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B49A65] ${
                         isActive
-                          ? "text-[#B49A68] font-semibold"
-                          : "text-[#F3F0E8] hover:text-[#B49A68]"
+                          ? "text-[#B49A65] font-semibold"
+                          : "text-[#FAF9F5] hover:text-[#B49A65]"
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <span className="text-xs font-mono text-[#B49A68]/60">
+                        <span className="text-xs font-mono text-[#B49A65]/60">
                           0{index + 1}
                         </span>
                         <span>{item.label}</span>
                       </div>
-                      <ArrowUpRight className="w-4 h-4 text-[#B49A68]/50" />
+                      <ArrowUpRight className="w-4 h-4 text-[#B49A65]/50" />
                     </a>
                   );
                 })}
@@ -252,11 +252,11 @@ export const Navbar: React.FC = () => {
               <a
                 href="#contact"
                 onClick={(e) => scrollToSection(e, "#contact", "contact")}
-                className="w-full py-3.5 text-center bg-[#526653] hover:bg-[#343B33] active:scale-[0.98] text-[#F3F0E8] text-xs uppercase tracking-[0.18em] font-semibold transition-all border border-[#B49A68]/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A68]"
+                className="w-full py-3.5 text-center bg-[#506653] hover:bg-[#1E2521] active:scale-[0.98] text-[#FAF9F5] text-xs uppercase tracking-[0.18em] font-semibold transition-all border border-[#B49A65]/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A65]"
               >
                 Let&apos;s Build — Initiate Enquiry
               </a>
-              <p className="text-[11px] text-[#D9D2C4]/60 text-center tracking-wider font-mono">
+              <p className="text-[11px] text-[#DCD6C9]/60 text-center tracking-wider font-mono">
                 [COMPANY NAME] Architecture &amp; Developments
               </p>
             </div>

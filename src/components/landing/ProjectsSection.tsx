@@ -5,7 +5,7 @@ import Image from "next/image";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
 import { MotionReveal } from "@/components/ui/MotionReveal";
-import { ArrowUpRight, MapPin, Sparkles } from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
 
 export const ProjectsSection: React.FC = () => {
   const [filter, setFilter] = useState<string>("All");
@@ -29,40 +29,40 @@ export const ProjectsSection: React.FC = () => {
   return (
     <section
       id="projects"
-      className="py-24 sm:py-32 bg-[#F3F0E8] text-[#202622] relative overflow-hidden transition-colors"
+      className="py-24 sm:py-32 bg-[#FAF9F5] text-[#1E2521] relative overflow-hidden transition-colors"
     >
       {/* Architectural subtle hairline top border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D9D2C4] to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#DCD6C9] to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <MotionReveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-1.5 h-1.5 bg-[#526653]" />
-              <span className="text-xs uppercase tracking-[0.25em] text-[#526653] font-semibold">
+              <span className="w-1.5 h-1.5 bg-[#506653]" />
+              <span className="text-xs uppercase tracking-[0.25em] text-[#506653] font-semibold">
                 {siteContent.projects.tag}
               </span>
             </div>
-            <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-normal text-[#202622] tracking-tight leading-[1.12]">
+            <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#1E2521] tracking-tight leading-[1.12]">
               {siteContent.projects.title}
             </h2>
-            <p className="mt-4 text-sm sm:text-base text-[#202622]/75 font-light leading-relaxed">
+            <p className="mt-4 text-sm sm:text-base text-[#626A66] font-light leading-relaxed max-w-xl">
               {siteContent.projects.subtitle}
             </p>
           </div>
 
-          {/* Category Filter Pills */}
+          {/* Category Filter Pills (Refined architectural tabs) */}
           <div className="flex flex-wrap gap-2">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
                 type="button"
-                className={`px-4 py-2 text-xs uppercase tracking-[0.16em] transition-all duration-200 border focus:outline-none focus-visible:ring-2 focus-visible:ring-[#526653] ${
+                className={`px-4 py-2 text-xs uppercase tracking-[0.16em] transition-all duration-200 border focus:outline-none focus-visible:ring-1 focus-visible:ring-[#506653] ${
                   filter === cat
-                    ? "bg-[#202622] text-[#F3F0E8] border-[#202622] font-semibold shadow-xs"
-                    : "bg-[#FFFFFF] text-[#202622]/75 border-[#D9D2C4] hover:border-[#526653] hover:text-[#202622]"
+                    ? "bg-[#1E2521] text-[#FAF9F5] border-[#1E2521] font-semibold shadow-xs"
+                    : "bg-[#FFFFFF] text-[#626A66] border-[#DCD6C9] hover:border-[#506653] hover:text-[#1E2521]"
                 }`}
               >
                 {cat}
@@ -73,21 +73,24 @@ export const ProjectsSection: React.FC = () => {
 
         {/* Clear Sample Project Notice Banner */}
         <MotionReveal delay={0.1}>
-          <div className="mb-10 p-3.5 bg-[#FFFFFF] border border-[#D9D2C4] border-l-4 border-l-[#526653] flex items-center justify-between text-xs text-[#526653] font-mono shadow-xs">
+          <div className="mb-10 p-3.5 bg-[#FFFFFF] border border-[#DCD6C9] border-l-4 border-l-[#506653] flex items-center justify-between text-xs text-[#506653] font-mono shadow-2xs">
             <span>{siteContent.projects.sampleNotice}</span>
-            <span className="uppercase text-[10px] tracking-widest hidden sm:inline">Visual Demonstration</span>
+            <span className="uppercase text-[10px] tracking-widest hidden sm:inline text-[#626A66]">Visual Demonstration</span>
           </div>
         </MotionReveal>
 
-        {/* Projects Editorial Showcase Grid */}
+        {/* Projects Editorial Showcase Grid (Design Variation C — Image-led Feature Panels) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {filteredProjects.map((project, idx) => (
             <MotionReveal key={project.id} delay={idx * 0.08}>
               <article
-                className="group bg-[#202622] text-[#F3F0E8] overflow-hidden shadow-xl border border-[#343B33] hover:border-[#B49A68]/70 transition-all duration-500 flex flex-col justify-between relative"
+                className="group bg-[#1E2521] text-[#FAF9F5] overflow-hidden shadow-xl border border-[#343B33] hover:border-[#B49A65]/70 transition-all duration-500 flex flex-col justify-between relative"
               >
+                {/* Subtle Champagne Corner Accent */}
+                <div className="absolute top-0 right-0 w-6 h-6 border-t border-r border-[#B49A65]/40 group-hover:border-[#B49A65] transition-colors z-10 pointer-events-none" />
+
                 {/* Image Container with Framing */}
-                <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#202622]">
+                <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#1E2521]">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -95,40 +98,40 @@ export const ProjectsSection: React.FC = () => {
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#202622] via-[#202622]/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1E2521] via-[#1E2521]/20 to-transparent" />
 
                   {/* Sample Tag Badge */}
-                  <div className="absolute top-4 left-4 bg-[#B49A68] text-[#202622] px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-bold">
+                  <div className="absolute top-4 left-4 bg-[#B49A65] text-[#1E2521] px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-bold">
                     Sample Project
                   </div>
 
-                  <div className="absolute top-4 right-4 bg-[#202622]/80 text-[#D9D2C4] px-2.5 py-1 text-[10px] uppercase tracking-wider backdrop-blur-xs font-mono">
+                  <div className="absolute top-4 right-4 bg-[#1E2521]/80 text-[#DCD6C9] px-2.5 py-1 text-[10px] uppercase tracking-wider backdrop-blur-xs font-mono">
                     {project.category}
                   </div>
 
                   {/* Location Placeholder Overlay */}
-                  <div className="absolute bottom-4 left-4 flex items-center gap-1.5 text-xs text-[#D9D2C4]/90 backdrop-blur-sm bg-black/40 px-2.5 py-1">
-                    <MapPin className="w-3.5 h-3.5 text-[#B49A68]" />
-                    <span className="font-mono text-[11px]">{project.locationPlaceholder}</span>
+                  <div className="absolute bottom-4 left-4 flex items-center gap-1.5 text-xs text-[#FAF9F5]/90 backdrop-blur-sm bg-black/40 px-2.5 py-1 font-mono text-[11px]">
+                    <MapPin className="w-3.5 h-3.5 text-[#B49A65]" />
+                    <span>{project.locationPlaceholder}</span>
                   </div>
                 </div>
 
                 {/* Text Meta Content */}
                 <div className="p-6 sm:p-8 flex flex-col justify-between flex-1">
                   <div>
-                    <h3 className="font-display text-2xl sm:text-3xl text-[#F3F0E8] group-hover:text-[#B49A68] transition-colors">
+                    <h3 className="font-display text-2xl sm:text-3xl text-[#FAF9F5] group-hover:text-[#B49A65] transition-colors font-light">
                       {project.title}
                     </h3>
-                    <p className="text-xs uppercase tracking-[0.18em] text-[#B49A68] mt-1 font-light italic">
+                    <p className="text-xs uppercase tracking-[0.18em] text-[#B49A65] mt-1 font-light italic">
                       {project.tagline}
                     </p>
-                    <p className="mt-4 text-xs sm:text-sm text-[#D9D2C4]/80 font-light leading-relaxed">
+                    <p className="mt-4 text-xs sm:text-sm text-[#FAF9F5]/80 font-light leading-relaxed">
                       {project.description}
                     </p>
                   </div>
 
                   <div className="mt-8 pt-5 border-t border-[#343B33] flex items-center justify-between">
-                    <div className="flex items-center gap-4 text-xs text-[#D9D2C4]/70 font-mono">
+                    <div className="flex items-center gap-4 text-xs text-[#FAF9F5]/70 font-mono">
                       <span>{project.specifications.area}</span>
                       <span>&bull;</span>
                       <span>{project.specifications.style}</span>
@@ -137,7 +140,7 @@ export const ProjectsSection: React.FC = () => {
                     <a
                       href="#contact"
                       onClick={scrollToContact}
-                      className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.16em] text-[#B49A68] hover:text-[#F3F0E8] transition-colors font-medium focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B49A68]"
+                      className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.16em] text-[#B49A65] hover:text-[#FAF9F5] transition-colors font-medium focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B49A65]"
                     >
                       <span>Enquire</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -151,22 +154,22 @@ export const ProjectsSection: React.FC = () => {
 
         {/* Customer Journey Bridge Callout */}
         <MotionReveal delay={0.2}>
-          <div className="mt-16 pt-8 border-t border-[#D9D2C4] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div className="mt-16 pt-8 border-t border-[#DCD6C9] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div>
-              <p className="text-xs sm:text-sm text-[#202622] font-medium">
+              <p className="text-xs sm:text-sm text-[#1E2521] font-medium">
                 Envisioning a distinctive architectural residence or commercial development?
               </p>
-              <p className="text-xs text-[#202622]/65 font-light mt-0.5">
+              <p className="text-xs text-[#626A66] font-light mt-0.5">
                 Our principal team conducts site evaluations and custom volumetric studies.
               </p>
             </div>
             <a
               href="#contact"
               onClick={scrollToContact}
-              className="inline-flex items-center gap-2 bg-[#526653] hover:bg-[#343B33] text-[#F3F0E8] px-6 py-3 text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300 shadow-sm shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A68]"
+              className="inline-flex items-center gap-2 bg-[#506653] hover:bg-[#1E2521] text-[#FAF9F5] px-6 py-3 text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300 shadow-sm shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A65]"
             >
               <span>Discuss Your Plot</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#B49A68]" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#B49A65]" />
             </a>
           </div>
         </MotionReveal>
