@@ -40,16 +40,21 @@ export const HeroSection: React.FC = () => {
       className="relative isolate min-h-[92vh] flex flex-col justify-between overflow-hidden bg-[#F4F0E7] text-[#252A26] pt-28 sm:pt-36 lg:pt-40 transition-colors"
     >
       {/* ========================================================================= */}
-      {/* HERO BACKGROUND IMAGE — Handshake & City Skyline Clean Canvas             */}
+      {/* HERO BACKGROUND IMAGE — Handshake & City Skyline Clean Canvas (4K UHD)    */}
       {/* ========================================================================= */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
-          src="/assets/images/hero-background.jpg"
-          alt="Double-exposure handshake and modern city skyline"
+          src="/assets/images/hero-background-4k.webp"
+          alt="Architectural partnership double-exposure handshake and modern city skyline"
           fill
           priority
+          quality={100}
+          unoptimized
           sizes="100vw"
           className="object-cover object-right lg:object-center select-none"
+          style={{
+            imageRendering: "-webkit-optimize-contrast",
+          }}
         />
         {/* Soft Left Edge Gradient Overlay — Guarantees 100% typography contrast on Warm Ivory */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#F4F0E7] via-[#F4F0E7]/80 to-transparent lg:w-[58%] pointer-events-none" />
