@@ -51,7 +51,7 @@ export const AmenitiesSection: React.FC = () => {
               {siteContent.amenities.tag}
             </span>
           </div>
-          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-normal text-[#202622] tracking-tight leading-[1.12]">
+          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#202622] tracking-tight leading-[1.12]">
             {siteContent.amenities.title}
           </h2>
           <p className="mt-4 text-base sm:text-lg text-[#202622]/75 font-light leading-relaxed">
@@ -59,7 +59,7 @@ export const AmenitiesSection: React.FC = () => {
           </p>
         </MotionReveal>
 
-        {/* Editorial Grid of Quality Pillars */}
+        {/* Architectural Specification Ledger (Breaks away from generic card grids) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {siteAssets.amenities.map((item, idx) => (
             <MotionReveal key={item.id} delay={idx * 0.07}>
@@ -70,8 +70,13 @@ export const AmenitiesSection: React.FC = () => {
                 <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-[#B49A68]/40 group-hover:border-[#B49A68] transition-colors" />
 
                 <div>
-                  <div className="w-11 h-11 bg-[#F3F0E8] border border-[#D9D2C4] flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
-                    {iconMap[item.icon] || <CheckCircle2 className="w-5 h-5 text-[#526653]" />}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-11 h-11 bg-[#F3F0E8] border border-[#D9D2C4] flex items-center justify-center group-hover:scale-105 transition-transform">
+                      {iconMap[item.icon] || <CheckCircle2 className="w-5 h-5 text-[#526653]" />}
+                    </div>
+                    <span className="text-[10px] font-mono font-semibold text-[#B49A68] uppercase tracking-widest">
+                      SPEC. 0{idx + 1}
+                    </span>
                   </div>
 
                   <span className="text-[10px] uppercase tracking-[0.2em] text-[#526653] font-semibold block mb-1">

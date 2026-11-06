@@ -5,7 +5,7 @@ import Image from "next/image";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
 import { MotionReveal } from "@/components/ui/MotionReveal";
-import { ArrowUpRight, ShieldCheck, Ruler, Scale, Sparkles } from "lucide-react";
+import { ArrowUpRight, ShieldCheck, Ruler, Scale } from "lucide-react";
 
 export const AboutSection: React.FC = () => {
   const scrollToServices = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -31,29 +31,29 @@ export const AboutSection: React.FC = () => {
       id="about"
       className="py-24 sm:py-32 bg-[#F3F0E8] text-[#202622] relative overflow-hidden transition-colors"
     >
-      {/* Subtle architectural hairline divider at section boundary */}
+      {/* Subtle architectural hairline divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#B49A68]/30 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header Tag */}
-        <MotionReveal className="mb-12 sm:mb-16">
+        <MotionReveal className="mb-14 sm:mb-20">
           <div className="inline-flex items-center gap-2 mb-3">
             <span className="w-1.5 h-1.5 bg-[#526653]" />
             <span className="text-xs uppercase tracking-[0.25em] text-[#526653] font-semibold">
               {siteContent.about.tag}
             </span>
           </div>
-          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-normal text-[#202622] tracking-tight leading-[1.15] max-w-3xl">
+          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#202622] tracking-tight leading-[1.12] max-w-4xl">
             {siteContent.about.title}
           </h2>
         </MotionReveal>
 
         {/* Editorial Asymmetric Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Narrative Copy */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column: Narrative Copy & Architectural Pillars */}
           <div className="lg:col-span-6 flex flex-col justify-center">
             <MotionReveal delay={0.1}>
-              <p className="font-display text-xl sm:text-2xl text-[#526653] italic font-light leading-relaxed mb-6 border-l-2 border-[#B49A68] pl-4">
+              <p className="font-display text-2xl sm:text-3xl text-[#202622] italic font-light leading-[1.3] mb-8 border-l-2 border-[#B49A68] pl-5">
                 &ldquo;{siteContent.about.lead}&rdquo;
               </p>
             </MotionReveal>
@@ -76,12 +76,12 @@ export const AboutSection: React.FC = () => {
               </div>
             </MotionReveal>
 
-            {/* Three Foundational Pillars */}
+            {/* Three Foundational Pillars as an Architectural Ledger */}
             <div className="space-y-4 pt-6 border-t border-[#D9D2C4]">
               {siteContent.about.pillars.map((pillar, idx) => (
                 <MotionReveal key={idx} delay={0.2 + idx * 0.08}>
-                  <div className="p-4 bg-[#FFFFFF] border border-[#D9D2C4] hover:border-[#526653]/60 transition-all duration-300 flex items-start gap-4 group shadow-xs">
-                    <div className="w-9 h-9 rounded-none bg-[#526653]/15 text-[#526653] flex items-center justify-center shrink-0 mt-0.5 border border-[#526653]/30 group-hover:bg-[#526653] group-hover:text-[#F3F0E8] transition-colors">
+                  <div className="p-4 bg-[#FFFFFF] border border-[#D9D2C4] hover:border-[#B49A68] transition-all duration-300 flex items-start gap-4 group shadow-xs">
+                    <div className="w-9 h-9 bg-[#F3F0E8] text-[#526653] flex items-center justify-center shrink-0 mt-0.5 border border-[#D9D2C4] group-hover:bg-[#526653] group-hover:text-[#F3F0E8] transition-colors">
                       {idx === 0 ? (
                         <Ruler className="w-4 h-4" />
                       ) : idx === 1 ? (
@@ -91,9 +91,14 @@ export const AboutSection: React.FC = () => {
                       )}
                     </div>
                     <div>
-                      <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] text-[#202622]">
-                        {pillar.title}
-                      </h3>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-mono text-[#B49A68] font-semibold">
+                          0{idx + 1}
+                        </span>
+                        <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] text-[#202622]">
+                          {pillar.title}
+                        </h3>
+                      </div>
                       <p className="text-xs sm:text-sm text-[#202622]/75 font-light mt-1 leading-relaxed">
                         {pillar.description}
                       </p>
@@ -120,7 +125,7 @@ export const AboutSection: React.FC = () => {
                 <a
                   href="#contact"
                   onClick={scrollToContact}
-                  className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-medium text-[#202622]/70 hover:text-[#B49A68] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B49A68]"
+                  className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-medium text-[#202622]/75 hover:text-[#B49A68] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B49A68]"
                 >
                   <span>Consult An Architect</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-[#B49A68]" />
@@ -130,7 +135,7 @@ export const AboutSection: React.FC = () => {
           </div>
 
           {/* Right Column: Architectural Photography Pairing */}
-          <div className="lg:col-span-6 relative">
+          <div className="lg:col-span-6 relative pt-4 sm:pt-0">
             <MotionReveal delay={0.2} direction="right">
               <div className="relative">
                 {/* Primary Large Image */}
@@ -142,7 +147,7 @@ export const AboutSection: React.FC = () => {
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover hover:scale-105 transition-transform duration-700 ease-out"
                   />
-                  <div className="absolute bottom-4 left-4 bg-[#202622]/85 text-[#F3F0E8] px-3 py-1.5 text-[10px] tracking-[0.18em] uppercase backdrop-blur-xs font-mono">
+                  <div className="absolute bottom-4 left-4 bg-[#202622]/85 text-[#F3F0E8] px-3.5 py-1.5 text-[10px] tracking-[0.2em] uppercase backdrop-blur-md font-mono border border-[#B49A68]/30">
                     Sample Architectural Concept
                   </div>
                 </div>
@@ -160,7 +165,7 @@ export const AboutSection: React.FC = () => {
                 </div>
 
                 {/* Champagne Brass Architectural Graphic Accent */}
-                <div className="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-[#B49A68] pointer-events-none" />
+                <div className="absolute -top-4 -right-4 w-20 h-20 border-t-2 border-r-2 border-[#B49A68] pointer-events-none" />
               </div>
             </MotionReveal>
           </div>

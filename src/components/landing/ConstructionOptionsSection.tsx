@@ -22,7 +22,7 @@ export const ConstructionOptionsSection: React.FC = () => {
   return (
     <section
       id="options"
-      className="py-24 sm:py-32 bg-[#202622] text-[#F3F0E8] relative overflow-hidden"
+      className="py-24 sm:py-32 bg-[#202622] text-[#F3F0E8] relative overflow-hidden transition-colors"
     >
       {/* Decorative Champagne Grid Line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#B49A68]/40 to-transparent" />
@@ -30,10 +30,13 @@ export const ConstructionOptionsSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <MotionReveal className="max-w-3xl mb-16 sm:mb-20">
-          <span className="text-xs uppercase tracking-[0.25em] text-[#B49A68] font-semibold block mb-3">
-            {siteContent.constructionOptions.tag}
-          </span>
-          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-normal text-[#F3F0E8] tracking-tight leading-[1.12]">
+          <div className="inline-flex items-center gap-2 mb-3">
+            <span className="w-1.5 h-1.5 bg-[#B49A68]" />
+            <span className="text-xs uppercase tracking-[0.25em] text-[#B49A68] font-semibold">
+              {siteContent.constructionOptions.tag}
+            </span>
+          </div>
+          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#F3F0E8] tracking-tight leading-[1.12]">
             {siteContent.constructionOptions.title}
           </h2>
           <p className="mt-4 text-base sm:text-lg text-[#D9D2C4]/80 font-light leading-relaxed">
@@ -51,8 +54,8 @@ export const ConstructionOptionsSection: React.FC = () => {
                 type="button"
                 className={`px-4 sm:px-6 py-2.5 text-xs uppercase tracking-[0.16em] font-medium transition-all duration-300 border focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A68] ${
                   activeTab === index
-                    ? "bg-[#B49A68] text-[#202622] border-[#B49A68] font-semibold"
-                    : "bg-[#343B33]/60 text-[#D9D2C4] border-[#343B33] hover:border-[#B49A68]/40 hover:text-[#F3F0E8]"
+                    ? "bg-[#B49A68] text-[#202622] border-[#B49A68] font-semibold shadow-md"
+                    : "bg-[#252C27] text-[#D9D2C4] border-[#343B33] hover:border-[#B49A68]/50 hover:text-[#F3F0E8]"
                 }`}
               >
                 {opt.type}
@@ -66,9 +69,12 @@ export const ConstructionOptionsSection: React.FC = () => {
           const current = siteAssets.constructionOptions[activeTab];
           return (
             <MotionReveal key={current.id} delay={0.15}>
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center bg-[#252C27] border border-[#343B33] p-6 sm:p-10 shadow-2xl">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center bg-[#252C27] border border-[#343B33] p-6 sm:p-10 shadow-2xl relative">
+                {/* Fine Champagne Corner Accent */}
+                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#B49A68] pointer-events-none" />
+
                 {/* Left Column: Visual */}
-                <div className="lg:col-span-6 relative aspect-[4/3] w-full overflow-hidden bg-[#202622]">
+                <div className="lg:col-span-6 relative aspect-[4/3] w-full overflow-hidden bg-[#202622] border border-[#343B33]">
                   <Image
                     src={current.image}
                     alt={current.type}
@@ -77,7 +83,7 @@ export const ConstructionOptionsSection: React.FC = () => {
                     className="object-cover transition-transform duration-700 hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#202622] via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 bg-[#202622]/90 border border-[#B49A68]/30 px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-[#B49A68] font-mono">
+                  <div className="absolute bottom-4 left-4 bg-[#202622]/90 border border-[#B49A68]/40 px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-[#B49A68] font-mono backdrop-blur-md">
                     Sample Typology Model
                   </div>
                 </div>
@@ -91,26 +97,27 @@ export const ConstructionOptionsSection: React.FC = () => {
                       </span>
                     </div>
 
-                    <h3 className="font-display text-2xl sm:text-4xl text-[#F3F0E8]">
+                    <h3 className="font-display text-2xl sm:text-4xl text-[#F3F0E8] font-light">
                       {current.type}
                     </h3>
 
+                    {/* Parameter Specification Box */}
                     <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 py-4 border-y border-[#343B33]">
-                      <div className="flex items-start gap-3">
+                      <div className="flex items-start gap-3 p-3 bg-[#202622] border border-[#343B33]">
                         <Maximize2 className="w-4 h-4 text-[#B49A68] shrink-0 mt-0.5" />
                         <div>
-                          <span className="text-[11px] uppercase tracking-wider text-[#D9D2C4]/60 block">
+                          <span className="text-[10px] uppercase tracking-wider text-[#D9D2C4]/60 block font-mono">
                             Suggested Plot Area
                           </span>
-                          <span className="text-sm text-[#F3F0E8] font-medium">
+                          <span className="text-sm text-[#F3F0E8] font-medium font-mono">
                             {current.recommendedPlotSize}
                           </span>
                         </div>
                       </div>
-                      <div className="flex items-start gap-3">
+                      <div className="flex items-start gap-3 p-3 bg-[#202622] border border-[#343B33]">
                         <Layers className="w-4 h-4 text-[#B49A68] shrink-0 mt-0.5" />
                         <div>
-                          <span className="text-[11px] uppercase tracking-wider text-[#D9D2C4]/60 block">
+                          <span className="text-[10px] uppercase tracking-wider text-[#D9D2C4]/60 block font-mono">
                             Ideal Target
                           </span>
                           <span className="text-sm text-[#F3F0E8] font-medium">
@@ -135,13 +142,13 @@ export const ConstructionOptionsSection: React.FC = () => {
                   </div>
 
                   <div className="mt-10 pt-6 border-t border-[#343B33] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-                    <span className="text-[11px] text-[#B49A68]/80 italic">
+                    <span className="text-[11px] text-[#B49A68]/80 italic font-mono">
                       {siteContent.constructionOptions.disclaimer}
                     </span>
                     <a
                       href="#contact"
                       onClick={scrollToContact}
-                      className="inline-flex items-center justify-center gap-2 bg-[#526653] hover:bg-[#343B33] active:scale-[0.98] text-[#F3F0E8] px-6 py-3 border border-[#B49A68]/40 hover:border-[#B49A68] text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300 shadow-md shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A68]"
+                      className="inline-flex items-center justify-center gap-2 bg-[#526653] hover:bg-[#343B33] active:scale-[0.98] text-[#F3F0E8] px-6 py-3 border border-[#B49A68]/50 hover:border-[#B49A68] text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300 shadow-md shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A68]"
                     >
                       <span>Check Plot Feasibility</span>
                       <ArrowUpRight className="w-4 h-4 text-[#B49A68]" />

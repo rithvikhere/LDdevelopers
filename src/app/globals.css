@@ -19,6 +19,9 @@
 
   html {
     scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
@@ -32,26 +35,40 @@
     color: inherit;
     text-decoration: none;
   }
+
+  /* Architectural text selection in Champagne Brass */
+  ::selection {
+    background-color: #B49A68;
+    color: #202622;
+  }
 }
 
 .font-display {
   font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  letter-spacing: -0.015em;
 }
 
 .font-sans {
   font-family: var(--font-dmsans), "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
+/* Subtle architectural grid pattern */
+.bg-architectural-grid {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(180, 154, 104, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(180, 154, 104, 0.04) 1px, transparent 1px);
+}
+
 /* Custom editorial scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
   background: #202622;
 }
 ::-webkit-scrollbar-thumb {
   background: #526653;
-  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #B49A68;

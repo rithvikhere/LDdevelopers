@@ -76,18 +76,44 @@ export const GallerySection: React.FC = () => {
     }
   }, [selectedIndex]);
 
+  // Dynamic editorial span for architectural exhibition rhythm
+  const getGalleryClasses = (index: number) => {
+    switch (index) {
+      case 0:
+        return "sm:col-span-2 aspect-[16/10] sm:aspect-[16/9]";
+      case 1:
+        return "sm:col-span-1 aspect-[16/10] sm:aspect-[4/5]";
+      case 2:
+        return "sm:col-span-1 aspect-[16/10] sm:aspect-[4/5]";
+      case 3:
+        return "sm:col-span-2 aspect-[16/10] sm:aspect-[16/9]";
+      case 4:
+        return "sm:col-span-1 aspect-[16/10] sm:aspect-[4/3]";
+      case 5:
+        return "sm:col-span-2 aspect-[16/10] sm:aspect-[16/9]";
+      default:
+        return "aspect-[16/10]";
+    }
+  };
+
   return (
     <section
       id="gallery"
-      className="py-24 sm:py-32 bg-[#202622] text-[#F3F0E8] relative overflow-hidden"
+      className="py-24 sm:py-32 bg-[#202622] text-[#F3F0E8] relative overflow-hidden transition-colors"
     >
+      {/* Subtle top architectural hairline divider */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#B49A68]/30 to-transparent" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <MotionReveal className="max-w-3xl mb-16 sm:mb-20">
-          <span className="text-xs uppercase tracking-[0.25em] text-[#B49A68] font-semibold block mb-3">
-            {siteContent.gallery.tag}
-          </span>
-          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-normal text-[#F3F0E8] tracking-tight leading-[1.12]">
+          <div className="inline-flex items-center gap-2 mb-3">
+            <span className="w-1.5 h-1.5 bg-[#B49A68]" />
+            <span className="text-xs uppercase tracking-[0.25em] text-[#B49A68] font-semibold">
+              {siteContent.gallery.tag}
+            </span>
+          </div>
+          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#F3F0E8] tracking-tight leading-[1.12]">
             {siteContent.gallery.title}
           </h2>
           <p className="mt-4 text-base sm:text-lg text-[#D9D2C4]/80 font-light leading-relaxed">
@@ -95,10 +121,10 @@ export const GallerySection: React.FC = () => {
           </p>
         </MotionReveal>
 
-        {/* Responsive Editorial Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Editorial Asymmetric Exhibition Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {siteAssets.gallery.map((item, idx) => (
-            <MotionReveal key={item.id} delay={idx * 0.06}>
+            <MotionReveal key={item.id} delay={idx * 0.06} className={getGalleryClasses(idx)}>
               <div
                 tabIndex={0}
                 role="button"
@@ -110,21 +136,21 @@ export const GallerySection: React.FC = () => {
                     setSelectedIndex(idx);
                   }
                 }}
-                className="group relative aspect-[4/3] overflow-hidden bg-[#252C27] cursor-pointer border border-[#343B33] hover:border-[#B49A68]/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A68] transition-all duration-300"
+                className="group relative w-full h-full overflow-hidden bg-[#252C27] cursor-pointer border border-[#343B33] hover:border-[#B49A68] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B49A68] transition-all duration-300 shadow-md"
               >
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 66vw, 50vw"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#202622] via-transparent to-transparent opacity-75 group-hover:opacity-90 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#202622] via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
 
                 {/* Subtle Hover Overlay Meta */}
                 <div className="absolute inset-0 p-6 flex flex-col justify-between opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-xs">
                   <div className="flex justify-end">
-                    <span className="w-8 h-8 rounded-full bg-[#202622]/90 text-[#B49A68] flex items-center justify-center border border-[#B49A68]/30">
+                    <span className="w-8 h-8 rounded-full bg-[#202622]/90 text-[#B49A68] flex items-center justify-center border border-[#B49A68]/40">
                       <ZoomIn className="w-4 h-4" />
                     </span>
                   </div>
@@ -133,16 +159,16 @@ export const GallerySection: React.FC = () => {
                     <span className="text-[10px] uppercase tracking-[0.2em] text-[#B49A68] font-semibold block">
                       {item.category}
                     </span>
-                    <h4 className="font-display text-xl text-[#F3F0E8] mt-1">
+                    <h4 className="font-display text-xl sm:text-2xl text-[#F3F0E8] mt-1 font-light">
                       {item.title}
                     </h4>
                   </div>
                 </div>
 
                 {/* Mobile Friendly Bottom Label */}
-                <div className="sm:hidden absolute bottom-2 left-3 right-3 flex items-center justify-between text-[10px] text-[#D9D2C4] bg-black/70 px-2.5 py-1">
+                <div className="sm:hidden absolute bottom-2 left-3 right-3 flex items-center justify-between text-[10px] text-[#D9D2C4] bg-black/75 backdrop-blur-sm px-2.5 py-1">
                   <span>{item.title}</span>
-                  <span className="text-[#B49A68]">{item.category}</span>
+                  <span className="text-[#B49A68] font-mono">{item.category}</span>
                 </div>
               </div>
             </MotionReveal>
@@ -224,7 +250,7 @@ export const GallerySection: React.FC = () => {
                     {activeItem.category} &bull; {selectedIndex + 1} of{" "}
                     {siteAssets.gallery.length}
                   </span>
-                  <h3 className="font-display text-lg sm:text-xl text-[#F3F0E8]">
+                  <h3 className="font-display text-lg sm:text-xl text-[#F3F0E8] font-light">
                     {activeItem.title}
                   </h3>
                 </div>
