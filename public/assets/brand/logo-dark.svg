@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 64" fill="none" className="w-auto h-10">
+  <!-- Geometric Architectural Emblem (Light Mark for Dark Backgrounds) -->
+  <g transform="translate(4, 8)">
+    <!-- Base foundation lines -->
+    <rect x="2" y="40" width="44" height="3" fill="#B49A68" rx="1.5" />
+    <!-- Architectural pillars & cantilever -->
+    <path d="M6 38V12L24 4L42 12V38" stroke="#F3F0E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M16 38V18L24 14L32 18V38" stroke="#B49A68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="24" y1="14" x2="24" y2="38" stroke="#526653" stroke-width="2" stroke-linecap="round" />
+    <!-- Apex geometric accent -->
+    <circle cx="24" cy="4" r="2.5" fill="#B49A68" />
+  </g>
+  <!-- Brand Typography -->
+  <text x="64" y="32" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" font-weight="600" letter-spacing="0.18em" fill="#F3F0E8">
+    [COMPANY NAME]
+  </text>
+  <text x="65" y="46" font-family="'DM Sans', system-ui, sans-serif" font-size="8.5" font-weight="500" letter-spacing="0.28em" fill="#B49A68">
+    ARCHITECTURE &amp; DEVELOPMENTS
+  </text>
+</svg>
