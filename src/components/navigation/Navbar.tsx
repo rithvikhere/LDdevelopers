@@ -148,10 +148,10 @@ export const Navbar: React.FC = () => {
               <a
                 href="#contact"
                 onClick={(e) => scrollToSection(e, "#contact", "contact")}
-                className="group inline-flex items-center gap-2 bg-[#17201B] hover:bg-[#2E5A44] border border-[#24322A] hover:border-[#C5B083]/50 text-[#F5F3EF] px-5 py-2 text-[10px] font-mono uppercase tracking-[0.22em] font-medium transition-all duration-300"
+                className="group inline-flex items-center gap-2 bg-white/95 hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] px-5 py-2 text-[10px] font-mono uppercase tracking-[0.22em] font-semibold transition-all duration-300 shadow-md"
               >
                 <span>INITIATE PROJECT</span>
-                <ArrowUpRight className="w-3 h-3 text-[#C5B083] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ArrowUpRight className="w-3 h-3 text-[#2E5A44] group-hover:text-[#C5B083] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>
 

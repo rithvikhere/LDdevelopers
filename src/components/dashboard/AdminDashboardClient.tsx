@@ -122,13 +122,13 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 bg-[#121815] border border-[#24322A]">
         {/* Search Input */}
         <div className="relative flex-1 max-w-md">
-          <Search className="w-4 h-4 text-[#9EA8A1] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <Search className="w-4 h-4 text-[#5A6B62] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by client, location, reference #, or typology..."
-            className="w-full bg-[#17201B] border border-[#24322A] focus:border-[#C5B083] text-[#F5F3EF] text-xs font-mono pl-10 pr-3.5 py-2.5 outline-none transition-colors placeholder:text-[#9EA8A1]/50"
+            className="w-full bg-white/95 border border-[#24322A]/25 focus:border-[#2E5A44] text-[#0B0F0D] text-xs font-mono pl-10 pr-3.5 py-2.5 outline-none transition-colors placeholder:text-[#68776F] shadow-sm font-medium"
           />
         </div>
 

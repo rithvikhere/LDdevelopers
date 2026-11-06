@@ -83,7 +83,7 @@ export const ProjectsSection: React.FC = () => {
         {/* 1. Primary Featured Project (Full-Width Asymmetrical Showcase) */}
         {featured && (
           <KairosDepthReveal delay={0.1} withFrame={false} className="mb-12 sm:mb-16">
-            <div className="group relative border border-[#24322A] bg-[#121815]/60 overflow-hidden hover:border-[#C5B083]/50 transition-colors duration-500">
+            <div className="group relative border border-[#24322A]/20 bg-white/90 backdrop-blur-md shadow-2xl overflow-hidden hover:border-[#2E5A44]/50 transition-colors duration-500">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
                 {/* Image Aspect Box */}
                 <div className="lg:col-span-7 relative min-h-[360px] sm:min-h-[460px] lg:min-h-[540px] overflow-hidden bg-[#0B0F0D]">
@@ -103,40 +103,40 @@ export const ProjectsSection: React.FC = () => {
                 {/* Editorial Content Column */}
                 <div className="lg:col-span-5 p-8 sm:p-12 lg:p-14 flex flex-col justify-between space-y-6">
                   <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-xs font-mono text-[#C5B083]">
+                    <div className="flex items-center gap-2 text-xs font-mono text-[#2E5A44] font-semibold">
                       <MapPin className="w-3.5 h-3.5" />
                       <span className="tracking-widest uppercase">{featured.locationPlaceholder}</span>
                     </div>
 
-                    <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-[#F5F3EF] leading-tight">
+                    <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-[#0B0F0D] leading-tight">
                       {featured.title}
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-[#C5B083]/90 font-light italic">
+                    <p className="text-xs sm:text-sm text-[#2E5A44] font-medium italic">
                       &ldquo;{featured.tagline}&rdquo;
                     </p>
 
-                    <p className="text-xs sm:text-sm text-[#9EA8A1] font-light leading-relaxed pt-2">
+                    <p className="text-xs sm:text-sm text-[#2A332E] font-light leading-relaxed pt-2">
                       {featured.description}
                     </p>
                   </div>
 
-                  <div className="pt-6 border-t border-[#24322A]/60 space-y-4">
+                  <div className="pt-6 border-t border-[#24322A]/15 space-y-4">
                     <div className="grid grid-cols-2 gap-4 text-xs font-mono">
                       <div>
-                        <span className="text-[#9EA8A1]/70 block text-[10px] uppercase">AREA</span>
-                        <span className="text-[#F5F3EF]">{featured.specifications.area}</span>
+                        <span className="text-[#5A6B62] block text-[10px] uppercase font-semibold">AREA</span>
+                        <span className="text-[#0B0F0D] font-semibold">{featured.specifications.area}</span>
                       </div>
                       <div>
-                        <span className="text-[#9EA8A1]/70 block text-[10px] uppercase">STYLE</span>
-                        <span className="text-[#F5F3EF]">{featured.specifications.style}</span>
+                        <span className="text-[#5A6B62] block text-[10px] uppercase font-semibold">STYLE</span>
+                        <span className="text-[#0B0F0D] font-semibold">{featured.specifications.style}</span>
                       </div>
                     </div>
 
                     <a
                       href="#contact"
                       onClick={scrollToContact}
-                      className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-[#C5B083] hover:text-[#F5F3EF] pt-2 transition-colors group"
+                      className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-[#2E5A44] hover:text-[#0B0F0D] pt-2 transition-colors font-semibold group"
                     >
                       <span>Inquire About Commission</span>
                       <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -153,7 +153,7 @@ export const ProjectsSection: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 mb-12 sm:mb-16">
             {secondary.map((proj, idx) => (
               <KairosDepthReveal key={proj.id} delay={0.15 + idx * 0.1} withFrame={false}>
-                <div className="group border border-[#24322A] bg-[#121815]/50 overflow-hidden hover:border-[#C5B083]/50 transition-all duration-500">
+                <div className="group border border-[#24322A]/15 bg-white/90 backdrop-blur-md shadow-xl hover:shadow-2xl overflow-hidden hover:border-[#2E5A44]/50 transition-all duration-500">
                   <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0B0F0D]">
                     <Image
                       src={proj.image}
@@ -168,25 +168,25 @@ export const ProjectsSection: React.FC = () => {
                   </div>
 
                   <div className="p-6 sm:p-8 space-y-4">
-                    <div className="flex items-center gap-2 text-[10px] font-mono text-[#9EA8A1]">
-                      <MapPin className="w-3 h-3 text-[#C5B083]" />
+                    <div className="flex items-center gap-2 text-[10px] font-mono text-[#2E5A44] font-semibold">
+                      <MapPin className="w-3 h-3 text-[#2E5A44]" />
                       <span>{proj.locationPlaceholder}</span>
                     </div>
 
-                    <h4 className="font-display text-2xl font-light text-[#F5F3EF] group-hover:text-[#C5B083] transition-colors leading-tight">
+                    <h4 className="font-display text-2xl font-light text-[#0B0F0D] group-hover:text-[#2E5A44] transition-colors leading-tight">
                       {proj.title}
                     </h4>
 
-                    <p className="text-xs text-[#9EA8A1] font-light leading-relaxed line-clamp-2">
+                    <p className="text-xs text-[#2A332E] font-light leading-relaxed line-clamp-2">
                       {proj.description}
                     </p>
 
-                    <div className="pt-4 border-t border-[#24322A]/60 flex items-center justify-between text-xs font-mono">
-                      <span className="text-[#C5B083]">{proj.specifications.area}</span>
+                    <div className="pt-4 border-t border-[#24322A]/15 flex items-center justify-between text-xs font-mono">
+                      <span className="text-[#2E5A44] font-semibold">{proj.specifications.area}</span>
                       <a
                         href="#contact"
                         onClick={scrollToContact}
-                        className="inline-flex items-center gap-1.5 text-[#9EA8A1] hover:text-[#F5F3EF] uppercase text-[10px] tracking-wider transition-colors"
+                        className="inline-flex items-center gap-1.5 text-[#0B0F0D] hover:text-[#2E5A44] font-semibold uppercase text-[10px] tracking-wider transition-colors"
                       >
                         <span>Details</span>
                         <ArrowUpRight className="w-3 h-3" />
@@ -202,31 +202,31 @@ export const ProjectsSection: React.FC = () => {
         {/* 3. Editorial Ledger List for Remaining Projects */}
         {remaining.length > 0 && (
           <div className="pt-10 border-t border-[#24322A]/60 space-y-3">
-            <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#9EA8A1] mb-4">
+            <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#C5B083] font-semibold mb-4">
               ADDITIONAL ARCHITECTURAL COMMISSIONS
             </div>
             {remaining.map((item, rIdx) => (
               <KairosDepthReveal key={item.id} delay={0.1 + rIdx * 0.05}>
-                <div className="group py-4 px-6 border border-[#24322A]/40 hover:border-[#C5B083]/40 bg-[#121815]/30 hover:bg-[#121815]/70 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300">
+                <div className="group py-4 px-6 border border-[#24322A]/15 hover:border-[#2E5A44]/50 bg-white/90 hover:bg-white/95 backdrop-blur-md shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300">
                   <div className="flex items-center gap-4">
-                    <span className="text-xs font-mono text-[#C5B083]">0{4 + rIdx}</span>
+                    <span className="text-xs font-mono text-[#2E5A44] font-semibold">0{4 + rIdx}</span>
                     <div>
-                      <h5 className="font-display text-xl text-[#F5F3EF] group-hover:text-[#C5B083] transition-colors">
+                      <h5 className="font-display text-xl text-[#0B0F0D] group-hover:text-[#2E5A44] transition-colors">
                         {item.title}
                       </h5>
-                      <span className="text-[10px] font-mono text-[#9EA8A1]">
+                      <span className="text-[10px] font-mono text-[#5A6B62]">
                         {item.category} &bull; {item.locationPlaceholder}
                       </span>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-6 text-xs font-mono">
-                    <span className="text-[#9EA8A1] hidden md:block">{item.specifications.style}</span>
-                    <span className="text-[#C5B083]">{item.specifications.area}</span>
+                    <span className="text-[#2A332E] hidden md:block">{item.specifications.style}</span>
+                    <span className="text-[#2E5A44] font-semibold">{item.specifications.area}</span>
                     <a
                       href="#contact"
                       onClick={scrollToContact}
-                      className="p-1.5 border border-[#24322A] text-[#9EA8A1] group-hover:text-[#F5F3EF] group-hover:border-[#C5B083] transition-colors"
+                      className="p-1.5 border border-[#24322A]/20 text-[#0B0F0D] group-hover:text-[#2E5A44] group-hover:border-[#2E5A44] transition-colors"
                       aria-label={`Inquire about ${item.title}`}
                     >
                       <ArrowUpRight className="w-3.5 h-3.5" />

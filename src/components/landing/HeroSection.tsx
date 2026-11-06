@@ -57,8 +57,8 @@ export const HeroSection: React.FC = () => {
       <div className="w-full max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col items-center justify-center text-center relative z-10 py-12">
         {/* Minimal Architectural Eyebrow Badge */}
         <KairosDepthReveal delay={0.1} withFrame={false}>
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 border border-[#24322A] bg-[#121815]/60 backdrop-blur-sm text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.26em] text-[#C5B083] mb-8">
-            <Compass className="w-3.5 h-3.5 text-[#C5B083]" />
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 border border-[#24322A]/20 bg-white/90 backdrop-blur-md shadow-md text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.26em] text-[#2E5A44] font-semibold mb-8">
+            <Compass className="w-3.5 h-3.5 text-[#2E5A44]" />
             <span>ARCHITECTURAL STUDIO &amp; PROPERTY DEVELOPMENT</span>
           </div>
         </KairosDepthReveal>

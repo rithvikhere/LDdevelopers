@@ -164,18 +164,18 @@ export const GallerySection: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0D] via-transparent to-transparent opacity-60 group-hover:opacity-85 transition-opacity" />
 
                 {/* Hover Meta Overlay */}
-                <div className="absolute inset-0 p-6 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#0B0F0D]/60 backdrop-blur-xs">
+                <div className="absolute inset-0 p-6 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 backdrop-blur-sm">
                   <div className="flex justify-end">
-                    <span className="w-8 h-8 bg-[#17201B] text-[#C5B083] flex items-center justify-center border border-[#C5B083]/40">
+                    <span className="w-8 h-8 bg-white text-[#2E5A44] flex items-center justify-center border border-[#2E5A44]/30 shadow-sm">
                       <ZoomIn className="w-4 h-4" />
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#C5B083] font-mono block">
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#2E5A44] font-semibold font-mono block">
                       {item.category}
                     </span>
-                    <h4 className="font-display text-xl sm:text-2xl text-[#F5F3EF] mt-1 font-light">
+                    <h4 className="font-display text-xl sm:text-2xl text-[#0B0F0D] mt-1 font-medium">
                       {item.title}
                     </h4>
                   </div>

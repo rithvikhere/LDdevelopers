@@ -204,7 +204,7 @@ export const ServicesSection: React.FC = () => {
                 delay={0.1 + (index % 3) * 0.08}
                 withFrame={false}
               >
-                <div className="group relative border border-[#24322A]/60 bg-[#121815]/50 backdrop-blur-sm p-8 sm:p-12 hover:border-[#C5B083]/50 transition-all duration-500 overflow-hidden">
+                <div className="group relative border border-[#24322A]/15 bg-white/90 backdrop-blur-md p-8 sm:p-12 hover:border-[#2E5A44]/60 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden">
                   {/* Subtle hover gradient wash */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#2E5A44]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
@@ -212,35 +212,35 @@ export const ServicesSection: React.FC = () => {
                     {/* Column 1-4: Number, Category & Title */}
                     <div className="lg:col-span-5 space-y-4">
                       <div className="flex items-center gap-4">
-                        <span className="font-display text-3xl sm:text-4xl font-light text-[#C5B083]">
+                        <span className="font-display text-3xl sm:text-4xl font-light text-[#2E5A44]">
                           {item.number}
                         </span>
-                        <span className="text-[10px] font-mono tracking-[0.25em] text-[#9EA8A1] uppercase">
+                        <span className="text-[10px] font-mono tracking-[0.25em] text-[#41554A] font-semibold uppercase">
                           {item.category}
                         </span>
                       </div>
 
-                      <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-light text-[#F5F3EF] group-hover:text-[#C5B083] transition-colors duration-300 tracking-tight leading-tight">
+                      <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-light text-[#0B0F0D] group-hover:text-[#2E5A44] transition-colors duration-300 tracking-tight leading-tight">
                         {item.title}
                       </h3>
 
-                      <p className="text-xs sm:text-sm text-[#C5B083]/90 font-light italic leading-relaxed">
+                      <p className="text-xs sm:text-sm text-[#2E5A44] font-medium italic leading-relaxed">
                         &ldquo;{item.tagline}&rdquo;
                       </p>
 
-                      <p className="text-xs sm:text-sm text-[#9EA8A1] font-light leading-relaxed pt-2">
+                      <p className="text-xs sm:text-sm text-[#2A332E] font-light leading-relaxed pt-2">
                         {item.description}
                       </p>
                     </div>
 
                     {/* Column 5-8: Key Deliverables Checklist */}
-                    <div className="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-[#24322A]/60 pt-6 lg:pt-0 lg:pl-8 space-y-4">
-                      <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9EA8A1]/80">
+                    <div className="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-[#24322A]/15 pt-6 lg:pt-0 lg:pl-8 space-y-4">
+                      <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#41554A] font-semibold">
                         KEY DELIVERABLES &amp; RIGOR
                       </div>
                       <ul className="space-y-2.5">
                         {item.deliverables.map((del, dIdx) => (
-                          <li key={dIdx} className="flex items-start gap-2.5 text-xs text-[#E8E4DC] font-light">
+                          <li key={dIdx} className="flex items-start gap-2.5 text-xs text-[#1F2924] font-medium">
                             <span className="w-1.5 h-1.5 rounded-full bg-[#2E5A44] mt-1.5 shrink-0 group-hover:bg-[#C5B083] transition-colors" />
                             <span>{del}</span>
                           </li>
@@ -249,16 +249,16 @@ export const ServicesSection: React.FC = () => {
                     </div>
 
                     {/* Column 9-12: Architectural Specs & CTA Trigger */}
-                    <div className="lg:col-span-3 border-t lg:border-t-0 lg:border-l border-[#24322A]/60 pt-6 lg:pt-0 lg:pl-8 flex flex-col justify-between h-full space-y-6">
+                    <div className="lg:col-span-3 border-t lg:border-t-0 lg:border-l border-[#24322A]/15 pt-6 lg:pt-0 lg:pl-8 flex flex-col justify-between h-full space-y-6">
                       <div>
-                        <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#9EA8A1]/80 mb-3">
+                        <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#41554A] font-semibold mb-3">
                           SPECIFICATIONS
                         </div>
                         <div className="space-y-2 text-xs font-mono">
                           {item.specs.map((spec, sIdx) => (
-                            <div key={sIdx} className="flex justify-between border-b border-[#24322A]/40 pb-1.5">
-                              <span className="text-[#9EA8A1]">{spec.label}</span>
-                              <span className="text-[#F5F3EF] font-medium">{spec.value}</span>
+                            <div key={sIdx} className="flex justify-between border-b border-[#24322A]/15 pb-1.5">
+                              <span className="text-[#5A6B62]">{spec.label}</span>
+                              <span className="text-[#0B0F0D] font-semibold">{spec.value}</span>
                             </div>
                           ))}
                         </div>
@@ -267,7 +267,7 @@ export const ServicesSection: React.FC = () => {
                       <a
                         href="#contact"
                         onClick={scrollToContact}
-                        className="inline-flex items-center justify-between py-2.5 px-4 bg-[#17201B] hover:bg-[#2E5A44] border border-[#24322A] hover:border-[#C5B083]/40 text-[#F5F3EF] text-[10px] font-mono uppercase tracking-[0.2em] transition-all duration-300"
+                        className="inline-flex items-center justify-between py-2.5 px-4 bg-[#0B0F0D] hover:bg-[#2E5A44] border border-[#24322A] text-[#F5F3EF] text-[10px] font-mono uppercase tracking-[0.2em] transition-all duration-300 shadow-md"
                       >
                         <span>Commission Project</span>
                         <ArrowUpRight className="w-3.5 h-3.5 text-[#C5B083]" />

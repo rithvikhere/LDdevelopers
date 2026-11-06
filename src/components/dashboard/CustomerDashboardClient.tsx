@@ -214,13 +214,13 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
 
       {/* Multi-Step Commission Wizard Modal */}
       {showWizard && (
-        <div className="p-8 border border-[#C5B083]/40 bg-[#121815] shadow-2xl relative">
-          <div className="flex items-center justify-between border-b border-[#24322A] pb-6 mb-8">
+        <div className="p-8 border border-[#24322A]/20 bg-white/95 backdrop-blur-md shadow-2xl relative text-[#0B0F0D]">
+          <div className="flex items-center justify-between border-b border-[#24322A]/15 pb-6 mb-8">
             <div>
-              <span className="text-[10px] font-mono text-[#C5B083] uppercase tracking-widest block mb-1">
+              <span className="text-[10px] font-mono text-[#2E5A44] font-semibold uppercase tracking-widest block mb-1">
                 STEP 0{wizardStep} OF 04
               </span>
-              <h2 className="font-display text-2xl sm:text-3xl font-light text-[#F5F3EF]">
+              <h2 className="font-display text-2xl sm:text-3xl font-light text-[#0B0F0D]">
                 {wizardStep === 1 && "Land & Site Specifications"}
                 {wizardStep === 2 && "Architectural Typology & Spatial Volume"}
                 {wizardStep === 3 && "Investment Budget & Schedule"}
@@ -231,14 +231,14 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
             <button
               type="button"
               onClick={() => setShowWizard(false)}
-              className="text-xs font-mono text-[#9EA8A1] hover:text-[#F5F3EF] cursor-pointer"
+              className="text-xs font-mono text-[#5A6B62] hover:text-[#0B0F0D] cursor-pointer"
             >
               Cancel
             </button>
           </div>
 
           {formError && (
-            <div className="mb-6 p-3 bg-red-950/30 border border-red-800 text-red-300 text-xs font-mono">
+            <div className="mb-6 p-3 bg-red-50 border border-red-300 text-red-700 text-xs font-mono">
               {formError}
             </div>
           )}
@@ -247,13 +247,13 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
           {wizardStep === 1 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs font-mono">
               <div>
-                <label className="block text-[#9EA8A1] uppercase mb-1.5">Do you currently hold land? *</label>
+                <label className="block text-[#1F2924] font-semibold uppercase mb-1.5">Do you currently hold land? *</label>
                 <div className="grid grid-cols-2 gap-3">
                   <button
                     type="button"
                     onClick={() => setFormData({ ...formData, ownsLand: true })}
-                    className={`py-2.5 px-4 border text-center transition-colors cursor-pointer ${
-                      formData.ownsLand ? "bg-[#17201B] border-[#C5B083] text-[#F5F3EF]" : "border-[#24322A] text-[#9EA8A1]"
+                    className={`py-2.5 px-4 border text-center transition-colors cursor-pointer font-medium ${
+                      formData.ownsLand ? "bg-[#0B0F0D] border-[#0B0F0D] text-[#F5F3EF]" : "bg-white/80 border-[#24322A]/20 text-[#1F2924]"
                     }`}
                   >
                     Yes, Owned Land
@@ -261,8 +261,8 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
                   <button
                     type="button"
                     onClick={() => setFormData({ ...formData, ownsLand: false })}
-                    className={`py-2.5 px-4 border text-center transition-colors cursor-pointer ${
-                      !formData.ownsLand ? "bg-[#17201B] border-[#C5B083] text-[#F5F3EF]" : "border-[#24322A] text-[#9EA8A1]"
+                    className={`py-2.5 px-4 border text-center transition-colors cursor-pointer font-medium ${
+                      !formData.ownsLand ? "bg-[#0B0F0D] border-[#0B0F0D] text-[#F5F3EF]" : "bg-white/80 border-[#24322A]/20 text-[#1F2924]"
                     }`}
                   >
                     Seeking Plot Acquisition
@@ -271,19 +271,19 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
               </div>
 
               <div>
-                <label className="block text-[#9EA8A1] uppercase mb-1.5">Plot Size / Dimensions</label>
+                <label className="block text-[#1F2924] font-semibold uppercase mb-1.5">Plot Size / Dimensions</label>
                 <div className="flex gap-2">
                   <input
                     type="number"
                     value={formData.landSize}
                     onChange={(e) => setFormData({ ...formData, landSize: Number(e.target.value) })}
-                    className="flex-1 bg-[#17201B] border border-[#24322A] text-[#F5F3EF] px-3.5 py-2.5 outline-none focus:border-[#C5B083]"
+                    className="flex-1 bg-white/95 border border-[#24322A]/25 text-[#0B0F0D] font-medium px-3.5 py-2.5 outline-none focus:border-[#2E5A44] shadow-sm"
                     placeholder="3200"
                   />
                   <select
                     value={formData.landUnit}
                     onChange={(e) => setFormData({ ...formData, landUnit: e.target.value })}
-                    className="bg-[#17201B] border border-[#24322A] text-[#F5F3EF] px-3 py-2.5 outline-none focus:border-[#C5B083]"
+                    className="bg-white/95 border border-[#24322A]/25 text-[#0B0F0D] font-medium px-3 py-2.5 outline-none focus:border-[#2E5A44] shadow-sm"
                   >
                     <option value="sq.ft">Sq.Ft</option>
                     <option value="cents">Cents</option>
@@ -294,23 +294,23 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
               </div>
 
               <div>
-                <label className="block text-[#9EA8A1] uppercase mb-1.5">Site Location / Neighborhood *</label>
+                <label className="block text-[#1F2924] font-semibold uppercase mb-1.5">Site Location / Neighborhood *</label>
                 <input
                   type="text"
                   value={formData.siteLocation}
                   onChange={(e) => setFormData({ ...formData, siteLocation: e.target.value })}
-                  className="w-full bg-[#17201B] border border-[#24322A] text-[#F5F3EF] px-3.5 py-2.5 outline-none focus:border-[#C5B083]"
+                  className="w-full bg-white/95 border border-[#24322A]/25 text-[#0B0F0D] font-medium px-3.5 py-2.5 outline-none focus:border-[#2E5A44] placeholder:text-[#68776F] shadow-sm"
                   placeholder="e.g., Jubilee Hills, Road 36"
                 />
               </div>
 
               <div>
-                <label className="block text-[#9EA8A1] uppercase mb-1.5">City *</label>
+                <label className="block text-[#1F2924] font-semibold uppercase mb-1.5">City *</label>
                 <input
                   type="text"
                   value={formData.city}
                   onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                  className="w-full bg-[#17201B] border border-[#24322A] text-[#F5F3EF] px-3.5 py-2.5 outline-none focus:border-[#C5B083]"
+                  className="w-full bg-white/95 border border-[#24322A]/25 text-[#0B0F0D] font-medium px-3.5 py-2.5 outline-none focus:border-[#2E5A44] placeholder:text-[#68776F] shadow-sm"
                   placeholder="e.g., Hyderabad / Bengaluru"
                 />
               </div>
@@ -321,11 +321,11 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
           {wizardStep === 2 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs font-mono">
               <div>
-                <label className="block text-[#9EA8A1] uppercase mb-1.5">Building Typology *</label>
+                <label className="block text-[#1F2924] font-semibold uppercase mb-1.5">Building Typology *</label>
                 <select
                   value={formData.buildingType}
                   onChange={(e) => setFormData({ ...formData, buildingType: e.target.value })}
-                  className="w-full bg-[#17201B] border border-[#24322A] text-[#F5F3EF] px-3.5 py-2.5 outline-none focus:border-[#C5B083]"
+                  className="w-full bg-white/95 border border-[#24322A]/25 text-[#0B0F0D] font-medium px-3.5 py-2.5 outline-none focus:border-[#2E5A44] shadow-sm"
                 >
                   <option value="Bespoke Residential Architecture">Bespoke Independent Residence</option>
                   <option value="Duplexes & Multi-Level Living">Duplex Residence</option>
@@ -335,45 +335,45 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
               </div>
 
               <div>
-                <label className="block text-[#9EA8A1] uppercase mb-1.5">Target Built-up Area (Sq.Ft)</label>
+                <label className="block text-[#1F2924] font-semibold uppercase mb-1.5">Target Built-up Area (Sq.Ft)</label>
                 <input
                   type="number"
                   value={formData.builtUpArea}
                   onChange={(e) => setFormData({ ...formData, builtUpArea: Number(e.target.value) })}
-                  className="w-full bg-[#17201B] border border-[#24322A] text-[#F5F3EF] px-3.5 py-2.5 outline-none focus:border-[#C5B083]"
+                  className="w-full bg-white/95 border border-[#24322A]/25 text-[#0B0F0D] font-medium px-3.5 py-2.5 outline-none focus:border-[#2E5A44] placeholder:text-[#68776F] shadow-sm"
                   placeholder="4800"
                 />
               </div>
 
               <div>
-                <label className="block text-[#9EA8A1] uppercase mb-1.5">Number of Floors</label>
+                <label className="block text-[#1F2924] font-semibold uppercase mb-1.5">Number of Floors</label>
                 <input
                   type="number"
                   value={formData.numberOfFloors}
                   onChange={(e) => setFormData({ ...formData, numberOfFloors: Number(e.target.value) })}
-                  className="w-full bg-[#17201B] border border-[#24322A] text-[#F5F3EF] px-3.5 py-2.5 outline-none focus:border-[#C5B083]"
+                  className="w-full bg-white/95 border border-[#24322A]/25 text-[#0B0F0D] font-medium px-3.5 py-2.5 outline-none focus:border-[#2E5A44] placeholder:text-[#68776F] shadow-sm"
                   placeholder="3"
                 />
               </div>
 
               <div>
-                <label className="block text-[#9EA8A1] uppercase mb-1.5">Bedrooms &amp; Suites</label>
+                <label className="block text-[#1F2924] font-semibold uppercase mb-1.5">Bedrooms &amp; Suites</label>
                 <input
                   type="number"
                   value={formData.bedrooms}
                   onChange={(e) => setFormData({ ...formData, bedrooms: Number(e.target.value) })}
-                  className="w-full bg-[#17201B] border border-[#24322A] text-[#F5F3EF] px-3.5 py-2.5 outline-none focus:border-[#C5B083]"
+                  className="w-full bg-white/95 border border-[#24322A]/25 text-[#0B0F0D] font-medium px-3.5 py-2.5 outline-none focus:border-[#2E5A44] placeholder:text-[#68776F] shadow-sm"
                   placeholder="4"
                 />
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-[#9EA8A1] uppercase mb-1.5">Architectural Style Preference</label>
+                <label className="block text-[#1F2924] font-semibold uppercase mb-1.5">Architectural Style Preference</label>
                 <input
                   type="text"
                   value={formData.constructionStyle}
                   onChange={(e) => setFormData({ ...formData, constructionStyle: e.target.value })}
-                  className="w-full bg-[#17201B] border border-[#24322A] text-[#F5F3EF] px-3.5 py-2.5 outline-none focus:border-[#C5B083]"
+                  className="w-full bg-white/95 border border-[#24322A]/25 text-[#0B0F0D] font-medium px-3.5 py-2.5 outline-none focus:border-[#2E5A44] placeholder:text-[#68776F] shadow-sm"
                   placeholder="e.g., Minimalist Concrete & Teak, Biophilic Courtyard, Brutalist"
                 />
               </div>
@@ -384,11 +384,11 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
           {wizardStep === 3 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs font-mono">
               <div>
-                <label className="block text-[#9EA8A1] uppercase mb-1.5">Estimated Budget Investment *</label>
+                <label className="block text-[#1F2924] font-semibold uppercase mb-1.5">Estimated Budget Investment *</label>
                 <select
                   value={formData.estimatedBudget}
                   onChange={(e) => setFormData({ ...formData, estimatedBudget: e.target.value })}
-                  className="w-full bg-[#17201B] border border-[#24322A] text-[#F5F3EF] px-3.5 py-2.5 outline-none focus:border-[#C5B083]"
+                  className="w-full bg-white/95 border border-[#24322A]/25 text-[#0B0F0D] font-medium px-3.5 py-2.5 outline-none focus:border-[#2E5A44] shadow-sm"
                 >
                   <option value="₹1.5 Cr – ₹2.5 Cr">₹1.5 Cr – ₹2.5 Cr</option>
                   <option value="₹2.5 Cr – ₹4.0 Cr">₹2.5 Cr – ₹4.0 Cr</option>
@@ -398,11 +398,11 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
               </div>
 
               <div>
-                <label className="block text-[#9EA8A1] uppercase mb-1.5">Anticipated Construction Start</label>
+                <label className="block text-[#1F2924] font-semibold uppercase mb-1.5">Anticipated Construction Start</label>
                 <select
                   value={formData.expectedStartDate}
                   onChange={(e) => setFormData({ ...formData, expectedStartDate: e.target.value })}
-                  className="w-full bg-[#17201B] border border-[#24322A] text-[#F5F3EF] px-3.5 py-2.5 outline-none focus:border-[#C5B083]"
+                  className="w-full bg-white/95 border border-[#24322A]/25 text-[#0B0F0D] font-medium px-3.5 py-2.5 outline-none focus:border-[#2E5A44] shadow-sm"
                 >
                   <option value="Immediate (1 Month)">Immediate (1 Month)</option>
                   <option value="Within 3 Months">Within 3 Months</option>
@@ -412,11 +412,11 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
               </div>
 
               <div>
-                <label className="block text-[#9EA8A1] uppercase mb-1.5">Preferred Consultation Method</label>
+                <label className="block text-[#1F2924] font-semibold uppercase mb-1.5">Preferred Consultation Method</label>
                 <select
                   value={formData.preferredContactMethod}
                   onChange={(e) => setFormData({ ...formData, preferredContactMethod: e.target.value as any })}
-                  className="w-full bg-[#17201B] border border-[#24322A] text-[#F5F3EF] px-3.5 py-2.5 outline-none focus:border-[#C5B083]"
+                  className="w-full bg-white/95 border border-[#24322A]/25 text-[#0B0F0D] font-medium px-3.5 py-2.5 outline-none focus:border-[#2E5A44] shadow-sm"
                 >
                   <option value="whatsapp">WhatsApp Direct</option>
                   <option value="phone">Phone Call</option>
@@ -426,23 +426,23 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
               </div>
 
               <div>
-                <label className="block text-[#9EA8A1] uppercase mb-1.5">Preferred Time Window</label>
+                <label className="block text-[#1F2924] font-semibold uppercase mb-1.5">Preferred Time Window</label>
                 <input
                   type="text"
                   value={formData.preferredContactTime}
                   onChange={(e) => setFormData({ ...formData, preferredContactTime: e.target.value })}
-                  className="w-full bg-[#17201B] border border-[#24322A] text-[#F5F3EF] px-3.5 py-2.5 outline-none focus:border-[#C5B083]"
+                  className="w-full bg-white/95 border border-[#24322A]/25 text-[#0B0F0D] font-medium px-3.5 py-2.5 outline-none focus:border-[#2E5A44] placeholder:text-[#68776F] shadow-sm"
                   placeholder="e.g., Weekdays 2 PM - 5 PM"
                 />
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-[#9EA8A1] uppercase mb-1.5">Special Architectural Requirements</label>
+                <label className="block text-[#1F2924] font-semibold uppercase mb-1.5">Special Architectural Requirements</label>
                 <textarea
                   rows={2}
                   value={formData.specialRequirements}
                   onChange={(e) => setFormData({ ...formData, specialRequirements: e.target.value })}
-                  className="w-full bg-[#17201B] border border-[#24322A] text-[#F5F3EF] px-3.5 py-2.5 outline-none focus:border-[#C5B083] resize-none"
+                  className="w-full bg-white/95 border border-[#24322A]/25 text-[#0B0F0D] font-medium px-3.5 py-2.5 outline-none focus:border-[#2E5A44] placeholder:text-[#68776F] shadow-sm resize-none"
                   placeholder="e.g., Home cinema, solar microgrid, elevator shaft, double-height atrium"
                 />
               </div>
@@ -452,45 +452,45 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
           {/* Wizard Step 4: Summary Review */}
           {wizardStep === 4 && (
             <div className="space-y-4 text-xs font-mono">
-              <div className="p-4 bg-[#17201B] border border-[#24322A] grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div className="p-4 bg-white/95 border border-[#24322A]/15 shadow-sm grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div>
-                  <span className="text-[#9EA8A1] block text-[10px] uppercase">TYPOLOGY</span>
-                  <span className="text-[#C5B083] font-medium">{formData.buildingType}</span>
+                  <span className="text-[#5A6B62] font-semibold block text-[10px] uppercase">TYPOLOGY</span>
+                  <span className="text-[#2E5A44] font-semibold">{formData.buildingType}</span>
                 </div>
                 <div>
-                  <span className="text-[#9EA8A1] block text-[10px] uppercase">LOCATION</span>
-                  <span className="text-[#F5F3EF]">{formData.siteLocation}, {formData.city}</span>
+                  <span className="text-[#5A6B62] font-semibold block text-[10px] uppercase">LOCATION</span>
+                  <span className="text-[#0B0F0D] font-semibold">{formData.siteLocation}, {formData.city}</span>
                 </div>
                 <div>
-                  <span className="text-[#9EA8A1] block text-[10px] uppercase">BUILT-UP AREA</span>
-                  <span className="text-[#F5F3EF]">{formData.builtUpArea} sq.ft</span>
+                  <span className="text-[#5A6B62] font-semibold block text-[10px] uppercase">BUILT-UP AREA</span>
+                  <span className="text-[#0B0F0D] font-semibold">{formData.builtUpArea} sq.ft</span>
                 </div>
                 <div>
-                  <span className="text-[#9EA8A1] block text-[10px] uppercase">BUDGET RANGE</span>
-                  <span className="text-[#C5B083] font-medium">{formData.estimatedBudget}</span>
+                  <span className="text-[#5A6B62] font-semibold block text-[10px] uppercase">BUDGET RANGE</span>
+                  <span className="text-[#2E5A44] font-semibold">{formData.estimatedBudget}</span>
                 </div>
               </div>
 
-              <div className="p-4 bg-[#17201B]/50 border border-[#24322A]">
-                <span className="text-[#9EA8A1] block text-[10px] uppercase mb-1">ARCHITECTURAL NOTES</span>
-                <p className="text-[#E8E4DC] font-light italic">
+              <div className="p-4 bg-white/95 border border-[#24322A]/15 shadow-sm">
+                <span className="text-[#5A6B62] font-semibold block text-[10px] uppercase mb-1">ARCHITECTURAL NOTES</span>
+                <p className="text-[#2A332E] font-serif italic">
                   {formData.specialRequirements || "No special requirements indicated."}
                 </p>
               </div>
 
-              <p className="text-[#9EA8A1] text-[11px] pt-2">
+              <p className="text-[#2A332E] text-[11px] pt-2">
                 Upon transmission, a senior architectural project lead will conduct a zoning and volumetric feasibility study and contact you via {formData.preferredContactMethod}.
               </p>
             </div>
           )}
 
           {/* Navigation Controls */}
-          <div className="mt-8 pt-6 border-t border-[#24322A] flex items-center justify-between text-xs font-mono">
+          <div className="mt-8 pt-6 border-t border-[#24322A]/15 flex items-center justify-between text-xs font-mono">
             {wizardStep > 1 ? (
               <button
                 type="button"
                 onClick={handlePrevStep}
-                className="py-2.5 px-5 border border-[#24322A] text-[#9EA8A1] hover:text-[#F5F3EF] transition-colors cursor-pointer"
+                className="py-2.5 px-5 border border-[#24322A]/20 text-[#2A332E] hover:text-[#0B0F0D] font-semibold transition-colors cursor-pointer bg-white/80"
               >
                 &larr; Previous Step
               </button>
@@ -500,7 +500,7 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
               <button
                 type="button"
                 onClick={handleNextStep}
-                className="inline-flex items-center gap-2 py-2.5 px-6 bg-[#2E5A44] hover:bg-[#17201B] border border-[#24322A] hover:border-[#C5B083] text-[#F5F3EF] uppercase tracking-wider font-medium cursor-pointer"
+                className="inline-flex items-center gap-2 py-2.5 px-6 bg-[#0B0F0D] hover:bg-[#2E5A44] border border-[#24322A] text-[#F5F3EF] uppercase tracking-wider font-semibold cursor-pointer shadow-md"
               >
                 <span>Continue</span>
                 <ChevronRight className="w-4 h-4 text-[#C5B083]" />
@@ -510,9 +510,9 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
                 type="button"
                 disabled={isPending}
                 onClick={handleFinalSubmit}
-                className="inline-flex items-center gap-2 py-3 px-8 bg-[#C5B083] hover:bg-[#D4C39E] text-[#0B0F0D] uppercase tracking-widest font-semibold cursor-pointer transition-colors shadow-lg"
+                className="inline-flex items-center gap-2 py-3 px-8 bg-[#2E5A44] hover:bg-[#0B0F0D] text-[#F5F3EF] uppercase tracking-widest font-semibold cursor-pointer transition-colors shadow-lg"
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-4 h-4 text-[#C5B083]" />
                 <span>{isPending ? "REGISTERING..." : "CONFIRM & TRANSMIT COMMISSION"}</span>
               </button>
             )}

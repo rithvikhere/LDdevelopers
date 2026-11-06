@@ -158,70 +158,70 @@ export const ContactSection: React.FC = () => {
             <KairosDepthReveal delay={0.2} withFrame={true}>
               <div className="space-y-6">
                 <div>
-                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C5B083]">
+                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#2E5A44] font-semibold">
                     PRINCIPAL STUDIO
                   </span>
-                  <h3 className="font-display text-2xl font-light text-[#F5F3EF] mt-1">
+                  <h3 className="font-display text-2xl font-light text-[#0B0F0D] mt-1">
                     Design Desk &amp; Consultation
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#9EA8A1] font-light mt-2 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#2A332E] font-light mt-2 leading-relaxed">
                     Available for site visits, zoning assessments, and private client architectural briefings across Telangana and Karnataka.
                   </p>
                 </div>
 
-                <div className="space-y-4 pt-4 border-t border-[#24322A]/60 text-xs font-mono">
+                <div className="space-y-4 pt-4 border-t border-[#24322A]/15 text-xs font-mono">
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 bg-[#17201B] border border-[#24322A] flex items-center justify-center shrink-0">
-                      <MapPin className="w-4 h-4 text-[#C5B083]" />
+                    <div className="w-8 h-8 bg-white/95 border border-[#24322A]/15 shadow-sm flex items-center justify-center shrink-0">
+                      <MapPin className="w-4 h-4 text-[#2E5A44]" />
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase text-[#9EA8A1] block">Location</span>
-                      <span className="text-[#F5F3EF]">{siteAssets.contact.addressPlaceholder}</span>
+                      <span className="text-[10px] uppercase text-[#5A6B62] font-semibold block">Location</span>
+                      <span className="text-[#0B0F0D] font-medium">{siteAssets.contact.addressPlaceholder}</span>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 bg-[#17201B] border border-[#24322A] flex items-center justify-center shrink-0">
-                      <Phone className="w-4 h-4 text-[#C5B083]" />
+                    <div className="w-8 h-8 bg-white/95 border border-[#24322A]/15 shadow-sm flex items-center justify-center shrink-0">
+                      <Phone className="w-4 h-4 text-[#2E5A44]" />
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase text-[#9EA8A1] block">Direct Studio Line</span>
-                      <a href={`tel:${siteAssets.contact.phonePlaceholder}`} className="text-[#F5F3EF] hover:text-[#C5B083] transition-colors">
+                      <span className="text-[10px] uppercase text-[#5A6B62] font-semibold block">Direct Studio Line</span>
+                      <a href={`tel:${siteAssets.contact.phonePlaceholder}`} className="text-[#0B0F0D] font-medium hover:text-[#2E5A44] transition-colors">
                         {siteAssets.contact.phonePlaceholder}
                       </a>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 bg-[#17201B] border border-[#24322A] flex items-center justify-center shrink-0">
-                      <Mail className="w-4 h-4 text-[#C5B083]" />
+                    <div className="w-8 h-8 bg-white/95 border border-[#24322A]/15 shadow-sm flex items-center justify-center shrink-0">
+                      <Mail className="w-4 h-4 text-[#2E5A44]" />
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase text-[#9EA8A1] block">Inquiries</span>
-                      <a href={`mailto:${siteAssets.contact.emailPlaceholder}`} className="text-[#F5F3EF] hover:text-[#C5B083] transition-colors">
+                      <span className="text-[10px] uppercase text-[#5A6B62] font-semibold block">Inquiries</span>
+                      <a href={`mailto:${siteAssets.contact.emailPlaceholder}`} className="text-[#0B0F0D] font-medium hover:text-[#2E5A44] transition-colors">
                         {siteAssets.contact.emailPlaceholder}
                       </a>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 bg-[#17201B] border border-[#24322A] flex items-center justify-center shrink-0">
-                      <Clock className="w-4 h-4 text-[#C5B083]" />
+                    <div className="w-8 h-8 bg-white/95 border border-[#24322A]/15 shadow-sm flex items-center justify-center shrink-0">
+                      <Clock className="w-4 h-4 text-[#2E5A44]" />
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase text-[#9EA8A1] block">Hours</span>
-                      <span className="text-[#F5F3EF]">{siteAssets.contact.businessHoursPlaceholder}</span>
+                      <span className="text-[10px] uppercase text-[#5A6B62] font-semibold block">Hours</span>
+                      <span className="text-[#0B0F0D] font-medium">{siteAssets.contact.businessHoursPlaceholder}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Direct WhatsApp CTA Button */}
-                <div className="pt-4 border-t border-[#24322A]/60">
+                <div className="pt-4 border-t border-[#24322A]/15">
                   <a
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group w-full inline-flex items-center justify-center gap-3 bg-[#17201B] hover:bg-[#2E5A44] border border-[#24322A] hover:border-[#C5B083]/60 text-[#F5F3EF] py-3.5 px-6 text-xs font-mono uppercase tracking-[0.2em] font-medium transition-all duration-300"
+                    className="group w-full inline-flex items-center justify-center gap-3 bg-[#0B0F0D] hover:bg-[#2E5A44] border border-[#24322A] text-[#F5F3EF] py-3.5 px-6 text-xs font-mono uppercase tracking-[0.2em] font-medium transition-all duration-300 shadow-md"
                   >
                     <MessageCircle className="w-4 h-4 text-[#25D366]" />
                     <span>WhatsApp Consultation</span>
@@ -231,7 +231,7 @@ export const ContactSection: React.FC = () => {
 
                 {/* Link to Full Client Portal */}
                 <div className="pt-2 text-center text-xs font-mono">
-                  <Link href="/login" className="text-[#9EA8A1] hover:text-[#C5B083] underline decoration-[#24322A] underline-offset-4 transition-colors">
+                  <Link href="/login" className="text-[#2E5A44] hover:text-[#0B0F0D] font-medium underline decoration-[#2E5A44]/40 underline-offset-4 transition-colors">
                     Access Client Portal &bull; Live Project Tracker &rarr;
                   </Link>
                 </div>
@@ -242,18 +242,18 @@ export const ContactSection: React.FC = () => {
           {/* Right Column: Architectural Intake Form (Columns 6-12) */}
           <div className="lg:col-span-7">
             <KairosDepthReveal delay={0.25} withFrame={false}>
-              <div className="border border-[#24322A] bg-[#121815]/70 backdrop-blur-md p-8 sm:p-12 relative overflow-hidden">
-                <div className="pb-6 border-b border-[#24322A]/60 mb-8">
+              <div className="border border-[#24322A]/20 bg-white/90 backdrop-blur-md shadow-2xl p-8 sm:p-12 relative overflow-hidden">
+                <div className="pb-6 border-b border-[#24322A]/15 mb-8">
                   <div className="flex items-center gap-2 mb-2">
-                    <Sparkles className="w-3.5 h-3.5 text-[#C5B083]" />
-                    <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#C5B083]">
+                    <Sparkles className="w-3.5 h-3.5 text-[#2E5A44]" />
+                    <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#2E5A44] font-semibold">
                       INTAKE DESK
                     </span>
                   </div>
-                  <h3 className="font-display text-2xl sm:text-3xl font-light text-[#F5F3EF]">
+                  <h3 className="font-display text-2xl sm:text-3xl font-light text-[#0B0F0D]">
                     Initiate Construction Enquiry
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#9EA8A1] font-light mt-1.5 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#2A332E] font-light mt-1.5 leading-relaxed">
                     Submit your plot parameters or development vision for preliminary zoning and structural review.
                   </p>
                 </div>
@@ -263,55 +263,55 @@ export const ContactSection: React.FC = () => {
                   <div className="space-y-6">
                     <div className="p-4 bg-[#2E5A44]/15 border border-[#2E5A44]/40 flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-[#C5B083]" />
+                        <CheckCircle2 className="w-5 h-5 text-[#2E5A44]" />
                         <div>
-                          <span className="text-xs font-display text-[#F5F3EF]">Consultation Registered</span>
-                          <span className="block text-[10px] font-mono text-[#9EA8A1]">{submittedData.timestamp}</span>
+                          <span className="text-xs font-display text-[#0B0F0D] font-semibold">Consultation Registered</span>
+                          <span className="block text-[10px] font-mono text-[#5A6B62]">{submittedData.timestamp}</span>
                         </div>
                       </div>
-                      <span className="font-mono text-xs font-semibold text-[#C5B083] bg-[#0B0F0D] px-2.5 py-1 border border-[#24322A]">
+                      <span className="font-mono text-xs font-semibold text-[#F5F3EF] bg-[#0B0F0D] px-2.5 py-1 border border-[#24322A]">
                         {submittedData.refCode}
                       </span>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
-                      <div className="p-3.5 bg-[#17201B] border border-[#24322A]">
-                        <span className="text-[10px] text-[#9EA8A1] uppercase block mb-1">Client Name</span>
-                        <span className="text-[#F5F3EF]">{submittedData.data.fullName}</span>
+                      <div className="p-3.5 bg-white/95 border border-[#24322A]/15 shadow-sm">
+                        <span className="text-[10px] text-[#5A6B62] font-semibold uppercase block mb-1">Client Name</span>
+                        <span className="text-[#0B0F0D] font-semibold">{submittedData.data.fullName}</span>
                       </div>
-                      <div className="p-3.5 bg-[#17201B] border border-[#24322A]">
-                        <span className="text-[10px] text-[#9EA8A1] uppercase block mb-1">Contact Phone</span>
-                        <span className="text-[#F5F3EF]">{submittedData.data.phone}</span>
+                      <div className="p-3.5 bg-white/95 border border-[#24322A]/15 shadow-sm">
+                        <span className="text-[10px] text-[#5A6B62] font-semibold uppercase block mb-1">Contact Phone</span>
+                        <span className="text-[#0B0F0D] font-semibold">{submittedData.data.phone}</span>
                       </div>
-                      <div className="p-3.5 bg-[#17201B] border border-[#24322A]">
-                        <span className="text-[10px] text-[#9EA8A1] uppercase block mb-1">Selected Discipline</span>
-                        <span className="text-[#C5B083]">{submittedData.data.buildingType}</span>
+                      <div className="p-3.5 bg-white/95 border border-[#24322A]/15 shadow-sm">
+                        <span className="text-[10px] text-[#5A6B62] font-semibold uppercase block mb-1">Selected Discipline</span>
+                        <span className="text-[#2E5A44] font-semibold">{submittedData.data.buildingType}</span>
                       </div>
-                      <div className="p-3.5 bg-[#17201B] border border-[#24322A]">
-                        <span className="text-[10px] text-[#9EA8A1] uppercase block mb-1">Location / Parcel</span>
-                        <span className="text-[#F5F3EF]">{submittedData.data.location || "Consultation review"}</span>
+                      <div className="p-3.5 bg-white/95 border border-[#24322A]/15 shadow-sm">
+                        <span className="text-[10px] text-[#5A6B62] font-semibold uppercase block mb-1">Location / Parcel</span>
+                        <span className="text-[#0B0F0D] font-semibold">{submittedData.data.location || "Consultation review"}</span>
                       </div>
                     </div>
 
                     {submittedData.data.visionNotes && (
-                      <div className="p-3.5 bg-[#17201B] border border-[#24322A] text-xs font-mono">
-                        <span className="text-[10px] text-[#9EA8A1] uppercase block mb-1">Preliminary Vision Scope</span>
-                        <p className="text-[#E8E4DC] font-light italic">&ldquo;{submittedData.data.visionNotes}&rdquo;</p>
+                      <div className="p-3.5 bg-white/95 border border-[#24322A]/15 shadow-sm text-xs font-mono">
+                        <span className="text-[10px] text-[#5A6B62] font-semibold uppercase block mb-1">Preliminary Vision Scope</span>
+                        <p className="text-[#2A332E] font-serif italic">&ldquo;{submittedData.data.visionNotes}&rdquo;</p>
                       </div>
                     )}
 
-                    <div className="pt-4 border-t border-[#24322A]/60 flex items-center justify-between">
+                    <div className="pt-4 border-t border-[#24322A]/15 flex items-center justify-between">
                       <button
                         type="button"
                         onClick={handleReset}
-                        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#9EA8A1] hover:text-[#C5B083] transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#2A332E] hover:text-[#2E5A44] font-semibold transition-colors cursor-pointer"
                       >
                         <RotateCcw className="w-3.5 h-3.5" />
                         <span>Submit Another Enquiry</span>
                       </button>
                       <Link
                         href="/login"
-                        className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#C5B083] hover:text-[#F5F3EF] transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#2E5A44] hover:text-[#0B0F0D] font-semibold transition-colors"
                       >
                         <span>Open Client Portal</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
@@ -319,10 +319,10 @@ export const ContactSection: React.FC = () => {
                     </div>
                   </div>
                 ) : (
-                  /* Active Form */
+                  /* Active Form with Highlighted White Text Boxes */
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-[#9EA8A1] uppercase mb-1.5">
+                      <label className="block text-[11px] font-mono tracking-wider text-[#1F2924] font-semibold uppercase mb-1.5">
                         Client Representative Name *
                       </label>
                       <input
@@ -333,18 +333,18 @@ export const ContactSection: React.FC = () => {
                           if (errors.fullName) setErrors({ ...errors, fullName: undefined });
                         }}
                         placeholder="e.g., Rajeshwari Rao"
-                        className={`w-full bg-[#17201B] border ${
-                          errors.fullName ? "border-red-500" : "border-[#24322A]"
-                        } focus:border-[#C5B083] text-[#F5F3EF] text-sm px-4 py-2.5 transition-colors placeholder:text-[#9EA8A1]/40 outline-none`}
+                        className={`w-full bg-white/95 border ${
+                          errors.fullName ? "border-red-500" : "border-[#24322A]/25"
+                        } focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#68776F] outline-none shadow-sm`}
                       />
                       {errors.fullName && (
-                        <p className="text-red-400 text-xs font-mono mt-1">{errors.fullName}</p>
+                        <p className="text-red-600 text-xs font-mono mt-1 font-semibold">{errors.fullName}</p>
                       )}
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-[11px] font-mono tracking-wider text-[#9EA8A1] uppercase mb-1.5">
+                        <label className="block text-[11px] font-mono tracking-wider text-[#1F2924] font-semibold uppercase mb-1.5">
                           Direct Contact Phone *
                         </label>
                         <input
@@ -355,23 +355,23 @@ export const ContactSection: React.FC = () => {
                             if (errors.phone) setErrors({ ...errors, phone: undefined });
                           }}
                           placeholder="+91 98450 12345"
-                          className={`w-full bg-[#17201B] border ${
-                            errors.phone ? "border-red-500" : "border-[#24322A]"
-                          } focus:border-[#C5B083] text-[#F5F3EF] text-sm px-4 py-2.5 transition-colors placeholder:text-[#9EA8A1]/40 outline-none`}
+                          className={`w-full bg-white/95 border ${
+                            errors.phone ? "border-red-500" : "border-[#24322A]/25"
+                          } focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#68776F] outline-none shadow-sm`}
                         />
                         {errors.phone && (
-                          <p className="text-red-400 text-xs font-mono mt-1">{errors.phone}</p>
+                          <p className="text-red-600 text-xs font-mono mt-1 font-semibold">{errors.phone}</p>
                         )}
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-mono tracking-wider text-[#9EA8A1] uppercase mb-1.5">
+                        <label className="block text-[11px] font-mono tracking-wider text-[#1F2924] font-semibold uppercase mb-1.5">
                           Architectural Typology
                         </label>
                         <select
                           value={formData.buildingType}
                           onChange={(e) => setFormData({ ...formData, buildingType: e.target.value })}
-                          className="w-full bg-[#17201B] border border-[#24322A] focus:border-[#C5B083] text-[#F5F3EF] text-sm px-4 py-2.5 transition-colors outline-none cursor-pointer"
+                          className="w-full bg-white/95 border border-[#24322A]/25 focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors outline-none cursor-pointer shadow-sm"
                         >
                           <option value="Bespoke Residential Architecture">Bespoke Residential Architecture</option>
                           <option value="Duplexes & Multi-Level Living">Duplexes &amp; Multi-Level Living</option>
@@ -384,7 +384,7 @@ export const ContactSection: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-[#9EA8A1] uppercase mb-1.5">
+                      <label className="block text-[11px] font-mono tracking-wider text-[#1F2924] font-semibold uppercase mb-1.5">
                         Site Location or Plot Parameters
                       </label>
                       <input
@@ -392,12 +392,12 @@ export const ContactSection: React.FC = () => {
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                         placeholder="e.g., Jubilee Hills, Hyderabad (4,800 sq.ft plot)"
-                        className="w-full bg-[#17201B] border border-[#24322A] focus:border-[#C5B083] text-[#F5F3EF] text-sm px-4 py-2.5 transition-colors placeholder:text-[#9EA8A1]/40 outline-none"
+                        className="w-full bg-white/95 border border-[#24322A]/25 focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#68776F] outline-none shadow-sm"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-[#9EA8A1] uppercase mb-1.5">
+                      <label className="block text-[11px] font-mono tracking-wider text-[#1F2924] font-semibold uppercase mb-1.5">
                         Preliminary Scope &amp; Vision Notes
                       </label>
                       <textarea
@@ -405,14 +405,14 @@ export const ContactSection: React.FC = () => {
                         value={formData.visionNotes}
                         onChange={(e) => setFormData({ ...formData, visionNotes: e.target.value })}
                         placeholder="Describe your design aspirations, timeline requirements, or structural preferences..."
-                        className="w-full bg-[#17201B] border border-[#24322A] focus:border-[#C5B083] text-[#F5F3EF] text-sm px-4 py-2.5 transition-colors placeholder:text-[#9EA8A1]/40 outline-none resize-none"
+                        className="w-full bg-white/95 border border-[#24322A]/25 focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#68776F] outline-none resize-none shadow-sm"
                       />
                     </div>
 
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full mt-2 inline-flex items-center justify-center gap-2 bg-[#2E5A44] hover:bg-[#17201B] border border-[#24322A] hover:border-[#C5B083] text-[#F5F3EF] py-4 text-xs font-mono uppercase tracking-[0.2em] font-medium transition-all duration-300 cursor-pointer shadow-lg hover:shadow-[#2E5A44]/20"
+                      className="w-full mt-2 inline-flex items-center justify-center gap-2 bg-[#0B0F0D] hover:bg-[#2E5A44] border border-[#24322A] text-[#F5F3EF] py-4 text-xs font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl"
                     >
                       <span>{isSubmitting ? "TRANSMITTING ENQUIRY..." : "TRANSMIT ARCHITECTURAL BRIEF"}</span>
                       <ArrowUpRight className="w-4 h-4 text-[#C5B083]" />

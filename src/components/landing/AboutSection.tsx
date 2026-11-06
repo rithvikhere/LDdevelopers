@@ -76,14 +76,14 @@ export const AboutSection: React.FC = () => {
           <div className="lg:col-span-7">
             <KairosDepthReveal delay={0.2} withFrame={true} highlight={true}>
               <div className="space-y-6">
-                <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[#C5B083]">
+                <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[#2E5A44] font-semibold">
                   MANIFESTO
                 </span>
-                <p className="font-display text-2xl sm:text-3xl text-[#F5F3EF] font-light italic leading-relaxed">
+                <p className="font-display text-2xl sm:text-3xl text-[#0B0F0D] font-light italic leading-relaxed">
                   &ldquo;We do not merely construct enclosures; we curate light, shadow, and materiality into living spaces designed to outlive ephemeral trends.&rdquo;
                 </p>
-                <div className="h-px bg-[#24322A] w-24 pt-2" />
-                <p className="text-sm sm:text-base text-[#9EA8A1] font-light leading-relaxed">
+                <div className="h-px bg-[#2E5A44]/30 w-24 pt-2" />
+                <p className="text-sm sm:text-base text-[#2A332E] font-light leading-relaxed">
                   Founded on the conviction that timeless architecture demands an uncompromising balance between aesthetic poise and engineering rigor. Every commission—from bespoke private residences to commercial towers—is conceived from the ground up as a bespoke masterwork.
                 </p>
               </div>
@@ -94,14 +94,14 @@ export const AboutSection: React.FC = () => {
           <div className="lg:col-span-5 space-y-8 lg:pt-8">
             {siteContent.about.pillars.map((pillar, idx) => (
               <KairosDepthReveal key={idx} delay={0.25 + idx * 0.12}>
-                <div className="p-6 border-l border-[#24322A] hover:border-[#C5B083] transition-colors duration-300 bg-[#121815]/30">
-                  <span className="text-[10px] font-mono text-[#C5B083] tracking-widest uppercase">
+                <div className="p-6 border border-[#24322A]/15 border-l-4 border-l-[#2E5A44] bg-white/90 backdrop-blur-md shadow-lg hover:shadow-xl transition-all duration-300">
+                  <span className="text-[10px] font-mono text-[#2E5A44] font-semibold tracking-widest uppercase">
                     DISCIPLINE 0{idx + 1}
                   </span>
-                  <h3 className="font-display text-xl text-[#F5F3EF] font-normal tracking-wide mt-1.5 mb-2">
+                  <h3 className="font-display text-xl text-[#0B0F0D] font-normal tracking-wide mt-1.5 mb-2">
                     {pillar.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#9EA8A1] font-light leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#2A332E] font-light leading-relaxed">
                     {pillar.description}
                   </p>
                 </div>
@@ -119,15 +119,15 @@ export const AboutSection: React.FC = () => {
             <motion.div
               key={i}
               variants={kairosChildVariant}
-              className="p-6 sm:p-8 bg-[#121815]/50 border border-[#24322A]/40 hover:border-[#C5B083]/40 transition-colors duration-400"
+              className="p-6 sm:p-8 bg-white/90 backdrop-blur-md border border-[#24322A]/15 hover:border-[#2E5A44]/50 shadow-lg hover:shadow-xl transition-all duration-400"
             >
-              <div className="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-[#C5B083] mb-2 tracking-tight">
+              <div className="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-[#2E5A44] mb-2 tracking-tight">
                 {metric.value}
               </div>
-              <div className="text-xs sm:text-sm font-medium tracking-wider text-[#F5F3EF] uppercase font-mono">
+              <div className="text-xs sm:text-sm font-semibold tracking-wider text-[#0B0F0D] uppercase font-mono">
                 {metric.label}
               </div>
-              <div className="text-[11px] text-[#9EA8A1]/70 font-mono mt-1">
+              <div className="text-[11px] text-[#41554A] font-mono mt-1 font-medium">
                 {metric.sub}
               </div>
             </motion.div>

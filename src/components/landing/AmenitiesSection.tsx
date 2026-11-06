@@ -82,25 +82,25 @@ export const AmenitiesSection: React.FC = () => {
             <motion.div
               key={item.id}
               variants={kairosChildVariant}
-              className="group p-8 sm:p-10 border border-[#24322A]/60 bg-[#121815]/50 hover:border-[#C5B083]/50 transition-all duration-400 relative overflow-hidden"
+              className="group p-8 sm:p-10 border border-[#24322A]/15 bg-white/90 backdrop-blur-md shadow-xl hover:shadow-2xl hover:border-[#2E5A44]/50 transition-all duration-400 relative overflow-hidden"
             >
               {/* Subtle top indicator bar */}
-              <div className="w-8 h-px bg-[#2E5A44] group-hover:bg-[#C5B083] group-hover:w-16 transition-all duration-500 mb-6" />
+              <div className="w-8 h-px bg-[#2E5A44] group-hover:w-16 transition-all duration-500 mb-6" />
 
               <div className="mb-6 flex items-center justify-between">
-                <div className="p-3 bg-[#17201B] border border-[#24322A] group-hover:border-[#C5B083]/40 transition-colors">
-                  {iconMap[item.icon] || <Sparkles className="w-5 h-5 text-[#C5B083]" />}
+                <div className="p-3 bg-white/95 border border-[#24322A]/15 shadow-sm text-[#2E5A44] transition-colors">
+                  {iconMap[item.icon] || <Sparkles className="w-5 h-5 text-[#2E5A44]" />}
                 </div>
-                <span className="text-[10px] font-mono text-[#9EA8A1] uppercase tracking-widest">
+                <span className="text-[10px] font-mono text-[#2E5A44] font-semibold uppercase tracking-widest">
                   SPEC 0{index + 1}
                 </span>
               </div>
 
-              <h3 className="font-display text-2xl font-light text-[#F5F3EF] group-hover:text-[#C5B083] transition-colors leading-snug mb-3">
+              <h3 className="font-display text-2xl font-light text-[#0B0F0D] group-hover:text-[#2E5A44] transition-colors leading-snug mb-3">
                 {item.title}
               </h3>
 
-              <p className="text-xs sm:text-sm text-[#9EA8A1] font-light leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#2A332E] font-light leading-relaxed">
                 {item.description}
               </p>
             </motion.div>
@@ -109,10 +109,10 @@ export const AmenitiesSection: React.FC = () => {
 
         {/* Feature Summary Strip */}
         <KairosDepthReveal delay={0.35} withFrame={false} className="mt-16">
-          <div className="p-8 border border-[#24322A] bg-[#121815]/30 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="p-8 border border-[#24322A]/15 bg-white/90 backdrop-blur-md shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-              <span className="w-2 h-2 rounded-full bg-[#2E5A44]" />
-              <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#E8E4DC]">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#2E5A44]" />
+              <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#0B0F0D] font-semibold">
                 All structural materials carry independent laboratory metallurgical certification
               </span>
             </div>
@@ -120,7 +120,7 @@ export const AmenitiesSection: React.FC = () => {
             <a
               href="#contact"
               onClick={scrollToContact}
-              className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-[#C5B083] hover:text-[#F5F3EF] transition-colors shrink-0"
+              className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-[#2E5A44] hover:text-[#0B0F0D] font-semibold transition-colors shrink-0"
             >
               <span>Download Technical Dossier</span>
               <ArrowUpRight className="w-3.5 h-3.5" />

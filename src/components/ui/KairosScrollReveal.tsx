@@ -52,7 +52,7 @@ export const KairosDepthReveal: React.FC<KairosDepthRevealProps> = ({
       }}
       className={`relative ${
         withFrame
-          ? "border border-[#24322A]/40 bg-[#121815]/40 backdrop-blur-sm p-6 sm:p-8 hover:border-[#C5B083]/30 transition-colors duration-500"
+          ? "border border-[#24322A]/20 bg-white/90 backdrop-blur-md p-6 sm:p-8 shadow-xl text-[#0B0F0D] hover:border-[#2E5A44]/40 transition-colors duration-500"
           : ""
       } ${className}`.trim()}
     >
