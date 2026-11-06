@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
 import { MotionReveal } from "@/components/ui/MotionReveal";
+import { HalftoneBackground } from "@/components/ui/HalftoneBackground";
 import {
   Phone,
   Mail,
@@ -113,14 +114,10 @@ export const ContactSection: React.FC = () => {
   return (
     <section
       id="contact"
-      className="py-24 sm:py-32 bg-[#1E2521] text-[#FAF9F5] relative isolate overflow-hidden transition-colors"
+      className="py-24 sm:py-32 bg-[#1F2924] text-[#F4F1E8] relative isolate overflow-hidden transition-colors"
     >
-      {/* Halftone — AI Designer Architectural Background Effect */}
-      <div
-        data-aifx="halftone"
-        className="absolute inset-0 -z-10 pointer-events-none opacity-30"
-        aria-hidden="true"
-      />
+      {/* Halftone — Subtle Champagne Gold on Forest Green (Zero Orange / Violet) */}
+      <HalftoneBackground variant="dark" opacity="opacity-30" />
 
       {/* Subtle architectural hairline dividers */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#343B33] to-transparent" />
@@ -129,15 +126,15 @@ export const ContactSection: React.FC = () => {
         {/* Section Header */}
         <MotionReveal className="max-w-3xl mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-1.5 h-1.5 bg-[#B49A65]" />
-            <span className="text-xs uppercase tracking-[0.25em] text-[#B49A65] font-semibold">
+            <span className="w-1.5 h-1.5 bg-[#B89A62]" />
+            <span className="text-xs uppercase tracking-[0.25em] text-[#B89A62] font-semibold">
               {siteContent.contact.tag}
             </span>
           </div>
-          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#FAF9F5] tracking-tight leading-[1.12]">
+          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#F4F1E8] tracking-tight leading-[1.12]">
             {siteContent.contact.title}
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#FAF9F5]/80 font-light leading-relaxed max-w-2xl">
+          <p className="mt-4 text-base sm:text-lg text-[#D8D8CC] font-light leading-relaxed max-w-2xl">
             {siteContent.contact.subtitle}
           </p>
         </MotionReveal>

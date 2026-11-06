@@ -5,6 +5,7 @@ import Image from "next/image";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
 import { MotionReveal } from "@/components/ui/MotionReveal";
+import { HalftoneBackground } from "@/components/ui/HalftoneBackground";
 import { ArrowUpRight, MapPin } from "lucide-react";
 
 export const ProjectsSection: React.FC = () => {
@@ -29,14 +30,10 @@ export const ProjectsSection: React.FC = () => {
   return (
     <section
       id="projects"
-      className="py-24 sm:py-32 bg-[#FAF9F5] text-[#1E2521] relative isolate overflow-hidden transition-colors"
+      className="py-24 sm:py-32 bg-[#F4F1E8] text-[#252B27] relative isolate overflow-hidden transition-colors"
     >
-      {/* Halftone — AI Designer Architectural Background Effect */}
-      <div
-        data-aifx="halftone"
-        className="absolute inset-0 -z-10 pointer-events-none opacity-25"
-        aria-hidden="true"
-      />
+      {/* Halftone — Subtle Sage on Warm Ivory (Zero Orange / Violet) */}
+      <HalftoneBackground variant="ivory" opacity="opacity-20" />
 
       {/* Architectural subtle hairline top border */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#DCD6C9] to-transparent" />
@@ -46,15 +43,15 @@ export const ProjectsSection: React.FC = () => {
         <MotionReveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-1.5 h-1.5 bg-[#506653]" />
-              <span className="text-xs uppercase tracking-[0.25em] text-[#506653] font-semibold">
+              <span className="w-1.5 h-1.5 bg-[#536957]" />
+              <span className="text-xs uppercase tracking-[0.25em] text-[#536957] font-semibold">
                 {siteContent.projects.tag}
               </span>
             </div>
-            <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#1E2521] tracking-tight leading-[1.12]">
+            <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#252B27] tracking-tight leading-[1.12]">
               {siteContent.projects.title}
             </h2>
-            <p className="mt-4 text-sm sm:text-base text-[#626A66] font-light leading-relaxed max-w-xl">
+            <p className="mt-4 text-sm sm:text-base text-[#46534B] font-light leading-relaxed max-w-xl">
               {siteContent.projects.subtitle}
             </p>
           </div>

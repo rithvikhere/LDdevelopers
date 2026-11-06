@@ -4,6 +4,7 @@ import React from "react";
 import { CompanyLogo } from "@/components/brand/CompanyLogo";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
+import { HalftoneBackground } from "@/components/ui/HalftoneBackground";
 import { ArrowUp, Phone, Mail, MapPin, Clock } from "lucide-react";
 
 /**
@@ -19,13 +20,9 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#1E2521] text-[#FAF9F5] border-t border-[#343B33] relative isolate overflow-hidden">
-      {/* Halftone — AI Designer Architectural Background Effect */}
-      <div
-        data-aifx="halftone"
-        className="absolute inset-0 -z-10 pointer-events-none opacity-20"
-        aria-hidden="true"
-      />
+    <footer className="bg-[#1F2924] text-[#F4F1E8] border-t border-[#343B33] relative isolate overflow-hidden">
+      {/* Halftone — Subtle Champagne Gold on Forest Green (Zero Orange / Violet) */}
+      <HalftoneBackground variant="dark" opacity="opacity-25" />
 
       <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 pt-16 sm:pt-20 pb-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-16 border-b border-[#343B33]">

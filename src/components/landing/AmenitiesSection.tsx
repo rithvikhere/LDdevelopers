@@ -4,6 +4,7 @@ import React from "react";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
 import { MotionReveal } from "@/components/ui/MotionReveal";
+import { HalftoneBackground } from "@/components/ui/HalftoneBackground";
 import {
   ShieldCheck,
   Gem,
@@ -36,14 +37,10 @@ export const AmenitiesSection: React.FC = () => {
   return (
     <section
       id="amenities"
-      className="py-24 sm:py-32 bg-[#F3F0E7] text-[#1E2521] relative isolate overflow-hidden transition-colors"
+      className="py-24 sm:py-32 bg-[#F4F1E8] text-[#252B27] relative isolate overflow-hidden transition-colors"
     >
-      {/* Halftone — AI Designer Architectural Background Effect */}
-      <div
-        data-aifx="halftone"
-        className="absolute inset-0 -z-10 pointer-events-none opacity-20"
-        aria-hidden="true"
-      />
+      {/* Halftone — Subtle Sage on Warm Ivory (Zero Orange / Violet) */}
+      <HalftoneBackground variant="ivory" opacity="opacity-25" />
 
       {/* Subtle top architectural hairline divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#DCD6C9] to-transparent" />
@@ -52,12 +49,12 @@ export const AmenitiesSection: React.FC = () => {
         {/* Section Header */}
         <MotionReveal className="max-w-3xl mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-1.5 h-1.5 bg-[#506653]" />
-            <span className="text-xs uppercase tracking-[0.25em] text-[#506653] font-semibold">
+            <span className="w-1.5 h-1.5 bg-[#536957]" />
+            <span className="text-xs uppercase tracking-[0.25em] text-[#536957] font-semibold">
               {siteContent.amenities.tag}
             </span>
           </div>
-          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#1E2521] tracking-tight leading-[1.12]">
+          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-light text-[#252B27] tracking-tight leading-[1.12]">
             {siteContent.amenities.title}
           </h2>
           <p className="mt-4 text-base sm:text-lg text-[#626A66] font-light leading-relaxed max-w-2xl">
