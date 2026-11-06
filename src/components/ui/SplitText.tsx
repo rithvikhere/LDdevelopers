@@ -174,7 +174,7 @@ export const SplitText: React.FC<SplitTextProps> = ({
       let pieces: any[] = [];
       let movers: any[] = [];
       let order = gsap.utils.distribute({ each: delay / 1000, from: staggerFrom });
-      let revealed = false;
+      let revealed = completedTextRef.current === text;
       let intro: any = null;
       let busy: any = null;
       let queued: any = null;
@@ -360,18 +360,19 @@ export const SplitText: React.FC<SplitTextProps> = ({
             busy.kill();
             busy = null;
           }
-          const useScroll = trigger === 'view' || trigger === 'load';
+          if (revealed && trigger === 'load') return undefined;
           intro = reveal(true, {
-            scrollTrigger: useScroll
-              ? {
-                  trigger: el,
-                  start,
-                  once: false,
-                  toggleActions: 'restart none restart none',
-                  fastScrollEnd: true,
-                  anticipatePin: 0.4
-                }
-              : undefined,
+            scrollTrigger:
+              trigger === 'load'
+                ? undefined
+                : {
+                    trigger: el,
+                    start,
+                    once: false,
+                    toggleActions: 'restart none restart none',
+                    fastScrollEnd: true,
+                    anticipatePin: 0.4
+                  },
             onStart: () => {
               revealed = false;
             },

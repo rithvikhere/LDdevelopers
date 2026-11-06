@@ -147,7 +147,7 @@ const SplitText = ({
       let pieces = [];
       let movers = [];
       let order = gsap.utils.distribute({ each: delay / 1000, from: staggerFrom });
-      let revealed = false;
+      let revealed = completedTextRef.current === text;
       let intro = null;
       let busy = null;
       let queued = null;
@@ -333,18 +333,19 @@ const SplitText = ({
             busy.kill();
             busy = null;
           }
-          const useScroll = trigger === 'view' || trigger === 'load';
+          if (revealed && trigger === 'load') return undefined;
           intro = reveal(true, {
-            scrollTrigger: useScroll
-              ? {
-                  trigger: el,
-                  start,
-                  once: false,
-                  toggleActions: 'restart none restart none',
-                  fastScrollEnd: true,
-                  anticipatePin: 0.4
-                }
-              : undefined,
+            scrollTrigger:
+              trigger === 'load'
+                ? undefined
+                : {
+                    trigger: el,
+                    start,
+                    once: false,
+                    toggleActions: 'restart none restart none',
+                    fastScrollEnd: true,
+                    anticipatePin: 0.4
+                  },
             onStart: () => {
               revealed = false;
             },

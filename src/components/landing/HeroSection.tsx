@@ -64,9 +64,7 @@ export const HeroSection: React.FC = () => {
             delay={25}
             duration={1.25}
             staggerFrom="start"
-            trigger="view"
-            threshold={0.05}
-            rootMargin="0px"
+            trigger="load"
             hoverEffect="lift"
             loop={false}
             mask={false}
@@ -77,8 +75,7 @@ export const HeroSection: React.FC = () => {
         {/* Minimalist CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.9,
             delay: 0.35,
@@ -110,8 +107,7 @@ export const HeroSection: React.FC = () => {
       {/* ========================================================================= */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.55 }}
         className="w-full flex flex-col items-center justify-center relative z-10 pt-4"
       >
