@@ -101,7 +101,7 @@ export const Navbar: React.FC = () => {
 
             {/* Desktop Navigation */}
             <nav
-              className="hidden xl:flex items-center gap-6 lg:gap-8 text-[11px] font-mono uppercase tracking-[0.2em]"
+              className="hidden xl:flex items-center gap-8 xl:gap-9 2xl:gap-10 text-[13px] font-mono uppercase tracking-[0.18em]"
               aria-label="Main Navigation"
             >
               {siteContent.navigation.map((item) => {
@@ -141,10 +141,10 @@ export const Navbar: React.FC = () => {
               <a
                 href="#contact"
                 onClick={(e) => scrollToSection(e, "#contact", "contact")}
-                className="group inline-flex items-center gap-2 bg-[#F5F2EB] hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] px-5 py-2 text-[10px] font-mono uppercase tracking-[0.22em] font-semibold transition-all duration-300 shadow-md"
+                className="group inline-flex items-center gap-2 bg-[#F5F2EB] hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] px-5 py-2.5 text-[11px] font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-md"
               >
                 <span>INITIATE PROJECT</span>
-                <ArrowUpRight className="w-3 h-3 text-[#1F4A36] group-hover:text-[#C5B083] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#1F4A36] group-hover:text-[#C5B083] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>
 
