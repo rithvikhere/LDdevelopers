@@ -411,271 +411,90 @@ export const ArchitecturalLineArt: React.FC<ArchitecturalLineArtProps> = ({
           />
         </g>
 
-        {/* ===================================================================== */}
-        {/* STAGE 3: FORMAL SUIT SLEEVES, CUFFS & WRISTS                         */}
+                {/* ===================================================================== */}
+        {/* STAGE 3: FORMAL SUIT SLEEVES & SHIRT CUFFS                           */}
         {/* ===================================================================== */}
         <g id="stage-sleeves-and-cuffs" className="sketch-arms">
-          {/* LEFT SUIT SLEEVE */}
-          {/* Upper sleeve contour */}
+          {/* Left Suit Sleeve */}
           <path
-            d="M 260,570 C 320,580 380,595 440,610"
+            d="M 290.3,376.2 L 297.3,376.2 L 398.1,440.6 L 342.1,548.4 L 323.2,593.9 L 304.3,647.8 L 302.9,648.5 L 249.7,622.6 L 249.7,579.2 L 256.0,556.1 L 273.5,474.9 L 286.8,402.8 L 290.3,376.9 Z"
             className="sketch-path"
             pathLength="1"
             strokeWidth="1.8"
           />
-          {/* Lower sleeve contour */}
+          {/* Left Sleeve Tailoring Crease Lines */}
           <path
-            d="M 260,740 C 310,750 365,765 425,780"
+            d="M 285,580 C 315,610 338,655 352,705"
             className="sketch-path"
             pathLength="1"
-            strokeWidth="1.8"
-          />
-          {/* Sleeve Cuff Seam */}
-          <path
-            d="M 440,610 L 425,780"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="1.6"
-          />
-          {/* Sleeve Fabric Creases & Tailoring Folds */}
-          <path
-            d="M 350,590 C 380,610 405,650 420,700"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="0.9"
-            opacity="0.75"
-          />
-          <path
-            d="M 360,745 C 390,735 415,715 430,695"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="0.9"
+            strokeWidth="0.85"
             opacity="0.75"
           />
 
-          {/* LEFT SHIRT CUFF (Crisp French Double Cuff) */}
+          {/* Right Suit Sleeve */}
           <path
-            d="M 440,610 L 458,614 L 442,782 L 425,780"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="1.5"
-          />
-          {/* Cuff Stitching Detail */}
-          <path
-            d="M 452,618 L 436,778"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="0.75"
-            strokeDasharray="3 2"
-            opacity="0.8"
-          />
-          {/* Cufflink Oval Outline */}
-          <ellipse cx="448" cy="745" rx="3.5" ry="5.5" className="sketch-path" pathLength="1" strokeWidth="0.9" />
-
-          {/* RIGHT SUIT SLEEVE */}
-          {/* Upper sleeve contour */}
-          <path
-            d="M 1000,570 C 940,580 880,595 820,610"
+            d="M 811.8,439.2 L 836.3,426.6 L 863.5,410.5 L 911.9,379.0 L 923.0,411.2 L 932.1,447.6 L 944.0,509.2 L 958.0,592.5 L 958.0,620.5 L 911.1,645.7 L 901.4,650.6 L 900.0,649.9 L 882.5,582.7 L 862.1,526.0 L 850.3,499.4 L 837.0,474.2 L 825.0,456.0 L 811.8,439.9 Z"
             className="sketch-path"
             pathLength="1"
             strokeWidth="1.8"
           />
-          {/* Lower sleeve contour */}
+          {/* Right Sleeve Tailoring Creases */}
           <path
-            d="M 1000,740 C 950,750 895,765 835,780"
+            d="M 915,580 C 885,610 862,655 848,705"
             className="sketch-path"
             pathLength="1"
-            strokeWidth="1.8"
-          />
-          {/* Sleeve Cuff Seam */}
-          <path
-            d="M 820,610 L 835,780"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="1.6"
-          />
-          {/* Right Sleeve Fabric Folds */}
-          <path
-            d="M 910,590 C 880,610 855,650 840,700"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="0.9"
+            strokeWidth="0.85"
             opacity="0.75"
           />
-          <path
-            d="M 900,745 C 870,735 845,715 830,695"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="0.9"
-            opacity="0.75"
-          />
-
-          {/* RIGHT SHIRT CUFF */}
-          <path
-            d="M 820,610 L 802,614 L 818,782 L 835,780"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="1.5"
-          />
-          {/* Cuff Stitching Detail */}
-          <path
-            d="M 808,618 L 824,778"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="0.75"
-            strokeDasharray="3 2"
-            opacity="0.8"
-          />
-          {/* Cufflink Detail */}
-          <ellipse cx="812" cy="745" rx="3.5" ry="5.5" className="sketch-path" pathLength="1" strokeWidth="0.9" />
         </g>
 
         {/* ===================================================================== */}
-        {/* STAGE 3.5: THE ANATOMICAL HANDSHAKE — CLASP, FINGERS & WRISTS         */}
+        {/* STAGE 3.5: ICONIC HANDSHAKE CONTOURS & 4 CLASPING FINGERS            */}
         {/* ===================================================================== */}
         <g id="stage-handshake-contours" className="sketch-handshake">
-          {/* --- LEFT HAND: TOP RIDGE & INTERLOCKING THUMB --- */}
-          {/* Hand dorsal contour from left cuff forward */}
+          {/* Left Hand: Palm, Thumb Pocket & 4 Clasping Diagonal Fingers */}
           <path
-            d="M 458,614 C 490,620 525,628 560,638"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="1.8"
-          />
-          {/* Left Thumb curving up and forward to meet the clasp */}
-          <path
-            d="M 545,634 C 565,620 585,605 605,602 C 618,600 626,608 622,620 C 618,632 602,642 585,648"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="1.7"
-          />
-          {/* Left thumb nail & joint crease */}
-          <path d="M 618,606 C 622,610 620,616 614,618" className="sketch-path" pathLength="1" strokeWidth="0.9" />
-          <path d="M 588,612 C 592,620 588,628 582,634" className="sketch-path" pathLength="1" strokeWidth="0.8" opacity="0.75" />
-
-          {/* Left Hand lower heel contour returning to cuff */}
-          <path
-            d="M 585,772 C 545,776 498,778 442,782"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="1.8"
-          />
-          {/* Left dorsal metacarpal tendon lines */}
-          <g className="sketch-path" strokeWidth="0.8" opacity="0.55">
-            <path d="M 490,626 C 520,638 548,654 570,672" pathLength="1" />
-            <path d="M 480,650 C 510,665 535,684 560,705" pathLength="1" />
-            <path d="M 470,680 C 500,700 525,722 550,745" pathLength="1" />
-          </g>
-
-          {/* --- RIGHT HAND: TOP RIDGE, EXTENSOR TENDONS & ARCHING THUMB --- */}
-          {/* Right wrist ridge from right cuff to thumb base */}
-          <path
-            d="M 802,614 C 770,618 735,622 705,618"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="1.8"
-          />
-          {/* Right Thumb arching OVER the left hand to lock the handshake */}
-          <path
-            d="M 705,618 C 680,612 650,608 624,616 C 606,622 596,634 590,646 C 586,654 592,662 602,664 C 616,666 636,662 656,656"
+            d="M 413.5,477.0 L 412.1,483.3 L 415.6,487.5 L 450.6,507.1 L 460.4,512.0 L 469.5,514.8 L 485.6,515.5 L 508.0,512.0 L 547.9,508.5 L 539.5,526.0 L 514.3,561.7 L 511.5,569.4 L 511.5,577.1 L 512.9,580.6 L 521.3,590.4 L 528.3,594.6 L 543.7,598.8 L 557.7,598.8 L 568.2,596.7 L 582.9,590.4 L 591.3,584.1 L 601.0,572.9 L 607.4,563.1 L 624.2,569.4 L 650.8,582.7 L 665.5,593.9 L 684.4,614.9 L 761.4,690.5 L 771.9,705.9 L 777.5,717.1 L 778.9,722.0 L 778.1,735.3 L 775.4,740.2 L 768.4,745.8 L 763.5,747.2 L 754.4,745.8 L 736.9,731.8 L 673.9,666.7 L 673.2,668.8 L 678.8,680.7 L 689.3,696.8 L 700.5,710.1 L 733.4,742.3 L 736.2,746.5 L 739.0,754.2 L 738.3,766.1 L 732.0,775.9 L 723.5,780.8 L 711.7,782.2 L 701.9,778.7 L 692.0,769.6 L 666.9,740.2 L 643.8,717.1 L 643.0,718.5 L 645.2,724.1 L 653.5,739.5 L 683.0,778.7 L 685.8,787.1 L 684.4,797.6 L 677.4,806.0 L 668.3,810.2 L 658.5,810.2 L 647.3,806.7 L 631.9,781.5 L 618.5,768.9 L 603.9,759.8 L 602.5,761.9 L 624.9,786.4 L 631.9,796.2 L 636.0,807.4 L 636.0,815.1 L 634.0,820.0 L 625.5,827.0 L 611.5,831.2 L 599.0,831.2 L 610.2,821.4 L 616.5,810.9 L 617.9,801.8 L 616.5,793.4 L 613.7,787.1 L 606.0,779.4 L 599.0,776.6 L 592.7,775.9 L 582.9,778.0 L 580.8,765.4 L 578.0,759.1 L 571.0,750.7 L 566.0,747.9 L 554.2,746.5 L 538.8,751.4 L 540.9,743.0 L 540.2,733.2 L 533.9,720.6 L 526.2,713.6 L 517.8,710.1 L 508.0,709.4 L 479.3,719.2 L 479.3,702.4 L 475.1,693.3 L 468.8,686.3 L 457.6,680.7 L 447.1,680.0 L 440.1,681.4 L 424.7,687.7 L 401.6,652.0 L 389.7,638.7 L 379.2,632.4 L 350.5,621.2 L 347.7,623.3 L 340.7,638.7 L 336.5,644.3 L 330.9,648.5 L 332.3,633.8 L 366.6,551.2 L 401.6,480.5 L 408.6,473.5 L 412.1,474.2 L 412.8,476.3 Z"
             className="sketch-path"
             pathLength="1"
             strokeWidth="1.85"
           />
-          {/* Right thumb nail and joint crease */}
-          <path d="M 592,642 C 596,638 602,640 604,646" className="sketch-path" pathLength="1" strokeWidth="0.9" />
-          <path d="M 626,624 C 629,633 625,642 619,648" className="sketch-path" pathLength="1" strokeWidth="0.8" opacity="0.75" />
-          {/* Inner pad contour of right thumb */}
-          <path d="M 656,656 C 680,648 705,648 724,655" className="sketch-path" pathLength="1" strokeWidth="1.1" opacity="0.8" />
 
-          {/* Back of Right Hand outer contour connecting to knuckles */}
+          {/* Right Hand: Arching Thumb, Wrist & Feathered Muscle Creases */}
           <path
-            d="M 802,614 C 775,625 750,645 726,670"
+            d="M 795.6,483.3 L 795.0,472.8 L 799.9,472.1 L 805.5,473.5 L 812.5,477.7 L 823.6,491.7 L 836.3,517.6 L 846.8,543.5 L 857.3,579.2 L 861.5,601.6 L 862.1,628.9 L 860.0,640.1 L 848.1,619.1 L 844.6,616.3 L 838.4,618.4 L 828.5,628.2 L 814.5,650.6 L 804.0,663.9 L 790.8,676.5 L 776.1,687.0 L 774.0,687.0 L 744.5,655.5 L 745.3,654.1 L 761.4,647.8 L 776.1,637.3 L 773.3,636.6 L 757.2,641.5 L 745.3,641.5 L 750.2,640.1 L 764.1,632.4 L 783.0,617.0 L 781.0,616.3 L 762.8,625.4 L 747.4,629.6 L 727.8,629.6 L 715.9,626.1 L 729.2,621.2 L 733.4,618.4 L 711.7,613.5 L 701.9,608.6 L 692.0,599.5 L 659.2,565.9 L 651.5,553.3 L 647.3,542.8 L 643.8,528.8 L 641.7,534.4 L 642.4,549.8 L 643.8,554.0 L 613.0,551.9 L 613.0,537.9 L 610.2,529.5 L 606.7,544.2 L 599.7,557.5 L 586.4,572.2 L 577.3,578.5 L 560.5,584.8 L 542.3,584.8 L 529.0,579.9 L 524.0,574.3 L 525.5,567.3 L 538.8,550.5 L 563.3,510.6 L 569.5,503.6 L 575.9,500.1 L 615.0,489.6 L 641.7,478.4 L 650.8,476.3 L 658.5,476.3 L 671.8,480.5 L 717.3,507.1 L 740.4,516.2 L 743.2,514.1 L 761.4,509.2 L 781.0,499.4 L 792.9,491.0 L 795.6,486.8 L 795.6,484.0 Z"
             className="sketch-path"
             pathLength="1"
-            strokeWidth="1.7"
+            strokeWidth="1.85"
           />
-          {/* Lower wrist edge of right hand connecting to cuff */}
-          <path
-            d="M 738,758 C 764,766 790,774 818,778"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="1.8"
-          />
-          {/* Right dorsal tendon lines */}
-          <g className="sketch-path" strokeWidth="0.8" opacity="0.55">
-            <path d="M 770,630 C 750,650 735,675 725,700" pathLength="1" />
-            <path d="M 780,655 C 765,678 750,705 738,730" pathLength="1" />
-          </g>
 
-          {/* --- THE 4 CLASPING FINGERS OF THE RIGHT HAND (CLEAR, FIRM GRIP) --- */}
-          {/* FINGER 1: INDEX FINGER */}
-          <g className="sketch-path">
+          {/* 4 Curled Fingers of Right Hand Wrapping From Underneath Along Lower-Left */}
+          <g id="stage-curled-fingers">
             <path
-              d="M 718,654 C 682,658 648,662 612,666 C 592,669 575,672 562,680 C 554,685 556,695 566,698 C 588,700 622,696 658,691 C 682,687 708,684 726,680"
-              pathLength="1"
-              strokeWidth="1.8"
-            />
-            {/* Index nail */}
-            <path d="M 564,681 C 568,678 574,680 576,686" pathLength="1" strokeWidth="0.85" />
-            {/* Joint crease */}
-            <path d="M 638,662 C 641,672 638,682 632,688" pathLength="1" strokeWidth="0.75" opacity="0.8" />
-          </g>
-
-          {/* FINGER 2: MIDDLE FINGER (Longest, prominent grip) */}
-          <g className="sketch-path">
-            <path
-              d="M 726,680 C 690,684 656,687 622,692 C 598,695 575,699 558,706 C 550,711 552,721 562,725 C 586,727 620,722 656,717 C 682,714 710,710 732,708"
-              pathLength="1"
-              strokeWidth="1.8"
-            />
-            {/* Middle finger nail */}
-            <path d="M 560,707 C 564,704 570,706 572,712" pathLength="1" strokeWidth="0.85" />
-            {/* Joint crease */}
-            <path d="M 630,690 C 633,700 630,710 624,716" pathLength="1" strokeWidth="0.75" opacity="0.8" />
-          </g>
-
-          {/* FINGER 3: RING FINGER */}
-          <g className="sketch-path">
-            <path
-              d="M 732,708 C 698,712 666,715 632,720 C 610,724 588,728 572,736 C 564,741 566,750 576,754 C 598,755 630,750 666,745 C 690,742 716,738 736,734"
+              d="M 410.0,699.6 L 411.4,697.5 L 410.0,708.7 L 411.4,712.9 L 413.5,713.6 L 436.6,695.4 L 443.6,692.6 L 452.7,692.6 L 461.1,696.1 L 467.4,702.4 L 470.2,709.4 L 468.8,717.8 L 461.1,729.7 L 452.7,738.1 L 445.7,743.0 L 442.2,744.4 L 435.2,744.4 L 423.3,741.6 L 414.9,736.0 L 410.7,731.1 L 406.5,720.6 L 406.5,709.4 L 410.0,700.3 Z"
+              className="sketch-path"
               pathLength="1"
               strokeWidth="1.75"
             />
-            {/* Ring finger nail */}
-            <path d="M 574,737 C 578,734 584,736 586,742" pathLength="1" strokeWidth="0.85" />
-            {/* Joint crease */}
-            <path d="M 636,718 C 639,728 636,738 630,744" pathLength="1" strokeWidth="0.75" opacity="0.8" />
-          </g>
-
-          {/* FINGER 4: PINKY FINGER */}
-          <g className="sketch-path">
             <path
-              d="M 736,734 C 704,738 674,741 644,746 C 624,750 604,754 588,762 C 580,767 582,776 592,779 C 614,780 644,775 676,770 C 700,766 722,762 738,758"
+              d="M 454.1,753.5 L 458.3,748.6 L 466.7,743.7 L 498.2,727.6 L 504.5,725.5 L 512.2,726.2 L 519.2,730.4 L 525.5,738.1 L 528.3,744.4 L 527.5,752.1 L 522.0,759.1 L 496.8,780.1 L 485.6,785.7 L 475.1,785.7 L 469.5,783.6 L 457.6,768.9 L 454.1,761.2 L 454.1,754.2 Z"
+              className="sketch-path"
               pathLength="1"
-              strokeWidth="1.65"
+              strokeWidth="1.75"
             />
-            {/* Pinky nail */}
-            <path d="M 590,763 C 594,760 600,762 602,768" pathLength="1" strokeWidth="0.85" />
-            {/* Joint crease */}
-            <path d="M 646,746 C 649,754 646,762 640,768" pathLength="1" strokeWidth="0.75" opacity="0.8" />
+            <path
+              d="M 498.9,792.0 L 521.3,774.5 L 533.2,767.5 L 549.3,760.5 L 553.5,759.8 L 563.3,764.0 L 568.9,769.6 L 571.7,776.6 L 571.7,785.7 L 568.9,791.3 L 535.3,818.6 L 527.5,822.1 L 517.8,821.4 L 508.7,815.1 L 498.9,802.5 L 497.5,799.0 L 497.5,794.8 L 498.9,792.7 Z"
+              className="sketch-path"
+              pathLength="1"
+              strokeWidth="1.75"
+            />
+            <path
+              d="M 549.3,817.9 L 553.5,813.0 L 588.5,790.6 L 594.8,789.9 L 599.0,791.3 L 606.0,797.6 L 608.8,803.9 L 608.8,811.6 L 603.2,821.4 L 591.3,832.6 L 583.5,836.8 L 560.5,836.8 L 557.7,835.4 L 550.7,828.4 L 548.5,823.5 L 549.3,818.6 Z"
+              className="sketch-path"
+              pathLength="1"
+              strokeWidth="1.75"
+            />
           </g>
-
-          {/* Palm compression & interlocking contact lines */}
-          <path
-            d="M 565,658 C 568,685 572,715 578,745"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="1.2"
-            opacity="0.7"
-          />
-          <path
-            d="M 695,650 C 710,670 722,695 730,720"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="1.1"
-            opacity="0.65"
-          />
         </g>
 
         {/* ===================================================================== */}
