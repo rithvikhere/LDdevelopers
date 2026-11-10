@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useTransition } from "react";
+import React, { useState, useEffect, useCallback, useTransition } from "react";
 import { Enquiry, EnquiryStatus } from "@/lib/types/database";
-import { updateEnquiryStatusAction } from "@/app/actions/enquiries";
+import { updateEnquiryStatusAction, getLatestEnquiriesAction } from "@/app/actions/enquiries";
 import {
   Building2,
   Calendar,
@@ -20,6 +20,7 @@ import {
   ChevronDown,
   ChevronUp,
   ArrowUpRight,
+  RefreshCw,
 } from "lucide-react";
 
 interface AdminDashboardClientProps {
@@ -34,6 +35,44 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [lastSyncedAt, setLastSyncedAt] = useState<Date>(new Date());
+
+  const syncLatest = useCallback(async () => {
+    try {
+      setIsSyncing(true);
+      const latest = await getLatestEnquiriesAction();
+      if (latest && Array.isArray(latest)) {
+        setEnquiries(latest);
+        setLastSyncedAt(new Date());
+      }
+    } catch (err) {
+      console.error("Failed to sync enquiries:", err);
+    } finally {
+      setIsSyncing(false);
+    }
+  }, []);
+
+  // Auto-refresh every 5 seconds so any public landing page enquiry appears automatically
+  useEffect(() => {
+    let active = true;
+    const interval = setInterval(async () => {
+      try {
+        const latest = await getLatestEnquiriesAction();
+        if (active && latest && Array.isArray(latest)) {
+          setEnquiries(latest);
+          setLastSyncedAt(new Date());
+        }
+      } catch (err) {
+        console.warn("Background auto-poll:", err);
+      }
+    }, 5000);
+
+    return () => {
+      active = false;
+      clearInterval(interval);
+    };
+  }, []);
 
   // Metrics
   const totalCount = enquiries.length;
@@ -82,13 +121,35 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
   return (
     <div className="space-y-10">
       {/* Executive Header & KPIs */}
-      <div>
-        <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#C5B083] mb-2">
-          ADMINISTRATIVE GOVERNANCE &amp; INQUIRY LEDGER
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#C5B083] mb-2">
+            ADMINISTRATIVE GOVERNANCE &amp; INQUIRY LEDGER
+          </div>
+          <h1 className="font-display text-3xl sm:text-4xl font-light text-[#F5F3EF]">
+            Executive Lead Management Console
+          </h1>
         </div>
-        <h1 className="font-display text-3xl sm:text-4xl font-light text-[#F5F3EF]">
-          Executive Lead Management Console
-        </h1>
+
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-[#17201B] border border-[#24322A] text-xs font-mono">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-[#9EA8A1] text-[11px]">
+              Live Synced {lastSyncedAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
+            </span>
+          </div>
+
+          <button
+            type="button"
+            onClick={syncLatest}
+            disabled={isSyncing}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#17201B] hover:bg-[#24322A] border border-[#24322A] text-xs font-mono text-[#F5F3EF] transition-colors cursor-pointer disabled:opacity-50"
+            title="Refresh latest inquiries"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 text-[#C5B083] ${isSyncing ? "animate-spin" : ""}`} />
+            <span>Sync</span>
+          </button>
+        </div>
       </div>
 
       {/* KPI Cards */}

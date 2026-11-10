@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
+import { submitPublicEnquiryAction } from "@/app/actions/enquiries";
 import {
   KairosDepthReveal,
   KairosMaskedText,
@@ -52,6 +53,8 @@ export const ContactSection: React.FC = () => {
     timestamp: string;
   } | null>(null);
 
+  const [serverError, setServerError] = useState<string | null>(null);
+
   const validate = (): boolean => {
     const newErrors: FormErrorsState = {};
 
@@ -74,30 +77,43 @@ export const ContactSection: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
     setIsSubmitting(true);
+    setServerError(null);
 
-    setTimeout(() => {
-      const randomSuffix = Math.floor(1000 + Math.random() * 9000);
-      const generatedRef = `LD-ENQ-2026-${randomSuffix}`;
-
-      setSubmittedData({
-        data: { ...formData },
-        refCode: generatedRef,
-        timestamp: new Date().toLocaleDateString("en-IN", {
-          day: "numeric",
-          month: "short",
-          year: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
+    try {
+      const res = await submitPublicEnquiryAction({
+        fullName: formData.fullName,
+        phone: formData.phone,
+        buildingType: formData.buildingType,
+        location: formData.location,
+        visionNotes: formData.visionNotes,
       });
 
+      if (res.success && res.enquiryNumber) {
+        setSubmittedData({
+          data: { ...formData },
+          refCode: res.enquiryNumber,
+          timestamp: new Date().toLocaleDateString("en-IN", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+        });
+      } else {
+        setServerError(res.error || "Failed to record enquiry. Please retry or contact us directly via WhatsApp.");
+      }
+    } catch (err) {
+      console.error("Enquiry submission error:", err);
+      setServerError("Network error registering enquiry. Please reach out directly on WhatsApp or phone.");
+    } finally {
       setIsSubmitting(false);
-    }, 600);
+    }
   };
 
   const handleReset = () => {
@@ -223,13 +239,6 @@ export const ContactSection: React.FC = () => {
                     <ArrowUpRight className="w-3.5 h-3.5 text-[#C5B083]" />
                   </a>
                 </div>
-
-                {/* Link to Full Client Portal */}
-                <div className="pt-2 text-center text-xs font-mono">
-                  <Link href="/login" className="text-[#2E5A44] hover:text-[#0B0F0D] font-medium underline decoration-[#2E5A44]/40 underline-offset-4 transition-colors">
-                    Access Client Portal &bull; Live Project Tracker &rarr;
-                  </Link>
-                </div>
               </div>
             </KairosDepthReveal>
           </div>
@@ -304,18 +313,25 @@ export const ContactSection: React.FC = () => {
                         <RotateCcw className="w-3.5 h-3.5" />
                         <span>Submit Another Enquiry</span>
                       </button>
-                      <Link
-                        href="/login"
+                      <a
+                        href={whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#1F4A36] hover:text-[#0B0F0D] font-semibold transition-colors"
                       >
-                        <span>Open Client Portal</span>
+                        <span>Priority WhatsApp Desk</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
-                      </Link>
+                      </a>
                     </div>
                   </div>
                 ) : (
                   /* Active Form with Tactile Paper Inset Text Boxes */
                   <form onSubmit={handleSubmit} className="space-y-5">
+                    {serverError && (
+                      <div className="p-3 bg-red-100 border border-red-300 text-red-800 text-xs font-mono">
+                        {serverError}
+                      </div>
+                    )}
                     <div>
                       <label className="block text-[11px] font-mono tracking-wider text-[#141E18] font-semibold uppercase mb-1.5">
                         Client Representative Name *

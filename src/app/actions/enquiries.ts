@@ -6,8 +6,12 @@ import { getSession, isSupabaseConfigured } from "@/lib/auth-helpers";
 import { enquirySchema, EnquiryInput } from "@/lib/validations/enquiry";
 import { Enquiry, EnquiryStatus } from "@/lib/types/database";
 
-// In-memory demo store for fallback when live Supabase credentials are not connected
-const globalDemoEnquiries: Enquiry[] = [
+// Persistent global in-memory store for fallback and instant updates
+declare global {
+  var __ld_enquiries: Enquiry[] | undefined;
+}
+
+const defaultDemoEnquiries: Enquiry[] = [
   {
     id: "demo-enq-001",
     enquiry_number: "LD-ENQ-2026-1042",
@@ -98,6 +102,13 @@ const globalDemoEnquiries: Enquiry[] = [
     updated_at: new Date(Date.now() - 12 * 3600000).toISOString(),
   },
 ];
+
+function getGlobalEnquiries(): Enquiry[] {
+  if (!globalThis.__ld_enquiries) {
+    globalThis.__ld_enquiries = [...defaultDemoEnquiries];
+  }
+  return globalThis.__ld_enquiries;
+}
 
 export interface CreateEnquiryResult {
   success: boolean;
@@ -211,7 +222,8 @@ export async function createEnquiryAction(input: EnquiryInput): Promise<CreateEn
     updated_at: new Date().toISOString(),
   };
 
-  globalDemoEnquiries.unshift(newEnquiry);
+  const store = getGlobalEnquiries();
+  store.unshift(newEnquiry);
 
   revalidatePath("/dashboard");
   revalidatePath("/admin/dashboard");
@@ -220,6 +232,96 @@ export async function createEnquiryAction(input: EnquiryInput): Promise<CreateEn
     success: true,
     enquiryNumber,
   };
+}
+
+export interface PublicEnquiryInput {
+  fullName: string;
+  phone: string;
+  buildingType: string;
+  location?: string;
+  visionNotes?: string;
+}
+
+/**
+ * Public action for landing page visitors to register an enquiry.
+ * Directly surfaces in the Admin Dashboard without requiring prior account registration.
+ */
+export async function submitPublicEnquiryAction(
+  input: PublicEnquiryInput
+): Promise<{ success: boolean; enquiryNumber?: string; error?: string }> {
+  if (!input.fullName || input.fullName.trim().length < 2) {
+    return {
+      success: false,
+      error: "Please provide your full legal or representative name.",
+    };
+  }
+
+  const cleanedPhone = (input.phone || "").replace(/[\s\-\(\)\+]/g, "");
+  if (cleanedPhone.length < 10) {
+    return {
+      success: false,
+      error: "Please enter a valid phone number (at least 10 digits).",
+    };
+  }
+
+  const enquiryNumber = `LD-ENQ-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+  const now = new Date().toISOString();
+
+  const newEnquiry: Enquiry = {
+    id: `pub-enq-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+    enquiry_number: enquiryNumber,
+    user_id: "public-enquiry-visitor",
+    full_name: input.fullName.trim(),
+    email: `${input.fullName.trim().toLowerCase().replace(/[^a-z0-9]/g, "") || "client"}@client.in`,
+    phone: input.phone.trim(),
+    owns_land: true,
+    site_location: input.location?.trim() || "Consultation review",
+    city: "Telangana / Karnataka",
+    building_type: input.buildingType || "Bespoke Residential Architecture",
+    additional_notes: input.visionNotes?.trim() || "Submitted via landing page intake desk.",
+    preferred_contact_method: "phone",
+    preferred_contact_time: "Immediate / Within 24 Hours",
+    status: "new",
+    created_at: now,
+    updated_at: now,
+  };
+
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = await createClient();
+      await (supabase.from("enquiries") as any).insert({
+        enquiry_number: enquiryNumber,
+        full_name: newEnquiry.full_name,
+        email: newEnquiry.email,
+        phone: newEnquiry.phone,
+        site_location: newEnquiry.site_location,
+        building_type: newEnquiry.building_type,
+        additional_notes: newEnquiry.additional_notes,
+        status: "new",
+      });
+    } catch (err) {
+      console.warn("Supabase public enquiry insert skipped/failed:", err);
+    }
+  }
+
+  const store = getGlobalEnquiries();
+  store.unshift(newEnquiry);
+
+  revalidatePath("/admin/dashboard");
+  revalidatePath("/");
+
+  return {
+    success: true,
+    enquiryNumber,
+  };
+}
+
+/**
+ * Fetches latest enquiries for automatic live polling on the admin dashboard.
+ */
+export async function getLatestEnquiriesAction(): Promise<Enquiry[]> {
+  const store = getGlobalEnquiries();
+  return [...store];
 }
 
 /**
@@ -252,11 +354,12 @@ export async function getEnquiriesAction(): Promise<Enquiry[]> {
     }
   }
 
+  const store = getGlobalEnquiries();
   if (session.user.role === "admin") {
-    return globalDemoEnquiries;
+    return store;
   }
 
-  return globalDemoEnquiries.filter((e) => e.user_id === session.user.id || e.email === session.user.email);
+  return store.filter((e) => e.user_id === session.user.id || e.email === session.user.email);
 }
 
 /**
@@ -285,7 +388,6 @@ export async function updateEnquiryStatusAction(
       if (error) throw error;
 
       revalidatePath("/admin/dashboard");
-      revalidatePath("/dashboard");
       return { success: true };
     } catch (err: unknown) {
       console.warn("Supabase update error:", err);
@@ -293,13 +395,13 @@ export async function updateEnquiryStatusAction(
   }
 
   // Update in demo store
-  const target = globalDemoEnquiries.find((e) => e.id === enquiryId);
+  const store = getGlobalEnquiries();
+  const target = store.find((e) => e.id === enquiryId);
   if (target) {
     target.status = newStatus;
     target.updated_at = new Date().toISOString();
   }
 
   revalidatePath("/admin/dashboard");
-  revalidatePath("/dashboard");
   return { success: true };
 }

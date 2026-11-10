@@ -136,15 +136,8 @@ export const Navbar: React.FC = () => {
               })}
             </nav>
 
-            {/* Right Action: Minimalist Portal / Contact Trigger */}
+            {/* Right Action: Minimalist Contact Trigger */}
             <div className="hidden sm:flex items-center gap-4">
-              <Link
-                href="/login"
-                className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#F5F3EF]/70 hover:text-[#C5B083] transition-colors py-1.5"
-              >
-                Portal
-              </Link>
-
               <a
                 href="#contact"
                 onClick={(e) => scrollToSection(e, "#contact", "contact")}
@@ -205,13 +198,6 @@ export const Navbar: React.FC = () => {
             </div>
 
             <div className="pt-8 border-t border-[#24322A]/60 flex flex-col gap-3 font-mono text-xs">
-              <Link
-                href="/login"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-center py-3 border border-[#24322A] text-[#F5F3EF] uppercase tracking-wider"
-              >
-                Client &amp; Admin Portal
-              </Link>
               <a
                 href="#contact"
                 onClick={(e) => scrollToSection(e, "#contact", "contact")}

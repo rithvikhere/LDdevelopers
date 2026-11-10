@@ -5,13 +5,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { CompanyLogo } from "@/components/brand/CompanyLogo";
 import { loginAction } from "@/app/actions/auth";
-import { ArrowLeft, Lock, Mail, Shield, User, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, Lock, Mail, Shield, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [role, setRole] = useState<"customer" | "admin">("customer");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin@lddevelopers.com");
+  const [password, setPassword] = useState("DemoSecure@2026");
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
@@ -22,21 +21,20 @@ export default function LoginPage() {
     const formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
-    formData.append("role", role);
+    formData.append("role", "admin");
 
     startTransition(async () => {
       const res = await loginAction(null, formData);
       if (res.success && res.redirectUrl) {
         router.push(res.redirectUrl);
       } else {
-        setError(res.error || "Authentication failed. Please verify your credentials.");
+        setError(res.error || "Authentication failed. Please verify administrator credentials.");
       }
     });
   };
 
-  const handleQuickDemo = (demoRole: "customer" | "admin") => {
-    setRole(demoRole);
-    const demoEmail = demoRole === "admin" ? "admin@lddevelopers.com" : "client@example.com";
+  const handleQuickDemoAdmin = () => {
+    const demoEmail = "admin@lddevelopers.com";
     setEmail(demoEmail);
     setPassword("DemoSecure@2026");
     setError(null);
@@ -44,14 +42,14 @@ export default function LoginPage() {
     const formData = new FormData();
     formData.append("email", demoEmail);
     formData.append("password", "DemoSecure@2026");
-    formData.append("role", demoRole);
+    formData.append("role", "admin");
 
     startTransition(async () => {
       const res = await loginAction(null, formData);
       if (res.success && res.redirectUrl) {
         router.push(res.redirectUrl);
       } else {
-        setError(res.error || "Failed to start demo session.");
+        setError(res.error || "Failed to start admin session.");
       }
     });
   };
@@ -74,52 +72,17 @@ export default function LoginPage() {
           {/* Subtle Top Accent Bar */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#506653] via-[#B89A60] to-[#506653]" />
 
-          {/* Role Switcher Tabs */}
-          <div className="grid grid-cols-2 p-1 bg-[#EBE5D8] border border-[#DDD6C8] mb-8 text-xs font-mono tracking-wider">
-            <button
-              type="button"
-              onClick={() => {
-                setRole("customer");
-                setError(null);
-              }}
-              className={`py-2.5 px-3 flex items-center justify-center gap-2 transition-all cursor-pointer ${
-                role === "customer"
-                  ? "bg-[#1D2923] text-[#FAF9F5] shadow-xs font-semibold"
-                  : "text-[#69716C] hover:text-[#252A26]"
-              }`}
-            >
-              <User className="w-3.5 h-3.5 text-[#B89A60]" />
-              <span>CLIENT PORTAL</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setRole("admin");
-                setError(null);
-              }}
-              className={`py-2.5 px-3 flex items-center justify-center gap-2 transition-all cursor-pointer ${
-                role === "admin"
-                  ? "bg-[#1D2923] text-[#FAF9F5] shadow-xs font-semibold"
-                  : "text-[#69716C] hover:text-[#252A26]"
-              }`}
-            >
-              <Shield className="w-3.5 h-3.5 text-[#B89A60]" />
-              <span>ADMIN ACCESS</span>
-            </button>
-          </div>
-
           {/* Heading */}
           <div className="mb-8">
-            <div className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#B89A60] mb-2 font-medium">
-              {role === "customer" ? "01 / CLIENT CONSULTATION GATEWAY" : "02 / ADMINISTRATIVE GOVERNANCE"}
+            <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.22em] text-[#B89A60] mb-2 font-medium">
+              <Shield className="w-3.5 h-3.5 text-[#B89A60]" />
+              <span>STUDIO GOVERNANCE</span>
             </div>
             <h1 className="font-display text-3xl font-light text-[#252A26] tracking-tight">
-              {role === "customer" ? "Access Client Portal" : "Administrative Console"}
+              Admin Dashboard Login
             </h1>
             <p className="text-xs text-[#69716C] font-light mt-2 leading-relaxed">
-              {role === "customer"
-                ? "Track active construction projects, review architectural briefs, and submit tailored structural proposals."
-                : "Secure portal for principal architects and project leads to review client briefs and coordinate development."}
+              Administrative portal for managing client construction enquiries, architectural briefs, and commission workflows.
             </p>
           </div>
 
@@ -134,7 +97,7 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="block text-[11px] font-mono tracking-wider text-[#69716C] uppercase mb-1.5 font-medium">
-                Email Address
+                Admin Email Address
               </label>
               <div className="relative">
                 <Mail className="w-4 h-4 text-[#8C938E] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -143,7 +106,7 @@ export default function LoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder={role === "admin" ? "admin@lddevelopers.com" : "client@example.com"}
+                  placeholder="admin@lddevelopers.com"
                   className="w-full bg-[#FAF9F5] border border-[#DDD6C8] focus:border-[#506653] focus:ring-1 focus:ring-[#506653] text-[#252A26] text-sm pl-10 pr-3.5 py-2.5 transition-colors placeholder:text-[#A7ADA9] outline-none"
                 />
               </div>
@@ -169,49 +132,28 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isPending}
-              className="w-full mt-2 inline-flex items-center justify-center gap-2 bg-[#506653] hover:bg-[#1D2923] active:scale-[0.99] disabled:opacity-60 text-[#FAF9F5] py-3.5 text-xs font-semibold uppercase tracking-[0.2em] border border-[#B89A60]/40 transition-all duration-200 cursor-pointer shadow-xs"
+              className="w-full mt-2 inline-flex items-center justify-center gap-2 bg-[#1D2923] hover:bg-[#506653] active:scale-[0.99] disabled:opacity-60 text-[#FAF9F5] py-3.5 text-xs font-semibold uppercase tracking-[0.2em] border border-[#B89A60]/40 transition-all duration-200 cursor-pointer shadow-xs"
             >
-              <span>{isPending ? "AUTHENTICATING..." : "SIGN IN TO PORTAL"}</span>
+              <span>{isPending ? "AUTHENTICATING..." : "SIGN IN AS ADMIN"}</span>
               <ArrowRight className="w-4 h-4 text-[#B89A60]" />
             </button>
           </form>
 
-          {/* Quick 1-Click Demo Buttons */}
+          {/* Quick 1-Click Demo Admin Button */}
           <div className="mt-8 pt-6 border-t border-[#DDD6C8]/60">
             <div className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#69716C] mb-3 text-center">
-              Quick Testing — Instant 1-Click Access
+              Instant Access
             </div>
-            <div className="grid grid-cols-2 gap-2.5">
-              <button
-                type="button"
-                onClick={() => handleQuickDemo("customer")}
-                disabled={isPending}
-                className="inline-flex items-center justify-center gap-1.5 py-2 px-3 bg-[#EBE5D8] hover:bg-[#DDD6C8] border border-[#DDD6C8] text-[11px] font-mono tracking-wider text-[#252A26] transition-colors cursor-pointer"
-              >
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#506653]" />
-                <span>Demo Client</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => handleQuickDemo("admin")}
-                disabled={isPending}
-                className="inline-flex items-center justify-center gap-1.5 py-2 px-3 bg-[#EBE5D8] hover:bg-[#DDD6C8] border border-[#DDD6C8] text-[11px] font-mono tracking-wider text-[#252A26] transition-colors cursor-pointer"
-              >
-                <Shield className="w-3.5 h-3.5 text-[#B89A60]" />
-                <span>Demo Admin</span>
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={handleQuickDemoAdmin}
+              disabled={isPending}
+              className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-[#EBE5D8] hover:bg-[#DDD6C8] border border-[#DDD6C8] text-xs font-mono tracking-wider text-[#252A26] transition-colors cursor-pointer"
+            >
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#506653]" />
+              <span>One-Click Principal Admin Demo</span>
+            </button>
           </div>
-
-          {/* Register Link */}
-          {role === "customer" && (
-            <div className="mt-6 text-center text-xs text-[#69716C]">
-              New client seeking architectural services?{" "}
-              <Link href="/register" className="text-[#506653] font-semibold hover:text-[#1D2923] underline decoration-[#B89A60] underline-offset-4">
-                Register an account
-              </Link>
-            </div>
-          )}
         </div>
       </main>
 

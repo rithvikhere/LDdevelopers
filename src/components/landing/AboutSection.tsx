@@ -85,9 +85,9 @@ export const AboutSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, margin: "-40px" }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="h-full"
+            className="h-full flex flex-col"
           >
-            <div className="h-full border border-[#24322A]/20 bg-[#F5F2EB]/95 backdrop-blur-md p-8 sm:p-12 shadow-xl hover:shadow-2xl hover:border-[#2E5A44]/50 transition-all duration-300 flex flex-col justify-between">
+            <div className="flex-1 border border-[#24322A]/20 bg-[#F5F2EB]/95 backdrop-blur-md p-8 sm:p-12 shadow-xl hover:shadow-2xl hover:border-[#2E5A44]/50 transition-all duration-300 flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <span className="w-2 h-2 rounded-full bg-[#1F4A36]" />

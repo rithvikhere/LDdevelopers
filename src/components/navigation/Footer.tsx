@@ -51,10 +51,10 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Column 3: Portals & Client Governance */}
+          {/* Column 3: Studio Portal & Administration */}
           <div>
             <h4 className="text-[11px] uppercase tracking-[0.22em] text-[#C5B083] font-mono mb-6">
-              Client &amp; Governance
+              Studio Portal
             </h4>
             <ul className="space-y-2.5 text-xs font-mono uppercase tracking-wider">
               <li>
@@ -62,25 +62,7 @@ export const Footer: React.FC = () => {
                   href="/login"
                   className="text-[#9EA8A1] hover:text-[#C5B083] transition-colors inline-flex items-center gap-1.5 py-0.5"
                 >
-                  <span>Client Portal</span>
-                  <ArrowUpRight className="w-3 h-3 text-[#C5B083]" />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/register"
-                  className="text-[#9EA8A1] hover:text-[#C5B083] transition-colors inline-flex items-center gap-1.5 py-0.5"
-                >
-                  <span>Register Account</span>
-                  <ArrowUpRight className="w-3 h-3 text-[#C5B083]" />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/login"
-                  className="text-[#9EA8A1] hover:text-[#C5B083] transition-colors inline-flex items-center gap-1.5 py-0.5"
-                >
-                  <span>Admin Console</span>
+                  <span>Admin Dashboard</span>
                   <ArrowUpRight className="w-3 h-3 text-[#C5B083]" />
                 </Link>
               </li>
@@ -89,7 +71,7 @@ export const Footer: React.FC = () => {
                   href="#contact"
                   className="text-[#9EA8A1] hover:text-[#C5B083] transition-colors inline-block py-0.5"
                 >
-                  Book Private Consultation
+                  Commission Enquiry
                 </a>
               </li>
             </ul>
