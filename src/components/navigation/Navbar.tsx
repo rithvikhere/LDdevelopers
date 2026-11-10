@@ -86,22 +86,22 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex items-center ${
           isScrolled
-            ? "bg-[#0B0F0D]/85 backdrop-blur-md border-b border-[#24322A]/40 py-3.5 shadow-2xl"
-            : "bg-transparent border-b border-transparent py-5 sm:py-6"
+            ? "h-[88px] sm:h-[92px] lg:h-[96px] bg-[#0B0F0D]/90 backdrop-blur-md border-b border-[#24322A]/40 shadow-2xl"
+            : "h-[98px] sm:h-[104px] lg:h-[110px] bg-transparent border-b border-transparent"
         }`}
       >
-        <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="flex items-center justify-between">
-            {/* Brand Logo */}
+        <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12">
+          <div className="flex items-center justify-between gap-6 xl:gap-8">
+            {/* Brand Logo — Enlarged to ~270-300px visual presence on desktop */}
             <div className="shrink-0">
-              <CompanyLogo theme="dark" />
+              <CompanyLogo theme="dark" size="lg" />
             </div>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Navigation — Centered 3-part layout with generous 24-32px spacing & 14px typography */}
             <nav
-              className="hidden xl:flex items-center gap-8 xl:gap-9 2xl:gap-10 text-[13px] font-mono uppercase tracking-[0.18em]"
+              className="hidden xl:flex items-center justify-center gap-6 xl:gap-7 2xl:gap-8 text-[13.5px] 2xl:text-[14px] font-mono uppercase tracking-[0.12em]"
               aria-label="Main Navigation"
             >
               {siteContent.navigation.map((item) => {
@@ -111,10 +111,10 @@ export const Navbar: React.FC = () => {
                     key={item.id}
                     href={item.href}
                     onClick={(e) => scrollToSection(e, item.href, item.id)}
-                    className={`relative py-1.5 transition-colors duration-300 ${
+                    className={`relative py-2 transition-colors duration-300 whitespace-nowrap ${
                       isActive
-                        ? "text-[#C5B083] font-medium"
-                        : "text-[#F5F3EF]/70 hover:text-[#C5B083]"
+                        ? "text-[#C5B083] font-semibold"
+                        : "text-[#F5F3EF]/75 hover:text-[#C5B083] font-medium"
                     }`}
                   >
                     <span>{item.label}</span>
@@ -122,7 +122,7 @@ export const Navbar: React.FC = () => {
                     {isActive && (
                       <motion.span
                         layoutId={shouldReduceMotion ? undefined : "activeNavbarIndicator"}
-                        className="absolute -bottom-0.5 left-0 right-0 h-[1px] bg-[#C5B083]"
+                        className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#C5B083]"
                         transition={{
                           type: "spring",
                           stiffness: 380,
@@ -136,15 +136,15 @@ export const Navbar: React.FC = () => {
               })}
             </nav>
 
-            {/* Right Action: Minimalist Contact Trigger */}
-            <div className="hidden sm:flex items-center gap-4">
+            {/* Right Action: Refined Initiate Project CTA (54-56px height) */}
+            <div className="hidden sm:flex items-center gap-4 shrink-0">
               <a
                 href="#contact"
                 onClick={(e) => scrollToSection(e, "#contact", "contact")}
-                className="group inline-flex items-center gap-2 bg-[#F5F2EB] hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] px-5 py-2.5 text-[11px] font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-md"
+                className="group inline-flex items-center justify-center gap-3 h-[52px] sm:h-[54px] lg:h-[56px] px-7 sm:px-8 bg-[#F5F2EB] hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] text-[11.5px] sm:text-[12px] font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer"
               >
                 <span>INITIATE PROJECT</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#1F4A36] group-hover:text-[#C5B083] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#1F4A36] group-hover:text-[#C5B083] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
               </a>
             </div>
 
@@ -153,7 +153,7 @@ export const Navbar: React.FC = () => {
               <a
                 href="#contact"
                 onClick={(e) => scrollToSection(e, "#contact", "contact")}
-                className="sm:hidden text-[10px] font-mono uppercase tracking-wider text-[#C5B083] border border-[#24322A] px-2.5 py-1"
+                className="sm:hidden text-[10.5px] font-mono uppercase tracking-wider text-[#C5B083] border border-[#24322A] px-3 py-1.5"
               >
                 Contact
               </a>
@@ -161,11 +161,11 @@ export const Navbar: React.FC = () => {
                 ref={menuButtonRef}
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 text-[#F5F3EF] hover:text-[#C5B083] transition-colors"
+                className="p-2.5 text-[#F5F3EF] hover:text-[#C5B083] transition-colors"
                 aria-expanded={mobileMenuOpen}
                 aria-label="Toggle Navigation Menu"
               >
-                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
           </div>

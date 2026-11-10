@@ -7,6 +7,7 @@ interface CompanyLogoProps {
   theme?: "light" | "dark";
   className?: string;
   showSubtitle?: boolean;
+  size?: "sm" | "md" | "lg";
 }
 
 /**
@@ -20,17 +21,42 @@ export const CompanyLogo: React.FC<CompanyLogoProps> = ({
   theme = "light",
   className = "",
   showSubtitle = true,
+  size = "md",
 }) => {
   const isDark = theme === "dark";
+
+  // Size configurations
+  const isLg = size === "lg";
+  const isSm = size === "sm";
+
+  const markSize = isLg
+    ? "w-11 h-11 sm:w-12 sm:h-12 lg:w-13 lg:h-13 xl:w-14 xl:h-14"
+    : isSm
+    ? "w-7 h-7"
+    : "w-9 h-9";
+
+  const titleSize = isLg
+    ? "text-lg sm:text-xl lg:text-[22px] xl:text-[24px] tracking-[0.16em]"
+    : isSm
+    ? "text-base tracking-[0.16em]"
+    : "text-lg sm:text-xl tracking-[0.18em]";
+
+  const subtitleSize = isLg
+    ? "text-[9.5px] sm:text-[10px] lg:text-[11px] xl:text-[11.5px] tracking-[0.28em]"
+    : isSm
+    ? "text-[8px] tracking-[0.24em]"
+    : "text-[9px] tracking-[0.28em]";
+
+  const gapSize = isLg ? "gap-3 sm:gap-4" : "gap-3";
 
   return (
     <Link
       href="#home"
-      className={`inline-flex items-center gap-3 group transition-opacity hover:opacity-90 ${className}`}
+      className={`inline-flex items-center ${gapSize} group transition-opacity hover:opacity-90 ${className}`}
       aria-label="[COMPANY NAME] - Home"
     >
       {/* Geometric Architectural Mark */}
-      <div className="relative w-9 h-9 flex items-center justify-center shrink-0">
+      <div className={`relative ${markSize} flex items-center justify-center shrink-0`}>
         <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
           {/* Base foundation line */}
           <rect
@@ -70,7 +96,7 @@ export const CompanyLogo: React.FC<CompanyLogoProps> = ({
       {/* Brand Name & Architectural Subtitle */}
       <div className="flex flex-col">
         <span
-          className={`font-display text-lg sm:text-xl font-medium tracking-[0.18em] leading-tight transition-colors ${
+          className={`font-display ${titleSize} font-medium leading-tight transition-colors ${
             isDark ? "text-[#F5F3EF]" : "text-[#0B0F0D]"
           }`}
         >
@@ -78,7 +104,7 @@ export const CompanyLogo: React.FC<CompanyLogoProps> = ({
         </span>
         {showSubtitle && (
           <span
-            className={`text-[9px] tracking-[0.28em] font-medium uppercase leading-tight ${
+            className={`${subtitleSize} font-medium uppercase leading-tight mt-0.5 ${
               isDark ? "text-[#C5B083]" : "text-[#2E5A44]"
             }`}
           >

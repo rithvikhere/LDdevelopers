@@ -51,7 +51,7 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] flex flex-col justify-between overflow-hidden bg-transparent text-[#F5F3EF] pt-28 sm:pt-36 lg:pt-32 pb-8 sm:pb-12"
+      className="relative min-h-[92vh] flex flex-col justify-between overflow-hidden bg-transparent text-[#F5F3EF] pt-32 sm:pt-40 lg:pt-36 xl:pt-40 pb-8 sm:pb-12"
     >
       {/* Subtle Architectural Hairline Grid Overlay */}
       <div className="absolute inset-0 bg-architectural-grid opacity-20 pointer-events-none" />
