@@ -240,77 +240,77 @@ export const ArchitecturalLineArt: React.FC<ArchitecturalLineArtProps> = ({
           </g>
         </g>
 
-        {/* ===================================================================== */}
-        {/* STAGE 2: CITY SKYLINE — MAJOR SILHOUETTES & STRUCTURES               */}
+                {/* ===================================================================== */}
+        {/* STAGE 2: CITY SKYLINE — MAJOR SILHOUETTES & STRUCTURES (ENHANCED LINE WEIGHT) */}
         {/* ===================================================================== */}
         <g id="stage-skyline-silhouettes" className="sketch-skyline">
           {/* TOWER 1: SIGNATURE SKYSCRAPER (Far Right, Iconic Apex) */}
           {/* Silhouette Outlines */}
           <path
-            d="M 800,565 L 800,240 L 812,240 L 812,175 L 824,175 L 824,135 L 865,95 L 865,75 M 865,95 L 882,135 L 882,215 L 874,215 L 874,565"
+            d="M 800,492 L 800,240 L 812,240 L 812,175 L 824,175 L 824,135 L 865,95 L 865,75 M 865,95 L 882,135 L 882,215 L 874,215 L 874,492"
             className="sketch-path"
             pathLength="1"
-            strokeWidth="1.6"
+            strokeWidth="2.5"
           />
           {/* Crown Chiseled Chamfer & Spire Antenna */}
-          <line x1="865" y1="75" x2="865" y2="55" className="sketch-path" pathLength="1" strokeWidth="1.2" />
-          <path d="M 824,135 L 882,135" className="sketch-path" pathLength="1" strokeWidth="1.1" />
-          <path d="M 812,175 L 874,215" className="sketch-path" pathLength="1" strokeWidth="0.9" />
+          <line x1="865" y1="75" x2="865" y2="55" className="sketch-path" pathLength="1" strokeWidth="2.0" />
+          <path d="M 824,135 L 882,135" className="sketch-path" pathLength="1" strokeWidth="1.8" />
+          <path d="M 812,175 L 874,215" className="sketch-path" pathLength="1" strokeWidth="1.6" />
 
           {/* TOWER 2: STEPPED HIGH-RISE TOWER (Adjacent to Signature Tower) */}
           <path
-            d="M 742,565 L 742,320 L 756,320 L 756,270 L 782,270 L 782,310 L 794,310 L 794,565"
+            d="M 742,492 L 742,320 L 756,320 L 756,270 L 782,270 L 782,310 L 794,310 L 794,492"
             className="sketch-path"
             pathLength="1"
-            strokeWidth="1.45"
+            strokeWidth="2.3"
           />
           {/* Mechanical Penthouse & Mast */}
-          <rect x="760" y="254" width="18" height="16" className="sketch-path" pathLength="1" strokeWidth="0.9" />
-          <line x1="769" y1="254" x2="769" y2="230" className="sketch-path" pathLength="1" strokeWidth="0.8" />
+          <rect x="760" y="254" width="18" height="16" className="sketch-path" pathLength="1" strokeWidth="1.5" />
+          <line x1="769" y1="254" x2="769" y2="230" className="sketch-path" pathLength="1" strokeWidth="1.4" />
 
           {/* TOWER 3: CENTRAL MID-RISE RESIDENTIAL / COMMERCIAL BLOCK */}
           <path
-            d="M 640,565 L 640,375 L 685,375 L 685,358 L 716,358 L 716,375 L 736,375 L 736,565"
+            d="M 640,492 L 640,375 L 685,375 L 685,358 L 716,358 L 716,375 L 736,375 L 736,492"
             className="sketch-path"
             pathLength="1"
-            strokeWidth="1.4"
+            strokeWidth="2.3"
           />
 
           {/* TOWER 4: STEPPED CENTRAL-LEFT MODERN COMPLEX */}
           <path
-            d="M 536,565 L 536,345 L 568,345 L 568,308 L 606,308 L 606,352 L 634,352 L 634,565"
+            d="M 536,492 L 536,345 L 568,345 L 568,308 L 606,308 L 606,352 L 634,352 L 634,492"
             className="sketch-path"
             pathLength="1"
-            strokeWidth="1.4"
+            strokeWidth="2.3"
           />
           {/* Cantilever Box Highlight */}
-          <path d="M 568,308 L 606,308 L 606,326 L 568,326 Z" className="sketch-path" pathLength="1" strokeWidth="1.0" />
+          <path d="M 568,308 L 606,308 L 606,326 L 568,326 Z" className="sketch-path" pathLength="1" strokeWidth="1.8" />
 
           {/* TOWER 5: LEFT CORNER HIGH-RISE */}
           <path
-            d="M 445,565 L 445,365 L 482,365 L 482,338 L 512,338 L 512,365 L 530,365 L 530,565"
+            d="M 445,492 L 445,365 L 482,365 L 482,338 L 512,338 L 512,365 L 530,365 L 530,492"
             className="sketch-path"
             pathLength="1"
-            strokeWidth="1.4"
+            strokeWidth="2.3"
           />
         </g>
 
         {/* ===================================================================== */}
         {/* STAGE 2.5: SKYLINE DETAILS — WINDOW MULLIONS, FLOORS & FACADES       */}
         {/* ===================================================================== */}
-        <g id="stage-skyline-facades" className="sketch-building-detail opacity-65">
+        <g id="stage-skyline-facades" className="sketch-building-detail opacity-90">
           {/* TOWER 1 VERTICAL MULLIONS */}
-          <g className="sketch-path" strokeWidth="0.75">
-            <line x1="816" y1="175" x2="816" y2="565" pathLength="1" />
-            <line x1="828" y1="140" x2="828" y2="565" pathLength="1" />
-            <line x1="840" y1="120" x2="840" y2="565" pathLength="1" />
-            <line x1="852" y1="110" x2="852" y2="565" pathLength="1" />
-            <line x1="864" y1="105" x2="864" y2="565" pathLength="1" />
-            <line x1="874" y1="145" x2="874" y2="565" pathLength="1" />
+          <g className="sketch-path" strokeWidth="1.3">
+            <line x1="816" y1="175" x2="816" y2="492" pathLength="1" />
+            <line x1="828" y1="140" x2="828" y2="492" pathLength="1" />
+            <line x1="840" y1="120" x2="840" y2="492" pathLength="1" />
+            <line x1="852" y1="110" x2="852" y2="492" pathLength="1" />
+            <line x1="864" y1="105" x2="864" y2="492" pathLength="1" />
+            <line x1="874" y1="145" x2="874" y2="492" pathLength="1" />
           </g>
 
           {/* TOWER 1 HORIZONTAL FLOOR SLABS (Spandrels) */}
-          <g className="sketch-path" strokeWidth="0.6">
+          <g className="sketch-path" strokeWidth="1.1">
             <line x1="824" y1="150" x2="880" y2="150" pathLength="1" />
             <line x1="818" y1="170" x2="880" y2="170" pathLength="1" />
             <line x1="812" y1="190" x2="880" y2="190" pathLength="1" />
@@ -329,13 +329,10 @@ export const ArchitecturalLineArt: React.FC<ArchitecturalLineArtProps> = ({
             <line x1="800" y1="450" x2="874" y2="450" pathLength="1" />
             <line x1="800" y1="470" x2="874" y2="470" pathLength="1" />
             <line x1="800" y1="490" x2="874" y2="490" pathLength="1" />
-            <line x1="800" y1="510" x2="874" y2="510" pathLength="1" />
-            <line x1="800" y1="530" x2="874" y2="530" pathLength="1" />
-            <line x1="800" y1="550" x2="874" y2="550" pathLength="1" />
           </g>
 
           {/* TOWER 2 STRUCTURAL CROSS BRACING & FACADES */}
-          <g className="sketch-path" strokeWidth="0.65">
+          <g className="sketch-path" strokeWidth="1.2">
             <line x1="756" y1="290" x2="782" y2="290" pathLength="1" />
             <line x1="742" y1="340" x2="794" y2="340" pathLength="1" />
             <line x1="742" y1="365" x2="794" y2="365" pathLength="1" />
@@ -344,17 +341,13 @@ export const ArchitecturalLineArt: React.FC<ArchitecturalLineArtProps> = ({
             <line x1="742" y1="440" x2="794" y2="440" pathLength="1" />
             <line x1="742" y1="465" x2="794" y2="465" pathLength="1" />
             <line x1="742" y1="490" x2="794" y2="490" pathLength="1" />
-            <line x1="742" y1="515" x2="794" y2="515" pathLength="1" />
-            <line x1="742" y1="540" x2="794" y2="540" pathLength="1" />
             {/* Diagonal Trusses */}
             <line x1="742" y1="390" x2="794" y2="440" pathLength="1" strokeDasharray="3 2" />
             <line x1="794" y1="390" x2="742" y2="440" pathLength="1" strokeDasharray="3 2" />
-            <line x1="742" y1="490" x2="794" y2="540" pathLength="1" strokeDasharray="3 2" />
-            <line x1="794" y1="490" x2="742" y2="540" pathLength="1" strokeDasharray="3 2" />
           </g>
 
           {/* TOWER 3 RIBBON WINDOWS (Horizontal Architectural Slits) */}
-          <g className="sketch-path" strokeWidth="0.75">
+          <g className="sketch-path" strokeWidth="1.3">
             <line x1="645" y1="390" x2="730" y2="390" pathLength="1" />
             <line x1="645" y1="400" x2="730" y2="400" pathLength="1" />
             <line x1="645" y1="416" x2="730" y2="416" pathLength="1" />
@@ -363,136 +356,102 @@ export const ArchitecturalLineArt: React.FC<ArchitecturalLineArtProps> = ({
             <line x1="645" y1="452" x2="730" y2="452" pathLength="1" />
             <line x1="645" y1="468" x2="730" y2="468" pathLength="1" />
             <line x1="645" y1="478" x2="730" y2="478" pathLength="1" />
-            <line x1="645" y1="494" x2="730" y2="494" pathLength="1" />
-            <line x1="645" y1="504" x2="730" y2="504" pathLength="1" />
-            <line x1="645" y1="520" x2="730" y2="520" pathLength="1" />
-            <line x1="645" y1="530" x2="730" y2="530" pathLength="1" />
-            <line x1="645" y1="546" x2="730" y2="546" pathLength="1" />
-            <line x1="645" y1="556" x2="730" y2="556" pathLength="1" />
             {/* Vertical Mullion Ties */}
-            <line x1="662" y1="375" x2="662" y2="565" pathLength="1" strokeWidth="0.55" />
-            <line x1="684" y1="375" x2="684" y2="565" pathLength="1" strokeWidth="0.55" />
-            <line x1="706" y1="375" x2="706" y2="565" pathLength="1" strokeWidth="0.55" />
+            <line x1="662" y1="375" x2="662" y2="492" pathLength="1" strokeWidth="1.0" />
+            <line x1="684" y1="375" x2="684" y2="492" pathLength="1" strokeWidth="1.0" />
+            <line x1="706" y1="375" x2="706" y2="492" pathLength="1" strokeWidth="1.0" />
           </g>
 
           {/* TOWER 4 & 5 GEOMETRIC GRID WINDOWS */}
-          <g className="sketch-path" strokeWidth="0.6">
+          <g className="sketch-path" strokeWidth="1.1">
             <line x1="536" y1="370" x2="634" y2="370" pathLength="1" />
             <line x1="536" y1="395" x2="634" y2="395" pathLength="1" />
             <line x1="536" y1="420" x2="634" y2="420" pathLength="1" />
             <line x1="536" y1="445" x2="634" y2="445" pathLength="1" />
             <line x1="536" y1="470" x2="634" y2="470" pathLength="1" />
-            <line x1="536" y1="495" x2="634" y2="495" pathLength="1" />
-            <line x1="536" y1="520" x2="634" y2="520" pathLength="1" />
-            <line x1="536" y1="545" x2="634" y2="545" pathLength="1" />
-            <line x1="554" y1="345" x2="554" y2="565" pathLength="1" />
-            <line x1="586" y1="308" x2="586" y2="565" pathLength="1" />
-            <line x1="616" y1="352" x2="616" y2="565" pathLength="1" />
+            <line x1="554" y1="345" x2="554" y2="492" pathLength="1" />
+            <line x1="586" y1="308" x2="586" y2="492" pathLength="1" />
+            <line x1="616" y1="352" x2="616" y2="492" pathLength="1" />
 
             {/* Left Tower 5 Grid */}
             <line x1="445" y1="390" x2="530" y2="390" pathLength="1" />
             <line x1="445" y1="415" x2="530" y2="415" pathLength="1" />
             <line x1="445" y1="440" x2="530" y2="440" pathLength="1" />
             <line x1="445" y1="465" x2="530" y2="465" pathLength="1" />
-            <line x1="445" y1="490" x2="530" y2="490" pathLength="1" />
-            <line x1="445" y1="515" x2="530" y2="515" pathLength="1" />
-            <line x1="445" y1="540" x2="530" y2="540" pathLength="1" />
-            <line x1="472" y1="365" x2="472" y2="565" pathLength="1" />
-            <line x1="500" y1="338" x2="500" y2="565" pathLength="1" />
+            <line x1="472" y1="365" x2="472" y2="492" pathLength="1" />
+            <line x1="500" y1="338" x2="500" y2="492" pathLength="1" />
           </g>
 
-          {/* Podium Level Colonnade & Stylized Landscape Base */}
-          <line x1="420" y1="565" x2="910" y2="565" className="sketch-path" pathLength="1" strokeWidth="1.2" />
-          <path
-            d="M 430,565 C 460,555 490,560 520,552 C 550,562 580,555 610,560 C 640,550 670,558 700,552 C 730,562 760,554 790,558 C 820,550 850,562 880,555 L 900,565"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="0.8"
-          />
+          {/* Podium Level Baseline — Connecting Directly with the Handshake Top */}
+          <line x1="420" y1="492" x2="900" y2="492" className="sketch-path" pathLength="1" strokeWidth="2.0" />
         </g>
 
-                {/* ===================================================================== */}
+        {/* ===================================================================== */}
         {/* STAGE 3: FORMAL SUIT SLEEVES & SHIRT CUFFS                           */}
         {/* ===================================================================== */}
         <g id="stage-sleeves-and-cuffs" className="sketch-arms">
           {/* Left Suit Sleeve */}
           <path
-            d="M 290.3,376.2 L 297.3,376.2 L 398.1,440.6 L 342.1,548.4 L 323.2,593.9 L 304.3,647.8 L 302.9,648.5 L 249.7,622.6 L 249.7,579.2 L 256.0,556.1 L 273.5,474.9 L 286.8,402.8 L 290.3,376.9 Z"
+            d="M 319.0,401.2 L 325.4,401.2 L 416.8,459.6 L 366.0,557.4 L 348.9,598.7 L 331.7,647.6 L 330.4,648.2 L 282.2,624.7 L 282.2,585.3 L 287.9,564.4 L 303.8,490.7 L 315.8,425.3 L 319.0,401.8 Z"
             className="sketch-path"
             pathLength="1"
-            strokeWidth="1.8"
-          />
-          {/* Left Sleeve Tailoring Crease Lines */}
-          <path
-            d="M 285,580 C 315,610 338,655 352,705"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="0.85"
-            opacity="0.75"
+            strokeWidth="2.0"
           />
 
           {/* Right Suit Sleeve */}
           <path
-            d="M 811.8,439.2 L 836.3,426.6 L 863.5,410.5 L 911.9,379.0 L 923.0,411.2 L 932.1,447.6 L 944.0,509.2 L 958.0,592.5 L 958.0,620.5 L 911.1,645.7 L 901.4,650.6 L 900.0,649.9 L 882.5,582.7 L 862.1,526.0 L 850.3,499.4 L 837.0,474.2 L 825.0,456.0 L 811.8,439.9 Z"
+            d="M 792.1,458.3 L 814.3,446.9 L 839.1,432.3 L 882.9,403.7 L 893.1,432.9 L 901.3,466.0 L 912.1,521.8 L 924.8,597.4 L 924.8,622.8 L 882.3,645.7 L 873.4,650.1 L 872.1,649.5 L 856.2,588.5 L 837.8,537.1 L 827.0,513.0 L 814.9,490.1 L 804.2,473.6 L 792.1,459.0 Z"
             className="sketch-path"
             pathLength="1"
-            strokeWidth="1.8"
-          />
-          {/* Right Sleeve Tailoring Creases */}
-          <path
-            d="M 915,580 C 885,610 862,655 848,705"
-            className="sketch-path"
-            pathLength="1"
-            strokeWidth="0.85"
-            opacity="0.75"
+            strokeWidth="2.0"
           />
         </g>
 
         {/* ===================================================================== */}
-        {/* STAGE 3.5: ICONIC HANDSHAKE CONTOURS & 4 CLASPING FINGERS            */}
+        {/* STAGE 3.5: ICONIC HANDSHAKE CONTOURS (MEETING BASELINE DIRECTLY)      */}
         {/* ===================================================================== */}
         <g id="stage-handshake-contours" className="sketch-handshake">
           {/* Left Hand: Palm, Thumb Pocket & 4 Clasping Diagonal Fingers */}
           <path
-            d="M 413.5,477.0 L 412.1,483.3 L 415.6,487.5 L 450.6,507.1 L 460.4,512.0 L 469.5,514.8 L 485.6,515.5 L 508.0,512.0 L 547.9,508.5 L 539.5,526.0 L 514.3,561.7 L 511.5,569.4 L 511.5,577.1 L 512.9,580.6 L 521.3,590.4 L 528.3,594.6 L 543.7,598.8 L 557.7,598.8 L 568.2,596.7 L 582.9,590.4 L 591.3,584.1 L 601.0,572.9 L 607.4,563.1 L 624.2,569.4 L 650.8,582.7 L 665.5,593.9 L 684.4,614.9 L 761.4,690.5 L 771.9,705.9 L 777.5,717.1 L 778.9,722.0 L 778.1,735.3 L 775.4,740.2 L 768.4,745.8 L 763.5,747.2 L 754.4,745.8 L 736.9,731.8 L 673.9,666.7 L 673.2,668.8 L 678.8,680.7 L 689.3,696.8 L 700.5,710.1 L 733.4,742.3 L 736.2,746.5 L 739.0,754.2 L 738.3,766.1 L 732.0,775.9 L 723.5,780.8 L 711.7,782.2 L 701.9,778.7 L 692.0,769.6 L 666.9,740.2 L 643.8,717.1 L 643.0,718.5 L 645.2,724.1 L 653.5,739.5 L 683.0,778.7 L 685.8,787.1 L 684.4,797.6 L 677.4,806.0 L 668.3,810.2 L 658.5,810.2 L 647.3,806.7 L 631.9,781.5 L 618.5,768.9 L 603.9,759.8 L 602.5,761.9 L 624.9,786.4 L 631.9,796.2 L 636.0,807.4 L 636.0,815.1 L 634.0,820.0 L 625.5,827.0 L 611.5,831.2 L 599.0,831.2 L 610.2,821.4 L 616.5,810.9 L 617.9,801.8 L 616.5,793.4 L 613.7,787.1 L 606.0,779.4 L 599.0,776.6 L 592.7,775.9 L 582.9,778.0 L 580.8,765.4 L 578.0,759.1 L 571.0,750.7 L 566.0,747.9 L 554.2,746.5 L 538.8,751.4 L 540.9,743.0 L 540.2,733.2 L 533.9,720.6 L 526.2,713.6 L 517.8,710.1 L 508.0,709.4 L 479.3,719.2 L 479.3,702.4 L 475.1,693.3 L 468.8,686.3 L 457.6,680.7 L 447.1,680.0 L 440.1,681.4 L 424.7,687.7 L 401.6,652.0 L 389.7,638.7 L 379.2,632.4 L 350.5,621.2 L 347.7,623.3 L 340.7,638.7 L 336.5,644.3 L 330.9,648.5 L 332.3,633.8 L 366.6,551.2 L 401.6,480.5 L 408.6,473.5 L 412.1,474.2 L 412.8,476.3 Z"
+            d="M 430.8,492.6 L 429.5,498.4 L 432.7,502.2 L 464.4,519.9 L 473.3,524.4 L 481.6,526.9 L 496.2,527.6 L 516.5,524.4 L 552.7,521.2 L 545.1,537.1 L 522.2,569.5 L 519.7,576.5 L 519.7,583.4 L 520.9,586.6 L 528.6,595.5 L 534.9,599.3 L 548.9,603.1 L 561.6,603.1 L 571.1,601.2 L 584.4,595.5 L 592.1,589.8 L 601.0,579.6 L 606.7,570.7 L 621.9,576.5 L 646.0,588.5 L 659.4,598.7 L 676.5,617.7 L 746.4,686.3 L 755.9,700.3 L 761.0,710.4 L 762.2,714.9 L 761.6,727.0 L 759.1,731.4 L 752.7,736.5 L 748.3,737.7 L 740.0,736.5 L 724.1,723.8 L 667.0,664.7 L 666.4,666.6 L 671.4,677.4 L 681.0,692.0 L 691.1,704.1 L 721.0,733.3 L 723.5,737.1 L 726.0,744.1 L 725.4,754.9 L 719.7,763.8 L 712.1,768.2 L 701.3,769.5 L 692.4,766.3 L 683.5,758.1 L 660.6,731.4 L 639.7,710.4 L 639.1,711.7 L 641.0,716.8 L 648.6,730.8 L 675.2,766.3 L 677.8,773.9 L 676.5,783.5 L 670.2,791.1 L 661.9,794.9 L 653.0,794.9 L 642.9,791.7 L 628.9,768.9 L 616.8,757.4 L 603.5,749.2 L 602.2,751.1 L 622.5,773.3 L 628.9,782.2 L 632.7,792.4 L 632.7,799.3 L 630.8,803.8 L 623.2,810.1 L 610.5,813.9 L 599.0,813.9 L 609.2,805.1 L 614.9,795.5 L 616.2,787.3 L 614.9,779.7 L 612.4,773.9 L 605.4,767.0 L 599.0,764.4 L 593.3,763.8 L 584.4,765.7 L 582.5,754.3 L 580.0,748.5 L 573.6,740.9 L 569.2,738.4 L 558.4,737.1 L 544.4,741.6 L 546.3,733.9 L 545.7,725.0 L 540.0,713.6 L 533.0,707.3 L 525.4,704.1 L 516.5,703.5 L 490.5,712.3 L 490.5,697.1 L 486.7,688.9 L 480.9,682.5 L 470.8,677.4 L 461.3,676.8 L 454.9,678.1 L 440.9,683.8 L 420.0,651.4 L 409.2,639.3 L 399.7,633.6 L 373.6,623.4 L 371.1,625.4 L 364.7,639.3 L 360.9,644.4 L 355.8,648.2 L 357.1,634.9 L 388.2,559.9 L 420.0,495.8 L 426.3,489.5 L 429.5,490.1 L 430.1,492.0 Z"
             className="sketch-path"
             pathLength="1"
-            strokeWidth="1.85"
+            strokeWidth="2.0"
           />
 
           {/* Right Hand: Arching Thumb, Wrist & Feathered Muscle Creases */}
           <path
-            d="M 795.6,483.3 L 795.0,472.8 L 799.9,472.1 L 805.5,473.5 L 812.5,477.7 L 823.6,491.7 L 836.3,517.6 L 846.8,543.5 L 857.3,579.2 L 861.5,601.6 L 862.1,628.9 L 860.0,640.1 L 848.1,619.1 L 844.6,616.3 L 838.4,618.4 L 828.5,628.2 L 814.5,650.6 L 804.0,663.9 L 790.8,676.5 L 776.1,687.0 L 774.0,687.0 L 744.5,655.5 L 745.3,654.1 L 761.4,647.8 L 776.1,637.3 L 773.3,636.6 L 757.2,641.5 L 745.3,641.5 L 750.2,640.1 L 764.1,632.4 L 783.0,617.0 L 781.0,616.3 L 762.8,625.4 L 747.4,629.6 L 727.8,629.6 L 715.9,626.1 L 729.2,621.2 L 733.4,618.4 L 711.7,613.5 L 701.9,608.6 L 692.0,599.5 L 659.2,565.9 L 651.5,553.3 L 647.3,542.8 L 643.8,528.8 L 641.7,534.4 L 642.4,549.8 L 643.8,554.0 L 613.0,551.9 L 613.0,537.9 L 610.2,529.5 L 606.7,544.2 L 599.7,557.5 L 586.4,572.2 L 577.3,578.5 L 560.5,584.8 L 542.3,584.8 L 529.0,579.9 L 524.0,574.3 L 525.5,567.3 L 538.8,550.5 L 563.3,510.6 L 569.5,503.6 L 575.9,500.1 L 615.0,489.6 L 641.7,478.4 L 650.8,476.3 L 658.5,476.3 L 671.8,480.5 L 717.3,507.1 L 740.4,516.2 L 743.2,514.1 L 761.4,509.2 L 781.0,499.4 L 792.9,491.0 L 795.6,486.8 L 795.6,484.0 Z"
+            d="M 777.5,498.4 L 776.8,488.8 L 781.3,488.2 L 786.4,489.5 L 792.7,493.3 L 802.9,506.0 L 814.3,529.5 L 823.8,553.0 L 833.4,585.3 L 837.2,605.7 L 837.8,630.4 L 835.9,640.6 L 825.1,621.5 L 821.9,619.0 L 816.2,620.9 L 807.3,629.8 L 794.6,650.1 L 785.1,662.2 L 773.0,673.6 L 759.7,683.1 L 757.8,683.1 L 731.1,654.6 L 731.8,653.3 L 746.4,647.6 L 759.7,638.0 L 757.2,637.4 L 742.6,641.9 L 731.8,641.9 L 736.2,640.6 L 748.9,633.6 L 766.1,619.6 L 764.1,619.0 L 747.6,627.3 L 733.7,631.1 L 715.9,631.1 L 705.1,627.9 L 717.2,623.4 L 721.0,620.9 L 701.3,616.5 L 692.4,612.0 L 683.5,603.8 L 653.7,573.3 L 646.7,561.9 L 642.9,552.3 L 639.7,539.6 L 637.8,544.7 L 638.4,558.7 L 639.7,562.5 L 611.7,560.6 L 611.7,547.9 L 609.2,540.3 L 606.0,553.6 L 599.7,565.7 L 587.6,579.0 L 579.4,584.7 L 564.1,590.4 L 547.6,590.4 L 535.5,586.0 L 531.1,580.9 L 532.4,574.5 L 544.4,559.3 L 566.7,523.1 L 572.4,516.8 L 578.1,513.6 L 613.7,504.1 L 637.8,493.9 L 646.0,492.0 L 653.0,492.0 L 665.1,495.8 L 706.4,519.9 L 727.3,528.2 L 729.9,526.3 L 746.4,521.8 L 764.1,513.0 L 774.9,505.3 L 777.5,501.5 L 777.5,499.0 Z"
             className="sketch-path"
             pathLength="1"
-            strokeWidth="1.85"
+            strokeWidth="2.0"
           />
 
           {/* 4 Curled Fingers of Right Hand Wrapping From Underneath Along Lower-Left */}
           <g id="stage-curled-fingers">
             <path
-              d="M 410.0,699.6 L 411.4,697.5 L 410.0,708.7 L 411.4,712.9 L 413.5,713.6 L 436.6,695.4 L 443.6,692.6 L 452.7,692.6 L 461.1,696.1 L 467.4,702.4 L 470.2,709.4 L 468.8,717.8 L 461.1,729.7 L 452.7,738.1 L 445.7,743.0 L 442.2,744.4 L 435.2,744.4 L 423.3,741.6 L 414.9,736.0 L 410.7,731.1 L 406.5,720.6 L 406.5,709.4 L 410.0,700.3 Z"
+              d="M 427.6,694.6 L 428.9,692.7 L 427.6,702.8 L 428.9,706.6 L 430.8,707.3 L 451.7,690.8 L 458.1,688.2 L 466.3,688.2 L 474.0,691.4 L 479.7,697.1 L 482.2,703.5 L 480.9,711.1 L 474.0,721.9 L 466.3,729.5 L 460.0,733.9 L 456.8,735.2 L 450.5,735.2 L 439.7,732.7 L 432.0,727.6 L 428.2,723.1 L 424.4,713.6 L 424.4,703.5 L 427.6,695.2 Z"
               className="sketch-path"
               pathLength="1"
-              strokeWidth="1.75"
+              strokeWidth="1.8"
             />
             <path
-              d="M 454.1,753.5 L 458.3,748.6 L 466.7,743.7 L 498.2,727.6 L 504.5,725.5 L 512.2,726.2 L 519.2,730.4 L 525.5,738.1 L 528.3,744.4 L 527.5,752.1 L 522.0,759.1 L 496.8,780.1 L 485.6,785.7 L 475.1,785.7 L 469.5,783.6 L 457.6,768.9 L 454.1,761.2 L 454.1,754.2 Z"
+              d="M 467.6,743.5 L 471.4,739.0 L 479.0,734.6 L 507.6,720.0 L 513.3,718.1 L 520.3,718.7 L 526.7,722.5 L 532.4,729.5 L 534.9,735.2 L 534.3,742.2 L 529.2,748.5 L 506.3,767.6 L 496.2,772.7 L 486.7,772.7 L 481.6,770.8 L 470.8,757.4 L 467.6,750.4 L 467.6,744.1 Z"
               className="sketch-path"
               pathLength="1"
-              strokeWidth="1.75"
+              strokeWidth="1.8"
             />
             <path
-              d="M 498.9,792.0 L 521.3,774.5 L 533.2,767.5 L 549.3,760.5 L 553.5,759.8 L 563.3,764.0 L 568.9,769.6 L 571.7,776.6 L 571.7,785.7 L 568.9,791.3 L 535.3,818.6 L 527.5,822.1 L 517.8,821.4 L 508.7,815.1 L 498.9,802.5 L 497.5,799.0 L 497.5,794.8 L 498.9,792.7 Z"
+              d="M 508.2,778.4 L 528.6,762.5 L 539.4,756.2 L 554.0,749.8 L 557.8,749.2 L 566.7,753.0 L 571.7,758.1 L 574.3,764.4 L 574.3,772.7 L 571.7,777.8 L 541.3,802.5 L 534.3,805.7 L 525.4,805.1 L 517.1,799.3 L 508.2,787.9 L 507.0,784.7 L 507.0,780.9 L 508.2,779.0 Z"
               className="sketch-path"
               pathLength="1"
-              strokeWidth="1.75"
+              strokeWidth="1.8"
             />
             <path
-              d="M 549.3,817.9 L 553.5,813.0 L 588.5,790.6 L 594.8,789.9 L 599.0,791.3 L 606.0,797.6 L 608.8,803.9 L 608.8,811.6 L 603.2,821.4 L 591.3,832.6 L 583.5,836.8 L 560.5,836.8 L 557.7,835.4 L 550.7,828.4 L 548.5,823.5 L 549.3,818.6 Z"
+              d="M 554.0,801.9 L 557.8,797.4 L 589.5,777.1 L 595.2,776.5 L 599.0,777.8 L 605.4,783.5 L 607.9,789.2 L 607.9,796.2 L 602.9,805.1 L 592.1,815.2 L 585.1,819.0 L 564.1,819.0 L 561.6,817.8 L 555.2,811.4 L 553.3,807.0 L 554.0,802.5 Z"
               className="sketch-path"
               pathLength="1"
-              strokeWidth="1.75"
+              strokeWidth="1.8"
             />
           </g>
         </g>
