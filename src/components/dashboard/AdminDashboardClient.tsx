@@ -128,7 +128,7 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by client, location, reference #, or typology..."
-            className="w-full bg-white/95 border border-[#24322A]/25 focus:border-[#2E5A44] text-[#0B0F0D] text-xs font-mono pl-10 pr-3.5 py-2.5 outline-none transition-colors placeholder:text-[#68776F] shadow-sm font-medium"
+            className="w-full bg-[#FAF8F5] border border-[#24322A]/25 focus:border-[#2E5A44] text-[#0B0F0D] text-xs font-mono pl-10 pr-3.5 py-2.5 outline-none transition-colors placeholder:text-[#68776F] shadow-xs font-medium"
           />
         </div>
 

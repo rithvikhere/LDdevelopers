@@ -64,19 +64,19 @@ export default function RegisterPage() {
 
       {/* Main Container */}
       <main className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-12 relative z-10">
-        <div className="w-full max-w-md bg-white/90 backdrop-blur-md border border-[#24322A]/20 p-6 sm:p-10 relative isolate shadow-2xl">
+        <div className="w-full max-w-md bg-[#F5F2EB]/95 backdrop-blur-md border border-[#24322A]/20 p-6 sm:p-10 relative isolate shadow-2xl">
           {/* Subtle Top Accent */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#2E5A44] via-[#C5B083] to-[#2E5A44]" />
 
           {/* Heading */}
           <div className="mb-8">
-            <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#2E5A44] mb-2 font-semibold">
+            <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#1F4A36] mb-2 font-semibold">
               CLIENT REGISTRATION
             </div>
             <h1 className="font-display text-3xl font-light text-[#0B0F0D] tracking-tight">
               Create Client Account
             </h1>
-            <p className="text-xs text-[#2A332E] font-light mt-2 leading-relaxed">
+            <p className="text-xs text-[#1A231F] font-light mt-2 leading-relaxed">
               Register to access your personal construction portal, track project milestones, and submit architectural briefs.
             </p>
           </div>
@@ -91,86 +91,86 @@ export default function RegisterPage() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-[10px] font-mono tracking-wider text-[#1F2924] uppercase mb-1 font-semibold">
+              <label className="block text-[10px] font-mono tracking-wider text-[#141E18] uppercase mb-1 font-semibold">
                 Full Legal Name *
               </label>
               <div className="relative">
-                <User className="w-4 h-4 text-[#5A6B62] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <User className="w-4 h-4 text-[#1F4A36] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type="text"
                   required
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="e.g., Vikramaditya Sharma"
-                  className="w-full bg-white/95 border border-[#24322A]/20 focus:border-[#2E5A44] text-[#0B0F0D] text-sm pl-10 pr-3.5 py-2.5 transition-colors placeholder:text-[#5A6B62]/60 outline-none shadow-xs"
+                  className="w-full bg-[#FAF8F5] border border-[#24322A]/20 focus:border-[#2E5A44] text-[#0B0F0D] text-sm pl-10 pr-3.5 py-2.5 transition-colors placeholder:text-[#5A6B62]/70 outline-none shadow-xs font-medium"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[10px] font-mono tracking-wider text-[#1F2924] uppercase mb-1 font-semibold">
+              <label className="block text-[10px] font-mono tracking-wider text-[#141E18] uppercase mb-1 font-semibold">
                 Email Address *
               </label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-[#5A6B62] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <Mail className="w-4 h-4 text-[#1F4A36] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="vikram@example.com"
-                  className="w-full bg-white/95 border border-[#24322A]/20 focus:border-[#2E5A44] text-[#0B0F0D] text-sm pl-10 pr-3.5 py-2.5 transition-colors placeholder:text-[#5A6B62]/60 outline-none shadow-xs"
+                  className="w-full bg-[#FAF8F5] border border-[#24322A]/20 focus:border-[#2E5A44] text-[#0B0F0D] text-sm pl-10 pr-3.5 py-2.5 transition-colors placeholder:text-[#5A6B62]/70 outline-none shadow-xs font-medium"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[10px] font-mono tracking-wider text-[#1F2924] uppercase mb-1 font-semibold">
+              <label className="block text-[10px] font-mono tracking-wider text-[#141E18] uppercase mb-1 font-semibold">
                 Phone Number *
               </label>
               <div className="relative">
-                <Phone className="w-4 h-4 text-[#5A6B62] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <Phone className="w-4 h-4 text-[#1F4A36] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type="tel"
                   required
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="+91 98450 12345"
-                  className="w-full bg-white/95 border border-[#24322A]/20 focus:border-[#2E5A44] text-[#0B0F0D] text-sm pl-10 pr-3.5 py-2.5 transition-colors placeholder:text-[#5A6B62]/60 outline-none shadow-xs"
+                  className="w-full bg-[#FAF8F5] border border-[#24322A]/20 focus:border-[#2E5A44] text-[#0B0F0D] text-sm pl-10 pr-3.5 py-2.5 transition-colors placeholder:text-[#5A6B62]/70 outline-none shadow-xs font-medium"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[10px] font-mono tracking-wider text-[#1F2924] uppercase mb-1 font-semibold">
+              <label className="block text-[10px] font-mono tracking-wider text-[#141E18] uppercase mb-1 font-semibold">
                 Password (min. 8 characters) *
               </label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-[#5A6B62] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <Lock className="w-4 h-4 text-[#1F4A36] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type="password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full bg-white/95 border border-[#24322A]/20 focus:border-[#2E5A44] text-[#0B0F0D] text-sm pl-10 pr-3.5 py-2.5 transition-colors placeholder:text-[#5A6B62]/60 outline-none shadow-xs"
+                  className="w-full bg-[#FAF8F5] border border-[#24322A]/20 focus:border-[#2E5A44] text-[#0B0F0D] text-sm pl-10 pr-3.5 py-2.5 transition-colors placeholder:text-[#5A6B62]/70 outline-none shadow-xs font-medium"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[10px] font-mono tracking-wider text-[#1F2924] uppercase mb-1 font-semibold">
+              <label className="block text-[10px] font-mono tracking-wider text-[#141E18] uppercase mb-1 font-semibold">
                 Confirm Password *
               </label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-[#5A6B62] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <Lock className="w-4 h-4 text-[#1F4A36] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type="password"
                   required
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full bg-white/95 border border-[#24322A]/20 focus:border-[#2E5A44] text-[#0B0F0D] text-sm pl-10 pr-3.5 py-2.5 transition-colors placeholder:text-[#5A6B62]/60 outline-none shadow-xs"
+                  className="w-full bg-[#FAF8F5] border border-[#24322A]/20 focus:border-[#2E5A44] text-[#0B0F0D] text-sm pl-10 pr-3.5 py-2.5 transition-colors placeholder:text-[#5A6B62]/70 outline-none shadow-xs font-medium"
                 />
               </div>
             </div>

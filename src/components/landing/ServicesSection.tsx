@@ -101,40 +101,40 @@ export const ServicesSection: React.FC = () => {
                 delay={0.1 + index * 0.08}
                 withFrame={false}
               >
-                <div className="group relative h-full border border-[#24322A]/15 bg-white/90 backdrop-blur-md p-8 sm:p-10 hover:border-[#2E5A44]/60 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col justify-between">
+                <div className="group relative h-full border border-[#24322A]/20 bg-[#F5F2EB]/95 backdrop-blur-md p-8 sm:p-10 hover:border-[#2E5A44]/60 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col justify-between">
                   {/* Subtle hover gradient wash */}
                   <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#2E5A44]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
                   <div className="relative z-10 space-y-4">
                     {/* Top Eyebrow Row: Number, Category & Icon */}
-                    <div className="flex items-center justify-between pb-2 border-b border-[#24322A]/10">
+                    <div className="flex items-center justify-between pb-2 border-b border-[#24322A]/15">
                       <div className="flex items-center gap-3">
-                        <span className="font-display text-3xl sm:text-4xl font-light text-[#2E5A44]">
+                        <span className="font-display text-3xl sm:text-4xl font-light text-[#1F4A36]">
                           {item.number}
                         </span>
-                        <span className="text-[10px] font-mono tracking-[0.25em] text-[#41554A] font-semibold uppercase">
+                        <span className="text-[10px] font-mono tracking-[0.25em] text-[#3B4B42] font-semibold uppercase">
                           {item.category}
                         </span>
                       </div>
-                      <div className="w-9 h-9 rounded-full bg-[#2E5A44]/10 flex items-center justify-center text-[#2E5A44] group-hover:bg-[#2E5A44] group-hover:text-white transition-colors duration-300">
+                      <div className="w-9 h-9 rounded-full bg-[#1F4A36]/10 flex items-center justify-center text-[#1F4A36] group-hover:bg-[#2E5A44] group-hover:text-white transition-colors duration-300">
                         <Icon className="w-4 h-4" />
                       </div>
                     </div>
 
                     {/* Service Title */}
-                    <h3 className="font-display text-2xl sm:text-3xl font-light text-[#0B0F0D] group-hover:text-[#2E5A44] transition-colors duration-300 tracking-tight leading-tight">
+                    <h3 className="font-display text-2xl sm:text-3xl font-light text-[#0B0F0D] group-hover:text-[#1F4A36] transition-colors duration-300 tracking-tight leading-tight">
                       {item.title}
                     </h3>
 
                     {/* Tagline */}
-                    <p className="text-xs sm:text-sm text-[#2E5A44] font-medium italic leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#1F4A36] font-medium italic leading-relaxed">
                       &ldquo;{item.tagline}&rdquo;
                     </p>
 
-                    <div className="h-px bg-[#2E5A44]/20 w-16 pt-1" />
+                    <div className="h-px bg-[#24322A]/15 w-16 pt-1" />
 
                     {/* Description */}
-                    <p className="text-xs sm:text-sm text-[#2A332E] font-light leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#1A231F] font-light leading-relaxed">
                       {item.description}
                     </p>
                   </div>

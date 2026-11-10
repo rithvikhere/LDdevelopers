@@ -78,7 +78,7 @@ export const ProjectsSection: React.FC = () => {
         {/* 1. Primary Featured Project (Full-Width Asymmetrical Showcase) */}
         {featured && (
           <KairosDepthReveal delay={0.1} withFrame={false} className="mb-12 sm:mb-16">
-            <div className="group relative border border-[#24322A]/20 bg-white/90 backdrop-blur-md shadow-2xl overflow-hidden hover:border-[#2E5A44]/50 transition-colors duration-500">
+            <div className="group relative border border-[#24322A]/20 bg-[#F5F2EB]/95 backdrop-blur-md shadow-2xl overflow-hidden hover:border-[#2E5A44]/50 transition-colors duration-500">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
                 {/* Image Aspect Box */}
                 <div className="lg:col-span-7 relative min-h-[360px] sm:min-h-[460px] lg:min-h-[540px] overflow-hidden bg-[#0B0F0D]">
@@ -148,7 +148,7 @@ export const ProjectsSection: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 mb-12 sm:mb-16">
             {secondary.map((proj, idx) => (
               <KairosDepthReveal key={proj.id} delay={0.15 + idx * 0.1} withFrame={false}>
-                <div className="group border border-[#24322A]/15 bg-white/90 backdrop-blur-md shadow-xl hover:shadow-2xl overflow-hidden hover:border-[#2E5A44]/50 transition-all duration-500">
+                <div className="group border border-[#24322A]/15 bg-[#F5F2EB]/95 backdrop-blur-md shadow-xl hover:shadow-2xl overflow-hidden hover:border-[#2E5A44]/50 transition-all duration-500">
                   <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0B0F0D]">
                     <Image
                       src={proj.image}
@@ -163,25 +163,25 @@ export const ProjectsSection: React.FC = () => {
                   </div>
 
                   <div className="p-6 sm:p-8 space-y-4">
-                    <div className="flex items-center gap-2 text-[10px] font-mono text-[#2E5A44] font-semibold">
-                      <MapPin className="w-3 h-3 text-[#2E5A44]" />
+                    <div className="flex items-center gap-2 text-[10px] font-mono text-[#1F4A36] font-semibold">
+                      <MapPin className="w-3 h-3 text-[#1F4A36]" />
                       <span>{proj.locationPlaceholder}</span>
                     </div>
 
-                    <h4 className="font-display text-2xl font-light text-[#0B0F0D] group-hover:text-[#2E5A44] transition-colors leading-tight">
+                    <h4 className="font-display text-2xl font-light text-[#0B0F0D] group-hover:text-[#1F4A36] transition-colors leading-tight">
                       {proj.title}
                     </h4>
 
-                    <p className="text-xs text-[#2A332E] font-light leading-relaxed line-clamp-2">
+                    <p className="text-xs text-[#1A231F] font-light leading-relaxed line-clamp-2">
                       {proj.description}
                     </p>
 
                     <div className="pt-4 border-t border-[#24322A]/15 flex items-center justify-between text-xs font-mono">
-                      <span className="text-[#2E5A44] font-semibold">{proj.specifications.area}</span>
+                      <span className="text-[#1F4A36] font-semibold">{proj.specifications.area}</span>
                       <a
                         href="#contact"
                         onClick={scrollToContact}
-                        className="inline-flex items-center gap-1.5 text-[#0B0F0D] hover:text-[#2E5A44] font-semibold uppercase text-[10px] tracking-wider transition-colors"
+                        className="inline-flex items-center gap-1.5 text-[#0B0F0D] hover:text-[#1F4A36] font-semibold uppercase text-[10px] tracking-wider transition-colors"
                       >
                         <span>Details</span>
                         <ArrowUpRight className="w-3 h-3" />
@@ -202,7 +202,7 @@ export const ProjectsSection: React.FC = () => {
             </div>
             {remaining.map((item, rIdx) => (
               <KairosDepthReveal key={item.id} delay={0.1 + rIdx * 0.05}>
-                <div className="group py-4 px-6 border border-[#24322A]/15 hover:border-[#2E5A44]/50 bg-white/90 hover:bg-white/95 backdrop-blur-md shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300">
+                <div className="group py-4 px-6 border border-[#24322A]/15 hover:border-[#2E5A44]/50 bg-[#F5F2EB]/95 backdrop-blur-md shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300">
                   <div className="flex items-center gap-4">
                     <span className="text-xs font-mono text-[#2E5A44] font-semibold">0{4 + rIdx}</span>
                     <div>

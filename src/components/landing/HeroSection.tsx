@@ -86,16 +86,16 @@ export const HeroSection: React.FC = () => {
           <a
             href="#services"
             onClick={scrollToServices}
-            className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white/95 hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] px-8 py-3.5 text-xs font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-xl hover:shadow-[#2E5A44]/25"
+            className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#F5F2EB] hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] px-8 py-3.5 text-xs font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-xl hover:shadow-[#2E5A44]/25"
           >
             <span>Explore Our Services</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-[#2E5A44] group-hover:text-[#C5B083] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <ArrowUpRight className="w-3.5 h-3.5 text-[#1F4A36] group-hover:text-[#C5B083] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
 
           <a
             href="#contact"
             onClick={scrollToContact}
-            className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white/80 hover:bg-white/95 border border-[#24322A]/20 text-[#1F2924] hover:text-[#0B0F0D] px-8 py-3.5 text-xs font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-md"
+            className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#F5F2EB]/80 hover:bg-[#F5F2EB] border border-[#24322A]/20 text-[#141E18] hover:text-[#0B0F0D] px-8 py-3.5 text-xs font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-md"
           >
             <span>Begin Your Journey</span>
           </a>

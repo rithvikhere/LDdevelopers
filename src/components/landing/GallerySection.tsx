@@ -159,15 +159,15 @@ export const GallerySection: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0D] via-transparent to-transparent opacity-60 group-hover:opacity-85 transition-opacity" />
 
                 {/* Hover Meta Overlay */}
-                <div className="absolute inset-0 p-6 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 backdrop-blur-sm">
+                <div className="absolute inset-0 p-6 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#F5F2EB]/95 backdrop-blur-sm">
                   <div className="flex justify-end">
-                    <span className="w-8 h-8 bg-white text-[#2E5A44] flex items-center justify-center border border-[#2E5A44]/30 shadow-sm">
+                    <span className="w-8 h-8 bg-[#ECE8DE] text-[#1F4A36] flex items-center justify-center border border-[#24322A]/20 shadow-xs">
                       <ZoomIn className="w-4 h-4" />
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#2E5A44] font-semibold font-mono block">
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#1F4A36] font-semibold font-mono block">
                       {item.category}
                     </span>
                     <h4 className="font-display text-xl sm:text-2xl text-[#0B0F0D] mt-1 font-medium">
@@ -211,7 +211,7 @@ export const GallerySection: React.FC = () => {
               <button
                 ref={closeButtonRef}
                 onClick={closeModal}
-                className="p-2.5 bg-white/95 text-[#0B0F0D] hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 shadow-md transition-colors cursor-pointer"
+                className="p-2.5 bg-[#F5F2EB] text-[#0B0F0D] hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 shadow-md transition-colors cursor-pointer"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
@@ -220,7 +220,7 @@ export const GallerySection: React.FC = () => {
 
             <button
               onClick={handlePrev}
-              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-3 bg-white/95 hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] shadow-md transition-colors cursor-pointer z-10"
+              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-3 bg-[#F5F2EB] hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] shadow-md transition-colors cursor-pointer z-10"
               aria-label="Previous photograph"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -228,7 +228,7 @@ export const GallerySection: React.FC = () => {
 
             <button
               onClick={handleNext}
-              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-3 bg-white/95 hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] shadow-md transition-colors cursor-pointer z-10"
+              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-3 bg-[#F5F2EB] hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] shadow-md transition-colors cursor-pointer z-10"
               aria-label="Next photograph"
             >
               <ChevronRight className="w-5 h-5" />
@@ -249,14 +249,14 @@ export const GallerySection: React.FC = () => {
                 />
               </div>
 
-              <div className="w-full mt-4 p-4 bg-white/95 backdrop-blur-md border border-[#24322A]/15 shadow-xl flex items-center justify-between text-xs font-mono">
+              <div className="w-full mt-4 p-4 bg-[#F5F2EB]/95 backdrop-blur-md border border-[#24322A]/15 shadow-xl flex items-center justify-between text-xs font-mono">
                 <div>
-                  <span className="text-[#2E5A44] block text-[10px] uppercase tracking-widest font-semibold">
+                  <span className="text-[#1F4A36] block text-[10px] uppercase tracking-widest font-semibold">
                     {activeItem.category}
                   </span>
                   <span className="text-[#0B0F0D] text-base font-display font-medium">{activeItem.title}</span>
                 </div>
-                <span className="text-[#5A6B62] font-semibold">
+                <span className="text-[#3B4B42] font-semibold">
                   {selectedIndex + 1} / {siteAssets.gallery.length}
                 </span>
               </div>

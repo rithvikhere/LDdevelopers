@@ -153,58 +153,58 @@ export const ContactSection: React.FC = () => {
             <KairosDepthReveal delay={0.2} withFrame={true}>
               <div className="space-y-6">
                 <div>
-                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#2E5A44] font-semibold">
+                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#1F4A36] font-semibold">
                     PRINCIPAL STUDIO
                   </span>
                   <h3 className="font-display text-2xl font-light text-[#0B0F0D] mt-1">
                     Design Desk &amp; Consultation
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#2A332E] font-light mt-2 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#1A231F] font-light mt-2 leading-relaxed">
                     Available for site visits, zoning assessments, and private client architectural briefings across Telangana and Karnataka.
                   </p>
                 </div>
 
                 <div className="space-y-4 pt-4 border-t border-[#24322A]/15 text-xs font-mono">
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 bg-white/95 border border-[#24322A]/15 shadow-sm flex items-center justify-center shrink-0">
-                      <MapPin className="w-4 h-4 text-[#2E5A44]" />
+                    <div className="w-8 h-8 bg-[#ECE8DE] border border-[#24322A]/20 shadow-xs flex items-center justify-center shrink-0">
+                      <MapPin className="w-4 h-4 text-[#1F4A36]" />
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase text-[#5A6B62] font-semibold block">Location</span>
+                      <span className="text-[10px] uppercase text-[#3B4B42] font-semibold block">Location</span>
                       <span className="text-[#0B0F0D] font-medium">{siteAssets.contact.addressPlaceholder}</span>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 bg-white/95 border border-[#24322A]/15 shadow-sm flex items-center justify-center shrink-0">
-                      <Phone className="w-4 h-4 text-[#2E5A44]" />
+                    <div className="w-8 h-8 bg-[#ECE8DE] border border-[#24322A]/20 shadow-xs flex items-center justify-center shrink-0">
+                      <Phone className="w-4 h-4 text-[#1F4A36]" />
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase text-[#5A6B62] font-semibold block">Direct Studio Line</span>
-                      <a href={`tel:${siteAssets.contact.phonePlaceholder}`} className="text-[#0B0F0D] font-medium hover:text-[#2E5A44] transition-colors">
+                      <span className="text-[10px] uppercase text-[#3B4B42] font-semibold block">Direct Studio Line</span>
+                      <a href={`tel:${siteAssets.contact.phonePlaceholder}`} className="text-[#0B0F0D] font-medium hover:text-[#1F4A36] transition-colors">
                         {siteAssets.contact.phonePlaceholder}
                       </a>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 bg-white/95 border border-[#24322A]/15 shadow-sm flex items-center justify-center shrink-0">
-                      <Mail className="w-4 h-4 text-[#2E5A44]" />
+                    <div className="w-8 h-8 bg-[#ECE8DE] border border-[#24322A]/20 shadow-xs flex items-center justify-center shrink-0">
+                      <Mail className="w-4 h-4 text-[#1F4A36]" />
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase text-[#5A6B62] font-semibold block">Inquiries</span>
-                      <a href={`mailto:${siteAssets.contact.emailPlaceholder}`} className="text-[#0B0F0D] font-medium hover:text-[#2E5A44] transition-colors">
+                      <span className="text-[10px] uppercase text-[#3B4B42] font-semibold block">Inquiries</span>
+                      <a href={`mailto:${siteAssets.contact.emailPlaceholder}`} className="text-[#0B0F0D] font-medium hover:text-[#1F4A36] transition-colors">
                         {siteAssets.contact.emailPlaceholder}
                       </a>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 bg-white/95 border border-[#24322A]/15 shadow-sm flex items-center justify-center shrink-0">
-                      <Clock className="w-4 h-4 text-[#2E5A44]" />
+                    <div className="w-8 h-8 bg-[#ECE8DE] border border-[#24322A]/20 shadow-xs flex items-center justify-center shrink-0">
+                      <Clock className="w-4 h-4 text-[#1F4A36]" />
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase text-[#5A6B62] font-semibold block">Hours</span>
+                      <span className="text-[10px] uppercase text-[#3B4B42] font-semibold block">Hours</span>
                       <span className="text-[#0B0F0D] font-medium">{siteAssets.contact.businessHoursPlaceholder}</span>
                     </div>
                   </div>
@@ -237,18 +237,18 @@ export const ContactSection: React.FC = () => {
           {/* Right Column: Architectural Intake Form (Columns 6-12) */}
           <div className="lg:col-span-7">
             <KairosDepthReveal delay={0.25} withFrame={false}>
-              <div className="border border-[#24322A]/20 bg-white/90 backdrop-blur-md shadow-2xl p-8 sm:p-12 relative overflow-hidden">
+              <div className="border border-[#24322A]/20 bg-[#F5F2EB]/95 backdrop-blur-md shadow-2xl p-8 sm:p-12 relative overflow-hidden">
                 <div className="pb-6 border-b border-[#24322A]/15 mb-8">
                   <div className="flex items-center gap-2 mb-2">
-                    <Sparkles className="w-3.5 h-3.5 text-[#2E5A44]" />
-                    <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#2E5A44] font-semibold">
+                    <Sparkles className="w-3.5 h-3.5 text-[#1F4A36]" />
+                    <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#1F4A36] font-semibold">
                       INTAKE DESK
                     </span>
                   </div>
                   <h3 className="font-display text-2xl sm:text-3xl font-light text-[#0B0F0D]">
                     Initiate Construction Enquiry
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#2A332E] font-light mt-1.5 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#1A231F] font-light mt-1.5 leading-relaxed">
                     Submit your plot parameters or development vision for preliminary zoning and structural review.
                   </p>
                 </div>
@@ -258,10 +258,10 @@ export const ContactSection: React.FC = () => {
                   <div className="space-y-6">
                     <div className="p-4 bg-[#2E5A44]/15 border border-[#2E5A44]/40 flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-[#2E5A44]" />
+                        <CheckCircle2 className="w-5 h-5 text-[#1F4A36]" />
                         <div>
                           <span className="text-xs font-display text-[#0B0F0D] font-semibold">Consultation Registered</span>
-                          <span className="block text-[10px] font-mono text-[#5A6B62]">{submittedData.timestamp}</span>
+                          <span className="block text-[10px] font-mono text-[#3B4B42]">{submittedData.timestamp}</span>
                         </div>
                       </div>
                       <span className="font-mono text-xs font-semibold text-[#F5F3EF] bg-[#0B0F0D] px-2.5 py-1 border border-[#24322A]">
@@ -270,28 +270,28 @@ export const ContactSection: React.FC = () => {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
-                      <div className="p-3.5 bg-white/95 border border-[#24322A]/15 shadow-sm">
-                        <span className="text-[10px] text-[#5A6B62] font-semibold uppercase block mb-1">Client Name</span>
+                      <div className="p-3.5 bg-[#ECE8DE] border border-[#24322A]/15 shadow-xs">
+                        <span className="text-[10px] text-[#3B4B42] font-semibold uppercase block mb-1">Client Name</span>
                         <span className="text-[#0B0F0D] font-semibold">{submittedData.data.fullName}</span>
                       </div>
-                      <div className="p-3.5 bg-white/95 border border-[#24322A]/15 shadow-sm">
-                        <span className="text-[10px] text-[#5A6B62] font-semibold uppercase block mb-1">Contact Phone</span>
+                      <div className="p-3.5 bg-[#ECE8DE] border border-[#24322A]/15 shadow-xs">
+                        <span className="text-[10px] text-[#3B4B42] font-semibold uppercase block mb-1">Contact Phone</span>
                         <span className="text-[#0B0F0D] font-semibold">{submittedData.data.phone}</span>
                       </div>
-                      <div className="p-3.5 bg-white/95 border border-[#24322A]/15 shadow-sm">
-                        <span className="text-[10px] text-[#5A6B62] font-semibold uppercase block mb-1">Selected Discipline</span>
-                        <span className="text-[#2E5A44] font-semibold">{submittedData.data.buildingType}</span>
+                      <div className="p-3.5 bg-[#ECE8DE] border border-[#24322A]/15 shadow-xs">
+                        <span className="text-[10px] text-[#3B4B42] font-semibold uppercase block mb-1">Selected Discipline</span>
+                        <span className="text-[#1F4A36] font-semibold">{submittedData.data.buildingType}</span>
                       </div>
-                      <div className="p-3.5 bg-white/95 border border-[#24322A]/15 shadow-sm">
-                        <span className="text-[10px] text-[#5A6B62] font-semibold uppercase block mb-1">Location / Parcel</span>
+                      <div className="p-3.5 bg-[#ECE8DE] border border-[#24322A]/15 shadow-xs">
+                        <span className="text-[10px] text-[#3B4B42] font-semibold uppercase block mb-1">Location / Parcel</span>
                         <span className="text-[#0B0F0D] font-semibold">{submittedData.data.location || "Consultation review"}</span>
                       </div>
                     </div>
 
                     {submittedData.data.visionNotes && (
-                      <div className="p-3.5 bg-white/95 border border-[#24322A]/15 shadow-sm text-xs font-mono">
-                        <span className="text-[10px] text-[#5A6B62] font-semibold uppercase block mb-1">Preliminary Vision Scope</span>
-                        <p className="text-[#2A332E] font-serif italic">&ldquo;{submittedData.data.visionNotes}&rdquo;</p>
+                      <div className="p-3.5 bg-[#ECE8DE] border border-[#24322A]/15 shadow-xs text-xs font-mono">
+                        <span className="text-[10px] text-[#3B4B42] font-semibold uppercase block mb-1">Preliminary Vision Scope</span>
+                        <p className="text-[#1A231F] font-serif italic">&ldquo;{submittedData.data.visionNotes}&rdquo;</p>
                       </div>
                     )}
 
@@ -299,14 +299,14 @@ export const ContactSection: React.FC = () => {
                       <button
                         type="button"
                         onClick={handleReset}
-                        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#2A332E] hover:text-[#2E5A44] font-semibold transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#1A231F] hover:text-[#1F4A36] font-semibold transition-colors cursor-pointer"
                       >
                         <RotateCcw className="w-3.5 h-3.5" />
                         <span>Submit Another Enquiry</span>
                       </button>
                       <Link
                         href="/login"
-                        className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#2E5A44] hover:text-[#0B0F0D] font-semibold transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#1F4A36] hover:text-[#0B0F0D] font-semibold transition-colors"
                       >
                         <span>Open Client Portal</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
@@ -314,10 +314,10 @@ export const ContactSection: React.FC = () => {
                     </div>
                   </div>
                 ) : (
-                  /* Active Form with Highlighted White Text Boxes */
+                  /* Active Form with Tactile Paper Inset Text Boxes */
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-[#1F2924] font-semibold uppercase mb-1.5">
+                      <label className="block text-[11px] font-mono tracking-wider text-[#141E18] font-semibold uppercase mb-1.5">
                         Client Representative Name *
                       </label>
                       <input
@@ -328,9 +328,9 @@ export const ContactSection: React.FC = () => {
                           if (errors.fullName) setErrors({ ...errors, fullName: undefined });
                         }}
                         placeholder="e.g., Rajeshwari Rao"
-                        className={`w-full bg-white/95 border ${
+                        className={`w-full bg-[#FAF8F5] border ${
                           errors.fullName ? "border-red-500" : "border-[#24322A]/25"
-                        } focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#68776F] outline-none shadow-sm`}
+                        } focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#68776F] outline-none shadow-xs`}
                       />
                       {errors.fullName && (
                         <p className="text-red-600 text-xs font-mono mt-1 font-semibold">{errors.fullName}</p>
@@ -339,7 +339,7 @@ export const ContactSection: React.FC = () => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-[11px] font-mono tracking-wider text-[#1F2924] font-semibold uppercase mb-1.5">
+                        <label className="block text-[11px] font-mono tracking-wider text-[#141E18] font-semibold uppercase mb-1.5">
                           Direct Contact Phone *
                         </label>
                         <input
@@ -350,9 +350,9 @@ export const ContactSection: React.FC = () => {
                             if (errors.phone) setErrors({ ...errors, phone: undefined });
                           }}
                           placeholder="+91 98450 12345"
-                          className={`w-full bg-white/95 border ${
+                          className={`w-full bg-[#FAF8F5] border ${
                             errors.phone ? "border-red-500" : "border-[#24322A]/25"
-                          } focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#68776F] outline-none shadow-sm`}
+                          } focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#68776F] outline-none shadow-xs`}
                         />
                         {errors.phone && (
                           <p className="text-red-600 text-xs font-mono mt-1 font-semibold">{errors.phone}</p>
@@ -360,13 +360,13 @@ export const ContactSection: React.FC = () => {
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-mono tracking-wider text-[#1F2924] font-semibold uppercase mb-1.5">
+                        <label className="block text-[11px] font-mono tracking-wider text-[#141E18] font-semibold uppercase mb-1.5">
                           Architectural Typology
                         </label>
                         <select
                           value={formData.buildingType}
                           onChange={(e) => setFormData({ ...formData, buildingType: e.target.value })}
-                          className="w-full bg-white/95 border border-[#24322A]/25 focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors outline-none cursor-pointer shadow-sm"
+                          className="w-full bg-[#FAF8F5] border border-[#24322A]/25 focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors outline-none cursor-pointer shadow-xs"
                         >
                           <option value="Bespoke Residential Architecture">Bespoke Residential Architecture</option>
                           <option value="Duplexes & Multi-Level Living">Duplexes &amp; Multi-Level Living</option>
@@ -379,7 +379,7 @@ export const ContactSection: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-[#1F2924] font-semibold uppercase mb-1.5">
+                      <label className="block text-[11px] font-mono tracking-wider text-[#141E18] font-semibold uppercase mb-1.5">
                         Site Location or Plot Parameters
                       </label>
                       <input
@@ -387,12 +387,12 @@ export const ContactSection: React.FC = () => {
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                         placeholder="e.g., Jubilee Hills, Hyderabad (4,800 sq.ft plot)"
-                        className="w-full bg-white/95 border border-[#24322A]/25 focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#68776F] outline-none shadow-sm"
+                        className="w-full bg-[#FAF8F5] border border-[#24322A]/25 focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#68776F] outline-none shadow-xs"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-[#1F2924] font-semibold uppercase mb-1.5">
+                      <label className="block text-[11px] font-mono tracking-wider text-[#141E18] font-semibold uppercase mb-1.5">
                         Preliminary Scope &amp; Vision Notes
                       </label>
                       <textarea
@@ -400,7 +400,7 @@ export const ContactSection: React.FC = () => {
                         value={formData.visionNotes}
                         onChange={(e) => setFormData({ ...formData, visionNotes: e.target.value })}
                         placeholder="Describe your design aspirations, timeline requirements, or structural preferences..."
-                        className="w-full bg-white/95 border border-[#24322A]/25 focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#68776F] outline-none resize-none shadow-sm"
+                        className="w-full bg-[#FAF8F5] border border-[#24322A]/25 focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#68776F] outline-none resize-none shadow-xs"
                       />
                     </div>
 
