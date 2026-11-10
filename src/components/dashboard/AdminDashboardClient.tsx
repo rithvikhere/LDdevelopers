@@ -36,7 +36,6 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const [isSyncing, setIsSyncing] = useState(false);
-  const [lastSyncedAt, setLastSyncedAt] = useState<Date>(new Date());
 
   const syncLatest = useCallback(async () => {
     try {
@@ -44,7 +43,6 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
       const latest = await getLatestEnquiriesAction();
       if (latest && Array.isArray(latest)) {
         setEnquiries(latest);
-        setLastSyncedAt(new Date());
       }
     } catch (err) {
       console.error("Failed to sync enquiries:", err);
@@ -61,7 +59,6 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
         const latest = await getLatestEnquiriesAction();
         if (active && latest && Array.isArray(latest)) {
           setEnquiries(latest);
-          setLastSyncedAt(new Date());
         }
       } catch (err) {
         console.warn("Background auto-poll:", err);
@@ -106,15 +103,15 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
   const getStatusBadge = (status: EnquiryStatus) => {
     switch (status) {
       case "new":
-        return "text-[#C5B083] border-[#C5B083]/50 bg-[#C5B083]/10";
+        return "text-[#8C6D23] border-[#8C6D23]/40 bg-[#FEF9EE]";
       case "contacted":
-        return "text-teal-400 border-teal-500/50 bg-teal-950/20";
+        return "text-[#0E7090] border-[#0E7090]/40 bg-[#ECFEFF]";
       case "in_progress":
-        return "text-emerald-400 border-emerald-500/50 bg-emerald-950/20";
+        return "text-[#15803D] border-[#15803D]/40 bg-[#F0FDF4]";
       case "completed":
-        return "text-blue-400 border-blue-500/50 bg-blue-950/20";
+        return "text-[#1D4ED8] border-[#1D4ED8]/40 bg-[#EFF6FF]";
       case "closed":
-        return "text-[#9EA8A1] border-[#24322A] bg-[#17201B]";
+        return "text-[#475569] border-[#CBD5E1] bg-[#F8FAFC]";
     }
   };
 
@@ -123,64 +120,57 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
       {/* Executive Header & KPIs */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#C5B083] mb-2">
+          <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#8C774B] font-semibold mb-2">
             ADMINISTRATIVE GOVERNANCE &amp; INQUIRY LEDGER
           </div>
-          <h1 className="font-display text-3xl sm:text-4xl font-light text-[#F5F3EF]">
+          <h1 className="font-display text-3xl sm:text-4xl font-light text-[#0B0F0D]">
             Executive Lead Management Console
           </h1>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-[#17201B] border border-[#24322A] text-xs font-mono">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[#9EA8A1] text-[11px]">
-              Live Synced {lastSyncedAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
-            </span>
-          </div>
-
           <button
             type="button"
             onClick={syncLatest}
             disabled={isSyncing}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#17201B] hover:bg-[#24322A] border border-[#24322A] text-xs font-mono text-[#F5F3EF] transition-colors cursor-pointer disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white hover:bg-[#FAF8F5] border border-[#24322A]/20 text-xs font-mono text-[#0B0F0D] transition-colors cursor-pointer disabled:opacity-50 shadow-xs"
             title="Refresh latest inquiries"
           >
-            <RefreshCw className={`w-3.5 h-3.5 text-[#C5B083] ${isSyncing ? "animate-spin" : ""}`} />
-            <span>Sync</span>
+            <RefreshCw className={`w-3.5 h-3.5 text-[#8C774B] ${isSyncing ? "animate-spin" : ""}`} />
+            <span className="font-medium">Sync Data</span>
           </button>
         </div>
       </div>
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        <div className="p-6 bg-[#121815] border border-[#24322A]">
-          <span className="text-[10px] font-mono uppercase text-[#9EA8A1] block mb-2">TOTAL COMMISSIONS</span>
-          <div className="font-display text-4xl text-[#F5F3EF]">{totalCount}</div>
-          <span className="text-[10px] font-mono text-[#C5B083] block mt-1">Recorded in registry</span>
+        <div className="p-6 bg-white border border-[#24322A]/15 shadow-xs">
+          <span className="text-[10px] font-mono uppercase text-[#5A6B62] block mb-2 font-medium">TOTAL COMMISSIONS</span>
+          <div className="font-display text-4xl text-[#0B0F0D]">{totalCount}</div>
+          <span className="text-[10px] font-mono text-[#8C774B] block mt-1 font-medium">Recorded in registry</span>
         </div>
 
-        <div className="p-6 bg-[#121815] border border-[#24322A]">
-          <span className="text-[10px] font-mono uppercase text-[#9EA8A1] block mb-2">NEW / ACTIONABLE</span>
-          <div className="font-display text-4xl text-[#C5B083]">{newCount}</div>
-          <span className="text-[10px] font-mono text-emerald-400 block mt-1">Pending first outreach</span>
+        <div className="p-6 bg-white border border-[#24322A]/15 shadow-xs">
+          <span className="text-[10px] font-mono uppercase text-[#5A6B62] block mb-2 font-medium">NEW / ACTIONABLE</span>
+          <div className="font-display text-4xl text-[#1F4A36]">{newCount}</div>
+          <span className="text-[10px] font-mono text-[#15803D] block mt-1 font-medium">Pending first outreach</span>
         </div>
 
-        <div className="p-6 bg-[#121815] border border-[#24322A]">
-          <span className="text-[10px] font-mono uppercase text-[#9EA8A1] block mb-2">ACTIVE IN DESIGN</span>
-          <div className="font-display text-4xl text-emerald-400">{inProgressCount}</div>
-          <span className="text-[10px] font-mono text-[#9EA8A1] block mt-1">Under drafting &amp; review</span>
+        <div className="p-6 bg-white border border-[#24322A]/15 shadow-xs">
+          <span className="text-[10px] font-mono uppercase text-[#5A6B62] block mb-2 font-medium">ACTIVE IN DESIGN</span>
+          <div className="font-display text-4xl text-[#0E7090]">{inProgressCount}</div>
+          <span className="text-[10px] font-mono text-[#5A6B62] block mt-1 font-medium">Under drafting &amp; review</span>
         </div>
 
-        <div className="p-6 bg-[#121815] border border-[#24322A]">
-          <span className="text-[10px] font-mono uppercase text-[#9EA8A1] block mb-2">DELIVERED</span>
-          <div className="font-display text-4xl text-blue-400">{completedCount}</div>
-          <span className="text-[10px] font-mono text-[#9EA8A1] block mt-1">Completed commissions</span>
+        <div className="p-6 bg-white border border-[#24322A]/15 shadow-xs">
+          <span className="text-[10px] font-mono uppercase text-[#5A6B62] block mb-2 font-medium">DELIVERED</span>
+          <div className="font-display text-4xl text-[#1D4ED8]">{completedCount}</div>
+          <span className="text-[10px] font-mono text-[#5A6B62] block mt-1 font-medium">Completed commissions</span>
         </div>
       </div>
 
       {/* Search & Filters */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 bg-[#121815] border border-[#24322A]">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 bg-white border border-[#24322A]/15 shadow-xs">
         {/* Search Input */}
         <div className="relative flex-1 max-w-md">
           <Search className="w-4 h-4 text-[#5A6B62] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -189,7 +179,7 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by client, location, reference #, or typology..."
-            className="w-full bg-[#FAF8F5] border border-[#24322A]/25 focus:border-[#2E5A44] text-[#0B0F0D] text-xs font-mono pl-10 pr-3.5 py-2.5 outline-none transition-colors placeholder:text-[#68776F] shadow-xs font-medium"
+            className="w-full bg-[#FAF8F5] border border-[#24322A]/20 focus:border-[#1F4A36] focus:bg-white text-[#0B0F0D] text-xs font-mono pl-10 pr-3.5 py-2.5 outline-none transition-colors placeholder:text-[#7A8A81] shadow-xs font-medium"
           />
         </div>
 
@@ -199,10 +189,10 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
             <button
               key={st}
               onClick={() => setStatusFilter(st)}
-              className={`py-1.5 px-3 uppercase tracking-wider border cursor-pointer transition-colors ${
+              className={`py-1.5 px-3 uppercase tracking-wider border cursor-pointer transition-colors shadow-xs ${
                 statusFilter === st
-                  ? "bg-[#C5B083] text-[#0B0F0D] border-[#C5B083] font-semibold"
-                  : "bg-[#17201B] text-[#9EA8A1] border-[#24322A] hover:border-[#9EA8A1] hover:text-[#F5F3EF]"
+                  ? "bg-[#1F4A36] text-white border-[#1F4A36] font-semibold"
+                  : "bg-white text-[#4A5A51] border-[#24322A]/20 hover:border-[#1F4A36] hover:text-[#0B0F0D]"
               }`}
             >
               {st.replace("_", " ")}
@@ -212,9 +202,9 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
       </div>
 
       {/* Full Architectural Enquiry Ledger Table */}
-      <div className="border border-[#24322A] bg-[#121815] overflow-x-auto">
+      <div className="border border-[#24322A]/15 bg-white shadow-xs overflow-x-auto">
         <table className="w-full text-left text-xs font-mono">
-          <thead className="bg-[#17201B] text-[#9EA8A1] uppercase tracking-wider border-b border-[#24322A] text-[10px]">
+          <thead className="bg-[#F3EFE8] text-[#4A5A51] uppercase tracking-wider border-b border-[#24322A]/15 text-[10px] font-semibold">
             <tr>
               <th className="py-4 px-6">REFERENCE #</th>
               <th className="py-4 px-6">CLIENT CONTACT</th>
@@ -224,10 +214,10 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
               <th className="py-4 px-6 text-right">ONE-CLICK ACTIONS</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#24322A]">
+          <tbody className="divide-y divide-[#24322A]/10">
             {filteredEnquiries.length === 0 ? (
               <tr>
-                <td colSpan={6} className="py-12 text-center text-[#9EA8A1]">
+                <td colSpan={6} className="py-12 text-center text-[#5A6B62]">
                   No enquiry records matched your search parameters.
                 </td>
               </tr>
@@ -242,11 +232,11 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
 
                 return (
                   <React.Fragment key={enq.id}>
-                    <tr className="hover:bg-[#17201B]/50 transition-colors">
+                    <tr className="hover:bg-[#FAF8F5] transition-colors">
                       {/* Reference # */}
                       <td className="py-4 px-6">
-                        <span className="font-semibold text-[#C5B083] block">{enq.enquiry_number}</span>
-                        <span className="text-[10px] text-[#9EA8A1]">
+                        <span className="font-semibold text-[#8C774B] block">{enq.enquiry_number}</span>
+                        <span className="text-[10px] text-[#5A6B62]">
                           {new Date(enq.created_at).toLocaleDateString("en-IN", {
                             day: "numeric",
                             month: "short",
@@ -257,19 +247,19 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
 
                       {/* Client Contact */}
                       <td className="py-4 px-6">
-                        <span className="font-semibold text-[#F5F3EF] block">{enq.full_name}</span>
-                        <span className="text-[#9EA8A1] block text-[11px]">{enq.phone}</span>
-                        <span className="text-[#9EA8A1]/70 block text-[10px]">{enq.email}</span>
+                        <span className="font-semibold text-[#0B0F0D] block">{enq.full_name}</span>
+                        <span className="text-[#2E5A44] block text-[11px] font-medium">{enq.phone}</span>
+                        <span className="text-[#5A6B62] block text-[10px]">{enq.email}</span>
                       </td>
 
                       {/* Typology & Parcel */}
                       <td className="py-4 px-6">
-                        <span className="text-[#F5F3EF] block font-medium">{enq.building_type}</span>
-                        <span className="text-[#9EA8A1] text-[11px]">
+                        <span className="text-[#0B0F0D] block font-medium">{enq.building_type}</span>
+                        <span className="text-[#5A6B62] text-[11px]">
                           {enq.site_location || "Location pending"}, {enq.city || ""}
                         </span>
                         {enq.land_size && (
-                          <span className="text-[10px] text-[#C5B083] block">
+                          <span className="text-[10px] text-[#8C774B] block font-medium">
                             {enq.land_size} {enq.land_unit || "sq.ft"} parcel
                           </span>
                         )}
@@ -277,7 +267,7 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
 
                       {/* Estimated Budget */}
                       <td className="py-4 px-6">
-                        <span className="text-[#C5B083] font-semibold">{enq.estimated_budget || "In Consultation"}</span>
+                        <span className="text-[#1F4A36] font-semibold text-[13px]">{enq.estimated_budget || "In Consultation"}</span>
                       </td>
 
                       {/* Status Selector */}
@@ -286,7 +276,7 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
                           value={enq.status}
                           disabled={isPending}
                           onChange={(e) => handleStatusChange(enq.id, e.target.value as EnquiryStatus)}
-                          className={`text-[10px] uppercase tracking-wider font-semibold py-1.5 px-3 border outline-none cursor-pointer bg-[#0B0F0D] ${getStatusBadge(
+                          className={`text-[10px] uppercase tracking-wider font-semibold py-1.5 px-3 border outline-none cursor-pointer rounded-none shadow-xs ${getStatusBadge(
                             enq.status
                           )}`}
                         >
@@ -306,7 +296,7 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
                             href={waUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2 bg-[#17201B] hover:bg-[#25D366]/20 border border-[#24322A] hover:border-[#25D366] text-[#25D366] transition-colors"
+                            className="p-2 bg-white hover:bg-[#25D366]/15 border border-[#24322A]/20 hover:border-[#25D366] text-[#128C7E] transition-colors shadow-xs"
                             title="Direct WhatsApp Consultation"
                           >
                             <MessageCircle className="w-4 h-4" />
@@ -315,7 +305,7 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
                           {/* 1-Click Phone Call */}
                           <a
                             href={`tel:${enq.phone}`}
-                            className="p-2 bg-[#17201B] hover:bg-[#C5B083]/20 border border-[#24322A] hover:border-[#C5B083] text-[#C5B083] transition-colors"
+                            className="p-2 bg-white hover:bg-[#8C774B]/15 border border-[#24322A]/20 hover:border-[#8C774B] text-[#8C774B] transition-colors shadow-xs"
                             title="Call Client"
                           >
                             <Phone className="w-4 h-4" />
@@ -325,7 +315,7 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
                           <button
                             type="button"
                             onClick={() => setExpandedId(isExpanded ? null : enq.id)}
-                            className="p-2 bg-[#17201B] hover:bg-[#24322A] border border-[#24322A] text-[#9EA8A1] hover:text-[#F5F3EF] transition-colors cursor-pointer"
+                            className="p-2 bg-white hover:bg-[#F3EFE8] border border-[#24322A]/20 text-[#4A5A51] hover:text-[#0B0F0D] transition-colors cursor-pointer shadow-xs"
                             title="Inspect Full Specifications"
                           >
                             {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -336,43 +326,43 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
 
                     {/* Expandable Details Row */}
                     {isExpanded && (
-                      <tr className="bg-[#0B0F0D]">
+                      <tr className="bg-[#FAF8F5]">
                         <td colSpan={6} className="p-6">
-                          <div className="p-6 bg-[#17201B] border border-[#24322A] space-y-4 text-xs font-mono">
-                            <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C5B083]">
+                          <div className="p-6 bg-white border border-[#24322A]/15 shadow-xs space-y-4 text-xs font-mono">
+                            <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#8C774B] font-semibold">
                               FULL ARCHITECTURAL SPECIFICATIONS &amp; CLIENT BRIEF
                             </div>
 
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                               <div>
-                                <span className="text-[#9EA8A1] block text-[10px] uppercase">BUILT-UP AREA</span>
-                                <span className="text-[#F5F3EF]">{enq.built_up_area ? `${enq.built_up_area} sq.ft` : "Unspecified"}</span>
+                                <span className="text-[#5A6B62] block text-[10px] uppercase font-medium">BUILT-UP AREA</span>
+                                <span className="text-[#0B0F0D] font-medium">{enq.built_up_area ? `${enq.built_up_area} sq.ft` : "Unspecified"}</span>
                               </div>
                               <div>
-                                <span className="text-[#9EA8A1] block text-[10px] uppercase">FLOORS</span>
-                                <span className="text-[#F5F3EF]">{enq.number_of_floors || "N/A"}</span>
+                                <span className="text-[#5A6B62] block text-[10px] uppercase font-medium">FLOORS</span>
+                                <span className="text-[#0B0F0D] font-medium">{enq.number_of_floors || "N/A"}</span>
                               </div>
                               <div>
-                                <span className="text-[#9EA8A1] block text-[10px] uppercase">BEDROOMS / SUITES</span>
-                                <span className="text-[#F5F3EF]">{enq.bedrooms || "N/A"}</span>
+                                <span className="text-[#5A6B62] block text-[10px] uppercase font-medium">BEDROOMS / SUITES</span>
+                                <span className="text-[#0B0F0D] font-medium">{enq.bedrooms || "N/A"}</span>
                               </div>
                               <div>
-                                <span className="text-[#9EA8A1] block text-[10px] uppercase">PREFERRED METHOD</span>
-                                <span className="text-[#C5B083] uppercase">{enq.preferred_contact_method || "whatsapp"}</span>
+                                <span className="text-[#5A6B62] block text-[10px] uppercase font-medium">PREFERRED METHOD</span>
+                                <span className="text-[#1F4A36] uppercase font-semibold">{enq.preferred_contact_method || "whatsapp"}</span>
                               </div>
                             </div>
 
                             {enq.special_requirements && (
                               <div className="pt-2">
-                                <span className="text-[#9EA8A1] block text-[10px] uppercase mb-1">SPECIAL ARCHITECTURAL REQUIREMENTS</span>
-                                <p className="text-[#E8E4DC] font-light italic">{enq.special_requirements}</p>
+                                <span className="text-[#5A6B62] block text-[10px] uppercase font-medium mb-1">SPECIAL ARCHITECTURAL REQUIREMENTS</span>
+                                <p className="text-[#1A231F] font-normal italic bg-[#FAF8F5] p-3 border border-[#24322A]/10 leading-relaxed">{enq.special_requirements}</p>
                               </div>
                             )}
 
                             {enq.additional_notes && (
                               <div className="pt-2">
-                                <span className="text-[#9EA8A1] block text-[10px] uppercase mb-1">CLIENT VISION NOTES</span>
-                                <p className="text-[#E8E4DC] font-light italic">{enq.additional_notes}</p>
+                                <span className="text-[#5A6B62] block text-[10px] uppercase font-medium mb-1">CLIENT VISION NOTES</span>
+                                <p className="text-[#1A231F] font-normal italic bg-[#FAF8F5] p-3 border border-[#24322A]/10 leading-relaxed">{enq.additional_notes}</p>
                               </div>
                             )}
                           </div>
