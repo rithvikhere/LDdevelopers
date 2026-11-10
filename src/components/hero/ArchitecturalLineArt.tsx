@@ -115,7 +115,7 @@ export const ArchitecturalLineArt: React.FC<ArchitecturalLineArtProps> = ({
       `}</style>
 
       <svg
-        viewBox="0 0 1200 850"
+        viewBox="100 0 1080 850"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-auto overflow-visible"
@@ -198,7 +198,7 @@ export const ArchitecturalLineArt: React.FC<ArchitecturalLineArtProps> = ({
           </g>
 
           {/* Left Pixel-to-Sketch Transition Squares (Around Left Sleeve Entry) */}
-          <g className="sketch-path" strokeWidth="0.55">
+          <g className="sketch-path" strokeWidth="0.55" transform="translate(35, 0)">
             <rect x="290" y="555" width="26" height="26" pathLength="1" />
             <rect x="316" y="555" width="26" height="26" pathLength="1" />
             <rect x="342" y="535" width="22" height="22" pathLength="1" />
@@ -243,7 +243,9 @@ export const ArchitecturalLineArt: React.FC<ArchitecturalLineArtProps> = ({
                 {/* ===================================================================== */}
         {/* STAGE 2: CITY SKYLINE — MAJOR SILHOUETTES & STRUCTURES (ENHANCED LINE WEIGHT) */}
         {/* ===================================================================== */}
-        <g id="stage-skyline-silhouettes" className="sketch-skyline">
+                {/* SCALED CITY SKYLINE (+12% Height, +6% Width anchored at baseline Y=492) */}
+        <g id="stage-skyline-scaled" transform="translate(660, 492) scale(1.06, 1.12) translate(-660, -492)">
+          <g id="stage-skyline-silhouettes" className="sketch-skyline">
           {/* TOWER 1: SIGNATURE SKYSCRAPER (Far Right, Iconic Apex) */}
           {/* Silhouette Outlines */}
           <path
@@ -389,7 +391,11 @@ export const ArchitecturalLineArt: React.FC<ArchitecturalLineArtProps> = ({
         {/* ===================================================================== */}
         {/* STAGE 3: FORMAL SUIT SLEEVES & SHIRT CUFFS                           */}
         {/* ===================================================================== */}
-        <g id="stage-sleeves-and-cuffs" className="sketch-arms">
+        </g>
+
+        {/* CENTERED HANDSHAKE GROUP (Shifted +64px to align visual center with skyline) */}
+        <g id="stage-handshake-group" transform="translate(64, 0)">
+          <g id="stage-sleeves-and-cuffs" className="sketch-arms">
           {/* Left Suit Sleeve */}
           <path
             d="M 319.0,401.2 L 325.4,401.2 L 416.8,459.6 L 366.0,557.4 L 348.9,598.7 L 331.7,647.6 L 330.4,648.2 L 282.2,624.7 L 282.2,585.3 L 287.9,564.4 L 303.8,490.7 L 315.8,425.3 L 319.0,401.8 Z"
@@ -459,7 +465,9 @@ export const ArchitecturalLineArt: React.FC<ArchitecturalLineArtProps> = ({
         {/* ===================================================================== */}
         {/* STAGE 4: FLYING BIRDS & FINAL TECHNICAL DETAILS                      */}
         {/* ===================================================================== */}
-        <g id="stage-flying-birds" className="sketch-fine-details opacity-85">
+        </g>
+
+<g id="stage-flying-birds" className="sketch-fine-details opacity-85">
           {/* Flock of 6 Architectural Silhouette Birds Soaring Across the Open Sky */}
           {/* Bird 1 */}
           <path

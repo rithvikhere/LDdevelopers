@@ -57,13 +57,13 @@ export const HeroSection: React.FC = () => {
       <div className="absolute inset-0 bg-architectural-grid opacity-20 pointer-events-none" />
 
       {/* ========================================================================= */}
-      {/* EDITORIAL SPLIT CONTAINER: Left ~42% / Right ~58%                         */}
+      {/* EDITORIAL SPLIT CONTAINER: Left ~38% / Right ~62%                         */}
       {/* ========================================================================= */}
-      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 flex-1 flex flex-col justify-center relative z-10 py-6 sm:py-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 xl:gap-16">
+      <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-12 flex-1 flex flex-col justify-center relative z-10 py-6 sm:py-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-10 xl:gap-14">
           
           {/* --------------------------------------------------------------------- */}
-          {/* LEFT SIDE: EDITORIAL NARRATIVE & CTAS (~42%)                         */}
+          {/* LEFT SIDE: EDITORIAL NARRATIVE & CTAS (~38%)                         */}
           {/* --------------------------------------------------------------------- */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -72,7 +72,7 @@ export const HeroSection: React.FC = () => {
               duration: 0.9,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="w-full lg:w-[42%] text-left flex flex-col items-start"
+            className="w-full lg:w-[38%] xl:w-[37%] text-left flex flex-col items-start"
           >
             {/* Small Label */}
             <div className="inline-flex items-center gap-2 mb-4 sm:mb-6">
@@ -115,7 +115,7 @@ export const HeroSection: React.FC = () => {
           </motion.div>
 
           {/* --------------------------------------------------------------------- */}
-          {/* RIGHT SIDE: ANIMATED ARCHITECTURAL LINE ART SVG (~58%)               */}
+          {/* RIGHT SIDE: ANIMATED ARCHITECTURAL LINE ART SVG (~62%)               */}
           {/* --------------------------------------------------------------------- */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
@@ -125,10 +125,10 @@ export const HeroSection: React.FC = () => {
               delay: 0.15,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="w-full lg:w-[58%] flex items-center justify-center relative select-none"
+            className="w-full lg:w-[62%] xl:w-[63%] flex items-center justify-center relative select-none"
           >
             <ArchitecturalLineArt
-              className="w-full h-auto max-h-[640px] xl:max-h-[720px] text-[#E8E4DC] drop-shadow-[0_20px_45px_rgba(0,0,0,0.5)]"
+              className="w-full h-auto max-h-[700px] lg:max-h-[760px] xl:max-h-[820px] text-[#E8E4DC] drop-shadow-[0_20px_45px_rgba(0,0,0,0.5)]"
               strokeColor="#E8E4DC"
             />
           </motion.div>
