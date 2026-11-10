@@ -2,14 +2,7 @@
 
 import React from "react";
 import { siteContent } from "@/config/site-content";
-import {
-  KairosDepthReveal,
-  KairosMaskedText,
-  KairosStaggerContainer,
-  kairosChildVariant,
-} from "@/components/ui/KairosScrollReveal";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
 
 /**
  * AboutSection Component — Kairos Editorial Narrative
@@ -18,31 +11,6 @@ import { ArrowUpRight } from "lucide-react";
  * - Generous spacing, asymmetric chapter blocks, and minimal geometric hairline frames
  */
 export const AboutSection: React.FC = () => {
-  const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const el = document.getElementById("contact");
-    if (el) {
-      const offset = el.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({ top: offset, behavior: "smooth" });
-    }
-  };
-
-  const scrollToServices = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const el = document.getElementById("services");
-    if (el) {
-      const offset = el.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({ top: offset, behavior: "smooth" });
-    }
-  };
-
-  const metrics = [
-    { value: "14+", label: "Years of Practice", sub: "Since 2012" },
-    { value: "2.4M+", label: "Square Feet Built", sub: "Residential & Commercial" },
-    { value: "180+", label: "Curated Landmarks", sub: "Delivered On Schedule" },
-    { value: "100%", label: "Structural Compliance", sub: "Seismic & LEED Certified" },
-  ];
-
   return (
     <section
       id="about"
@@ -78,7 +46,7 @@ export const AboutSection: React.FC = () => {
         </motion.div>
 
         {/* Perfectly Aligned Equal-Height 2-Column Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto">
           {/* Left Column: Manifesto Card (Full Height) */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -139,53 +107,6 @@ export const AboutSection: React.FC = () => {
               </div>
             ))}
           </motion.div>
-        </div>
-
-        {/* Minimalist Architectural Metric Matrix */}
-        <div className="max-w-6xl mx-auto pt-16 border-t border-[#24322A]/60">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {metrics.map((metric, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: 0.1 * i }}
-                className="p-6 sm:p-8 bg-[#F5F2EB]/95 backdrop-blur-md border border-[#24322A]/20 hover:border-[#2E5A44]/50 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <div className="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-[#1F4A36] mb-2 tracking-tight">
-                  {metric.value}
-                </div>
-                <div className="text-xs sm:text-sm font-semibold tracking-wider text-[#0B0F0D] uppercase font-mono">
-                  {metric.label}
-                </div>
-                <div className="text-[11px] text-[#3B4B42] font-mono mt-1 font-medium">
-                  {metric.sub}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Narrative Flow CTAs */}
-        <div className="max-w-6xl mx-auto mt-16 flex flex-wrap items-center justify-between gap-6 pt-8 border-t border-[#24322A]/40 text-xs font-mono uppercase tracking-[0.2em]">
-          <a
-            href="#services"
-            onClick={scrollToServices}
-            className="group inline-flex items-center gap-2 text-[#C5B083] hover:text-[#F5F3EF] transition-colors"
-          >
-            <span>Explore Architectural Disciplines</span>
-            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
-
-          <a
-            href="#contact"
-            onClick={scrollToContact}
-            className="inline-flex items-center gap-2 text-[#9EA8A1] hover:text-[#C5B083] transition-colors"
-          >
-            <span>Commission A Consultation</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
         </div>
       </div>
     </section>
