@@ -18,34 +18,34 @@ export default async function AdminDashboardPage() {
   const enquiries = await getEnquiriesAction();
 
   return (
-    <div className="min-h-screen bg-[#F8F6F1] text-[#0B0F0D] flex flex-col justify-between selection:bg-[#C5B083] selection:text-[#0B0F0D]">
-      {/* Top Header */}
-      <header className="border-b border-[#24322A]/15 bg-[#FAF8F5]/95 backdrop-blur-md px-6 lg:px-12 py-4 flex items-center justify-between sticky top-0 z-30 shadow-xs">
+    <div className="min-h-screen bg-[#F3F0E8] text-[#202622] flex flex-col justify-between selection:bg-[#B49A68]/30 selection:text-[#202622]">
+      {/* Top Navigation Header — 76-84px height, Soft White #FAF9F5, border #DDD8CC */}
+      <header className="h-20 bg-[#FAF9F5] border-b border-[#DDD8CC] px-6 sm:px-8 lg:px-12 flex items-center justify-between sticky top-0 z-30">
         <div className="flex items-center gap-6">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-[#4A5A51] hover:text-[#0B0F0D] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-sans font-medium uppercase tracking-[0.18em] text-[#626A66] hover:text-[#202622] transition-colors"
           >
-            <ArrowLeft className="w-3.5 h-3.5 text-[#8C774B]" />
+            <ArrowLeft className="w-3.5 h-3.5 text-[#526653]" />
             <span>Studio</span>
           </Link>
-          <div className="hidden sm:block h-4 w-px bg-[#24322A]/15" />
+          <div className="hidden sm:block h-4 w-px bg-[#DDD8CC]" />
           <CompanyLogo theme="light" showSubtitle={false} />
         </div>
 
-        {/* Admin Badge & Sign Out */}
-        <div className="flex items-center gap-4 text-xs font-mono">
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-white border border-[#24322A]/15 shadow-xs">
-            <Shield className="w-3.5 h-3.5 text-[#8C774B]" />
-            <span className="text-[#0B0F0D] font-medium">{session.user.fullName}</span>
-            <span className="text-[#8C774B]">&bull;</span>
-            <span className="text-[#8C774B] uppercase text-[10px] tracking-wider font-semibold">Principal Admin</span>
+        {/* Administrator identity & Sign Out */}
+        <div className="flex items-center gap-3 sm:gap-4 text-xs font-sans">
+          <div className="flex items-center gap-2.5 px-3 py-1.5 bg-[#FAF9F5] border border-[#DDD8CC] rounded-sm">
+            <Shield className="w-3.5 h-3.5 text-[#B49A68]" />
+            <span className="text-[#202622] font-medium">{session.user.fullName}</span>
+            <span className="text-[#DDD8CC]">&bull;</span>
+            <span className="text-[#626A66] uppercase text-[10px] tracking-wider font-medium">Principal Admin</span>
           </div>
 
           <form action={logoutAction}>
             <button
               type="submit"
-              className="inline-flex items-center gap-1.5 py-1.5 px-3 bg-white border border-[#24322A]/20 hover:border-red-600 text-[#4A5A51] hover:text-red-700 hover:bg-red-50 text-xs transition-colors cursor-pointer shadow-xs"
+              className="inline-flex items-center gap-1.5 py-1.5 px-3 bg-[#FAF9F5] border border-[#DDD8CC] hover:border-[#202622] hover:bg-[#F3F0E8] text-[#626A66] hover:text-[#202622] text-xs transition-colors cursor-pointer rounded-sm"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span>Sign Out</span>
@@ -54,16 +54,15 @@ export default async function AdminDashboardPage() {
         </div>
       </header>
 
-      {/* Main Admin Console */}
-      <main className="flex-1 max-w-[1720px] w-full mx-auto p-4 sm:p-6 lg:p-12">
+      {/* Main Admin Console Container */}
+      <main className="flex-1 max-w-[1680px] w-full mx-auto px-6 sm:px-8 lg:px-12 py-8 lg:py-10">
         <AdminDashboardClient initialEnquiries={enquiries} />
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-[#24322A]/15 bg-[#EFECE6] py-4 px-6 text-center text-[10px] font-mono text-[#5A6B62]">
+      <footer className="border-t border-[#DDD8CC] bg-[#FAF9F5] py-4 px-6 text-center text-xs font-sans text-[#626A66]">
         [COMPANY NAME] EXECUTIVE ADMINISTRATIVE CONSOLE &bull; LEVEL 4 GOVERNANCE &copy; {new Date().getFullYear()}
       </footer>
     </div>
   );
 }
-

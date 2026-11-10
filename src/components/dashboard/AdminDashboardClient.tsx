@@ -4,22 +4,11 @@ import React, { useState, useEffect, useCallback, useTransition } from "react";
 import { Enquiry, EnquiryStatus } from "@/lib/types/database";
 import { updateEnquiryStatusAction, getLatestEnquiriesAction } from "@/app/actions/enquiries";
 import {
-  Building2,
-  Calendar,
-  CheckCircle2,
-  Clock,
-  Filter,
-  Layers,
-  MapPin,
   MessageCircle,
   Phone,
   Search,
-  Shield,
-  Sparkles,
-  User,
   ChevronDown,
   ChevronUp,
-  ArrowUpRight,
   RefreshCw,
 } from "lucide-react";
 
@@ -36,6 +25,7 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const [isSyncing, setIsSyncing] = useState(false);
+  const [lastSyncedAt, setLastSyncedAt] = useState<Date>(new Date());
 
   const syncLatest = useCallback(async () => {
     try {
@@ -43,6 +33,7 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
       const latest = await getLatestEnquiriesAction();
       if (latest && Array.isArray(latest)) {
         setEnquiries(latest);
+        setLastSyncedAt(new Date());
       }
     } catch (err) {
       console.error("Failed to sync enquiries:", err);
@@ -59,6 +50,7 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
         const latest = await getLatestEnquiriesAction();
         if (active && latest && Array.isArray(latest)) {
           setEnquiries(latest);
+          setLastSyncedAt(new Date());
         }
       } catch (err) {
         console.warn("Background auto-poll:", err);
@@ -100,99 +92,132 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
     return matchesSearch && matchesStatus;
   });
 
+  // Approved subtle status badges (Section 9)
   const getStatusBadge = (status: EnquiryStatus) => {
     switch (status) {
       case "new":
-        return "text-[#8C6D23] border-[#8C6D23]/40 bg-[#FEF9EE]";
+        return "bg-[#F1E9D8] text-[#80642F] border-[#E5DBCA]";
       case "contacted":
-        return "text-[#0E7090] border-[#0E7090]/40 bg-[#ECFEFF]";
+        return "bg-[#E8EEE8] text-[#49654F] border-[#D6E2D7]";
       case "in_progress":
-        return "text-[#15803D] border-[#15803D]/40 bg-[#F0FDF4]";
+        return "bg-[#E2ECE6] text-[#355B47] border-[#C8DFD2]";
       case "completed":
-        return "text-[#1D4ED8] border-[#1D4ED8]/40 bg-[#EFF6FF]";
+        return "bg-[#DDE9DE] text-[#315C3E] border-[#C6DCB8]";
       case "closed":
-        return "text-[#475569] border-[#CBD5E1] bg-[#F8FAFC]";
+        return "bg-[#ECEAE4] text-[#68685F] border-[#DCDAD2]";
     }
   };
 
   return (
-    <div className="space-y-10">
-      {/* Executive Header & KPIs */}
+    <div className="space-y-8 lg:space-y-9">
+      {/* 1. Dashboard Title Area & Live Synchronization */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#8C774B] font-semibold mb-2">
-            ADMINISTRATIVE GOVERNANCE &amp; INQUIRY LEDGER
+          <div className="text-[11px] font-sans font-semibold uppercase tracking-[0.2em] text-[#626A66] mb-1.5">
+            ADMINISTRATIVE GOVERNANCE &amp; ENQUIRY LEDGER
           </div>
-          <h1 className="font-display text-3xl sm:text-4xl font-light text-[#0B0F0D]">
+          <h1 className="font-display text-3xl sm:text-4xl text-[#202622] font-normal tracking-tight">
             Executive Lead Management Console
           </h1>
         </div>
 
+        {/* Live synchronization information & manual sync */}
         <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-[#FAF9F5] border border-[#DDD8CC] rounded-sm text-xs font-sans">
+            <span className="w-2 h-2 rounded-full bg-[#526653] animate-pulse" />
+            <span className="text-[#626A66] text-xs">
+              Live Synced {lastSyncedAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
+            </span>
+          </div>
+
           <button
             type="button"
             onClick={syncLatest}
             disabled={isSyncing}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white hover:bg-[#FAF8F5] border border-[#24322A]/20 text-xs font-mono text-[#0B0F0D] transition-colors cursor-pointer disabled:opacity-50 shadow-xs"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#FAF9F5] hover:bg-[#F3F0E8] border border-[#DDD8CC] hover:border-[#202622] text-xs font-sans text-[#202622] transition-colors cursor-pointer disabled:opacity-50 rounded-sm"
             title="Refresh latest inquiries"
           >
-            <RefreshCw className={`w-3.5 h-3.5 text-[#8C774B] ${isSyncing ? "animate-spin" : ""}`} />
-            <span className="font-medium">Sync Data</span>
+            <RefreshCw className={`w-3.5 h-3.5 text-[#526653] ${isSyncing ? "animate-spin" : ""}`} />
+            <span className="font-medium">Sync</span>
           </button>
         </div>
       </div>
 
-      {/* KPI Cards */}
+      {/* 2. Statistics Cards — 4 balanced horizontal cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        <div className="p-6 bg-white border border-[#24322A]/15 shadow-xs">
-          <span className="text-[10px] font-mono uppercase text-[#5A6B62] block mb-2 font-medium">TOTAL COMMISSIONS</span>
-          <div className="font-display text-4xl text-[#0B0F0D]">{totalCount}</div>
-          <span className="text-[10px] font-mono text-[#8C774B] block mt-1 font-medium">Recorded in registry</span>
+        <div className="p-6 bg-[#FAF9F5] border border-[#DDD8CC] rounded-sm flex flex-col justify-between">
+          <span className="text-[11px] font-sans font-medium uppercase tracking-[0.15em] text-[#626A66] block mb-2">
+            TOTAL COMMISSIONS
+          </span>
+          <div className="font-display text-4xl sm:text-[40px] text-[#202622] font-medium leading-tight">
+            {totalCount}
+          </div>
+          <span className="text-xs font-sans text-[#626A66] block mt-1.5">
+            Recorded in registry
+          </span>
         </div>
 
-        <div className="p-6 bg-white border border-[#24322A]/15 shadow-xs">
-          <span className="text-[10px] font-mono uppercase text-[#5A6B62] block mb-2 font-medium">NEW / ACTIONABLE</span>
-          <div className="font-display text-4xl text-[#1F4A36]">{newCount}</div>
-          <span className="text-[10px] font-mono text-[#15803D] block mt-1 font-medium">Pending first outreach</span>
+        <div className="p-6 bg-[#FAF9F5] border border-[#DDD8CC] rounded-sm flex flex-col justify-between">
+          <span className="text-[11px] font-sans font-medium uppercase tracking-[0.15em] text-[#626A66] block mb-2">
+            NEW / ACTIONABLE
+          </span>
+          <div className="font-display text-4xl sm:text-[40px] text-[#526653] font-medium leading-tight">
+            {newCount}
+          </div>
+          <span className="text-xs font-sans text-[#526653] block mt-1.5 font-medium">
+            Pending first outreach
+          </span>
         </div>
 
-        <div className="p-6 bg-white border border-[#24322A]/15 shadow-xs">
-          <span className="text-[10px] font-mono uppercase text-[#5A6B62] block mb-2 font-medium">ACTIVE IN DESIGN</span>
-          <div className="font-display text-4xl text-[#0E7090]">{inProgressCount}</div>
-          <span className="text-[10px] font-mono text-[#5A6B62] block mt-1 font-medium">Under drafting &amp; review</span>
+        <div className="p-6 bg-[#FAF9F5] border border-[#DDD8CC] rounded-sm flex flex-col justify-between">
+          <span className="text-[11px] font-sans font-medium uppercase tracking-[0.15em] text-[#626A66] block mb-2">
+            ACTIVE IN DESIGN
+          </span>
+          <div className="font-display text-4xl sm:text-[40px] text-[#202622] font-medium leading-tight">
+            {inProgressCount}
+          </div>
+          <span className="text-xs font-sans text-[#626A66] block mt-1.5">
+            Under drafting &amp; review
+          </span>
         </div>
 
-        <div className="p-6 bg-white border border-[#24322A]/15 shadow-xs">
-          <span className="text-[10px] font-mono uppercase text-[#5A6B62] block mb-2 font-medium">DELIVERED</span>
-          <div className="font-display text-4xl text-[#1D4ED8]">{completedCount}</div>
-          <span className="text-[10px] font-mono text-[#5A6B62] block mt-1 font-medium">Completed commissions</span>
+        <div className="p-6 bg-[#FAF9F5] border border-[#DDD8CC] rounded-sm flex flex-col justify-between">
+          <span className="text-[11px] font-sans font-medium uppercase tracking-[0.15em] text-[#626A66] block mb-2">
+            DELIVERED
+          </span>
+          <div className="font-display text-4xl sm:text-[40px] text-[#202622] font-medium leading-tight">
+            {completedCount}
+          </div>
+          <span className="text-xs font-sans text-[#626A66] block mt-1.5">
+            Completed commissions
+          </span>
         </div>
       </div>
 
-      {/* Search & Filters */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 bg-white border border-[#24322A]/15 shadow-xs">
-        {/* Search Input */}
+      {/* 3. Search and Filter Toolbar */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 sm:p-5 bg-[#FAF9F5] border border-[#DDD8CC] rounded-sm">
+        {/* Search Field */}
         <div className="relative flex-1 max-w-md">
-          <Search className="w-4 h-4 text-[#5A6B62] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <Search className="w-4 h-4 text-[#626A66] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search by client, location, reference #, or typology..."
-            className="w-full bg-[#FAF8F5] border border-[#24322A]/20 focus:border-[#1F4A36] focus:bg-white text-[#0B0F0D] text-xs font-mono pl-10 pr-3.5 py-2.5 outline-none transition-colors placeholder:text-[#7A8A81] shadow-xs font-medium"
+            placeholder="Search by client, location, reference number, or typology..."
+            className="w-full bg-[#FAF9F5] border border-[#DDD8CC] focus:border-[#526653] focus:bg-[#FFFFFF] text-[#202622] text-xs font-sans pl-10 pr-3.5 py-2.5 outline-none transition-colors placeholder:text-[#626A66]/70 rounded-sm"
           />
         </div>
 
-        {/* Status Filters */}
-        <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-mono">
+        {/* Minimal Filter Chips */}
+        <div className="flex flex-wrap items-center gap-1.5 text-xs font-sans">
           {["all", "new", "contacted", "in_progress", "completed", "closed"].map((st) => (
             <button
               key={st}
               onClick={() => setStatusFilter(st)}
-              className={`py-1.5 px-3 uppercase tracking-wider border cursor-pointer transition-colors shadow-xs ${
+              className={`py-1.5 px-3.5 uppercase tracking-wider border cursor-pointer transition-colors rounded-sm text-xs font-medium ${
                 statusFilter === st
-                  ? "bg-[#1F4A36] text-white border-[#1F4A36] font-semibold"
-                  : "bg-white text-[#4A5A51] border-[#24322A]/20 hover:border-[#1F4A36] hover:text-[#0B0F0D]"
+                  ? "bg-[#526653] text-[#FAF9F5] border-[#526653]"
+                  : "bg-[#FAF9F5] text-[#626A66] border-[#DDD8CC] hover:border-[#526653] hover:text-[#202622]"
               }`}
             >
               {st.replace("_", " ")}
@@ -201,23 +226,23 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
         </div>
       </div>
 
-      {/* Full Architectural Enquiry Ledger Table */}
-      <div className="border border-[#24322A]/15 bg-white shadow-xs overflow-x-auto">
-        <table className="w-full text-left text-xs font-mono">
-          <thead className="bg-[#F3EFE8] text-[#4A5A51] uppercase tracking-wider border-b border-[#24322A]/15 text-[10px] font-semibold">
+      {/* 4. Enquiry Table with Strict Column Width System */}
+      <div className="border border-[#DDD8CC] bg-[#FAF9F5] rounded-sm overflow-x-auto">
+        <table className="w-full table-fixed min-w-[1020px] text-left text-xs font-sans">
+          <thead className="bg-[#EAE6DC] text-[#626A66] uppercase tracking-wider border-b border-[#DDD8CC] text-[11px] font-semibold">
             <tr>
-              <th className="py-4 px-6">REFERENCE #</th>
-              <th className="py-4 px-6">CLIENT CONTACT</th>
-              <th className="py-4 px-6">TYPOLOGY &amp; PARCEL</th>
-              <th className="py-4 px-6">ESTIMATED BUDGET</th>
-              <th className="py-4 px-6">STATUS WORKFLOW</th>
-              <th className="py-4 px-6 text-right">ONE-CLICK ACTIONS</th>
+              <th className="w-[14%] py-3.5 px-6">REFERENCE #</th>
+              <th className="w-[20%] py-3.5 px-6">CLIENT CONTACT</th>
+              <th className="w-[26%] py-3.5 px-6">TYPOLOGY &amp; PARCEL</th>
+              <th className="w-[15%] py-3.5 px-6">ESTIMATED BUDGET</th>
+              <th className="w-[14%] py-3.5 px-6">STATUS WORKFLOW</th>
+              <th className="w-[11%] py-3.5 px-6 text-right">ONE-CLICK ACTIONS</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#24322A]/10">
+          <tbody className="divide-y divide-[#DDD8CC]">
             {filteredEnquiries.length === 0 ? (
               <tr>
-                <td colSpan={6} className="py-12 text-center text-[#5A6B62]">
+                <td colSpan={6} className="py-12 text-center text-[#626A66]">
                   No enquiry records matched your search parameters.
                 </td>
               </tr>
@@ -232,11 +257,13 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
 
                 return (
                   <React.Fragment key={enq.id}>
-                    <tr className="hover:bg-[#FAF8F5] transition-colors">
+                    <tr className="hover:bg-[#F3F0E8]/60 transition-colors">
                       {/* Reference # */}
-                      <td className="py-4 px-6">
-                        <span className="font-semibold text-[#8C774B] block">{enq.enquiry_number}</span>
-                        <span className="text-[10px] text-[#5A6B62]">
+                      <td className="w-[14%] py-4 px-6 align-top">
+                        <span className="font-mono text-[13px] font-medium text-[#202622] block leading-tight">
+                          {enq.enquiry_number}
+                        </span>
+                        <span className="text-[11px] text-[#626A66] block mt-1">
                           {new Date(enq.created_at).toLocaleDateString("en-IN", {
                             day: "numeric",
                             month: "short",
@@ -246,37 +273,47 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
                       </td>
 
                       {/* Client Contact */}
-                      <td className="py-4 px-6">
-                        <span className="font-semibold text-[#0B0F0D] block">{enq.full_name}</span>
-                        <span className="text-[#2E5A44] block text-[11px] font-medium">{enq.phone}</span>
-                        <span className="text-[#5A6B62] block text-[10px]">{enq.email}</span>
+                      <td className="w-[20%] py-4 px-6 align-top">
+                        <span className="font-medium text-[14px] text-[#202622] block leading-tight">
+                          {enq.full_name}
+                        </span>
+                        <span className="text-[#526653] block text-[12px] font-mono mt-1 font-medium">
+                          {enq.phone}
+                        </span>
+                        <span className="text-[#626A66] block text-[11px] mt-0.5 truncate" title={enq.email}>
+                          {enq.email}
+                        </span>
                       </td>
 
                       {/* Typology & Parcel */}
-                      <td className="py-4 px-6">
-                        <span className="text-[#0B0F0D] block font-medium">{enq.building_type}</span>
-                        <span className="text-[#5A6B62] text-[11px]">
+                      <td className="w-[26%] py-4 px-6 align-top">
+                        <span className="text-[14px] text-[#202622] block font-medium leading-tight">
+                          {enq.building_type}
+                        </span>
+                        <span className="text-[#626A66] text-[12px] block mt-1">
                           {enq.site_location || "Location pending"}, {enq.city || ""}
                         </span>
                         {enq.land_size && (
-                          <span className="text-[10px] text-[#8C774B] block font-medium">
+                          <span className="text-[11px] text-[#B49A68] block font-medium mt-0.5">
                             {enq.land_size} {enq.land_unit || "sq.ft"} parcel
                           </span>
                         )}
                       </td>
 
                       {/* Estimated Budget */}
-                      <td className="py-4 px-6">
-                        <span className="text-[#1F4A36] font-semibold text-[13px]">{enq.estimated_budget || "In Consultation"}</span>
+                      <td className="w-[15%] py-4 px-6 align-top">
+                        <span className="text-[14px] font-medium text-[#202622] block leading-tight">
+                          {enq.estimated_budget || "In Consultation"}
+                        </span>
                       </td>
 
                       {/* Status Selector */}
-                      <td className="py-4 px-6">
+                      <td className="w-[14%] py-4 px-6 align-top">
                         <select
                           value={enq.status}
                           disabled={isPending}
                           onChange={(e) => handleStatusChange(enq.id, e.target.value as EnquiryStatus)}
-                          className={`text-[10px] uppercase tracking-wider font-semibold py-1.5 px-3 border outline-none cursor-pointer rounded-none shadow-xs ${getStatusBadge(
+                          className={`text-[11px] uppercase tracking-wider font-semibold py-1.5 px-3 border outline-none cursor-pointer rounded-sm transition-colors ${getStatusBadge(
                             enq.status
                           )}`}
                         >
@@ -289,15 +326,16 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
                       </td>
 
                       {/* Actions */}
-                      <td className="py-4 px-6 text-right">
-                        <div className="inline-flex items-center gap-2">
+                      <td className="w-[11%] py-4 px-6 text-right align-top">
+                        <div className="inline-flex items-center gap-1.5 justify-end">
                           {/* 1-Click WhatsApp Button */}
                           <a
                             href={waUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2 bg-white hover:bg-[#25D366]/15 border border-[#24322A]/20 hover:border-[#25D366] text-[#128C7E] transition-colors shadow-xs"
+                            className="w-8 h-8 flex items-center justify-center bg-[#FAF9F5] hover:bg-[#526653] border border-[#DDD8CC] hover:border-[#526653] text-[#526653] hover:text-[#FFFFFF] transition-colors rounded-sm"
                             title="Direct WhatsApp Consultation"
+                            aria-label="Direct WhatsApp Consultation"
                           >
                             <MessageCircle className="w-4 h-4" />
                           </a>
@@ -305,8 +343,9 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
                           {/* 1-Click Phone Call */}
                           <a
                             href={`tel:${enq.phone}`}
-                            className="p-2 bg-white hover:bg-[#8C774B]/15 border border-[#24322A]/20 hover:border-[#8C774B] text-[#8C774B] transition-colors shadow-xs"
+                            className="w-8 h-8 flex items-center justify-center bg-[#FAF9F5] hover:bg-[#526653] border border-[#DDD8CC] hover:border-[#526653] text-[#626A66] hover:text-[#FFFFFF] transition-colors rounded-sm"
                             title="Call Client"
+                            aria-label="Call Client"
                           >
                             <Phone className="w-4 h-4" />
                           </a>
@@ -315,8 +354,9 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
                           <button
                             type="button"
                             onClick={() => setExpandedId(isExpanded ? null : enq.id)}
-                            className="p-2 bg-white hover:bg-[#F3EFE8] border border-[#24322A]/20 text-[#4A5A51] hover:text-[#0B0F0D] transition-colors cursor-pointer shadow-xs"
+                            className="w-8 h-8 flex items-center justify-center bg-[#FAF9F5] hover:bg-[#EAE6DC] border border-[#DDD8CC] text-[#626A66] hover:text-[#202622] transition-colors cursor-pointer rounded-sm"
                             title="Inspect Full Specifications"
+                            aria-label="Inspect Full Specifications"
                           >
                             {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                           </button>
@@ -324,45 +364,57 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
                       </td>
                     </tr>
 
-                    {/* Expandable Details Row */}
+                    {/* Expandable Specifications Row */}
                     {isExpanded && (
-                      <tr className="bg-[#FAF8F5]">
+                      <tr className="bg-[#FAF9F5] border-t border-[#DDD8CC]">
                         <td colSpan={6} className="p-6">
-                          <div className="p-6 bg-white border border-[#24322A]/15 shadow-xs space-y-4 text-xs font-mono">
-                            <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#8C774B] font-semibold">
+                          <div className="p-6 bg-[#F3F0E8] border border-[#DDD8CC] rounded-sm space-y-4 text-xs font-sans">
+                            <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-[#526653] font-semibold">
                               FULL ARCHITECTURAL SPECIFICATIONS &amp; CLIENT BRIEF
                             </div>
 
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                               <div>
-                                <span className="text-[#5A6B62] block text-[10px] uppercase font-medium">BUILT-UP AREA</span>
-                                <span className="text-[#0B0F0D] font-medium">{enq.built_up_area ? `${enq.built_up_area} sq.ft` : "Unspecified"}</span>
+                                <span className="text-[#626A66] block text-[11px] uppercase font-semibold">BUILT-UP AREA</span>
+                                <span className="text-[#202622] font-medium text-xs">
+                                  {enq.built_up_area ? `${enq.built_up_area} sq.ft` : "Unspecified"}
+                                </span>
                               </div>
                               <div>
-                                <span className="text-[#5A6B62] block text-[10px] uppercase font-medium">FLOORS</span>
-                                <span className="text-[#0B0F0D] font-medium">{enq.number_of_floors || "N/A"}</span>
+                                <span className="text-[#626A66] block text-[11px] uppercase font-semibold">FLOORS</span>
+                                <span className="text-[#202622] font-medium text-xs">{enq.number_of_floors || "N/A"}</span>
                               </div>
                               <div>
-                                <span className="text-[#5A6B62] block text-[10px] uppercase font-medium">BEDROOMS / SUITES</span>
-                                <span className="text-[#0B0F0D] font-medium">{enq.bedrooms || "N/A"}</span>
+                                <span className="text-[#626A66] block text-[11px] uppercase font-semibold">BEDROOMS / SUITES</span>
+                                <span className="text-[#202622] font-medium text-xs">{enq.bedrooms || "N/A"}</span>
                               </div>
                               <div>
-                                <span className="text-[#5A6B62] block text-[10px] uppercase font-medium">PREFERRED METHOD</span>
-                                <span className="text-[#1F4A36] uppercase font-semibold">{enq.preferred_contact_method || "whatsapp"}</span>
+                                <span className="text-[#626A66] block text-[11px] uppercase font-semibold">PREFERRED METHOD</span>
+                                <span className="text-[#526653] uppercase font-semibold text-xs">
+                                  {enq.preferred_contact_method || "whatsapp"}
+                                </span>
                               </div>
                             </div>
 
                             {enq.special_requirements && (
                               <div className="pt-2">
-                                <span className="text-[#5A6B62] block text-[10px] uppercase font-medium mb-1">SPECIAL ARCHITECTURAL REQUIREMENTS</span>
-                                <p className="text-[#1A231F] font-normal italic bg-[#FAF8F5] p-3 border border-[#24322A]/10 leading-relaxed">{enq.special_requirements}</p>
+                                <span className="text-[#626A66] block text-[11px] uppercase font-semibold mb-1">
+                                  SPECIAL ARCHITECTURAL REQUIREMENTS
+                                </span>
+                                <p className="text-[#202622] text-xs italic bg-[#FAF9F5] p-3.5 border border-[#DDD8CC] rounded-sm leading-relaxed">
+                                  {enq.special_requirements}
+                                </p>
                               </div>
                             )}
 
                             {enq.additional_notes && (
                               <div className="pt-2">
-                                <span className="text-[#5A6B62] block text-[10px] uppercase font-medium mb-1">CLIENT VISION NOTES</span>
-                                <p className="text-[#1A231F] font-normal italic bg-[#FAF8F5] p-3 border border-[#24322A]/10 leading-relaxed">{enq.additional_notes}</p>
+                                <span className="text-[#626A66] block text-[11px] uppercase font-semibold mb-1">
+                                  CLIENT VISION NOTES
+                                </span>
+                                <p className="text-[#202622] text-xs italic bg-[#FAF9F5] p-3.5 border border-[#DDD8CC] rounded-sm leading-relaxed">
+                                  {enq.additional_notes}
+                                </p>
                               </div>
                             )}
                           </div>
@@ -379,4 +431,3 @@ export const AdminDashboardClient: React.FC<AdminDashboardClientProps> = ({
     </div>
   );
 };
-
