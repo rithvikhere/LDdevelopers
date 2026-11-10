@@ -9,7 +9,7 @@ import {
   KairosDepthReveal,
   KairosMaskedText,
 } from "@/components/ui/KairosScrollReveal";
-import { X, ZoomIn, ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
+import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
 
 export const GallerySection: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -94,15 +94,6 @@ export const GallerySection: React.FC = () => {
     }
   };
 
-  const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const el = document.getElementById("contact");
-    if (el) {
-      const offset = el.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({ top: offset, behavior: "smooth" });
-    }
-  };
-
   return (
     <section
       id="gallery"
@@ -179,21 +170,6 @@ export const GallerySection: React.FC = () => {
             </KairosDepthReveal>
           ))}
         </div>
-
-        {/* Bottom Strip */}
-        <KairosDepthReveal delay={0.25} className="mt-16 pt-8 border-t border-[#24322A]/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
-          <span className="text-[#9EA8A1] uppercase tracking-wider">
-            All photography reflects true site-built architectural typologies
-          </span>
-          <a
-            href="#contact"
-            onClick={scrollToContact}
-            className="inline-flex items-center gap-2 text-[#C5B083] hover:text-[#F5F3EF] uppercase tracking-widest transition-colors"
-          >
-            <span>Request Full High-Resolution Folio</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
-        </KairosDepthReveal>
       </div>
 
       {/* Lightbox Modal */}
