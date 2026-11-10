@@ -6,6 +6,8 @@ import { HeroSection } from "@/components/landing/HeroSection";
 import { AboutSection } from "@/components/landing/AboutSection";
 import { ServicesSection } from "@/components/landing/ServicesSection";
 import { ConstructionOptionsSection } from "@/components/landing/ConstructionOptionsSection";
+import { ProjectsSection } from "@/components/landing/ProjectsSection";
+import { AmenitiesSection } from "@/components/landing/AmenitiesSection";
 import { GallerySection } from "@/components/landing/GallerySection";
 import { AchievementsSection } from "@/components/landing/AchievementsSection";
 import { ContactSection } from "@/components/landing/ContactSection";
@@ -39,7 +41,13 @@ export default function HomePage() {
         {/* Section 4: Engineered Plot Formats & Construction Options */}
         <ConstructionOptionsSection />
 
-        {/* Section 5: Immersive Architectural Photography Gallery */}
+        {/* Section 5: Signature Architectural Portfolio */}
+        <ProjectsSection />
+
+        {/* Section 6: Curated Building Amenities & Specifications */}
+        <AmenitiesSection />
+
+        {/* Section 7: Immersive Architectural Photography Gallery */}
         <GallerySection />
 
         {/* Section 6: Verified Milestones & Achievements */}
