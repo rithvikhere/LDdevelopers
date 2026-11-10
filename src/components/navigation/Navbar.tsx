@@ -8,11 +8,10 @@ import { siteContent } from "@/config/site-content";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 
 /**
- * Navbar Component — Refined 3-Part Responsive Architectural Header
- * - Constrained 3-column CSS Grid layout on desktop (Logo | 9 Links | CTA)
- * - Intelligent breakpoint fallback below 1360px with menu drawer
+ * Navbar Component — Refined Architectural Header
+ * - Clean 3-part CSS Grid layout on desktop (Logo | 6 Active Links | CTA)
+ * - Generous spacing between navigation options
  * - Guaranteed zero clipping or overflow on the Initiate Project CTA
- * - Preserves all 9 core destinations in exact order
  */
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -94,17 +93,17 @@ export const Navbar: React.FC = () => {
       >
         <div className="w-full max-w-[1600px] mx-auto px-5 sm:px-8 xl:px-12 box-border">
           {/* ========================================================================= */}
-          {/* DESKTOP LAYOUT (1360px and above) — 3-part CSS Grid                      */}
+          {/* DESKTOP LAYOUT (xl: 1280px and above) — 3-part CSS Grid                  */}
           {/* ========================================================================= */}
-          <div className="hidden min-[1360px]:grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-6 xl:gap-8 2xl:gap-10 w-full">
+          <div className="hidden xl:grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-6 xl:gap-8 2xl:gap-10 w-full">
             {/* LEFT — Company Brand (approx 300-340px) */}
             <div className="shrink-0 flex items-center max-w-[340px]">
               <CompanyLogo theme="dark" size="md" />
             </div>
 
-            {/* CENTER — All 9 Navigation Links (Centred and evenly spaced) */}
+            {/* CENTER — Navigation Links (Centered, spacious & readable) */}
             <nav
-              className="flex items-center justify-center gap-3.5 xl:gap-4 2xl:gap-5 min-w-0"
+              className="flex items-center justify-center gap-5 xl:gap-7 2xl:gap-8 min-w-0"
               aria-label="Main Navigation"
             >
               {siteContent.navigation.map((item) => {
@@ -114,7 +113,7 @@ export const Navbar: React.FC = () => {
                     key={item.id}
                     href={item.href}
                     onClick={(e) => scrollToSection(e, item.href, item.id)}
-                    className={`relative py-1.5 transition-colors duration-200 whitespace-nowrap text-[12px] xl:text-[12.5px] 2xl:text-[13px] font-mono uppercase tracking-[0.1em] ${
+                    className={`relative py-1.5 transition-colors duration-200 whitespace-nowrap text-[13px] 2xl:text-[13.5px] font-mono uppercase tracking-[0.12em] ${
                       isActive
                         ? "text-[#C5B083] font-semibold"
                         : "text-[#F5F3EF]/75 hover:text-[#C5B083] font-medium"
@@ -153,9 +152,9 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* ========================================================================= */}
-          {/* RESPONSIVE LAYOUT (< 1360px: Laptops, Tablets & Mobile)                   */}
+          {/* RESPONSIVE LAYOUT (< xl: Tablets & Mobile)                                */}
           {/* ========================================================================= */}
-          <div className="flex min-[1360px]:hidden items-center justify-between w-full">
+          <div className="flex xl:hidden items-center justify-between w-full">
             {/* Left: Brand Logo */}
             <div className="shrink-0 flex items-center max-w-[280px] sm:max-w-[320px]">
               <CompanyLogo theme="dark" size="sm" className="sm:hidden" />
@@ -189,7 +188,7 @@ export const Navbar: React.FC = () => {
       </header>
 
       {/* ========================================================================= */}
-      {/* MOBILE & TABLET DRAWER OVERLAY — Full 9 Disciplines                        */}
+      {/* MOBILE & TABLET DRAWER OVERLAY                                            */}
       {/* ========================================================================= */}
       <AnimatePresence>
         {mobileMenuOpen && (
@@ -197,18 +196,18 @@ export const Navbar: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-[#0B0F0D]/95 backdrop-blur-xl min-[1360px]:hidden flex flex-col justify-between p-6 sm:p-10 pt-24 overflow-y-auto"
+            className="fixed inset-0 z-40 bg-[#0B0F0D]/95 backdrop-blur-xl xl:hidden flex flex-col justify-between p-6 sm:p-10 pt-24 overflow-y-auto"
           >
             <div className="flex flex-col space-y-3 sm:space-y-4">
               <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#C5B083] mb-2">
-                DISCIPLINES &amp; NAVIGATION
+                NAVIGATION
               </div>
               {siteContent.navigation.map((item) => (
                 <a
                   key={item.id}
                   href={item.href}
                   onClick={(e) => scrollToSection(e, item.href, item.id)}
-                  className="font-display text-xl sm:text-2xl text-[#F5F3EF] hover:text-[#C5B083] transition-colors py-1.5 border-b border-[#24322A]/30"
+                  className="font-display text-xl sm:text-2xl text-[#F5F3EF] hover:text-[#C5B083] transition-colors py-2 border-b border-[#24322A]/30"
                 >
                   {item.label}
                 </a>

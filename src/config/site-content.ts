@@ -20,16 +20,13 @@ export const siteContent = {
     registrationNumberPlaceholder: "[RERA / REGISTRATION NO.]",
   },
 
-  // Clean architectural navigation — All 9 core disciplines & destinations
+  // Clean architectural navigation
   navigation: [
     { label: "Home", href: "#home", id: "home" },
     { label: "About", href: "#about", id: "about" },
     { label: "Services", href: "#services", id: "services" },
     { label: "Construction Options", href: "#options", id: "options" },
-    { label: "Projects", href: "#projects", id: "projects" },
-    { label: "Amenities", href: "#amenities", id: "amenities" },
     { label: "Gallery", href: "#gallery", id: "gallery" },
-    { label: "Achievements", href: "#achievements", id: "achievements" },
     { label: "Contact", href: "#contact", id: "contact" },
   ] as NavLink[],
 
