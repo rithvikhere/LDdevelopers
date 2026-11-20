@@ -38,7 +38,7 @@ export const HeroSection: React.FC = () => {
       className="relative min-h-[92vh] flex flex-col justify-between overflow-hidden bg-transparent text-[#212121] pt-12 sm:pt-16 lg:pt-14 xl:pt-16 pb-8 sm:pb-12"
     >
       {/* Subtle Architectural Hairline Grid Overlay */}
-      <div className="absolute inset-0 bg-architectural-grid opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 bg-hero-grid pointer-events-none" aria-hidden="true" />
 
       {/* ========================================================================= */}
       {/* EDITORIAL SPLIT CONTAINER: Left ~38% / Right ~62%                         */}

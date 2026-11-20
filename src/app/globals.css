@@ -56,9 +56,21 @@
 /* Subtle architectural grid pattern */
 .bg-architectural-grid {
   background-size: 56px 56px;
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(33, 33, 33, 0.06) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(33, 33, 33, 0.06) 1px, transparent 1px);
+}
+
+/* Hero-only architectural grid — deep olive (#242C1E, near-black) hairlines at low contrast,
+   softly fading out toward the edges of the section */
+.bg-hero-grid {
+  background-size: 64px 64px;
+  background-position: center top;
+  background-image:
+    linear-gradient(to right, rgba(36, 44, 30, 0.11) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(36, 44, 30, 0.11) 1px, transparent 1px);
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, #000 55%, transparent 100%);
 }
 
 /* Custom editorial scrollbar */
