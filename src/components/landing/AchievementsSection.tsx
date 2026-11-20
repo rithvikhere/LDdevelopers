@@ -10,13 +10,14 @@ import {
   kairosChildVariant,
 } from "@/components/ui/KairosScrollReveal";
 import { motion } from "framer-motion";
-import { Award, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { Award, Clock } from "lucide-react";
 
-export const AchievementsSection: React.FC = () => {
+/** compact: tighter vertical rhythm + <h1> heading for use as a standalone route page. */
+export const AchievementsSection: React.FC<{ compact?: boolean }> = ({ compact = false }) => {
   return (
     <section
       id="achievements"
-      className="py-28 sm:py-36 lg:py-44 bg-transparent text-[#F5F3EF] relative overflow-hidden transition-colors"
+      className={`${compact ? "pt-10 pb-20 sm:pt-12 sm:pb-24" : "py-28 sm:py-36 lg:py-44"} bg-transparent text-[#F5F3EF] relative overflow-hidden transition-colors`}
     >
       <div className="absolute inset-0 bg-architectural-grid opacity-15 pointer-events-none" />
 
@@ -26,18 +27,18 @@ export const AchievementsSection: React.FC = () => {
           <KairosDepthReveal delay={0.05}>
             <div className="flex flex-col items-center justify-center text-center mx-auto mb-6">
               <span className="text-sm sm:text-base md:text-lg font-mono tracking-[0.3em] text-[#C5B083] uppercase font-semibold">
-                05 / PROVEN MILESTONES
+                06 / PROVEN MILESTONES
               </span>
             </div>
           </KairosDepthReveal>
 
-          <KairosMaskedText delay={0.15} as="h2" className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight leading-[1.12] mb-6">
+          <KairosMaskedText delay={0.15} as={compact ? "h1" : "h2"} className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight leading-[1.12] mb-6">
             {siteContent.achievements.title}
           </KairosMaskedText>
 
           <KairosDepthReveal delay={0.25}>
             <p className="text-xs sm:text-sm text-[#9EA8A1] max-w-2xl mx-auto font-light leading-relaxed font-mono">
-              Verifiable track record of structural excellence, timely delivery, and zero legal disputes across all residential and commercial portfolios.
+              {siteContent.achievements.subtitle}
             </p>
           </KairosDepthReveal>
         </div>
@@ -68,9 +69,9 @@ export const AchievementsSection: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-[#24322A]/15 flex items-center gap-2 text-[10px] text-[#1F4A36] font-mono font-semibold uppercase tracking-wider">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#1F4A36]" />
-                  <span>Verified Metric</span>
+                <div className="mt-8 pt-4 border-t border-[#24322A]/15 flex items-center gap-2 text-[10px] text-[#5A6A61] font-mono font-semibold uppercase tracking-wider">
+                  <Clock className="w-3.5 h-3.5 text-[#5A6A61]" />
+                  <span>Awaiting client verification</span>
                 </div>
               </div>
             </motion.div>
@@ -86,19 +87,23 @@ export const AchievementsSection: React.FC = () => {
               </div>
               <div>
                 <h4 className="text-sm font-display text-[#0B0F0D] font-medium tracking-wide">
-                  Master Builder Guarantee &bull; 10-Year Structural Warranty
+                  Warranties &amp; Certifications
                 </h4>
                 <p className="text-xs text-[#1A231F] font-mono mt-0.5">
-                  Backed by comprehensive architectural insurances and third-party QA auditing.
+                  [Warranty terms and certifications will be listed here once confirmed by the company.]
                 </p>
               </div>
             </div>
 
             <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#1F4A36] font-semibold border border-[#1F4A36]/30 px-4 py-2 bg-[#ECE8DE] shadow-xs">
-              ISO 9001:2015 CERTIFIED
+              [Pending verification]
             </span>
           </div>
         </KairosDepthReveal>
+
+        <p className="mt-8 text-center text-[11px] font-mono text-[#9EA8A1] leading-relaxed">
+          {siteContent.achievements.verificationNotice}
+        </p>
       </div>
     </section>
   );

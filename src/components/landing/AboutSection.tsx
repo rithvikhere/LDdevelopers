@@ -10,11 +10,12 @@ import { motion } from "framer-motion";
  * - Large editorial typography with forward-moving scroll reveals
  * - Generous spacing, asymmetric chapter blocks, and minimal geometric hairline frames
  */
-export const AboutSection: React.FC = () => {
+/** compact: tighter vertical rhythm + <h1> heading for use as a standalone route page. */
+export const AboutSection: React.FC<{ compact?: boolean }> = ({ compact = false }) => {
   return (
     <section
       id="about"
-      className="py-28 sm:py-36 lg:py-44 bg-transparent text-[#F5F3EF] relative overflow-hidden transition-colors"
+      className={`${compact ? "pt-10 pb-20 sm:pt-12 sm:pb-24" : "py-28 sm:py-36 lg:py-44"} bg-transparent text-[#F5F3EF] relative overflow-hidden transition-colors`}
     >
       <div className="absolute inset-0 bg-architectural-grid opacity-20 pointer-events-none" />
 
@@ -40,9 +41,14 @@ export const AboutSection: React.FC = () => {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="max-w-4xl mx-auto text-center mb-12 sm:mb-16"
         >
-          <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] leading-[1.14] tracking-tight">
-            Rooted in structural integrity, spatial purity, and enduring permanence.
-          </h2>
+          {React.createElement(
+            compact ? "h1" : "h2",
+            {
+              className:
+                "font-display text-3xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] leading-[1.14] tracking-tight",
+            },
+            "Rooted in structural integrity, spatial purity, and enduring permanence."
+          )}
         </motion.div>
 
         {/* Perfectly Aligned Equal-Height 2-Column Grid */}

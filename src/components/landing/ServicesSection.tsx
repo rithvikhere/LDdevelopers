@@ -17,7 +17,8 @@ interface Discipline {
   icon: React.ElementType;
 }
 
-export const ServicesSection: React.FC = () => {
+/** compact: tighter vertical rhythm + <h1> heading for use as a standalone route page. */
+export const ServicesSection: React.FC<{ compact?: boolean }> = ({ compact = false }) => {
   const disciplines: Discipline[] = [
     {
       number: "01",
@@ -64,7 +65,7 @@ export const ServicesSection: React.FC = () => {
   return (
     <section
       id="services"
-      className="py-28 sm:py-36 lg:py-44 bg-transparent text-[#F5F3EF] relative overflow-hidden transition-colors"
+      className={`${compact ? "pt-10 pb-20 sm:pt-12 sm:pb-24" : "py-28 sm:py-36 lg:py-44"} bg-transparent text-[#F5F3EF] relative overflow-hidden transition-colors`}
     >
       <div className="absolute inset-0 bg-architectural-grid opacity-15 pointer-events-none" />
 
@@ -79,7 +80,7 @@ export const ServicesSection: React.FC = () => {
             </div>
           </KairosDepthReveal>
 
-          <KairosMaskedText delay={0.15} as="h2" className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight leading-[1.12] mb-6">
+          <KairosMaskedText delay={0.15} as={compact ? "h1" : "h2"} className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight leading-[1.12] mb-6">
             Architectural Mastery across Residential &amp; Civic Horizons.
           </KairosMaskedText>
 

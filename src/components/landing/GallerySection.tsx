@@ -11,7 +11,8 @@ import {
 } from "@/components/ui/KairosScrollReveal";
 import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
 
-export const GallerySection: React.FC = () => {
+/** compact: tighter vertical rhythm + <h1> heading for use as a standalone route page. */
+export const GallerySection: React.FC<{ compact?: boolean }> = ({ compact = false }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const shouldReduceMotion = useReducedMotion();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -97,7 +98,7 @@ export const GallerySection: React.FC = () => {
   return (
     <section
       id="gallery"
-      className="py-28 sm:py-36 lg:py-44 bg-transparent text-[#F5F3EF] relative overflow-hidden transition-colors"
+      className={`${compact ? "pt-10 pb-20 sm:pt-12 sm:pb-24" : "py-28 sm:py-36 lg:py-44"} bg-transparent text-[#F5F3EF] relative overflow-hidden transition-colors`}
     >
       <div className="absolute inset-0 bg-architectural-grid opacity-15 pointer-events-none" />
 
@@ -112,7 +113,7 @@ export const GallerySection: React.FC = () => {
             </div>
           </KairosDepthReveal>
 
-          <KairosMaskedText delay={0.15} as="h2" className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight leading-[1.12] mb-6">
+          <KairosMaskedText delay={0.15} as={compact ? "h1" : "h2"} className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight leading-[1.12] mb-6">
             {siteContent.gallery.title}
           </KairosMaskedText>
 

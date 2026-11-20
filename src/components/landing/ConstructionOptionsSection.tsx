@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
 import {
@@ -10,24 +11,16 @@ import {
 } from "@/components/ui/KairosScrollReveal";
 import { ArrowUpRight, Check, Compass, Ruler, Clock, ShieldCheck } from "lucide-react";
 
-export const ConstructionOptionsSection: React.FC = () => {
+/** compact: tighter vertical rhythm + <h1> heading for use as a standalone route page. */
+export const ConstructionOptionsSection: React.FC<{ compact?: boolean }> = ({ compact = false }) => {
   const [activeTab, setActiveTab] = useState(0);
-
-  const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const el = document.getElementById("contact");
-    if (el) {
-      const offset = el.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({ top: offset, behavior: "smooth" });
-    }
-  };
 
   const currentOption = siteAssets.constructionOptions[activeTab] || siteAssets.constructionOptions[0];
 
   return (
     <section
       id="options"
-      className="py-28 sm:py-36 lg:py-44 bg-transparent text-[#F5F3EF] relative overflow-hidden transition-colors"
+      className={`${compact ? "pt-10 pb-20 sm:pt-12 sm:pb-24" : "py-28 sm:py-36 lg:py-44"} bg-transparent text-[#F5F3EF] relative overflow-hidden transition-colors`}
     >
       <div className="absolute inset-0 bg-architectural-grid opacity-15 pointer-events-none" />
 
@@ -42,7 +35,7 @@ export const ConstructionOptionsSection: React.FC = () => {
             </div>
           </KairosDepthReveal>
 
-          <KairosMaskedText delay={0.15} as="h2" className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight leading-[1.12] mb-6">
+          <KairosMaskedText delay={0.15} as={compact ? "h1" : "h2"} className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight leading-[1.12] mb-6">
             {siteContent.constructionOptions.title}
           </KairosMaskedText>
 
@@ -142,14 +135,13 @@ export const ConstructionOptionsSection: React.FC = () => {
 
                   {/* Consultation CTA */}
                   <div className="pt-6 border-t border-[#24322A]/20">
-                    <a
-                      href="#contact"
-                      onClick={scrollToContact}
+                    <Link
+                      href="/#enquiry"
                       className="inline-flex items-center justify-between w-full py-3.5 px-6 bg-[#0B0F0D] hover:bg-[#2E5A44] border border-[#24322A] text-[#F5F3EF] text-xs font-mono uppercase tracking-[0.2em] transition-all duration-300 shadow-md"
                     >
                       <span>Consult on This Typology</span>
                       <ArrowUpRight className="w-4 h-4 text-[#C5B083]" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

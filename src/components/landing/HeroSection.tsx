@@ -21,37 +21,21 @@ import { ArchitecturalLineArt } from "@/components/hero/ArchitecturalLineArt";
 export const HeroSection: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
 
-  const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  // Smoothly scrolls to a homepage section (no navbar offset — the global navbar was removed).
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
-    const el = document.getElementById("contact");
+    const el = document.getElementById(id);
     if (el) {
-      const offset = el.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({ top: offset, behavior: "smooth" });
-    }
-  };
-
-  const scrollToServices = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const el = document.getElementById("services");
-    if (el) {
-      const offset = el.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({ top: offset, behavior: "smooth" });
-    }
-  };
-
-  const scrollToAbout = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const el = document.getElementById("about");
-    if (el) {
-      const offset = el.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({ top: offset, behavior: "smooth" });
+      const offset = el.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({ top: offset, behavior: shouldReduceMotion ? "auto" : "smooth" });
+      window.history.replaceState(null, "", `#${id}`);
     }
   };
 
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] flex flex-col justify-between overflow-hidden bg-transparent text-[#F5F3EF] pt-32 sm:pt-40 lg:pt-36 xl:pt-40 pb-8 sm:pb-12"
+      className="relative min-h-[92vh] flex flex-col justify-between overflow-hidden bg-transparent text-[#F5F3EF] pt-12 sm:pt-16 lg:pt-14 xl:pt-16 pb-8 sm:pb-12"
     >
       {/* Subtle Architectural Hairline Grid Overlay */}
       <div className="absolute inset-0 bg-architectural-grid opacity-20 pointer-events-none" />
@@ -96,8 +80,8 @@ export const HeroSection: React.FC = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
               <a
-                href="#contact"
-                onClick={scrollToContact}
+                href="#enquiry"
+                onClick={(e) => scrollToSection(e, "enquiry")}
                 className="group inline-flex items-center justify-center gap-3 bg-[#F5F2EB] hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] px-8 py-3.5 text-xs font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-xl hover:shadow-[#2E5A44]/25"
               >
                 <span>LET&apos;S BUILD</span>
@@ -105,8 +89,8 @@ export const HeroSection: React.FC = () => {
               </a>
 
               <a
-                href="#services"
-                onClick={scrollToServices}
+                href="#explore"
+                onClick={(e) => scrollToSection(e, "explore")}
                 className="group inline-flex items-center justify-center gap-3 bg-[#F5F2EB]/10 hover:bg-[#F5F2EB]/20 border border-[#24322A] hover:border-[#C5B083] text-[#F5F3EF] hover:text-[#C5B083] px-8 py-3.5 text-xs font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300"
               >
                 <span>EXPLORE OUR PROJECTS</span>
@@ -146,10 +130,10 @@ export const HeroSection: React.FC = () => {
         className="w-full flex flex-col items-center justify-center relative z-10 pt-2"
       >
         <a
-          href="#about"
-          onClick={scrollToAbout}
+          href="#explore"
+          onClick={(e) => scrollToSection(e, "explore")}
           className="group inline-flex flex-col items-center gap-2 text-[10px] sm:text-[11px] font-mono tracking-[0.28em] uppercase text-[#9EA8A1] hover:text-[#C5B083] transition-colors cursor-pointer"
-          aria-label="Scroll down to philosophy"
+          aria-label="Scroll down to the Explore hub"
         >
           <span>SCROLL DOWN</span>
           <motion.div

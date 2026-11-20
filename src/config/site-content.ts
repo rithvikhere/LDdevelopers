@@ -20,15 +20,62 @@ export const siteContent = {
     registrationNumberPlaceholder: "[RERA / REGISTRATION NO.]",
   },
 
-  // Clean architectural navigation
+  // Public website navigation — six independent content routes (used by the footer).
+  // The Explore hub on the homepage is the primary navigation system.
   navigation: [
-    { label: "Home", href: "#home", id: "home" },
-    { label: "About", href: "#about", id: "about" },
-    { label: "Services", href: "#services", id: "services" },
-    { label: "Construction Options", href: "#options", id: "options" },
-    { label: "Gallery", href: "#gallery", id: "gallery" },
-    { label: "Contact", href: "#contact", id: "contact" },
+    { label: "About", href: "/about", id: "about" },
+    { label: "Services", href: "/services", id: "services" },
+    { label: "Construction Options", href: "/construction-options", id: "construction-options" },
+    { label: "Gallery", href: "/gallery", id: "gallery" },
+    { label: "Contact", href: "/contact", id: "contact" },
+    { label: "Achievements", href: "/achievements", id: "achievements" },
   ] as NavLink[],
+
+  // Homepage Section 02 — Explore hub (editorial index of the six content routes)
+  explore: {
+    tag: "INDEX / EXPLORE",
+    title: "Explore Our World",
+    subtitle:
+      "Discover our philosophy, capabilities, construction approach, and the spaces we create.",
+    destinations: [
+      {
+        number: "01",
+        label: "About",
+        href: "/about",
+        description: "Company philosophy, vision, and approach.",
+      },
+      {
+        number: "02",
+        label: "Services",
+        href: "/services",
+        description: "Our residential, commercial, and property development capabilities.",
+      },
+      {
+        number: "03",
+        label: "Construction Options",
+        href: "/construction-options",
+        description: "Explore plot dimensions, building formats, and construction possibilities.",
+      },
+      {
+        number: "04",
+        label: "Gallery",
+        href: "/gallery",
+        description: "A visual collection of architectural and construction imagery.",
+      },
+      {
+        number: "05",
+        label: "Contact",
+        href: "/contact",
+        description: "Connect with the company's architectural and development team.",
+      },
+      {
+        number: "06",
+        label: "Achievements",
+        href: "/achievements",
+        description: "Completed projects, company experience, and verified milestones.",
+      },
+    ],
+  },
 
   hero: {
     badge: "Architectural Excellence &amp; Turnkey Construction",
@@ -114,7 +161,7 @@ export const siteContent = {
     tag: "08 / PROVEN METRICS",
     title: "Milestones in Concrete & Craft",
     subtitle:
-      "Our verified track record of delivering excellence. All statistics below reflect strictly verified figures once confirmed.",
+      "Completed projects, company experience, and verified milestones. Figures are published only once they have been confirmed by the company.",
     verificationNotice:
       "* Verified performance figures will be displayed upon official client audit. No unsubstantiated claims are made.",
   },

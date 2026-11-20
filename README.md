@@ -7,7 +7,7 @@ A premium, bespoke website and lead-management platform designed for a construct
 ## 1. Project Overview
 
 The project is structured into three integrated applications:
-1. **Public Architectural Company Website (Phase 03 Completed):** A nine-section, cinematic single-page experience showcasing services, plot construction options, sample concepts, amenities, photography archive, verified achievements, and direct contact channels with restrained motion, active indicator navigation, and refined micro-interactions.
+1. **Public Architectural Company Website:** A three-part homepage (Hero → Explore Hub → Enquiry) plus six independent content pages (`/about`, `/services`, `/construction-options`, `/gallery`, `/contact`, `/achievements`). There is no global top navigation bar — the Explore hub is the primary navigation system. See [Public Website Architecture](#5-public-website-architecture).
 2. **Customer Portal (`/dashboard`):** Client registration, authentication, multi-step construction enquiry submission, and live status tracking (Planned for later phases).
 3. **Admin Lead-Management Console (`/admin/dashboard`):** Isolated administrative login, real database statistics, comprehensive enquiry table with search/filtering, detailed lead viewer, and manual click-to-chat WhatsApp, call, and email integration (Planned for later phases).
 
@@ -43,48 +43,71 @@ The visual identity follows the creative direction defined in `PHASE_01_BRAND_ID
 
 ---
 
-## 4. Phase 03 Motion, Interactions & Navigation
+## 4. Motion, Interactions & Navigation
 
-- **Desktop Navigation:**
-  - **Transparent to Solid Transition:** Blends naturally into the cinematic hero; smoothly shifts into solid Deep Charcoal (`#202622`) upon scrolling.
-  - **Sliding Champagne Brass Indicator:** An animated indicator (`layoutId="activeNavbarIndicator"`) tracks the in-view section without flicker.
-  - **Sticky Navbar Offset Scrolling:** Click-to-scroll handler calculates the sticky header offset (~72px) for exact section alignment.
-  - **Primary CTA:** Muted Forest (`#526653`) *"Let's Build"* button leading directly to `#contact`.
-- **Mobile Navigation:**
-  - Full-screen Deep Charcoal (`#202622`) overlay with staggered link entrance.
-  - Locks background page scrolling while open and restores it when closed.
-  - Escape key listener and visible focus handling.
-  - Closes automatically upon section selection.
-- **Section Entrance Motion (`MotionReveal`):**
-  - Restrained, once-only reveal animations (16px upward displacement, 600ms duration, architectural cubic bezier).
-  - Strictly respects `prefers-reduced-motion`.
-- **Interactive Lightbox:**
-  - Accessible dialog (`role="dialog"`, `aria-modal="true"`) for the gallery archive.
-  - Keyboard navigation (Left/Right arrow keys for previous/next image, Escape to close).
-  - Body scroll lock during inspection.
-- **Card & Button Micro-Interactions:**
-  - Tactile pressed feedback (`active:scale-[0.98]`).
-  - High-contrast `:focus-visible` rings in Champagne Brass (`#B49A68`).
+- **No global navbar:** The sticky top navigation bar, mobile hamburger drawer and active-section indicator were removed from the public website. Navigation happens through the homepage **Explore hub** and the footer.
+- **Explore hub motion:** Masked heading reveal, progressively drawn hairline dividers, restrained staggered entry of the six destinations, and hover/focus emphasis (brass rule sweep, number and title colour shift, sliding arrow).
+- **Page transitions:** Each content page enters with a quick fade and slight upward movement (`PageShell`, Framer Motion). No scroll-jacking, no excessive parallax.
+- **Section entrance motion:** `KairosDepthReveal`, `KairosMaskedText` and `MotionReveal` scroll reveals, all respecting `prefers-reduced-motion`.
+- **Interactive lightbox (Gallery page):** Keyboard navigation (Left/Right arrows for previous/next, Escape to close), focus moved to the close button and restored on close, body scroll lock during inspection.
+- **Focus states:** High-contrast `:focus-visible` rings in Champagne Brass.
+- **Hero:** Artwork, copy and line-art animation unchanged. Its CTAs now target the homepage sections: *"Let's Build"* → `#enquiry`, *"Explore Our Projects"* and *"Scroll Down"* → `#explore`.
 
 ---
 
-## 5. The Exactly 9 Landing-Page Sections
+## 5. Public Website Architecture
 
-1. **Section 1 — Home / Hero (`#home`):** Full-screen architectural photography with layered charcoal gradient overlay, temporary logo badge, headline (*"Sculpting Enduring Spaces, Defining Modern Living"*), primary *"Let's Build"* CTA, and secondary *"Explore Our Projects"* navigation.
-2. **Section 2 — About (`#about`):** Craftsmanship philosophy, vision, dual-photo architectural layout, clearly marked placeholder notices, and three foundational pillars (*Architectural Integrity, Engineering Rigor, Transparent Governance*).
-3. **Section 3 — Services (`#services`):** Six key disciplines:
-   - *Houses / Independent Houses*
-   - *Duplexes*
-   - *Villas*
-   - *Commercial Buildings*
-   - *Land Investing*
-   - *Property Buying and Selling*
-4. **Section 4 — Construction Options (`#options`):** Deep charcoal section detailing recommended plot dimensions, house types, duplex/villa formats, commercial frameworks, and custom turnkey briefs.
-5. **Section 5 — Projects (`#projects`):** Curated architectural concept gallery with category filters (*All, Residential, Villas, Commercial, Duplex*), specifications, and prominent *"Sample Project"* identification.
-6. **Section 6 — Amenities & Quality (`#amenities`):** Six engineering benchmarks: Seismic foundations, artisanal finishes, thermal/acoustic insulation, intelligent infrastructure, rainwater harvesting, and certified structural assurance.
-7. **Section 7 — Gallery (`#gallery`):** Responsive architectural photography grid with an interactive, accessible lightbox modal with keyboard navigation.
-8. **Section 8 — Achievements (`#achievements`):** Transparent milestone metrics with strict `"--"` placeholders awaiting verified client figures (zero fake metrics).
-9. **Section 9 — Contact (`#contact`):** Telephone, email, corporate office address, consultation hours placeholders, manual WhatsApp click-to-chat action with prefilled message, and an interactive preliminary enquiry intake card.
+### Homepage (`/`) — three primary sections + footer
+```
+Hero (#home)            existing hero, unchanged artwork & animation
+  ↓
+Explore Hub (#explore)  editorial index of the six content pages
+  ↓
+Enquiry (#enquiry)      existing contact desk + enquiry form, unchanged
+  ↓
+Footer                  existing footer, unchanged design
+```
+
+### Six independent content pages
+Each destination in the Explore hub is a real Next.js route that opens in the same browser tab (`next/link`).
+
+| # | Route | Content |
+|---|---|---|
+| 01 | `/about` | Company philosophy, manifesto and the three pillars (Architectural Integrity, Engineering Rigor, Transparent Governance) |
+| 02 | `/services` | The existing service disciplines + "Request a Proposal" CTA → `/#enquiry` |
+| 03 | `/construction-options` | Plot dimensions, building typologies (tabbed), inclusions + "Consult on This Typology" CTA → `/#enquiry` |
+| 04 | `/gallery` | Photography grid with the accessible keyboard lightbox |
+| 05 | `/contact` | Studio address, phone, email, hours, WhatsApp click-to-chat + "Go to the Enquiry Form" CTA → `/#enquiry` (the form is not duplicated) |
+| 06 | `/achievements` | Milestone metrics with strict `"--"` placeholders and "Awaiting client verification" labels — no fabricated figures, warranties or certifications |
+
+### Back-to-Explore behaviour
+- Every content page shows a single **"← BACK TO EXPLORE"** control (no navigation bar) that links to `/#explore`.
+- It always returns to the hub, even when a page was opened directly by URL, so visitors are never stranded.
+- Browser back/forward navigation and page refresh work normally because every page is a real route.
+- Any enquiry CTA on a content page links to `/#enquiry` (works on client-side navigation and on a full page load).
+
+### Unchanged parts
+- The enquiry form (fields, labels, validation, submission via `submitPublicEnquiryAction`, loading/success/error states, Supabase or demo-mode storage).
+- The footer design. Its navigation column now links to the six routes and "Commission Enquiry" links to `/#enquiry`.
+
+### Account & admin routes (unchanged)
+- `/login` — shared login page
+- `/register` — currently redirects to `/login`
+- `/dashboard` — currently redirects to `/admin/dashboard`
+- `/admin/dashboard` — role-guarded admin lead-management console
+
+### Key files
+```
+src/app/page.tsx                                   Homepage (Hero → Explore → Enquiry → Footer)
+src/app/{about,services,construction-options,gallery,contact,achievements}/page.tsx
+src/components/landing/ExploreHubSection.tsx       Explore hub (Section 02)
+src/components/landing/ContactInfoCard.tsx         Studio details + WhatsApp card (shared by homepage and /contact)
+src/components/pages/PageShell.tsx                 Shared content-page frame (background, back control, transition, footer)
+src/components/pages/BackToExplore.tsx             "← BACK TO EXPLORE" link
+src/components/pages/EnquiryCta.tsx                Contextual CTA to /#enquiry
+src/components/pages/ContactPageContent.tsx        /contact page layout
+src/config/site-content.ts                         `navigation` (six routes) and `explore` (hub copy & destinations)
+```
 
 ---
 
@@ -142,7 +165,8 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to inspect t
 
 - [x] **Phase 01:** Brand identity, creative direction tokens, typography foundations.
 - [x] **Phase 02:** Public Landing Page UI/UX, updated 9-section navigation, editorial layouts, centralized asset configuration.
-- [x] **Phase 03:** Motion, Interactions & Navigation (sliding active indicator, sticky offset scroll, accessible mobile drawer, keyboard lightbox, and `prefers-reduced-motion` compliance).
+- [x] **Phase 03:** Motion, Interactions & Navigation (keyboard lightbox, focus states, and `prefers-reduced-motion` compliance).
+- [x] **Public website architecture redesign:** Three-part homepage (Hero → Explore Hub → Enquiry), six independent content routes, Back-to-Explore navigation, global navbar removed.
 - [ ] **Phase 04:** Customer Authentication & Database Integration (Supabase PostgreSQL, RLS).
 - [ ] **Phase 05:** Customer Portal & Multi-Step Construction Enquiry Form.
 - [ ] **Phase 06:** Admin Lead Management Dashboard, searchable/filterable lead table, and manual WhatsApp launcher.

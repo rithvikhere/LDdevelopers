@@ -51,7 +51,7 @@ export const CompanyLogo: React.FC<CompanyLogoProps> = ({
 
   return (
     <Link
-      href="#home"
+      href="/"
       className={`inline-flex items-center ${gapSize} group transition-opacity hover:opacity-90 ${className}`}
       aria-label="[COMPANY NAME] - Home"
     >

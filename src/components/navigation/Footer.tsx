@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Column 2: 9 Landing Page Sections */}
+          {/* Column 2: Six Independent Content Pages */}
           <div>
             <h4 className="text-[11px] uppercase tracking-[0.22em] text-[#C5B083] font-mono mb-6">
               Navigation
@@ -40,12 +40,12 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 text-xs font-mono uppercase tracking-wider">
               {siteContent.navigation.map((item) => (
                 <li key={item.id}>
-                  <a
+                  <Link
                     href={item.href}
                     className="text-[#9EA8A1] hover:text-[#C5B083] transition-colors inline-block py-0.5"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -67,12 +67,12 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <a
-                  href="#contact"
+                <Link
+                  href="/#enquiry"
                   className="text-[#9EA8A1] hover:text-[#C5B083] transition-colors inline-block py-0.5"
                 >
                   Commission Enquiry
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
