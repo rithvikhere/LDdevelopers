@@ -55,11 +55,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F0E7] text-[#252A26] flex flex-col justify-between selection:bg-[#B89A60]/30 selection:text-[#1D2923]">
+    <div className="min-h-screen bg-[#CADCAE] text-[#212121] flex flex-col justify-between selection:bg-[#E67514]/30 selection:text-[#212121]">
       {/* Top Header */}
-      <header className="border-b border-[#DDD6C8] bg-[#FAF9F5]/80 backdrop-blur-md px-6 lg:px-12 py-5 flex items-center justify-between">
-        <Link href="/" className="inline-flex items-center gap-2 text-xs font-mono tracking-[0.2em] uppercase text-[#69716C] hover:text-[#252A26] transition-colors">
-          <ArrowLeft className="w-3.5 h-3.5 text-[#B89A60]" />
+      <header className="border-b border-[#212121]/20 bg-[#CADCAE]/80 backdrop-blur-md px-6 lg:px-12 py-5 flex items-center justify-between">
+        <Link href="/" className="inline-flex items-center gap-2 text-xs font-mono tracking-[0.2em] uppercase text-[#212121]/75 hover:text-[#212121] transition-colors">
+          <ArrowLeft className="w-3.5 h-3.5 text-[#E67514]" />
           <span>Return to Studio</span>
         </Link>
         <CompanyLogo theme="light" />
@@ -68,20 +68,20 @@ export default function LoginPage() {
 
       {/* Main Container */}
       <main className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-12">
-        <div className="w-full max-w-md bg-[#FAF9F5] border border-[#DDD6C8] shadow-sm p-6 sm:p-10 relative isolate">
+        <div className="w-full max-w-md bg-[#D3ECCD] border border-[#212121]/15 shadow-xl p-6 sm:p-10 relative isolate">
           {/* Subtle Top Accent Bar */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#506653] via-[#B89A60] to-[#506653]" />
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#06923E] via-[#E67514] to-[#06923E]" />
 
           {/* Heading */}
           <div className="mb-8">
-            <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.22em] text-[#B89A60] mb-2 font-medium">
-              <Shield className="w-3.5 h-3.5 text-[#B89A60]" />
+            <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.22em] text-[#212121] mb-2 font-medium">
+              <Shield className="w-3.5 h-3.5 text-[#E67514]" />
               <span>STUDIO GOVERNANCE</span>
             </div>
-            <h1 className="font-display text-3xl font-light text-[#252A26] tracking-tight">
+            <h1 className="font-display text-3xl font-light text-[#212121] tracking-tight">
               Admin Dashboard Login
             </h1>
-            <p className="text-xs text-[#69716C] font-light mt-2 leading-relaxed">
+            <p className="text-xs text-[#212121]/75 font-light mt-2 leading-relaxed">
               Administrative portal for managing client construction enquiries, architectural briefs, and commission workflows.
             </p>
           </div>
@@ -96,35 +96,35 @@ export default function LoginPage() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-[11px] font-mono tracking-wider text-[#69716C] uppercase mb-1.5 font-medium">
+              <label className="block text-[11px] font-mono tracking-wider text-[#212121]/75 uppercase mb-1.5 font-medium">
                 Admin Email Address
               </label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-[#8C938E] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <Mail className="w-4 h-4 text-[#212121]/75 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="admin@lddevelopers.com"
-                  className="w-full bg-[#FAF9F5] border border-[#DDD6C8] focus:border-[#506653] focus:ring-1 focus:ring-[#506653] text-[#252A26] text-sm pl-10 pr-3.5 py-2.5 transition-colors placeholder:text-[#A7ADA9] outline-none"
+                  className="w-full bg-white border border-[#212121]/20 focus:border-[#06923E] focus:ring-1 focus:ring-[#06923E] text-[#212121] text-sm pl-10 pr-3.5 py-2.5 transition-colors placeholder:text-[#212121]/50 outline-none"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[11px] font-mono tracking-wider text-[#69716C] uppercase mb-1.5 font-medium">
+              <label className="block text-[11px] font-mono tracking-wider text-[#212121]/75 uppercase mb-1.5 font-medium">
                 Security Password
               </label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-[#8C938E] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <Lock className="w-4 h-4 text-[#212121]/75 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type="password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full bg-[#FAF9F5] border border-[#DDD6C8] focus:border-[#506653] focus:ring-1 focus:ring-[#506653] text-[#252A26] text-sm pl-10 pr-3.5 py-2.5 transition-colors placeholder:text-[#A7ADA9] outline-none"
+                  className="w-full bg-white border border-[#212121]/20 focus:border-[#06923E] focus:ring-1 focus:ring-[#06923E] text-[#212121] text-sm pl-10 pr-3.5 py-2.5 transition-colors placeholder:text-[#212121]/50 outline-none"
                 />
               </div>
             </div>
@@ -132,25 +132,25 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isPending}
-              className="w-full mt-2 inline-flex items-center justify-center gap-2 bg-[#1D2923] hover:bg-[#506653] active:scale-[0.99] disabled:opacity-60 text-[#FAF9F5] py-3.5 text-xs font-semibold uppercase tracking-[0.2em] border border-[#B89A60]/40 transition-all duration-200 cursor-pointer shadow-xs"
+              className="w-full mt-2 inline-flex items-center justify-center gap-2 bg-[#06923E] hover:bg-[#212121] active:scale-[0.99] disabled:opacity-60 text-white py-3.5 text-xs font-semibold uppercase tracking-[0.2em] border border-[#06923E] transition-all duration-200 cursor-pointer shadow-xs"
             >
               <span>{isPending ? "AUTHENTICATING..." : "SIGN IN AS ADMIN"}</span>
-              <ArrowRight className="w-4 h-4 text-[#B89A60]" />
+              <ArrowRight className="w-4 h-4 text-white" />
             </button>
           </form>
 
           {/* Quick 1-Click Demo Admin Button */}
-          <div className="mt-8 pt-6 border-t border-[#DDD6C8]/60">
-            <div className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#69716C] mb-3 text-center">
+          <div className="mt-8 pt-6 border-t border-[#212121]/60">
+            <div className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#212121]/75 mb-3 text-center">
               Instant Access
             </div>
             <button
               type="button"
               onClick={handleQuickDemoAdmin}
               disabled={isPending}
-              className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-[#EBE5D8] hover:bg-[#DDD6C8] border border-[#DDD6C8] text-xs font-mono tracking-wider text-[#252A26] transition-colors cursor-pointer"
+              className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-transparent hover:bg-[#E67514] hover:border-[#E67514] border border-[#212121]/40 text-xs font-mono tracking-wider text-[#212121] transition-colors cursor-pointer"
             >
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#506653]" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#06923E]" />
               <span>One-Click Principal Admin Demo</span>
             </button>
           </div>
@@ -158,7 +158,7 @@ export default function LoginPage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-[#DDD6C8] bg-[#FAF9F5] py-4 px-6 text-center text-[11px] font-mono text-[#69716C]">
+      <footer className="border-t border-[#212121]/15 bg-[#CADCAE] py-4 px-6 text-center text-[11px] font-mono text-[#212121]/75">
         [COMPANY NAME] ARCHITECTURAL PLATFORM &copy; {new Date().getFullYear()} — CONFIDENTIAL &amp; PROPRIETARY
       </footer>
     </div>

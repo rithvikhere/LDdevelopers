@@ -52,7 +52,7 @@ export const KairosDepthReveal: React.FC<KairosDepthRevealProps> = ({
       }}
       className={`relative ${
         withFrame
-          ? "border border-[#24322A]/20 bg-[#F5F2EB]/95 backdrop-blur-md p-6 sm:p-8 shadow-xl text-[#0B0F0D] hover:border-[#2E5A44]/40 transition-colors duration-500"
+          ? "border border-[#212121]/20 bg-[#D3ECCD]/95 backdrop-blur-md p-6 sm:p-8 shadow-xl text-[#212121] hover:border-[#06923E]/40 transition-colors duration-500"
           : ""
       } ${className}`.trim()}
     >
@@ -62,7 +62,7 @@ export const KairosDepthReveal: React.FC<KairosDepthRevealProps> = ({
           whileInView={{ opacity: [0, 0.15, 0] }}
           viewport={{ once: false }}
           transition={{ duration: 1.2, delay: delay + 0.3 }}
-          className="absolute inset-0 bg-radial from-[#C5B083]/20 via-transparent to-transparent pointer-events-none"
+          className="absolute inset-0 bg-radial from-[#E67514]/20 via-transparent to-transparent pointer-events-none"
         />
       )}
       {children}

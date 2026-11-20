@@ -128,7 +128,7 @@ export const ContactSection: React.FC = () => {
   return (
     <section
       id="contact"
-      className="py-28 sm:py-36 lg:py-44 bg-transparent text-[#F5F3EF] relative overflow-hidden transition-colors"
+      className="py-28 sm:py-36 lg:py-44 bg-transparent text-[#212121] relative overflow-hidden transition-colors"
     >
       <div className="absolute inset-0 bg-architectural-grid opacity-15 pointer-events-none" />
 
@@ -137,18 +137,18 @@ export const ContactSection: React.FC = () => {
         <div className="flex flex-col items-center text-center mx-auto max-w-4xl mb-16 sm:mb-24">
           <KairosDepthReveal delay={0.05}>
             <div className="flex flex-col items-center justify-center text-center mx-auto mb-6">
-              <span className="text-sm sm:text-base md:text-lg font-mono tracking-[0.3em] text-[#C5B083] uppercase font-semibold">
+              <span className="text-sm sm:text-base md:text-lg font-mono tracking-[0.3em] text-[#212121] uppercase font-semibold">
                 06 / ARCHITECTURAL INTAKE &amp; CONTACT
               </span>
             </div>
           </KairosDepthReveal>
 
-          <KairosMaskedText delay={0.15} as="h2" className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight leading-[1.12] mb-6">
+          <KairosMaskedText delay={0.15} as="h2" className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#212121] tracking-tight leading-[1.12] mb-6">
             {siteContent.contact.title}
           </KairosMaskedText>
 
           <KairosDepthReveal delay={0.25}>
-            <p className="text-xs sm:text-sm text-[#9EA8A1] max-w-2xl mx-auto font-light leading-relaxed font-mono">
+            <p className="text-xs sm:text-sm text-[#212121]/75 max-w-2xl mx-auto font-light leading-relaxed font-mono">
               Initiate a confidential consultation with our principal design desk, or submit your land parcel specifications for architectural feasibility review.
             </p>
           </KairosDepthReveal>
@@ -164,18 +164,18 @@ export const ContactSection: React.FC = () => {
           {/* Right Column: Architectural Intake Form (Columns 6-12) */}
           <div className="lg:col-span-7">
             <KairosDepthReveal delay={0.25} withFrame={false}>
-              <div className="border border-[#24322A]/20 bg-[#F5F2EB]/95 backdrop-blur-md shadow-2xl p-8 sm:p-12 relative overflow-hidden">
-                <div className="pb-6 border-b border-[#24322A]/15 mb-8">
+              <div className="border border-[#212121]/20 bg-[#D3ECCD]/95 backdrop-blur-md shadow-2xl p-8 sm:p-12 relative overflow-hidden">
+                <div className="pb-6 border-b border-[#212121]/15 mb-8">
                   <div className="flex items-center gap-2 mb-2">
-                    <Sparkles className="w-3.5 h-3.5 text-[#1F4A36]" />
-                    <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#1F4A36] font-semibold">
+                    <Sparkles className="w-3.5 h-3.5 text-[#06923E]" />
+                    <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#212121] font-semibold">
                       INTAKE DESK
                     </span>
                   </div>
-                  <h3 className="font-display text-2xl sm:text-3xl font-light text-[#0B0F0D]">
+                  <h3 className="font-display text-2xl sm:text-3xl font-light text-[#212121]">
                     Initiate Construction Enquiry
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#1A231F] font-light mt-1.5 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#212121] font-light mt-1.5 leading-relaxed">
                     Submit your plot parameters or development vision for preliminary zoning and structural review.
                   </p>
                 </div>
@@ -183,50 +183,50 @@ export const ContactSection: React.FC = () => {
                 {submittedData ? (
                   /* Confirmation State */
                   <div className="space-y-6">
-                    <div className="p-4 bg-[#2E5A44]/15 border border-[#2E5A44]/40 flex items-center justify-between">
+                    <div className="p-4 bg-[#06923E]/15 border border-[#06923E]/40 flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-[#1F4A36]" />
+                        <CheckCircle2 className="w-5 h-5 text-[#06923E]" />
                         <div>
-                          <span className="text-xs font-display text-[#0B0F0D] font-semibold">Consultation Registered</span>
-                          <span className="block text-[10px] font-mono text-[#3B4B42]">{submittedData.timestamp}</span>
+                          <span className="text-xs font-display text-[#212121] font-semibold">Consultation Registered</span>
+                          <span className="block text-[10px] font-mono text-[#212121]/75">{submittedData.timestamp}</span>
                         </div>
                       </div>
-                      <span className="font-mono text-xs font-semibold text-[#F5F3EF] bg-[#0B0F0D] px-2.5 py-1 border border-[#24322A]">
+                      <span className="font-mono text-xs font-semibold text-[#D3ECCD] bg-[#212121] px-2.5 py-1 border border-[#212121]/20">
                         {submittedData.refCode}
                       </span>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
-                      <div className="p-3.5 bg-[#ECE8DE] border border-[#24322A]/15 shadow-xs">
-                        <span className="text-[10px] text-[#3B4B42] font-semibold uppercase block mb-1">Client Name</span>
-                        <span className="text-[#0B0F0D] font-semibold">{submittedData.data.fullName}</span>
+                      <div className="p-3.5 bg-[#CADCAE] border border-[#212121]/15 shadow-xs">
+                        <span className="text-[10px] text-[#212121]/75 font-semibold uppercase block mb-1">Client Name</span>
+                        <span className="text-[#212121] font-semibold">{submittedData.data.fullName}</span>
                       </div>
-                      <div className="p-3.5 bg-[#ECE8DE] border border-[#24322A]/15 shadow-xs">
-                        <span className="text-[10px] text-[#3B4B42] font-semibold uppercase block mb-1">Contact Phone</span>
-                        <span className="text-[#0B0F0D] font-semibold">{submittedData.data.phone}</span>
+                      <div className="p-3.5 bg-[#CADCAE] border border-[#212121]/15 shadow-xs">
+                        <span className="text-[10px] text-[#212121]/75 font-semibold uppercase block mb-1">Contact Phone</span>
+                        <span className="text-[#212121] font-semibold">{submittedData.data.phone}</span>
                       </div>
-                      <div className="p-3.5 bg-[#ECE8DE] border border-[#24322A]/15 shadow-xs">
-                        <span className="text-[10px] text-[#3B4B42] font-semibold uppercase block mb-1">Selected Discipline</span>
-                        <span className="text-[#1F4A36] font-semibold">{submittedData.data.buildingType}</span>
+                      <div className="p-3.5 bg-[#CADCAE] border border-[#212121]/15 shadow-xs">
+                        <span className="text-[10px] text-[#212121]/75 font-semibold uppercase block mb-1">Selected Discipline</span>
+                        <span className="text-[#212121] font-semibold">{submittedData.data.buildingType}</span>
                       </div>
-                      <div className="p-3.5 bg-[#ECE8DE] border border-[#24322A]/15 shadow-xs">
-                        <span className="text-[10px] text-[#3B4B42] font-semibold uppercase block mb-1">Location / Parcel</span>
-                        <span className="text-[#0B0F0D] font-semibold">{submittedData.data.location || "Consultation review"}</span>
+                      <div className="p-3.5 bg-[#CADCAE] border border-[#212121]/15 shadow-xs">
+                        <span className="text-[10px] text-[#212121]/75 font-semibold uppercase block mb-1">Location / Parcel</span>
+                        <span className="text-[#212121] font-semibold">{submittedData.data.location || "Consultation review"}</span>
                       </div>
                     </div>
 
                     {submittedData.data.visionNotes && (
-                      <div className="p-3.5 bg-[#ECE8DE] border border-[#24322A]/15 shadow-xs text-xs font-mono">
-                        <span className="text-[10px] text-[#3B4B42] font-semibold uppercase block mb-1">Preliminary Vision Scope</span>
-                        <p className="text-[#1A231F] font-serif italic">&ldquo;{submittedData.data.visionNotes}&rdquo;</p>
+                      <div className="p-3.5 bg-[#CADCAE] border border-[#212121]/15 shadow-xs text-xs font-mono">
+                        <span className="text-[10px] text-[#212121]/75 font-semibold uppercase block mb-1">Preliminary Vision Scope</span>
+                        <p className="text-[#212121] font-serif italic">&ldquo;{submittedData.data.visionNotes}&rdquo;</p>
                       </div>
                     )}
 
-                    <div className="pt-4 border-t border-[#24322A]/15 flex items-center justify-between">
+                    <div className="pt-4 border-t border-[#212121]/15 flex items-center justify-between">
                       <button
                         type="button"
                         onClick={handleReset}
-                        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#1A231F] hover:text-[#1F4A36] font-semibold transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#212121] hover:text-[#06923E] font-semibold transition-colors cursor-pointer"
                       >
                         <RotateCcw className="w-3.5 h-3.5" />
                         <span>Submit Another Enquiry</span>
@@ -235,7 +235,7 @@ export const ContactSection: React.FC = () => {
                         href={whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#1F4A36] hover:text-[#0B0F0D] font-semibold transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#212121] hover:text-[#212121] font-semibold transition-colors"
                       >
                         <span>Priority WhatsApp Desk</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
@@ -251,7 +251,7 @@ export const ContactSection: React.FC = () => {
                       </div>
                     )}
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-[#141E18] font-semibold uppercase mb-1.5">
+                      <label className="block text-[11px] font-mono tracking-wider text-[#212121] font-semibold uppercase mb-1.5">
                         Client Representative Name *
                       </label>
                       <input
@@ -262,9 +262,9 @@ export const ContactSection: React.FC = () => {
                           if (errors.fullName) setErrors({ ...errors, fullName: undefined });
                         }}
                         placeholder="e.g., Rajeshwari Rao"
-                        className={`w-full bg-[#FAF8F5] border ${
-                          errors.fullName ? "border-red-500" : "border-[#24322A]/25"
-                        } focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#68776F] outline-none shadow-xs`}
+                        className={`w-full bg-[#FFFFFF] border ${
+                          errors.fullName ? "border-red-500" : "border-[#212121]/25"
+                        } focus:border-[#06923E] focus:ring-1 focus:ring-[#06923E] text-[#212121] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#212121]/75 outline-none shadow-xs`}
                       />
                       {errors.fullName && (
                         <p className="text-red-600 text-xs font-mono mt-1 font-semibold">{errors.fullName}</p>
@@ -273,7 +273,7 @@ export const ContactSection: React.FC = () => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-[11px] font-mono tracking-wider text-[#141E18] font-semibold uppercase mb-1.5">
+                        <label className="block text-[11px] font-mono tracking-wider text-[#212121] font-semibold uppercase mb-1.5">
                           Direct Contact Phone *
                         </label>
                         <input
@@ -284,9 +284,9 @@ export const ContactSection: React.FC = () => {
                             if (errors.phone) setErrors({ ...errors, phone: undefined });
                           }}
                           placeholder="+91 98450 12345"
-                          className={`w-full bg-[#FAF8F5] border ${
-                            errors.phone ? "border-red-500" : "border-[#24322A]/25"
-                          } focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#68776F] outline-none shadow-xs`}
+                          className={`w-full bg-[#FFFFFF] border ${
+                            errors.phone ? "border-red-500" : "border-[#212121]/25"
+                          } focus:border-[#06923E] focus:ring-1 focus:ring-[#06923E] text-[#212121] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#212121]/75 outline-none shadow-xs`}
                         />
                         {errors.phone && (
                           <p className="text-red-600 text-xs font-mono mt-1 font-semibold">{errors.phone}</p>
@@ -294,13 +294,13 @@ export const ContactSection: React.FC = () => {
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-mono tracking-wider text-[#141E18] font-semibold uppercase mb-1.5">
+                        <label className="block text-[11px] font-mono tracking-wider text-[#212121] font-semibold uppercase mb-1.5">
                           Architectural Typology
                         </label>
                         <select
                           value={formData.buildingType}
                           onChange={(e) => setFormData({ ...formData, buildingType: e.target.value })}
-                          className="w-full bg-[#FAF8F5] border border-[#24322A]/25 focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors outline-none cursor-pointer shadow-xs"
+                          className="w-full bg-[#FFFFFF] border border-[#212121]/25 focus:border-[#06923E] focus:ring-1 focus:ring-[#06923E] text-[#212121] font-medium text-sm px-4 py-3 transition-colors outline-none cursor-pointer shadow-xs"
                         >
                           <option value="Bespoke Residential Architecture">Bespoke Residential Architecture</option>
                           <option value="Duplexes & Multi-Level Living">Duplexes &amp; Multi-Level Living</option>
@@ -313,7 +313,7 @@ export const ContactSection: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-[#141E18] font-semibold uppercase mb-1.5">
+                      <label className="block text-[11px] font-mono tracking-wider text-[#212121] font-semibold uppercase mb-1.5">
                         Site Location or Plot Parameters
                       </label>
                       <input
@@ -321,12 +321,12 @@ export const ContactSection: React.FC = () => {
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                         placeholder="e.g., Jubilee Hills, Hyderabad (4,800 sq.ft plot)"
-                        className="w-full bg-[#FAF8F5] border border-[#24322A]/25 focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#68776F] outline-none shadow-xs"
+                        className="w-full bg-[#FFFFFF] border border-[#212121]/25 focus:border-[#06923E] focus:ring-1 focus:ring-[#06923E] text-[#212121] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#212121]/75 outline-none shadow-xs"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono tracking-wider text-[#141E18] font-semibold uppercase mb-1.5">
+                      <label className="block text-[11px] font-mono tracking-wider text-[#212121] font-semibold uppercase mb-1.5">
                         Preliminary Scope &amp; Vision Notes
                       </label>
                       <textarea
@@ -334,17 +334,17 @@ export const ContactSection: React.FC = () => {
                         value={formData.visionNotes}
                         onChange={(e) => setFormData({ ...formData, visionNotes: e.target.value })}
                         placeholder="Describe your design aspirations, timeline requirements, or structural preferences..."
-                        className="w-full bg-[#FAF8F5] border border-[#24322A]/25 focus:border-[#2E5A44] focus:ring-1 focus:ring-[#2E5A44] text-[#0B0F0D] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#68776F] outline-none resize-none shadow-xs"
+                        className="w-full bg-[#FFFFFF] border border-[#212121]/25 focus:border-[#06923E] focus:ring-1 focus:ring-[#06923E] text-[#212121] font-medium text-sm px-4 py-3 transition-colors placeholder:text-[#212121]/75 outline-none resize-none shadow-xs"
                       />
                     </div>
 
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full mt-2 inline-flex items-center justify-center gap-2 bg-[#0B0F0D] hover:bg-[#2E5A44] border border-[#24322A] text-[#F5F3EF] py-4 text-xs font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl"
+                      className="w-full mt-2 inline-flex items-center justify-center gap-2 bg-[#06923E] hover:bg-[#212121] border border-[#06923E] hover:border-[#212121] text-white py-4 text-xs font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl"
                     >
                       <span>{isSubmitting ? "TRANSMITTING ENQUIRY..." : "TRANSMIT ARCHITECTURAL BRIEF"}</span>
-                      <ArrowUpRight className="w-4 h-4 text-[#C5B083]" />
+                      <ArrowUpRight className="w-4 h-4 text-white" />
                     </button>
                   </form>
                 )}

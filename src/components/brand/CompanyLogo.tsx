@@ -65,12 +65,12 @@ export const CompanyLogo: React.FC<CompanyLogoProps> = ({
             width="40"
             height="3"
             rx="1.5"
-            fill={isDark ? "#C5B083" : "#2E5A44"}
+            fill={isDark ? "#E67514" : "#06923E"}
           />
           {/* Architectural structural arch */}
           <path
             d="M8 38V14L24 6L40 14V38"
-            stroke={isDark ? "#F5F3EF" : "#121815"}
+            stroke={isDark ? "#D3ECCD" : "#212121"}
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -78,7 +78,7 @@ export const CompanyLogo: React.FC<CompanyLogoProps> = ({
           {/* Inner sanctum lines */}
           <path
             d="M16 38V20L24 16L32 20V38"
-            stroke="#C5B083"
+            stroke="#E67514"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -88,7 +88,7 @@ export const CompanyLogo: React.FC<CompanyLogoProps> = ({
             cx="24"
             cy="6"
             r="2.5"
-            fill={isDark ? "#C5B083" : "#2E5A44"}
+            fill={isDark ? "#E67514" : "#06923E"}
           />
         </svg>
       </div>
@@ -97,7 +97,7 @@ export const CompanyLogo: React.FC<CompanyLogoProps> = ({
       <div className="flex flex-col">
         <span
           className={`font-display ${titleSize} font-medium leading-tight transition-colors ${
-            isDark ? "text-[#F5F3EF]" : "text-[#0B0F0D]"
+            isDark ? "text-[#D3ECCD]" : "text-[#212121]"
           }`}
         >
           [COMPANY NAME]
@@ -105,7 +105,7 @@ export const CompanyLogo: React.FC<CompanyLogoProps> = ({
         {showSubtitle && (
           <span
             className={`${subtitleSize} font-medium uppercase leading-tight mt-0.5 ${
-              isDark ? "text-[#C5B083]" : "text-[#2E5A44]"
+              isDark ? "text-[#E67514]" : "text-[#212121]/75"
             }`}
           >
             ARCHITECTURE &amp; DEVELOPMENTS

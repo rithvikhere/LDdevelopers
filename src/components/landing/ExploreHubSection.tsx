@@ -21,7 +21,7 @@ const RevealLine: React.FC<{ className?: string }> = ({ className = "" }) => {
   const shouldReduceMotion = useReducedMotion();
 
   if (shouldReduceMotion) {
-    return <span aria-hidden="true" className={`block h-px w-full bg-[#343B33] ${className}`} />;
+    return <span aria-hidden="true" className={`block h-px w-full bg-[#212121]/20 ${className}`} />;
   }
 
   return (
@@ -31,7 +31,7 @@ const RevealLine: React.FC<{ className?: string }> = ({ className = "" }) => {
       whileInView={{ scaleX: 1 }}
       viewport={{ once: true, margin: "0px 0px -10% 0px" }}
       transition={{ duration: 1.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-      className={`block h-px w-full origin-left bg-[#343B33] ${className}`}
+      className={`block h-px w-full origin-left bg-[#212121]/20 ${className}`}
     />
   );
 };
@@ -44,39 +44,39 @@ const ExploreEntry: React.FC<{ item: Destination }> = ({ item }) => (
     <RevealLine />
     <Link
       href={item.href}
-      className="group relative block py-8 sm:py-10 outline-none focus-visible:ring-1 focus-visible:ring-[#C5B083] focus-visible:ring-offset-4 focus-visible:ring-offset-[#0B0F0D]"
+      className="group relative block py-8 sm:py-10 outline-none focus-visible:ring-1 focus-visible:ring-[#E67514] focus-visible:ring-offset-4 focus-visible:ring-offset-[#CADCAE]"
     >
       {/* Brass hover rule that sweeps across the top hairline */}
       <span
         aria-hidden="true"
-        className="absolute top-[-1px] left-0 h-px w-full origin-left scale-x-0 bg-[#B49A68] transition-transform duration-700 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100"
+        className="absolute top-[-1px] left-0 h-px w-full origin-left scale-x-0 bg-[#E67514] transition-transform duration-700 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100"
       />
 
       <div className="flex items-start gap-5 sm:gap-8">
-        <span className="font-display text-5xl sm:text-6xl xl:text-7xl font-light leading-[0.85] tabular-nums text-[#526653] transition-colors duration-500 group-hover:text-[#C5B083] group-focus-visible:text-[#C5B083] w-[3.25rem] sm:w-[4.5rem] xl:w-[5.25rem] shrink-0">
+        <span className="font-display text-5xl sm:text-6xl xl:text-7xl font-light leading-[0.85] tabular-nums text-[#06923E] transition-colors duration-500 group-hover:text-[#E67514] group-focus-visible:text-[#E67514] w-[3.25rem] sm:w-[4.5rem] xl:w-[5.25rem] shrink-0">
           {item.number}
         </span>
 
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-4">
-            <h3 className="font-display text-2xl sm:text-3xl xl:text-4xl font-light tracking-tight leading-[1.1] text-[#F3F0E8] transition-colors duration-500 group-hover:text-[#C5B083] group-focus-visible:text-[#C5B083]">
+            <h3 className="font-display text-2xl sm:text-3xl xl:text-4xl font-light tracking-tight leading-[1.1] text-[#212121] transition-colors duration-500">
               {item.label}
             </h3>
 
             <span
               aria-hidden="true"
-              className="mt-1 shrink-0 w-10 h-10 sm:w-11 sm:h-11 border border-[#343B33] flex items-center justify-center text-[#D9D2C4] transition-all duration-500 group-hover:border-[#B49A68] group-hover:bg-[#B49A68] group-hover:text-[#0B0F0D] group-focus-visible:border-[#B49A68]"
+              className="mt-1 shrink-0 w-10 h-10 sm:w-11 sm:h-11 border border-[#212121]/30 flex items-center justify-center text-[#212121] transition-all duration-500 group-hover:border-[#06923E] group-hover:bg-[#06923E] group-hover:text-white group-focus-visible:border-[#06923E]"
             >
               <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
           </div>
 
-          <p className="mt-3 max-w-md text-xs sm:text-sm font-mono font-light leading-relaxed text-[#9EA8A1] transition-colors duration-500 group-hover:text-[#D9D2C4]">
+          <p className="mt-3 max-w-md text-xs sm:text-sm font-mono font-light leading-relaxed text-[#212121]/75 transition-colors duration-500 group-hover:text-[#212121]">
             {item.description}
           </p>
 
-          <span className="mt-5 inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.28em] text-[#D9D2C4]/50 transition-colors duration-500 group-hover:text-[#C5B083]">
-            <span className="h-px w-6 bg-current transition-all duration-500 group-hover:w-10" aria-hidden="true" />
+          <span className="mt-5 inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.28em] text-[#212121]/60 transition-colors duration-500 group-hover:text-[#212121]">
+            <span className="h-px w-6 bg-[#E67514] transition-all duration-500 group-hover:w-10" aria-hidden="true" />
             Open page
           </span>
         </div>
@@ -100,7 +100,7 @@ export const ExploreHubSection: React.FC = () => {
     <section
       id="explore"
       aria-labelledby="explore-heading"
-      className="relative py-24 sm:py-32 lg:py-40 bg-transparent text-[#F5F3EF] overflow-hidden"
+      className="relative py-24 sm:py-32 lg:py-40 bg-transparent text-[#212121] overflow-hidden"
     >
       <div className="absolute inset-0 bg-architectural-grid opacity-15 pointer-events-none" />
 
@@ -110,8 +110,8 @@ export const ExploreHubSection: React.FC = () => {
           <div className="lg:col-span-7">
             <KairosDepthReveal delay={0.05}>
               <div className="inline-flex items-center gap-3 mb-6">
-                <span className="w-2 h-2 rounded-full bg-[#C5B083]" aria-hidden="true" />
-                <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.3em] text-[#C5B083] font-semibold">
+                <span className="w-2 h-2 rounded-full bg-[#E67514]" aria-hidden="true" />
+                <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.3em] text-[#212121] font-semibold">
                   {tag}
                 </span>
               </div>
@@ -121,7 +121,7 @@ export const ExploreHubSection: React.FC = () => {
               <KairosMaskedText
                 delay={0.12}
                 as="h2"
-                className="font-display text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.04] text-[#F3F0E8]"
+                className="font-display text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.04] text-[#212121]"
               >
                 <span id="explore-heading">{title}</span>
               </KairosMaskedText>
@@ -130,11 +130,11 @@ export const ExploreHubSection: React.FC = () => {
 
           <div className="lg:col-span-5">
             <KairosDepthReveal delay={0.22}>
-              <div className="lg:border-l lg:border-[#343B33] lg:pl-8">
-                <p className="text-sm sm:text-base font-light leading-relaxed text-[#9EA8A1] max-w-md">
+              <div className="lg:border-l lg:border-[#212121]/20 lg:pl-8">
+                <p className="text-sm sm:text-base font-light leading-relaxed text-[#212121]/75 max-w-md">
                   {subtitle}
                 </p>
-                <p className="mt-4 text-[10px] font-mono uppercase tracking-[0.28em] text-[#D9D2C4]/50">
+                <p className="mt-4 text-[10px] font-mono uppercase tracking-[0.28em] text-[#212121]/60">
                   Six destinations &bull; Select to open
                 </p>
               </div>

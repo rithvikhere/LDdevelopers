@@ -35,7 +35,7 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] flex flex-col justify-between overflow-hidden bg-transparent text-[#F5F3EF] pt-12 sm:pt-16 lg:pt-14 xl:pt-16 pb-8 sm:pb-12"
+      className="relative min-h-[92vh] flex flex-col justify-between overflow-hidden bg-transparent text-[#212121] pt-12 sm:pt-16 lg:pt-14 xl:pt-16 pb-8 sm:pb-12"
     >
       {/* Subtle Architectural Hairline Grid Overlay */}
       <div className="absolute inset-0 bg-architectural-grid opacity-20 pointer-events-none" />
@@ -60,19 +60,19 @@ export const HeroSection: React.FC = () => {
           >
             {/* Small Label */}
             <div className="inline-flex items-center gap-2 mb-4 sm:mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#C5B083]" />
-              <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.25em] text-[#C5B083] font-semibold">
+              <span className="w-2 h-2 rounded-full bg-[#E67514]" />
+              <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.25em] text-[#212121] font-semibold">
                 ARCHITECTURAL EXCELLENCE &amp; TURNKEY CONSTRUCTION
               </span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-light text-[#F5F3EF] leading-[1.08] tracking-tight mb-6">
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-light text-[#212121] leading-[1.08] tracking-tight mb-6">
               Sculpting Enduring Spaces, Defining Modern Living.
             </h1>
 
             {/* Supporting Text */}
-            <p className="text-xs sm:text-sm md:text-base text-[#9EA8A1] font-light leading-relaxed max-w-xl mb-8 sm:mb-10 font-sans">
+            <p className="text-xs sm:text-sm md:text-base text-[#212121]/75 font-light leading-relaxed max-w-xl mb-8 sm:mb-10 font-sans">
               A distinguished property developer and master builder dedicated to crafting bespoke residences,
               luxury duplexes, villas, and commercial landmarks.
             </p>
@@ -82,16 +82,16 @@ export const HeroSection: React.FC = () => {
               <a
                 href="#enquiry"
                 onClick={(e) => scrollToSection(e, "enquiry")}
-                className="group inline-flex items-center justify-center gap-3 bg-[#F5F2EB] hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] px-8 py-3.5 text-xs font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-xl hover:shadow-[#2E5A44]/25"
+                className="group inline-flex items-center justify-center gap-3 bg-[#06923E] hover:bg-[#212121] border border-[#06923E] hover:border-[#212121] text-white px-8 py-3.5 text-xs font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
               >
                 <span>LET&apos;S BUILD</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#1F4A36] group-hover:text-[#C5B083] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-white group-hover:text-[#E67514] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
 
               <a
                 href="#explore"
                 onClick={(e) => scrollToSection(e, "explore")}
-                className="group inline-flex items-center justify-center gap-3 bg-[#F5F2EB]/10 hover:bg-[#F5F2EB]/20 border border-[#24322A] hover:border-[#C5B083] text-[#F5F3EF] hover:text-[#C5B083] px-8 py-3.5 text-xs font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-3 bg-transparent hover:bg-[#E67514] border border-[#212121] hover:border-[#E67514] text-[#212121] px-8 py-3.5 text-xs font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300"
               >
                 <span>EXPLORE OUR PROJECTS</span>
               </a>
@@ -112,8 +112,8 @@ export const HeroSection: React.FC = () => {
             className="w-full lg:w-[62%] xl:w-[63%] flex items-center justify-center relative select-none"
           >
             <ArchitecturalLineArt
-              className="w-full h-auto max-h-[700px] lg:max-h-[760px] xl:max-h-[820px] text-[#E8E4DC] drop-shadow-[0_20px_45px_rgba(0,0,0,0.5)]"
-              strokeColor="#E8E4DC"
+              className="w-full h-auto max-h-[700px] lg:max-h-[760px] xl:max-h-[820px] text-[#212121] drop-shadow-[0_12px_24px_rgba(33,33,33,0.12)]"
+              strokeColor="#212121"
             />
           </motion.div>
 
@@ -132,7 +132,7 @@ export const HeroSection: React.FC = () => {
         <a
           href="#explore"
           onClick={(e) => scrollToSection(e, "explore")}
-          className="group inline-flex flex-col items-center gap-2 text-[10px] sm:text-[11px] font-mono tracking-[0.28em] uppercase text-[#9EA8A1] hover:text-[#C5B083] transition-colors cursor-pointer"
+          className="group inline-flex flex-col items-center gap-2 text-[10px] sm:text-[11px] font-mono tracking-[0.28em] uppercase text-[#212121]/75 hover:text-[#06923E] transition-colors cursor-pointer"
           aria-label="Scroll down to the Explore hub"
         >
           <span>SCROLL DOWN</span>
@@ -140,7 +140,7 @@ export const HeroSection: React.FC = () => {
             animate={shouldReduceMotion ? {} : { y: [0, 5, 0] }}
             transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
           >
-            <ArrowDown className="w-3.5 h-3.5 text-[#C5B083]" />
+            <ArrowDown className="w-3.5 h-3.5 text-[#E67514]" />
           </motion.div>
         </a>
       </motion.div>

@@ -98,7 +98,7 @@ export const GallerySection: React.FC<{ compact?: boolean }> = ({ compact = fals
   return (
     <section
       id="gallery"
-      className={`${compact ? "pt-10 pb-20 sm:pt-12 sm:pb-24" : "py-28 sm:py-36 lg:py-44"} bg-transparent text-[#F5F3EF] relative overflow-hidden transition-colors`}
+      className={`${compact ? "pt-10 pb-20 sm:pt-12 sm:pb-24" : "py-28 sm:py-36 lg:py-44"} bg-transparent text-[#212121] relative overflow-hidden transition-colors`}
     >
       <div className="absolute inset-0 bg-architectural-grid opacity-15 pointer-events-none" />
 
@@ -107,18 +107,18 @@ export const GallerySection: React.FC<{ compact?: boolean }> = ({ compact = fals
         <div className="flex flex-col items-center text-center mx-auto max-w-4xl mb-16 sm:mb-24">
           <KairosDepthReveal delay={0.05}>
             <div className="flex flex-col items-center justify-center text-center mx-auto mb-6">
-              <span className="text-sm sm:text-base md:text-lg font-mono tracking-[0.3em] text-[#C5B083] uppercase font-semibold">
+              <span className="text-sm sm:text-base md:text-lg font-mono tracking-[0.3em] text-[#212121] uppercase font-semibold">
                 04 / VISUAL EXHIBITION
               </span>
             </div>
           </KairosDepthReveal>
 
-          <KairosMaskedText delay={0.15} as={compact ? "h1" : "h2"} className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#F5F3EF] tracking-tight leading-[1.12] mb-6">
+          <KairosMaskedText delay={0.15} as={compact ? "h1" : "h2"} className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-[#212121] tracking-tight leading-[1.12] mb-6">
             {siteContent.gallery.title}
           </KairosMaskedText>
 
           <KairosDepthReveal delay={0.25}>
-            <p className="text-xs sm:text-sm text-[#9EA8A1] max-w-2xl mx-auto font-light leading-relaxed font-mono">
+            <p className="text-xs sm:text-sm text-[#212121]/75 max-w-2xl mx-auto font-light leading-relaxed font-mono">
               Curated architectural moments celebrating structural form, raw materials, cantilevers, and internal courtyards.
             </p>
           </KairosDepthReveal>
@@ -139,7 +139,7 @@ export const GallerySection: React.FC<{ compact?: boolean }> = ({ compact = fals
                     setSelectedIndex(idx);
                   }
                 }}
-                className="group relative w-full h-full min-h-[260px] overflow-hidden bg-[#121815] cursor-pointer border border-[#24322A] hover:border-[#C5B083] transition-all duration-500 shadow-md"
+                className="group relative w-full h-full min-h-[260px] overflow-hidden bg-[#212121] cursor-pointer border border-[#212121]/20 hover:border-[#E67514] transition-all duration-500 shadow-md"
               >
                 <Image
                   src={item.image}
@@ -148,21 +148,21 @@ export const GallerySection: React.FC<{ compact?: boolean }> = ({ compact = fals
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 66vw, 50vw"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0D] via-transparent to-transparent opacity-60 group-hover:opacity-85 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#212121] via-transparent to-transparent opacity-60 group-hover:opacity-85 transition-opacity" />
 
                 {/* Hover Meta Overlay */}
-                <div className="absolute inset-0 p-6 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#F5F2EB]/95 backdrop-blur-sm">
+                <div className="absolute inset-0 p-6 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#D3ECCD]/95 backdrop-blur-sm">
                   <div className="flex justify-end">
-                    <span className="w-8 h-8 bg-[#ECE8DE] text-[#1F4A36] flex items-center justify-center border border-[#24322A]/20 shadow-xs">
+                    <span className="w-8 h-8 bg-[#CADCAE] text-[#06923E] flex items-center justify-center border border-[#212121]/20 shadow-xs">
                       <ZoomIn className="w-4 h-4" />
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#1F4A36] font-semibold font-mono block">
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#212121] font-semibold font-mono block">
                       {item.category}
                     </span>
-                    <h4 className="font-display text-xl sm:text-2xl text-[#0B0F0D] mt-1 font-medium">
+                    <h4 className="font-display text-xl sm:text-2xl text-[#212121] mt-1 font-medium">
                       {item.title}
                     </h4>
                   </div>
@@ -181,14 +181,14 @@ export const GallerySection: React.FC<{ compact?: boolean }> = ({ compact = fals
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeModal}
-            className="fixed inset-0 z-50 bg-[#0B0F0D]/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
+            className="fixed inset-0 z-50 bg-[#212121]/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
           >
             {/* Modal Controls */}
             <div className="absolute top-6 right-6 z-10 flex items-center gap-3">
               <button
                 ref={closeButtonRef}
                 onClick={closeModal}
-                className="p-2.5 bg-[#F5F2EB] text-[#0B0F0D] hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 shadow-md transition-colors cursor-pointer"
+                className="p-2.5 bg-[#D3ECCD] text-[#212121] hover:bg-[#06923E] hover:text-[#212121] border border-[#212121]/20 shadow-md transition-colors cursor-pointer"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
@@ -197,7 +197,7 @@ export const GallerySection: React.FC<{ compact?: boolean }> = ({ compact = fals
 
             <button
               onClick={handlePrev}
-              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-3 bg-[#F5F2EB] hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] shadow-md transition-colors cursor-pointer z-10"
+              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-3 bg-[#D3ECCD] hover:bg-[#06923E] hover:text-[#212121] border border-[#212121]/20 text-[#212121] shadow-md transition-colors cursor-pointer z-10"
               aria-label="Previous photograph"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -205,7 +205,7 @@ export const GallerySection: React.FC<{ compact?: boolean }> = ({ compact = fals
 
             <button
               onClick={handleNext}
-              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-3 bg-[#F5F2EB] hover:bg-[#2E5A44] hover:text-[#F5F3EF] border border-[#24322A]/20 text-[#0B0F0D] shadow-md transition-colors cursor-pointer z-10"
+              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-3 bg-[#D3ECCD] hover:bg-[#06923E] hover:text-[#212121] border border-[#212121]/20 text-[#212121] shadow-md transition-colors cursor-pointer z-10"
               aria-label="Next photograph"
             >
               <ChevronRight className="w-5 h-5" />
@@ -216,7 +216,7 @@ export const GallerySection: React.FC<{ compact?: boolean }> = ({ compact = fals
               onClick={(e) => e.stopPropagation()}
               className="relative max-w-5xl w-full max-h-[85vh] flex flex-col items-center"
             >
-              <div className="relative w-full aspect-[16/10] max-h-[75vh] overflow-hidden border border-[#24322A]/20 bg-[#0B0F0D] shadow-2xl">
+              <div className="relative w-full aspect-[16/10] max-h-[75vh] overflow-hidden border border-[#212121]/20 bg-[#212121] shadow-2xl">
                 <Image
                   src={activeItem.image}
                   alt={activeItem.title}
@@ -226,14 +226,14 @@ export const GallerySection: React.FC<{ compact?: boolean }> = ({ compact = fals
                 />
               </div>
 
-              <div className="w-full mt-4 p-4 bg-[#F5F2EB]/95 backdrop-blur-md border border-[#24322A]/15 shadow-xl flex items-center justify-between text-xs font-mono">
+              <div className="w-full mt-4 p-4 bg-[#D3ECCD]/95 backdrop-blur-md border border-[#212121]/15 shadow-xl flex items-center justify-between text-xs font-mono">
                 <div>
-                  <span className="text-[#1F4A36] block text-[10px] uppercase tracking-widest font-semibold">
+                  <span className="text-[#212121] block text-[10px] uppercase tracking-widest font-semibold">
                     {activeItem.category}
                   </span>
-                  <span className="text-[#0B0F0D] text-base font-display font-medium">{activeItem.title}</span>
+                  <span className="text-[#212121] text-base font-display font-medium">{activeItem.title}</span>
                 </div>
-                <span className="text-[#3B4B42] font-semibold">
+                <span className="text-[#212121]/75 font-semibold">
                   {selectedIndex + 1} / {siteAssets.gallery.length}
                 </span>
               </div>

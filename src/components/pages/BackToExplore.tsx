@@ -9,7 +9,7 @@ import Link from "next/link";
 export const BackToExplore: React.FC = () => (
   <Link
     href="/#explore"
-    className="group inline-flex items-center gap-3 py-2 text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#9EA8A1] hover:text-[#C5B083] focus-visible:text-[#C5B083] transition-colors outline-none focus-visible:ring-1 focus-visible:ring-[#C5B083] focus-visible:ring-offset-4 focus-visible:ring-offset-[#0B0F0D]"
+    className="group inline-flex items-center gap-3 py-2 text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#212121]/75 hover:text-[#06923E] focus-visible:text-[#06923E] transition-colors outline-none focus-visible:ring-1 focus-visible:ring-[#E67514] focus-visible:ring-offset-4 focus-visible:ring-offset-[#CADCAE]"
   >
     <span
       aria-hidden="true"
