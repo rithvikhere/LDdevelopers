@@ -1,25 +1,26 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
-import { ArchitecturalLineArt } from "@/components/hero/ArchitecturalLineArt";
+import { ArrowUpRight } from "lucide-react";
 
 /**
- * HeroSection Component — Editorial Split Layout with Animated Architectural Line Art
+ * HeroSection — Editorial split hero with a rising architectural residence.
  *
- * Left Side (~42%):
- * - Architectural Excellence & Turnkey Construction label
- * - "Sculpting Enduring Spaces, Defining Modern Living."
- * - Editorial supporting brief
- * - Twin CTAs: "LET'S BUILD" & "EXPLORE OUR PROJECTS"
+ * Left:  label, bold headline, supporting brief and twin pill CTAs.
+ * Right: the residence image as a layer that rises from the bottom on load.
  *
- * Right Side (~58%):
- * - Pure code-generated animated SVG technical line art recreating the architectural handshake
- *   and rising city skyline illustration stroke-by-stroke.
+ * On large screens the hero is sticky, so the dark Explore section (Section 02)
+ * slides up and overlays it as the visitor scrolls.
+ *
+ * Note: the animated ArchitecturalLineArt (handshake & skyline) is intentionally not used here
+ * any more. The component is kept at src/components/hero/ArchitecturalLineArt.tsx for later use.
  */
 export const HeroSection: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
+  // The residence starts rising only once its image has actually loaded, so the motion is never missed.
+  const [houseLoaded, setHouseLoaded] = useState(false);
 
   // Smoothly scrolls to a homepage section (no navbar offset — the global navbar was removed).
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -32,117 +33,81 @@ export const HeroSection: React.FC = () => {
     }
   };
 
+  const ease = [0.16, 1, 0.3, 1] as const;
+
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] flex flex-col justify-between overflow-hidden bg-transparent text-[#212121] pt-12 sm:pt-16 lg:pt-14 xl:pt-16 pb-8 sm:pb-12"
+      className="relative lg:sticky lg:top-0 z-0 min-h-[100svh] overflow-hidden bg-[#CADCAE] text-[#212121]"
     >
-      {/* Subtle Architectural Hairline Grid Overlay */}
+      {/* Low-contrast dark olive architectural grid */}
       <div className="absolute inset-0 bg-hero-grid pointer-events-none" aria-hidden="true" />
 
-      {/* ========================================================================= */}
-      {/* EDITORIAL SPLIT CONTAINER: Left ~38% / Right ~62%                         */}
-      {/* ========================================================================= */}
-      <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-12 flex-1 flex flex-col justify-center relative z-10 py-6 sm:py-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-10 xl:gap-14">
-          
-          {/* --------------------------------------------------------------------- */}
-          {/* LEFT SIDE: EDITORIAL NARRATIVE & CTAS (~38%)                         */}
-          {/* --------------------------------------------------------------------- */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.9,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="w-full lg:w-[38%] xl:w-[37%] text-left flex flex-col items-start"
-          >
-            {/* Small Label */}
-            <div className="inline-flex items-center gap-2 mb-4 sm:mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#E67514]" />
-              <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.25em] text-[#212121] font-semibold">
-                ARCHITECTURAL EXCELLENCE &amp; TURNKEY CONSTRUCTION
-              </span>
-            </div>
+      <div className="relative z-20 w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-12 pt-14 sm:pt-20 lg:pt-24 xl:pt-28 pb-6 sm:pb-10 lg:pb-64 xl:pb-72">
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease }}
+          className="w-full lg:max-w-[56%] xl:max-w-[54%] flex flex-col items-start"
+        >
+          {/* Label */}
+          <span className="text-[11px] sm:text-xs uppercase tracking-[0.42em] text-[#212121]/75 font-medium mb-6 sm:mb-8">
+            Architectural Excellence &amp; Turnkey Construction
+          </span>
 
-            {/* Main Headline */}
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-light text-[#212121] leading-[1.08] tracking-tight mb-6">
-              Sculpting Enduring Spaces, Defining Modern Living.
-            </h1>
+          {/* Headline */}
+          <h1 className="font-sans font-bold uppercase text-[2.4rem] leading-[1.04] sm:text-[3.25rem] lg:text-[3.4rem] xl:text-[4rem] tracking-[-0.02em] text-[#212121] mb-6 sm:mb-8">
+            Sculpting Enduring Spaces, Defining Modern Living.
+          </h1>
 
-            {/* Supporting Text */}
-            <p className="text-xs sm:text-sm md:text-base text-[#212121]/75 font-light leading-relaxed max-w-xl mb-8 sm:mb-10 font-sans">
-              A distinguished property developer and master builder dedicated to crafting bespoke residences,
-              luxury duplexes, villas, and commercial landmarks.
-            </p>
+          {/* Supporting text */}
+          <p className="text-sm sm:text-base text-[#212121]/75 leading-relaxed max-w-md mb-8 sm:mb-10">
+            A distinguished property developer and master builder dedicated to crafting bespoke residences,
+            luxury duplexes, villas, and commercial landmarks.
+          </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
-              <a
-                href="#enquiry"
-                onClick={(e) => scrollToSection(e, "enquiry")}
-                className="group inline-flex items-center justify-center gap-3 bg-[#06923E] hover:bg-[#212121] border border-[#06923E] hover:border-[#212121] text-white px-8 py-3.5 text-xs font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
-              >
-                <span>LET&apos;S BUILD</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-white group-hover:text-[#E67514] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
+          {/* Pill CTAs */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+            <a
+              href="#enquiry"
+              onClick={(e) => scrollToSection(e, "enquiry")}
+              className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-[#06923E] hover:bg-[#212121] text-white px-8 py-3.5 text-sm font-semibold transition-colors duration-300 shadow-md outline-none focus-visible:ring-2 focus-visible:ring-[#E67514] focus-visible:ring-offset-2 focus-visible:ring-offset-[#CADCAE]"
+            >
+              <span>Let&apos;s Build</span>
+              <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
 
-              <a
-                href="#explore"
-                onClick={(e) => scrollToSection(e, "explore")}
-                className="group inline-flex items-center justify-center gap-3 bg-transparent hover:bg-[#E67514] border border-[#212121] hover:border-[#E67514] text-[#212121] px-8 py-3.5 text-xs font-mono uppercase tracking-[0.2em] font-semibold transition-all duration-300"
-              >
-                <span>EXPLORE OUR PROJECTS</span>
-              </a>
-            </div>
-          </motion.div>
-
-          {/* --------------------------------------------------------------------- */}
-          {/* RIGHT SIDE: ANIMATED ARCHITECTURAL LINE ART SVG (~62%)               */}
-          {/* --------------------------------------------------------------------- */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              duration: 1.1,
-              delay: 0.15,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="w-full lg:w-[62%] xl:w-[63%] flex items-center justify-center relative select-none"
-          >
-            <ArchitecturalLineArt
-              className="w-full h-auto max-h-[700px] lg:max-h-[760px] xl:max-h-[820px] text-[#212121] drop-shadow-[0_12px_24px_rgba(33,33,33,0.12)]"
-              strokeColor="#212121"
-            />
-          </motion.div>
-
-        </div>
+            <a
+              href="#explore"
+              onClick={(e) => scrollToSection(e, "explore")}
+              className="inline-flex items-center justify-center rounded-full bg-[#D3ECCD] hover:bg-[#E67514] border border-[#212121]/15 hover:border-[#E67514] text-[#212121] px-8 py-3.5 text-sm font-semibold transition-colors duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[#E67514] focus-visible:ring-offset-2 focus-visible:ring-offset-[#CADCAE]"
+            >
+              Explore Our Projects
+            </a>
+          </div>
+        </motion.div>
       </div>
 
-      {/* ========================================================================= */}
-      {/* CENTERED SCROLL DOWN INDICATOR                                            */}
-      {/* ========================================================================= */}
+      {/* Residence layer — rises from the bottom once the section loads */}
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
-        className="w-full flex flex-col items-center justify-center relative z-10 pt-2"
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 180 }}
+        animate={shouldReduceMotion || houseLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 180 }}
+        transition={{ duration: 1.4, delay: 0.15, ease }}
+        className="relative lg:absolute z-10 lg:right-[-6%] xl:right-[-3%] lg:bottom-0 w-[122%] -ml-[11%] -mt-8 sm:-mt-12 lg:mt-0 lg:ml-0 lg:w-[60%] xl:w-[64%] pointer-events-none select-none"
+        aria-hidden="true"
       >
-        <a
-          href="#explore"
-          onClick={(e) => scrollToSection(e, "explore")}
-          className="group inline-flex flex-col items-center gap-2 text-[10px] sm:text-[11px] font-mono tracking-[0.28em] uppercase text-[#212121]/75 hover:text-[#06923E] transition-colors cursor-pointer"
-          aria-label="Scroll down to the Explore hub"
-        >
-          <span>SCROLL DOWN</span>
-          <motion.div
-            animate={shouldReduceMotion ? {} : { y: [0, 5, 0] }}
-            transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-          >
-            <ArrowDown className="w-3.5 h-3.5 text-[#E67514]" />
-          </motion.div>
-        </a>
+        <Image
+          src="/assets/images/hero-house.webp"
+          alt=""
+          width={2304}
+          height={1536}
+          quality={92}
+          loading="eager"
+          fetchPriority="high"
+          sizes="(max-width: 1024px) 122vw, 64vw"
+          onLoad={() => setHouseLoaded(true)}
+          className="w-full h-auto drop-shadow-[0_30px_40px_rgba(33,33,33,0.18)]"
+        />
       </motion.div>
     </section>
   );

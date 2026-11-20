@@ -88,6 +88,11 @@
   background: #E67514;
 }
 
+/* Typewriter caret blink (Explore heading) */
+@keyframes caret-blink {
+  50% { opacity: 0; }
+}
+
 /* Reduced motion accessibility */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
