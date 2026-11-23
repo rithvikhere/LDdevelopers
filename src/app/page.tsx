@@ -3,6 +3,7 @@ import { Footer } from "@/components/navigation/Footer";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { ExploreHubSection } from "@/components/landing/ExploreHubSection";
 import { ContactSection } from "@/components/landing/ContactSection";
+import { IntroProvider } from "@/components/intro/IntroProvider";
 
 /**
  * Public Homepage — Three-Part Architecture
@@ -16,6 +17,8 @@ import { ContactSection } from "@/components/landing/ContactSection";
  */
 export default function HomePage() {
   return (
+    // IntroProvider plays the one-time LD intro on first load and sequences the hero's entrance after it.
+    <IntroProvider>
     <div className="min-h-screen flex flex-col bg-[#CADCAE] text-[#212121] relative">
       <main className="flex-1 relative z-10">
         {/* Sections 01 + 02 share a wrapper so the sticky hero is released after the dark Explore panel */}
@@ -36,5 +39,6 @@ export default function HomePage() {
       {/* Editorial Architectural Footer */}
       <Footer />
     </div>
+    </IntroProvider>
   );
 }

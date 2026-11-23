@@ -88,6 +88,23 @@
   background: #E67514;
 }
 
+/* Homepage intro — failsafe: if scripts never run, the black stage still clears after 9s */
+.site-intro {
+  animation: site-intro-failsafe 0.6s ease 9s forwards;
+}
+@keyframes site-intro-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-intro {
+    display: none;
+  }
+}
+
 /* Typewriter caret blink (Explore heading) */
 @keyframes caret-blink {
   50% { opacity: 0; }
