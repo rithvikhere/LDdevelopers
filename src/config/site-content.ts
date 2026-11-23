@@ -78,15 +78,15 @@ export const siteContent = {
   },
 
   hero: {
-    badge: "Architectural Excellence &amp; Turnkey Construction",
-    titleLine1: "Sculpting Enduring Spaces,",
-    titleLine2: "Defining Modern Living.",
-    subtitle:
-      "A distinguished property developer and master builder dedicated to crafting bespoke residences, luxury duplexes, villas, and commercial landmarks.",
+    // Headline: two serif lines, then a condensed line whose last word is set in orange
+    titleSerif: ["Your Land.", "Your Vision."],
+    titleLead: "Our",
+    titleAccent: "Expertise.",
+    subtitle: "Whether you're planning a home or a new development, let's bring your ideas to life.",
     primaryCta: "Let's Build",
-    secondaryCta: "Explore Our Services",
-    ctaTarget: "#contact",
-    projectsTarget: "#services",
+    secondaryCta: "Explore Our Projects",
+    ctaTarget: "enquiry",
+    projectsTarget: "explore",
   },
 
   about: {

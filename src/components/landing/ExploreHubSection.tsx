@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import {
   animate,
@@ -21,6 +21,11 @@ import {
 } from "@/components/ui/KairosScrollReveal";
 
 type Destination = (typeof siteContent.explore.destinations)[number];
+
+// False during server render and hydration, true afterwards — lets client-only preferences
+// (like reduced motion) change the markup without a hydration mismatch.
+const noopSubscribe = () => () => {};
+const useHydrated = () => useSyncExternalStore(noopSubscribe, () => true, () => false);
 
 /**
  * Progressive hairline divider — draws from left to right as it enters the viewport.
@@ -179,7 +184,8 @@ const ScrollExploreHeading: React.FC<{
     return () => controls.stop();
   }, [landed, rest.length, shouldReduceMotion, typed]);
 
-  const shown = shouldReduceMotion ? rest.length : count;
+  const hydrated = useHydrated();
+  const shown = hydrated && shouldReduceMotion ? rest.length : count;
   const typing = !shouldReduceMotion && landed && shown < rest.length;
 
   return (
