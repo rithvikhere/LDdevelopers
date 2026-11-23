@@ -20,6 +20,19 @@ export const siteContent = {
     registrationNumberPlaceholder: "[RERA / REGISTRATION NO.]",
   },
 
+  // Floating site nav (all public pages): Home · About Us (drop-down of the six pages) · Contact
+  siteNav: {
+    home: "Home",
+    about: "About Us",
+    contact: "Contact",
+    contactHref: "/contact",
+    menuHeading: "Explore",
+    // Phones: three-line menu button that opens a side panel
+    menuLabel: "Menu",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+  },
+
   // Public website navigation — six independent content routes (used by the footer).
   // The Explore hub on the homepage is the primary navigation system.
   navigation: [
