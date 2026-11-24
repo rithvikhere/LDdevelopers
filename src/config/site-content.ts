@@ -20,6 +20,19 @@ export const siteContent = {
     registrationNumberPlaceholder: "[RERA / REGISTRATION NO.]",
   },
 
+  // Floating site nav (all public pages): Home · About Us (drop-down of the six pages) · Contact
+  siteNav: {
+    home: "Home",
+    about: "About Us",
+    contact: "Contact",
+    contactHref: "/contact",
+    menuHeading: "Explore",
+    // Phones: three-line menu button that opens a side panel
+    menuLabel: "Menu",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+  },
+
   // Public website navigation — six independent content routes (used by the footer).
   // The Explore hub on the homepage is the primary navigation system.
   navigation: [
@@ -35,8 +48,15 @@ export const siteContent = {
   explore: {
     tag: "INDEX / EXPLORE",
     title: "Explore Our World",
-    subtitle:
-      "Discover our philosophy, capabilities, construction approach, and the spaces we create.",
+    // Section 02 bento cards (Contact lives in Section 03, so it is not repeated here). Keep lines ≤ 6 words.
+    cards: [
+      { id: "construction-options", label: "Construction Options", href: "/construction-options", line: "Choose what fits your plot." },
+      { id: "services", label: "Services", href: "/services", line: "Homes, villas and commercial builds." },
+      { id: "about", label: "About", href: "/about", line: "Who we are, how we build." },
+      { id: "gallery", label: "Gallery", href: "/gallery", line: "Spaces we've shaped." },
+      { id: "achievements", label: "Achievements", href: "/achievements", line: "Milestones, laid brick by brick." },
+    ],
+    // Full list with descriptions (used by the site nav's About Us menu)
     destinations: [
       {
         number: "01",
@@ -78,15 +98,15 @@ export const siteContent = {
   },
 
   hero: {
-    badge: "Architectural Excellence &amp; Turnkey Construction",
-    titleLine1: "Sculpting Enduring Spaces,",
-    titleLine2: "Defining Modern Living.",
-    subtitle:
-      "A distinguished property developer and master builder dedicated to crafting bespoke residences, luxury duplexes, villas, and commercial landmarks.",
+    // Headline: two serif lines, then a condensed line whose last word is set in orange
+    titleSerif: ["Your Land.", "Your Vision."],
+    titleLead: "Our",
+    titleAccent: "Expertise.",
+    subtitle: "Whether you're planning a home or a new development, let's bring your ideas to life.",
     primaryCta: "Let's Build",
-    secondaryCta: "Explore Our Services",
-    ctaTarget: "#contact",
-    projectsTarget: "#services",
+    secondaryCta: "Explore Our Projects",
+    ctaTarget: "enquiry",
+    projectsTarget: "explore",
   },
 
   about: {

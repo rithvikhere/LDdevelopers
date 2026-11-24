@@ -5,6 +5,7 @@ import { ExploreHubSection } from "@/components/landing/ExploreHubSection";
 import { EnquirySection } from "@/components/landing/EnquirySection";
 import { DesignDeskSection } from "@/components/landing/DesignDeskSection";
 import { IntroProvider } from "@/components/intro/IntroProvider";
+import { SiteNav } from "@/components/navigation/SiteNav";
 
 /**
  * Public Homepage
@@ -15,12 +16,13 @@ import { IntroProvider } from "@/components/intro/IntroProvider";
  *   04. Design Desk     (#design-desk — map, enquiries and studio hours)
  *   Footer              (unchanged)
  *
- * There is intentionally no global top navigation bar.
+ * Navigation: the floating SiteNav pill (Home · About Us ▾ · Contact), shown once the intro's logo has landed.
  */
 export default function HomePage() {
   return (
     // IntroProvider plays the one-time LD intro on first load and sequences the hero's entrance after it.
     <IntroProvider>
+    <SiteNav />
     <div className="min-h-screen flex flex-col bg-[#CADCAE] text-[#212121] relative">
       <main className="flex-1 relative z-10">
         {/* Sections 01 + 02 share a wrapper so the sticky hero is released after the dark Explore panel */}

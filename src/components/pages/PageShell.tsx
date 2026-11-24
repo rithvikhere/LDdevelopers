@@ -4,12 +4,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Footer } from "@/components/navigation/Footer";
 import { BackToExplore } from "@/components/pages/BackToExplore";
+import { SiteNav } from "@/components/navigation/SiteNav";
 import { useHydratedReducedMotion } from "@/hooks/useHydrated";
 
 /**
  * PageShell — shared frame for the six independent content pages.
  * - Same sage canvas as the homepage
- * - A single "← BACK TO EXPLORE" control (no navigation bar)
+ * - The floating SiteNav pill plus a "← BACK TO EXPLORE" control
  * - Quick, restrained entrance transition (fade + slight rise), reduced-motion aware
  * - The existing site Footer, unchanged
  */
@@ -19,6 +20,7 @@ export const PageShell: React.FC<{ children: React.ReactNode }> = ({ children })
 
   return (
     <div className="min-h-screen flex flex-col bg-[#CADCAE] text-[#212121] relative">
+      <SiteNav />
       <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-6 sm:pt-8">
         <BackToExplore />
       </div>
