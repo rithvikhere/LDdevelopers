@@ -109,8 +109,8 @@ const cornerVariants: Variants = {
  * ---------------------------------------------------------------------------------------------- */
 
 /** A headline line that rises out of its own mask. */
-const RiseLine: React.FC<{ index: number; children: React.ReactNode }> = ({ index, children }) => (
-  <span className="block overflow-hidden pt-[0.1em] -mt-[0.1em] pb-[0.16em] -mb-[0.16em] pr-[0.12em]">
+const RiseLine: React.FC<{ index: number; nowrap?: boolean; children: React.ReactNode }> = ({ index, nowrap, children }) => (
+  <span className={`block overflow-hidden ${nowrap ? "whitespace-nowrap" : ""} pt-[0.1em] -mt-[0.1em] pb-[0.16em] -mb-[0.16em] pr-[0.12em]`}>
     <motion.span data-reveal custom={index} variants={lineVariants} className="block origin-[0%_100%]">
       {children}
     </motion.span>
@@ -240,9 +240,9 @@ const EMPTY_FORM: FormDataState = {
   visionNotes: "",
 };
 
-const labelClass = "block text-[11px] font-mono uppercase tracking-[0.16em] text-cream/75 font-semibold mb-2";
+const labelClass = "block text-[11px] lg:text-xs font-mono uppercase tracking-[0.16em] text-cream/75 font-semibold mb-2";
 const fieldClass =
-  "w-full rounded-xl bg-white/[0.06] border text-cream text-sm font-medium px-4 py-3 outline-none transition-colors duration-200 placeholder:text-cream/55 focus:bg-white/[0.09] focus:border-blueprint-200 focus:ring-2 focus:ring-blueprint-200/25";
+  "w-full rounded-xl bg-white/[0.06] border text-cream text-sm lg:text-[15px] font-medium px-4 py-3 lg:px-5 lg:py-3.5 outline-none transition-colors duration-200 placeholder:text-cream/55 focus:bg-white/[0.09] focus:border-blueprint-200 focus:ring-2 focus:ring-blueprint-200/25";
 const fieldBorder = (invalid?: boolean) => (invalid ? "border-[#F87171]" : "border-white/15 hover:border-white/25");
 
 const EnquiryForm: React.FC = () => {
@@ -388,14 +388,14 @@ const EnquiryForm: React.FC = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-5">
+    <form onSubmit={handleSubmit} noValidate className="space-y-5 lg:space-y-6">
       {serverError && (
         <div role="alert" className="rounded-xl border border-[#F87171]/50 bg-[#F87171]/10 p-3 text-sm text-[#FECACA]">
           {serverError}
         </div>
       )}
 
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-1 lg:gap-6 xl:grid-cols-2">
         <div>
           <label htmlFor={ids.name} className={labelClass}>
             Your name <span aria-hidden="true">*</span>
@@ -492,14 +492,14 @@ const EnquiryForm: React.FC = () => {
           value={formData.visionNotes}
           onChange={(e) => setFormData({ ...formData, visionNotes: e.target.value })}
           placeholder="Style, size, timeline — whatever you have in mind…"
-          className={`${fieldClass} ${fieldBorder()} resize-none`}
+          className={`${fieldClass} ${fieldBorder()} resize-none lg:min-h-36`}
         />
       </div>
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="group mt-1 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-cream px-6 py-3.5 text-sm font-semibold text-ink shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] transition-colors duration-300 hover:bg-orange disabled:cursor-wait disabled:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blueprint-200"
+        className="group mt-1 inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-cream px-6 py-3.5 text-sm font-semibold lg:min-h-14 lg:text-base text-ink shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] transition-colors duration-300 hover:bg-orange disabled:cursor-wait disabled:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blueprint-200"
       >
         <span>{isSubmitting ? "Sending to our desk…" : "Send my idea"}</span>
         <ArrowUpRight
@@ -560,7 +560,7 @@ export const EnquirySection: React.FC = () => {
 
         <div className="relative z-10 mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-16 px-4 pb-32 pt-20 sm:px-6 sm:pb-40 sm:pt-28 lg:grid-cols-12 lg:gap-12 lg:px-12 lg:pb-48 lg:pt-36">
           {/* Headline */}
-          <motion.div {...play(0.45)} className="lg:col-span-7">
+          <motion.div {...play(0.45)} className="lg:col-span-6">
             <motion.p
               data-reveal
               custom={0}
@@ -573,10 +573,10 @@ export const EnquirySection: React.FC = () => {
 
             <h2
               id="enquiry-heading"
-              className="font-poster text-[clamp(3.75rem,13vw,10.5rem)] uppercase leading-[0.95] tracking-[0.005em] text-cream"
+              className="font-poster text-[clamp(3.75rem,10.6vw,9.75rem)] uppercase leading-[0.95] tracking-[0.005em] text-cream"
             >
               <RiseLine index={0}>Have a project?</RiseLine>
-              <RiseLine index={1}>
+              <RiseLine index={1} nowrap>
                 Let&apos;s{" "}
                 <span className="font-display text-[1.06em] font-semibold normal-case italic leading-[0] tracking-[-0.02em]">
                   talk
@@ -623,7 +623,7 @@ export const EnquirySection: React.FC = () => {
           </motion.div>
 
           {/* Form card, dropped onto the desk */}
-          <motion.div {...play(0.3)} className="relative lg:col-span-5 [perspective:1400px]">
+          <motion.div {...play(0.3)} className="relative w-full lg:col-span-6 lg:max-w-[660px] lg:justify-self-end [perspective:1400px]">
             <motion.div
               aria-hidden="true"
               data-reveal
@@ -642,13 +642,13 @@ export const EnquirySection: React.FC = () => {
                 variants={scanVariants}
                 className="pointer-events-none absolute inset-x-0 z-20 h-px bg-blueprint-200 shadow-[0_0_18px_3px_rgba(181,208,240,0.55)] motion-reduce:hidden"
               />
-              <motion.div data-reveal variants={printVariants} className="p-6 sm:p-9">
-                <div className="mb-7 border-b border-white/10 pb-6">
+              <motion.div data-reveal variants={printVariants} className="p-6 sm:p-9 lg:p-11">
+                <div className="mb-7 border-b border-white/10 pb-6 lg:mb-8 lg:pb-7">
                   <p className="text-[11px] font-mono font-semibold uppercase tracking-[0.28em] text-blueprint-200">
                     Intake desk
                   </p>
-                  <h3 className="mt-2 font-display text-3xl font-medium text-cream sm:text-4xl">Start your enquiry</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-cream/70">
+                  <h3 className="mt-2 font-display text-3xl font-medium text-cream sm:text-4xl lg:text-[2.85rem] lg:leading-tight">Start your enquiry</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-cream/70 lg:text-base">
                     Share a few details and our design desk will get back to you.
                   </p>
                 </div>
