@@ -21,7 +21,8 @@ export type Profile = {
 export type Enquiry = {
   id: string;
   enquiry_number: string;
-  user_id: string;
+  /** null for enquiries submitted from the public homepage form (no account) */
+  user_id: string | null;
   full_name: string;
   email: string;
   phone: string;
@@ -78,8 +79,12 @@ export type Database = {
       };
       enquiries: {
         Row: Enquiry;
-        Insert: Omit<Enquiry, "id" | "created_at" | "updated_at"> & {
+        // Columns with database defaults (or nullable) are optional on insert
+        Insert: Omit<Enquiry, "id" | "user_id" | "owns_land" | "status" | "created_at" | "updated_at"> & {
           id?: string;
+          user_id?: string | null;
+          owns_land?: boolean;
+          status?: EnquiryStatus;
           created_at?: string;
           updated_at?: string;
         };

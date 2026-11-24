@@ -245,6 +245,8 @@ export interface PublicEnquiryInput {
 /**
  * Public action for landing page visitors to register an enquiry.
  * Directly surfaces in the Admin Dashboard without requiring prior account registration.
+ * With Supabase configured the enquiry is stored with no user (see migration 002); if that fails the
+ * visitor is told, rather than shown a success that was never saved.
  */
 export async function submitPublicEnquiryAction(
   input: PublicEnquiryInput
@@ -267,10 +269,10 @@ export async function submitPublicEnquiryAction(
   const enquiryNumber = `LD-ENQ-2026-${Math.floor(1000 + Math.random() * 9000)}`;
   const now = new Date().toISOString();
 
-  const newEnquiry: Enquiry = {
-    id: `pub-enq-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+  // The row as stored in Supabase (the database sets id and timestamps)
+  const row = {
     enquiry_number: enquiryNumber,
-    user_id: "public-enquiry-visitor",
+    user_id: null,
     full_name: input.fullName.trim(),
     email: `${input.fullName.trim().toLowerCase().replace(/[^a-z0-9]/g, "") || "client"}@client.in`,
     phone: input.phone.trim(),
@@ -281,29 +283,36 @@ export async function submitPublicEnquiryAction(
     additional_notes: input.visionNotes?.trim() || "Submitted via landing page intake desk.",
     preferred_contact_method: "phone",
     preferred_contact_time: "Immediate / Within 24 Hours",
-    status: "new",
-    created_at: now,
-    updated_at: now,
+    status: "new" as const,
   };
 
   if (isSupabaseConfigured()) {
     try {
       const supabase = await createClient();
-      await (supabase.from("enquiries") as any).insert({
-        enquiry_number: enquiryNumber,
-        full_name: newEnquiry.full_name,
-        email: newEnquiry.email,
-        phone: newEnquiry.phone,
-        site_location: newEnquiry.site_location,
-        building_type: newEnquiry.building_type,
-        additional_notes: newEnquiry.additional_notes,
-        status: "new",
-      });
+      const { error } = await supabase.from("enquiries").insert(row);
+      if (error) throw error;
     } catch (err) {
-      console.warn("Supabase public enquiry insert skipped/failed:", err);
+      console.error("Supabase public enquiry insert failed:", err);
+      return {
+        success: false,
+        error: "We couldn't record your enquiry just now. Please try again, or reach us directly on WhatsApp or phone.",
+      };
     }
+
+    revalidatePath("/admin/dashboard");
+    return {
+      success: true,
+      enquiryNumber,
+    };
   }
 
+  // Demo mode (no Supabase): keep the enquiry in the in-memory store
+  const newEnquiry: Enquiry = {
+    ...row,
+    id: `pub-enq-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+    created_at: now,
+    updated_at: now,
+  };
   const store = getGlobalEnquiries();
   store.unshift(newEnquiry);
 
