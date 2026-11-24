@@ -143,7 +143,7 @@ export async function createEnquiryAction(input: EnquiryInput): Promise<CreateEn
   if (isSupabaseConfigured()) {
     try {
       const supabase = await createClient();
-      const { error } = await (supabase.from("enquiries") as any).insert({
+      const { error } = await supabase.from("enquiries").insert({
         enquiry_number: enquiryNumber,
         user_id: session.user.id,
         full_name: data.fullName,
@@ -380,8 +380,8 @@ export async function updateEnquiryStatusAction(
   if (isSupabaseConfigured()) {
     try {
       const supabase = await createClient();
-      const { error } = await (supabase
-        .from("enquiries") as any)
+      const { error } = await supabase
+        .from("enquiries")
         .update({ status: newStatus, updated_at: new Date().toISOString() })
         .eq("id", enquiryId);
 

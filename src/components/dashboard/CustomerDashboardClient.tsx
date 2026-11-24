@@ -3,22 +3,8 @@
 import React, { useState, useTransition } from "react";
 import { Enquiry, EnquiryStatus } from "@/lib/types/database";
 import { createEnquiryAction } from "@/app/actions/enquiries";
-import {
-  Building2,
-  Calendar,
-  CheckCircle2,
-  Clock,
-  Compass,
-  FileText,
-  MapPin,
-  Plus,
-  Send,
-  Sparkles,
-  Layers,
-  ChevronRight,
-  ArrowRight,
-  Check,
-} from "lucide-react";
+import type { EnquiryInput } from "@/lib/validations/enquiry";
+import { CheckCircle2, Compass, Plus, Send, ChevronRight } from "lucide-react";
 
 interface CustomerDashboardClientProps {
   user: {
@@ -64,7 +50,7 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
     expectedStartDate: "Within 3 Months",
     expectedCompletion: "12-14 Months",
     additionalNotes: "",
-    preferredContactMethod: "whatsapp" as const,
+    preferredContactMethod: "whatsapp" as EnquiryInput["preferredContactMethod"],
     preferredContactTime: "Afternoon (2 PM – 5 PM)",
   });
 
@@ -415,7 +401,7 @@ export const CustomerDashboardClient: React.FC<CustomerDashboardClientProps> = (
                 <label className="block text-[#141E18] font-semibold uppercase mb-1.5">Preferred Consultation Method</label>
                 <select
                   value={formData.preferredContactMethod}
-                  onChange={(e) => setFormData({ ...formData, preferredContactMethod: e.target.value as any })}
+                  onChange={(e) => setFormData({ ...formData, preferredContactMethod: e.target.value as EnquiryInput["preferredContactMethod"] })}
                   className="w-full bg-[#FAF8F5] border border-[#24322A]/25 text-[#0B0F0D] font-medium px-3.5 py-2.5 outline-none focus:border-[#2E5A44] shadow-xs"
                 >
                   <option value="whatsapp">WhatsApp Direct</option>

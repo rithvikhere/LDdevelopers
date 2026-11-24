@@ -5,7 +5,7 @@ import Link from "next/link";
 import { CompanyLogo } from "@/components/brand/CompanyLogo";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
-import { ArrowUp, ArrowUpRight, Phone, Mail, MapPin, Clock } from "lucide-react";
+import { ArrowUp, ArrowUpRight } from "lucide-react";
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {

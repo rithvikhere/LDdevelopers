@@ -7,7 +7,8 @@ export type EnquiryStatus =
   | "completed"
   | "closed";
 
-export interface Profile {
+// Row types are `type` aliases (not interfaces) so they satisfy supabase-js's Record<string, unknown> constraint.
+export type Profile = {
   id: string;
   full_name: string;
   email: string;
@@ -15,9 +16,9 @@ export interface Profile {
   role: UserRole;
   created_at: string;
   updated_at: string;
-}
+};
 
-export interface Enquiry {
+export type Enquiry = {
   id: string;
   enquiry_number: string;
   user_id: string;
@@ -47,9 +48,11 @@ export interface Enquiry {
   status: EnquiryStatus;
   created_at: string;
   updated_at: string;
-}
+};
 
-export interface Database {
+// Shape follows the generated Supabase types (Tables with Relationships, Views, Functions), which
+// supabase-js needs to type queries; without it every table resolves to `never`.
+export type Database = {
   public: {
     Tables: {
       profiles: {
@@ -71,6 +74,7 @@ export interface Database {
           role?: UserRole;
           updated_at?: string;
         };
+        Relationships: [];
       };
       enquiries: {
         Row: Enquiry;
@@ -80,8 +84,10 @@ export interface Database {
           updated_at?: string;
         };
         Update: Partial<Omit<Enquiry, "id" | "user_id" | "enquiry_number">>;
+        Relationships: [];
       };
     };
+    Views: { [_ in never]: never };
     Functions: {
       is_admin: {
         Args: Record<string, never>;
@@ -92,6 +98,8 @@ export interface Database {
         Returns: void;
       };
     };
+    Enums: { [_ in never]: never };
+    CompositeTypes: { [_ in never]: never };
   };
-}
+};
 

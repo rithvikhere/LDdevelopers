@@ -9,7 +9,7 @@ import {
   KairosDepthReveal,
   KairosMaskedText,
 } from "@/components/ui/KairosScrollReveal";
-import { ArrowUpRight, Check, Compass, Ruler, Clock, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Check, Ruler, ShieldCheck } from "lucide-react";
 
 /** compact: tighter vertical rhythm + <h1> heading for use as a standalone route page. */
 export const ConstructionOptionsSection: React.FC<{ compact?: boolean }> = ({ compact = false }) => {

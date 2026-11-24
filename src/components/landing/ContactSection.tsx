@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { siteContent } from "@/config/site-content";
 import { submitPublicEnquiryAction } from "@/app/actions/enquiries";
 import { ContactInfoCard, contactWhatsappUrl } from "@/components/landing/ContactInfoCard";
@@ -12,10 +11,8 @@ import {
 import {
   ArrowUpRight,
   CheckCircle2,
-  AlertCircle,
   RotateCcw,
   Sparkles,
-  Lock,
 } from "lucide-react";
 
 interface FormDataState {
