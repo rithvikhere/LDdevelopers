@@ -26,6 +26,7 @@ const WrittenWord: React.FC<{ text: string; play: boolean; delay: number; step: 
         <motion.span
           key={`${ch}-${i}`}
           className="inline-block"
+          data-reveal
           initial={{ opacity: 0, y: 6, filter: "blur(5px)" }}
           animate={play || reduce ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
           transition={reduce ? { duration: 0 } : { duration: 0.45, delay: delay + i * step, ease }}
@@ -60,6 +61,7 @@ export const HeroBrand: React.FC = () => {
         unoptimized
         loading="eager"
         className="h-11 sm:h-12 lg:h-14 w-auto"
+        data-reveal
         style={{ opacity: landed ? 1 : 0 }}
       />
       <span aria-hidden="true" className="flex flex-col leading-none">

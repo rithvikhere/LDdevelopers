@@ -22,6 +22,7 @@ export const AboutSection: React.FC<{ compact?: boolean }> = ({ compact = false 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         {/* Section Index & Eyebrow — Centered & Prominent */}
         <motion.div
+          data-reveal
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-40px" }}
@@ -35,6 +36,7 @@ export const AboutSection: React.FC<{ compact?: boolean }> = ({ compact = false 
 
         {/* Large Editorial Headline — Centered & Fully Visible */}
         <motion.div
+          data-reveal
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-40px" }}
@@ -55,6 +57,7 @@ export const AboutSection: React.FC<{ compact?: boolean }> = ({ compact = false 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto">
           {/* Left Column: Manifesto Card (Full Height) */}
           <motion.div
+            data-reveal
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, margin: "-40px" }}
@@ -85,6 +88,7 @@ export const AboutSection: React.FC<{ compact?: boolean }> = ({ compact = false 
 
           {/* Right Column: 3 Balanced Discipline Cards (Exact Same Top & Bottom Alignment) */}
           <motion.div
+            data-reveal
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, margin: "-40px" }}

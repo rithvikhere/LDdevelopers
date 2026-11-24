@@ -133,6 +133,7 @@ export const HeroSection: React.FC = () => {
             <motion.span
               variants={fadeUp}
               custom={0.02}
+              data-reveal
               initial="hidden"
               animate={target}
               className="text-[11px] sm:text-xs uppercase tracking-[0.42em] text-[#212121]/75 font-medium mb-6 sm:mb-8"
@@ -144,7 +145,7 @@ export const HeroSection: React.FC = () => {
             <h1 className="font-sans font-bold uppercase text-[2.4rem] leading-[1.04] sm:text-[3.25rem] lg:text-[3.4rem] xl:text-[4rem] tracking-[-0.02em] text-[#212121] mb-6 sm:mb-8">
               {HEADLINE.split(" ").map((w, i, all) => (
                 <React.Fragment key={`${w}-${i}`}>
-                  <motion.span variants={word} custom={i} initial="hidden" animate={target} className="inline-block">
+                  <motion.span variants={word} custom={i} data-reveal initial="hidden" animate={target} className="inline-block">
                     {w}
                   </motion.span>
                   {i < all.length - 1 ? " " : null}
@@ -156,6 +157,7 @@ export const HeroSection: React.FC = () => {
             <motion.p
               variants={fadeUp}
               custom={0.75}
+              data-reveal
               initial="hidden"
               animate={target}
               className="text-sm sm:text-base text-[#212121]/75 leading-relaxed max-w-md mb-8 sm:mb-10"
@@ -168,6 +170,7 @@ export const HeroSection: React.FC = () => {
             <motion.div
               variants={fadeUp}
               custom={0.9}
+              data-reveal
               initial="hidden"
               animate={target}
               className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto"
@@ -194,6 +197,7 @@ export const HeroSection: React.FC = () => {
 
         {/* Residence layer — rises from the bottom once loaded (after the intro on first visit) */}
         <motion.div
+          data-reveal
           initial={{ opacity: 0, y: 180 }}
           animate={shouldReduceMotion || (houseLoaded && show) ? { opacity: 1, y: 0 } : { opacity: 0, y: 180 }}
           transition={shouldReduceMotion ? { duration: 0 } : { duration: 1.4, delay: 0.35, ease }}

@@ -110,6 +110,18 @@
   50% { opacity: 0; }
 }
 
+/* Entrance reveals start hidden in the server HTML (opacity 0, offset, blurred). With reduced motion, show
+   their final state from the very first paint — before hydration — and keep it there. Mark such elements
+   with data-reveal; the components themselves also skip the animation (useHydratedReducedMotion). */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    visibility: visible !important;
+  }
+}
+
 /* Reduced motion accessibility */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {

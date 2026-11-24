@@ -35,6 +35,7 @@ const RevealLine: React.FC<{ className?: string }> = ({ className = "" }) => {
   return (
     <motion.span
       aria-hidden="true"
+      data-reveal
       initial={{ scaleX: 0 }}
       whileInView={{ scaleX: 1 }}
       viewport={{ once: true, margin: "0px 0px -10% 0px" }}
@@ -48,7 +49,7 @@ const RevealLine: React.FC<{ className?: string }> = ({ className = "" }) => {
  * One editorial index entry — number, serif title, description and directional arrow.
  */
 const ExploreEntry: React.FC<{ item: Destination }> = ({ item }) => (
-  <motion.div variants={kairosChildVariant}>
+  <motion.div variants={kairosChildVariant} data-reveal>
     <RevealLine />
     <Link
       href={item.href}
@@ -205,7 +206,9 @@ const ScrollExploreHeading: React.FC<{
               typing ? "animate-[caret-blink_0.9s_steps(1)_infinite]" : "opacity-0"
             }`}
           />
-          <span className="invisible">{rest.slice(shown)}</span>
+          <span className="invisible" data-reveal>
+            {rest.slice(shown)}
+          </span>
         </span>
       </span>
     </h2>

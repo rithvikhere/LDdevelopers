@@ -35,6 +35,7 @@ export const KairosDepthReveal: React.FC<KairosDepthRevealProps> = ({
 
   return (
     <motion.div
+      data-reveal
       initial={{
         opacity: 0,
         y: 32,
@@ -95,10 +96,12 @@ export const KairosMaskedText: React.FC<KairosMaskedTextProps> = ({
     return <Component className={className}>{children}</Component>;
   }
 
-  const MotionComponent = (motion as Record<string, any>)[Component] || motion.div;
+  // Every allowed tag accepts the same props used here, so type it as the div variant.
+  const MotionComponent = motion[Component] as typeof motion.div;
 
   return (
     <MotionComponent
+      data-reveal
       initial={{ y: 24, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: false, margin: "0px 0px -8% 0px" }}
@@ -137,6 +140,7 @@ export const KairosStaggerContainer: React.FC<KairosStaggerContainerProps> = ({
 
   return (
     <motion.div
+      data-reveal
       initial="hidden"
       whileInView="show"
       viewport={{ once: false, margin: "-8% 0px -8% 0px" }}
