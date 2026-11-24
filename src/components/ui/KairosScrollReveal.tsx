@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
+import { useHydratedReducedMotion } from "@/hooks/useHydrated";
 
 interface KairosDepthRevealProps {
   children: React.ReactNode;
@@ -26,7 +27,7 @@ export const KairosDepthReveal: React.FC<KairosDepthRevealProps> = ({
   highlight = false,
   withFrame = false,
 }) => {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   if (shouldReduceMotion) {
     return <div className={className}>{children}</div>;
@@ -88,7 +89,7 @@ export const KairosMaskedText: React.FC<KairosMaskedTextProps> = ({
   delay = 0,
   as: Component = "div",
 }) => {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   if (shouldReduceMotion) {
     return <Component className={className}>{children}</Component>;
@@ -128,7 +129,7 @@ export const KairosStaggerContainer: React.FC<KairosStaggerContainerProps> = ({
   className = "",
   staggerDelay = 0.12,
 }) => {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   if (shouldReduceMotion) {
     return <div className={className}>{children}</div>;

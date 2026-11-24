@@ -5,7 +5,6 @@ import Image from "next/image";
 import {
   motion,
   useMotionValue,
-  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -14,6 +13,7 @@ import {
 import { ArrowUpRight } from "lucide-react";
 import { HeroBrand } from "@/components/brand/HeroBrand";
 import { useIntroPhase } from "@/components/intro/IntroProvider";
+import { useHydratedReducedMotion } from "@/hooks/useHydrated";
 
 const HEADLINE = "Sculpting Enduring Spaces, Defining Modern Living.";
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -28,9 +28,11 @@ const subscribeDesktop = (onChange: () => void) => {
 const getDesktop = () => window.matchMedia(DESKTOP_QUERY).matches;
 const getDesktopServer = () => false;
 
+// "still" is the final state with no transition, used for reduced motion.
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 18 },
   show: (delay: number) => ({ opacity: 1, y: 0, transition: { duration: 0.8, delay, ease } }),
+  still: { opacity: 1, y: 0, transition: { duration: 0 } },
 };
 
 const word: Variants = {
@@ -41,6 +43,7 @@ const word: Variants = {
     filter: "blur(0px)",
     transition: { duration: 0.85, delay: 0.12 + i * 0.085, ease },
   }),
+  still: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0 } },
 };
 
 /**
@@ -56,9 +59,10 @@ const word: Variants = {
  * any more. The component is kept at src/components/hero/ArchitecturalLineArt.tsx for later use.
  */
 export const HeroSection: React.FC = () => {
-  const shouldReduceMotion = useReducedMotion();
+  // false while hydrating (matches the server HTML); reduced-motion visitors jump to the final state right after
+  const shouldReduceMotion = useHydratedReducedMotion();
   const phase = useIntroPhase();
-  const show = phase >= 1 || !!shouldReduceMotion;
+  const show = phase >= 1 || shouldReduceMotion;
 
   // The residence starts rising only once its image has actually loaded, so the motion is never missed.
   const [houseLoaded, setHouseLoaded] = useState(false);
@@ -95,8 +99,9 @@ export const HeroSection: React.FC = () => {
     }
   };
 
-  const reveal = shouldReduceMotion ? false : "hidden";
-  const target = show ? "show" : "hidden";
+  // Everything mounts "hidden" (as server-rendered). Reduced motion switches to "still", which snaps to
+  // the final state; otherwise "show" plays the entrance once the intro reveals the site.
+  const target = shouldReduceMotion ? "still" : show ? "show" : "hidden";
 
   return (
     <section
@@ -128,7 +133,7 @@ export const HeroSection: React.FC = () => {
             <motion.span
               variants={fadeUp}
               custom={0.02}
-              initial={reveal}
+              initial="hidden"
               animate={target}
               className="text-[11px] sm:text-xs uppercase tracking-[0.42em] text-[#212121]/75 font-medium mb-6 sm:mb-8"
             >
@@ -139,7 +144,7 @@ export const HeroSection: React.FC = () => {
             <h1 className="font-sans font-bold uppercase text-[2.4rem] leading-[1.04] sm:text-[3.25rem] lg:text-[3.4rem] xl:text-[4rem] tracking-[-0.02em] text-[#212121] mb-6 sm:mb-8">
               {HEADLINE.split(" ").map((w, i, all) => (
                 <React.Fragment key={`${w}-${i}`}>
-                  <motion.span variants={word} custom={i} initial={reveal} animate={target} className="inline-block">
+                  <motion.span variants={word} custom={i} initial="hidden" animate={target} className="inline-block">
                     {w}
                   </motion.span>
                   {i < all.length - 1 ? " " : null}
@@ -151,7 +156,7 @@ export const HeroSection: React.FC = () => {
             <motion.p
               variants={fadeUp}
               custom={0.75}
-              initial={reveal}
+              initial="hidden"
               animate={target}
               className="text-sm sm:text-base text-[#212121]/75 leading-relaxed max-w-md mb-8 sm:mb-10"
             >
@@ -163,7 +168,7 @@ export const HeroSection: React.FC = () => {
             <motion.div
               variants={fadeUp}
               custom={0.9}
-              initial={reveal}
+              initial="hidden"
               animate={target}
               className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto"
             >
@@ -189,9 +194,9 @@ export const HeroSection: React.FC = () => {
 
         {/* Residence layer — rises from the bottom once loaded (after the intro on first visit) */}
         <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 180 }}
+          initial={{ opacity: 0, y: 180 }}
           animate={shouldReduceMotion || (houseLoaded && show) ? { opacity: 1, y: 0 } : { opacity: 0, y: 180 }}
-          transition={{ duration: 1.4, delay: 0.35, ease }}
+          transition={shouldReduceMotion ? { duration: 0 } : { duration: 1.4, delay: 0.35, ease }}
           className="relative lg:absolute z-10 lg:right-[-6%] xl:right-[-3%] lg:bottom-0 w-[122%] -ml-[11%] -mt-8 sm:-mt-12 lg:mt-0 lg:ml-0 lg:w-[60%] xl:w-[64%] pointer-events-none select-none"
           aria-hidden="true"
         >

@@ -3,13 +3,14 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { LD_MARK } from "@/components/intro/ld-outline";
 import { useIntroPhase } from "@/components/intro/IntroProvider";
+import { useHydratedReducedMotion } from "@/hooks/useHydrated";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-/** Writes a word letter by letter (soft fade + de-blur per letter). */
+/** Writes a word letter by letter (soft fade + de-blur per letter). Reduced motion shows it at once. */
 const WrittenWord: React.FC<{ text: string; play: boolean; delay: number; step: number; className: string }> = ({
   text,
   play,
@@ -17,16 +18,17 @@ const WrittenWord: React.FC<{ text: string; play: boolean; delay: number; step: 
   step,
   className,
 }) => {
-  const reduce = useReducedMotion();
+  // false while hydrating, so the letters mount in the same hidden state the server rendered
+  const reduce = useHydratedReducedMotion();
   return (
     <span className={className}>
       {text.split("").map((ch, i) => (
         <motion.span
           key={`${ch}-${i}`}
           className="inline-block"
-          initial={reduce ? false : { opacity: 0, y: 6, filter: "blur(5px)" }}
+          initial={{ opacity: 0, y: 6, filter: "blur(5px)" }}
           animate={play || reduce ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
-          transition={{ duration: 0.45, delay: delay + i * step, ease }}
+          transition={reduce ? { duration: 0 } : { duration: 0.45, delay: delay + i * step, ease }}
         >
           {ch}
         </motion.span>

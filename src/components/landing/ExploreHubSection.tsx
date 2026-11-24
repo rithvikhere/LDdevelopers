@@ -7,7 +7,6 @@ import {
   motion,
   useMotionValue,
   useMotionValueEvent,
-  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -19,6 +18,7 @@ import {
   KairosStaggerContainer,
   kairosChildVariant,
 } from "@/components/ui/KairosScrollReveal";
+import { useHydratedReducedMotion } from "@/hooks/useHydrated";
 
 type Destination = (typeof siteContent.explore.destinations)[number];
 
@@ -26,7 +26,7 @@ type Destination = (typeof siteContent.explore.destinations)[number];
  * Progressive hairline divider — draws from left to right as it enters the viewport.
  */
 const RevealLine: React.FC<{ className?: string }> = ({ className = "" }) => {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   if (shouldReduceMotion) {
     return <span aria-hidden="true" className={`block h-px w-full bg-white/15 ${className}`} />;
@@ -102,7 +102,7 @@ const ScrollExploreHeading: React.FC<{
   title: string;
   anchorRef: React.RefObject<HTMLSpanElement | null>;
 }> = ({ title, anchorRef }) => {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
   const [first, ...restWords] = title.split(" ");
   const rest = restWords.join(" ");
 
