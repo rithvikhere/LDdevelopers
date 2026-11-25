@@ -4,7 +4,6 @@ import React, { useEffect, useSyncExternalStore } from "react";
 import {
   motion,
   useMotionValue,
-  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -16,6 +15,7 @@ import { ConstructionScene } from "@/components/hero/ConstructionScene";
 import { useIntroPhase } from "@/components/intro/IntroProvider";
 import { siteContent } from "@/config/site-content";
 import { heroCondensed, heroSans, heroSerif } from "@/components/landing/hero-fonts";
+import { useHydratedReducedMotion } from "@/hooks/useHydrated";
 
 const hero = siteContent.hero;
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -30,9 +30,11 @@ const subscribeDesktop = (onChange: () => void) => {
 const getDesktop = () => window.matchMedia(DESKTOP_QUERY).matches;
 const getDesktopServer = () => false;
 
+// "still" is the final state with no transition, used for reduced motion.
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 18 },
   show: (delay: number) => ({ opacity: 1, y: 0, transition: { duration: 0.8, delay, ease } }),
+  still: { opacity: 1, y: 0, transition: { duration: 0 } },
 };
 
 // Headline words rise in one by one (blur → sharp). The condensed words rise a little further for more punch.
@@ -44,6 +46,7 @@ const word: Variants = {
     filter: "blur(0px)",
     transition: { duration: 0.85, delay: 0.12 + i * 0.085, ease },
   }),
+  still: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0 } },
 };
 
 const punch: Variants = {
@@ -54,6 +57,7 @@ const punch: Variants = {
     filter: "blur(0px)",
     transition: { duration: 0.95, delay: 0.12 + i * 0.085, ease },
   }),
+  still: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0 } },
 };
 
 /**
@@ -63,8 +67,9 @@ const punch: Variants = {
  * - Left: a large editorial headline — "Your Land. / Your Vision." in a heavy didone serif, "OUR EXPERTISE."
  *   in heavy condensed caps (the last word in orange) — revealed word by word after the intro, then a
  *   supporting line and pill CTAs.
- * - Right (below the CTAs on phones): ConstructionScene — an inline-SVG house mid-construction with a tower
- *   crane and three miniature figurine workers, looping every 12s (CSS keyframes). It rises in after the intro.
+ * - Right (below the CTAs on phones): ConstructionScene — an inline-SVG site with a 3- and a 4-storey block
+ *   mid-construction, a tower crane running a pick-and-place lift and a crew of eight figurine workers,
+ *   looping every 12s (CSS keyframes). Its floor merges into the Explore panel. It rises in after the intro.
  * - Large screens: the hero is sticky; as the dark Explore panel slides over it, the hero's layers drift up
  *   at different speeds (text fastest and fading, scene slower, grid slowest) — a smooth parallax hand-off
  *   that keeps the hero's own colours (no dimming, so no grey).
@@ -75,9 +80,10 @@ const punch: Variants = {
  * any more. The component is kept at src/components/hero/ArchitecturalLineArt.tsx for later use.
  */
 export const HeroSection: React.FC = () => {
-  const shouldReduceMotion = useReducedMotion();
+  // false while hydrating (matches the server HTML); reduced-motion visitors jump to the final state right after
+  const shouldReduceMotion = useHydratedReducedMotion();
   const phase = useIntroPhase();
-  const show = phase >= 1 || !!shouldReduceMotion;
+  const show = phase >= 1 || shouldReduceMotion;
 
   // --- Layered parallax while the Explore panel slides over (desktop only) -------------------------
   const isDesktop = useSyncExternalStore(subscribeDesktop, getDesktop, getDesktopServer);
@@ -111,8 +117,9 @@ export const HeroSection: React.FC = () => {
     }
   };
 
-  const reveal = shouldReduceMotion ? false : "hidden";
-  const target = show ? "show" : "hidden";
+  // Everything mounts "hidden" (as server-rendered). Reduced motion switches to "still", which snaps to
+  // the final state; otherwise "show" plays the entrance once the intro reveals the site.
+  const target = shouldReduceMotion ? "still" : show ? "show" : "hidden";
 
   return (
     <section
@@ -152,7 +159,8 @@ export const HeroSection: React.FC = () => {
                       <motion.span
                         variants={word}
                         custom={li * all.length + wi}
-                        initial={reveal}
+                        data-reveal
+                        initial="hidden"
                         animate={target}
                         className="inline-block"
                       >
@@ -166,13 +174,14 @@ export const HeroSection: React.FC = () => {
               <span
                 className={`${heroCondensed.className} block uppercase leading-[0.9] mt-[0.12em] text-[14.5vw] sm:text-[12vw] lg:text-[8.6vw] 2xl:text-[8.75rem]`}
               >
-                <motion.span variants={punch} custom={4} initial={reveal} animate={target} className="inline-block">
+                <motion.span variants={punch} custom={4} data-reveal initial="hidden" animate={target} className="inline-block">
                   {hero.titleLead}
                 </motion.span>{" "}
                 <motion.span
                   variants={punch}
                   custom={5}
-                  initial={reveal}
+                  data-reveal
+                  initial="hidden"
                   animate={target}
                   className="inline-block text-[#E67514]"
                 >
@@ -185,7 +194,8 @@ export const HeroSection: React.FC = () => {
             <motion.p
               variants={fadeUp}
               custom={0.7}
-              initial={reveal}
+              data-reveal
+              initial="hidden"
               animate={target}
               className={`${heroSans.className} font-medium text-[#212121]/80 text-[clamp(1.15rem,1.7vw,1.75rem)] leading-[1.35] tracking-[-0.005em] text-balance max-w-[34rem] mb-8 sm:mb-10`}
             >
@@ -196,7 +206,8 @@ export const HeroSection: React.FC = () => {
             <motion.div
               variants={fadeUp}
               custom={0.85}
-              initial={reveal}
+              data-reveal
+              initial="hidden"
               animate={target}
               className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto"
             >
@@ -231,9 +242,10 @@ export const HeroSection: React.FC = () => {
           aria-hidden="true"
         >
         <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 140 }}
+          data-reveal
+          initial={{ opacity: 0, y: 140 }}
           animate={shouldReduceMotion || show ? { opacity: 1, y: 0 } : { opacity: 0, y: 140 }}
-          transition={{ duration: 1.4, delay: 0.35, ease }}
+          transition={shouldReduceMotion ? { duration: 0 } : { duration: 1.4, delay: 0.35, ease }}
           className="w-full"
         >
           <ConstructionScene />

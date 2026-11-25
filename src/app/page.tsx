@@ -2,16 +2,18 @@ import React from "react";
 import { Footer } from "@/components/navigation/Footer";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { ExploreHubSection } from "@/components/landing/ExploreHubSection";
-import { ContactSection } from "@/components/landing/ContactSection";
+import { EnquirySection } from "@/components/landing/EnquirySection";
+import { DesignDeskSection } from "@/components/landing/DesignDeskSection";
 import { IntroProvider } from "@/components/intro/IntroProvider";
 import { SiteNav } from "@/components/navigation/SiteNav";
 
 /**
- * Public Homepage — Three-Part Architecture
+ * Public Homepage
  *
  *   01. Hero            (unchanged artwork, copy and animation)
  *   02. Explore Hub     (#explore — primary navigation to the six content routes)
- *   03. Enquiry         (#enquiry — existing contact desk + enquiry form, unchanged)
+ *   03. Enquiry         (#enquiry — "Have a project? Let's talk." + enquiry form on the blueprint backdrop)
+ *   04. Design Desk     (#design-desk — map, enquiries and studio hours)
  *   Footer              (unchanged)
  *
  * Navigation: the floating SiteNav pill (Home · About Us ▾ · Contact), shown once the intro's logo has landed.
@@ -32,10 +34,11 @@ export default function HomePage() {
           <ExploreHubSection />
         </div>
 
-        {/* Section 03: Enquiry — existing consultation desk & enquiry form */}
-        <div id="enquiry" className="relative z-10 bg-[#CADCAE]">
-          <ContactSection />
-        </div>
+        {/* Section 03: Enquiry — tilts up out of the dark Explore panel */}
+        <EnquirySection />
+
+        {/* Section 04: Design Desk & Consultation */}
+        <DesignDeskSection />
       </main>
 
       {/* Editorial Architectural Footer */}

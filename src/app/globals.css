@@ -9,6 +9,16 @@
   --color-orange: #E67514;    /* accents, highlights, secondary hover */
   --color-green: #06923E;     /* primary buttons, icons, active states */
   --color-mint: #D3ECCD;      /* cards and panels */
+
+  /* Enquiry section — blueprint (cyanotype) blues, a warm cream and a light orange for text on blue */
+  --color-blueprint-950: #0C1F3F;
+  --color-blueprint-900: #12305E;
+  --color-blueprint-700: #1F4D8F;
+  --color-blueprint-400: #6A98DB;
+  --color-blueprint-200: #B5D0F0;
+  --color-cream: #F3EDE2;
+  --color-orange-light: #FFA866;
+  --color-glass: rgb(9 12 19 / 0.8); /* dark translucent card on the blueprint backdrop */
 }
 
 @layer base {
@@ -51,6 +61,27 @@
 
 .font-sans {
   font-family: var(--font-dmsans), "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Tall, heavy poster face for the enquiry headline */
+.font-poster {
+  font-family: var(--font-anton), "Anton", Impact, "Arial Narrow Bold", sans-serif;
+  font-weight: 400;
+}
+
+/* An architect's handwriting, for annotation highlights */
+.font-hand {
+  font-family: var(--font-architects), "Architects Daughter", "Segoe Print", cursive;
+}
+
+/* Blueprint grid — light hairlines on the blue enquiry backdrop, fading towards the edges */
+.bg-blueprint-grid {
+  background-size: 48px 48px;
+  background-image:
+    linear-gradient(to right, rgba(181, 208, 240, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(181, 208, 240, 0.07) 1px, transparent 1px);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 40%, transparent 100%);
 }
 
 /* Subtle architectural grid pattern */
@@ -108,6 +139,21 @@
 /* Typewriter caret blink (Explore heading) */
 @keyframes caret-blink {
   50% { opacity: 0; }
+}
+
+/* Entrance reveals start hidden in the server HTML (opacity 0, offset, blurred). With reduced motion, show
+   their final state from the very first paint — before hydration — and keep it there. Mark such elements
+   with data-reveal; the components themselves also skip the animation (useHydratedReducedMotion). */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    visibility: visible !important;
+    clip-path: none !important;
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+  }
 }
 
 /* Reduced motion accessibility */

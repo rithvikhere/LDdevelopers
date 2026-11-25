@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Anton, Architects_Daughter, Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -14,6 +14,21 @@ const dmSans = DM_Sans({
   variable: "--font-dmsans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+// Enquiry section: tall, heavy poster headline + an architect's handwriting for annotations
+const anton = Anton({
+  variable: "--font-anton",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+const architectsDaughter = Architects_Daughter({
+  variable: "--font-architects",
+  subsets: ["latin"],
+  weight: "400",
   display: "swap",
 });
 
@@ -45,7 +60,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorantGaramond.variable} ${dmSans.variable} scroll-smooth`}
+      className={`${cormorantGaramond.variable} ${dmSans.variable} ${anton.variable} ${architectsDaughter.variable} scroll-smooth`}
     >
       <body className="min-h-screen bg-[#CADCAE] text-[#212121] font-sans antialiased selection:bg-[#E67514] selection:text-[#212121]">
         {children}

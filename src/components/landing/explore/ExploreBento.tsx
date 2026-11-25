@@ -137,6 +137,7 @@ export const ExploreBento: React.FC = () => {
           {/* Construction Options — the most visited page, so the largest card: terracotta brickwork, blocks on a plot */}
           <motion.li
             variants={reveal}
+            data-reveal
             className="min-h-[360px] md:min-h-0 md:col-span-2 lg:col-span-5 lg:row-span-2 lg:col-start-1 lg:row-start-1"
           >
             <CardLink href={options.href} style={surfaces.options} className="flex-col justify-between p-7 sm:p-9 lg:p-10 text-[#212121]">
@@ -152,6 +153,7 @@ export const ExploreBento: React.FC = () => {
           {/* Services — forest green, house · villa · tower */}
           <motion.li
             variants={reveal}
+            data-reveal
             className="min-h-[260px] md:min-h-0 md:col-start-1 md:row-start-2 lg:col-span-7 lg:col-start-6 lg:row-start-1"
           >
             <CardLink href={services.href} style={surfaces.services} className="flex-col justify-between p-7 sm:p-9 text-[#D3ECCD]">
@@ -167,6 +169,7 @@ export const ExploreBento: React.FC = () => {
           {/* About — sage plaster, stone arch */}
           <motion.li
             variants={reveal}
+            data-reveal
             className="min-h-[260px] md:min-h-0 md:col-start-1 md:row-start-3 lg:col-span-4 lg:col-start-6 lg:row-start-2"
           >
             <CardLink href={about.href} style={surfaces.about} className="flex-col justify-between p-7 sm:p-8 text-[#212121]">
@@ -183,6 +186,7 @@ export const ExploreBento: React.FC = () => {
           {/* Gallery — charcoal, three prints of the house */}
           <motion.li
             variants={reveal}
+            data-reveal
             className="min-h-[470px] md:min-h-0 md:col-start-2 md:row-start-2 md:row-span-2 lg:col-span-3 lg:col-start-10 lg:row-start-2 lg:row-span-2"
           >
             <CardLink href={gallery.href} style={surfaces.gallery} className="flex-col justify-end p-7 sm:p-8 text-[#D3ECCD] ring-1 ring-inset ring-white/[0.07]">
@@ -198,6 +202,7 @@ export const ExploreBento: React.FC = () => {
           {/* Achievements — brushed brass, medal on a ribbon */}
           <motion.li
             variants={reveal}
+            data-reveal
             className="min-h-[260px] md:min-h-0 md:col-span-2 md:row-start-4 lg:col-span-9 lg:col-start-1 lg:row-start-3"
           >
             <CardLink href={achievements.href} style={surfaces.achievements} className="flex-col justify-between p-7 sm:p-9 text-[#212121]">

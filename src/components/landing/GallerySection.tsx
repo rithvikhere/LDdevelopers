@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useEffectEvent, useRef } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { siteAssets } from "@/config/site-assets";
 import { siteContent } from "@/config/site-content";
 import {
@@ -10,11 +10,13 @@ import {
   KairosMaskedText,
 } from "@/components/ui/KairosScrollReveal";
 import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
+import { useHydratedReducedMotion } from "@/hooks/useHydrated";
 
 /** compact: tighter vertical rhythm + <h1> heading for use as a standalone route page. */
 export const GallerySection: React.FC<{ compact?: boolean }> = ({ compact = false }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const shouldReduceMotion = useReducedMotion();
+  // Opens/closes the lightbox without the fade for reduced-motion visitors
+  const shouldReduceMotion = useHydratedReducedMotion();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
@@ -49,6 +51,17 @@ export const GallerySection: React.FC<{ compact?: boolean }> = ({ compact = fals
     }
   };
 
+  // Keyboard controls for the open lightbox (always calls the latest handlers)
+  const onLightboxKeyDown = useEffectEvent((e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      closeModal();
+    } else if (e.key === "ArrowLeft") {
+      handlePrev();
+    } else if (e.key === "ArrowRight") {
+      handleNext();
+    }
+  });
+
   useEffect(() => {
     if (selectedIndex !== null) {
       document.body.style.overflow = "hidden";
@@ -56,15 +69,7 @@ export const GallerySection: React.FC<{ compact?: boolean }> = ({ compact = fals
         closeButtonRef.current?.focus();
       }, 50);
 
-      const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === "Escape") {
-          closeModal();
-        } else if (e.key === "ArrowLeft") {
-          handlePrev();
-        } else if (e.key === "ArrowRight") {
-          handleNext();
-        }
-      };
+      const handleKeyDown = (e: KeyboardEvent) => onLightboxKeyDown(e);
 
       window.addEventListener("keydown", handleKeyDown);
       return () => window.removeEventListener("keydown", handleKeyDown);
@@ -180,6 +185,7 @@ export const GallerySection: React.FC<{ compact?: boolean }> = ({ compact = fals
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={shouldReduceMotion ? { duration: 0 } : undefined}
             onClick={closeModal}
             className="fixed inset-0 z-50 bg-[#212121]/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
           >

@@ -8,7 +8,7 @@ import {
   KairosDepthReveal,
   KairosMaskedText,
 } from "@/components/ui/KairosScrollReveal";
-import { ArrowUpRight, MapPin, Maximize2 } from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
 
 export const ProjectsSection: React.FC = () => {
   const [filter, setFilter] = useState<string>("All");

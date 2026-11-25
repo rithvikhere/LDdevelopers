@@ -1,7 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { siteAssets } from "@/config/site-assets";
 
 interface CompanyLogoProps {
   theme?: "light" | "dark";

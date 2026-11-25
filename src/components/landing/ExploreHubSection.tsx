@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   animate,
   motion,
   useMotionValue,
   useMotionValueEvent,
-  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -14,11 +13,7 @@ import {
 import { siteContent } from "@/config/site-content";
 import { ExploreBento } from "@/components/landing/explore/ExploreBento";
 import { heroSerif } from "@/components/landing/hero-fonts";
-
-// False during server render and hydration, true afterwards — lets client-only preferences
-// (like reduced motion) change the markup without a hydration mismatch.
-const noopSubscribe = () => () => {};
-const useHydrated = () => useSyncExternalStore(noopSubscribe, () => true, () => false);
+import { useHydratedReducedMotion } from "@/hooks/useHydrated";
 
 /**
  * Scroll-driven heading: the first word ("Explore") starts small inside the dark tab, travels and
@@ -29,7 +24,8 @@ const ScrollExploreHeading: React.FC<{
   title: string;
   anchorRef: React.RefObject<HTMLSpanElement | null>;
 }> = ({ title, anchorRef }) => {
-  const shouldReduceMotion = useReducedMotion();
+  // false while hydrating (matches the server HTML); reduced motion takes over right after
+  const shouldReduceMotion = useHydratedReducedMotion();
   const [first, ...restWords] = title.split(" ");
   const rest = restWords.join(" ");
 
@@ -106,8 +102,7 @@ const ScrollExploreHeading: React.FC<{
     return () => controls.stop();
   }, [landed, rest.length, shouldReduceMotion, typed]);
 
-  const hydrated = useHydrated();
-  const shown = hydrated && shouldReduceMotion ? rest.length : count;
+  const shown = shouldReduceMotion ? rest.length : count;
   const typing = !shouldReduceMotion && landed && shown < rest.length;
 
   return (
@@ -134,7 +129,9 @@ const ScrollExploreHeading: React.FC<{
               typing ? "animate-[caret-blink_0.9s_steps(1)_infinite]" : "opacity-0"
             }`}
           />
-          <span className="invisible">{rest.slice(shown)}</span>
+          <span className="invisible" data-reveal>
+            {rest.slice(shown)}
+          </span>
         </span>
       </span>
     </h2>

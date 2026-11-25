@@ -439,12 +439,25 @@ export const siteAssets = {
   ],
 
   // Section 9: Contact & Footer
+  // TEMPORARY sample details (phone, email, location) — replace with the studio's real ones before launch.
   contact: {
-    phonePlaceholder: "+[COUNTRY CODE] [PHONE NUMBER]",
-    whatsappPlaceholder: "+[COUNTRY CODE] [WHATSAPP NUMBER]",
-    emailPlaceholder: "contact@[companydomain].com",
-    addressPlaceholder: "[Company Office Suite / Building Name, Street Address, City, State, PIN]",
-    businessHoursPlaceholder: "Monday – Saturday: 9:00 AM – 7:00 PM (By Appointment)",
+    phonePlaceholder: "+91 98765 43210",
+    whatsappPlaceholder: "+91 98765 43210",
+    emailPlaceholder: "hello@lakshmidevelopers.in",
+    addressPlaceholder: "Hosur, Krishnagiri District, Tamil Nadu 635109",
+    businessHoursPlaceholder: "Mon – Fri: 9:00 AM – 7:00 PM · Sat – Sun: 10:00 AM – 5:00 PM",
+    // Studio location — the Design Desk map card embeds and links to these exact coordinates
+    location: {
+      label: "Hosur, Tamil Nadu",
+      lat: 12.7409,
+      lng: 77.8253,
+    },
+    // Opening hours in the studio's time zone (24h "HH:MM"; days: 0 = Sunday … 6 = Saturday)
+    timeZone: "Asia/Kolkata",
+    hours: [
+      { label: "Weekdays", days: "Mon – Fri", dayNumbers: [1, 2, 3, 4, 5], open: "09:00", close: "19:00" },
+      { label: "Weekends", days: "Sat – Sun", dayNumbers: [0, 6], open: "10:00", close: "17:00" },
+    ],
     whatsappDefaultMessage:
       "Hello [Company Name], I am interested in building a new project with you and would like to schedule a consultation.",
   },

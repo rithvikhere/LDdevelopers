@@ -3,10 +3,11 @@
 import React, { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion, useReducedMotion, type Variants } from "framer-motion";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { siteContent } from "@/config/site-content";
 import { useIntroPhase } from "@/components/intro/IntroProvider";
+import { useHydratedReducedMotion } from "@/hooks/useHydrated";
 
 const nav = siteContent.siteNav;
 const destinations = siteContent.explore.destinations;
@@ -89,7 +90,7 @@ const glassClass = (dark: boolean, scrolled: boolean) =>
  */
 export const SiteNav: React.FC = () => {
   const pathname = usePathname();
-  const reduce = useReducedMotion();
+  const reduce = useHydratedReducedMotion(); // false while hydrating, so the first render matches the server
   const phase = useIntroPhase();
   const isMobile = useSyncExternalStore(subscribeMobile, getMobile, getMobileServer);
   const menuId = useId();
@@ -280,6 +281,7 @@ export const SiteNav: React.FC = () => {
         <motion.div
           ref={pillRef}
           variants={entrance}
+          data-reveal
           initial="hidden"
           animate={visible ? "show" : "hidden"}
           transition={entranceTransition}
@@ -398,6 +400,7 @@ export const SiteNav: React.FC = () => {
           ref={burgerRef}
           type="button"
           variants={entrance}
+          data-reveal
           initial="hidden"
           animate={visible ? "show" : "hidden"}
           transition={entranceTransition}

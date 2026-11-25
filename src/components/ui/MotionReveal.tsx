@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useHydratedReducedMotion } from "@/hooks/useHydrated";
 
 interface MotionRevealProps {
   children: React.ReactNode;
@@ -26,7 +27,7 @@ export const MotionReveal: React.FC<MotionRevealProps> = ({
   direction = "up",
   distance = 16,
 }) => {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   if (shouldReduceMotion) {
     return <div className={className}>{children}</div>;
@@ -54,6 +55,7 @@ export const MotionReveal: React.FC<MotionRevealProps> = ({
 
   return (
     <motion.div
+      data-reveal
       initial={initial}
       whileInView={{
         opacity: 1,
@@ -78,7 +80,7 @@ export const MotionStaggerContainer: React.FC<{
   className?: string;
   staggerDelay?: number;
 }> = ({ children, className = "", staggerDelay = 0.08 }) => {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   if (shouldReduceMotion) {
     return <div className={className}>{children}</div>;
@@ -108,7 +110,7 @@ export const MotionStaggerItem: React.FC<{
   children: React.ReactNode;
   className?: string;
 }> = ({ children, className = "" }) => {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useHydratedReducedMotion();
 
   if (shouldReduceMotion) {
     return <div className={className}>{children}</div>;
@@ -116,6 +118,7 @@ export const MotionStaggerItem: React.FC<{
 
   return (
     <motion.div
+      data-reveal
       variants={{
         hidden: { opacity: 0, y: 14 },
         visible: {
