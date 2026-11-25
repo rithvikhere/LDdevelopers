@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useSyncExternalStore } from "react";
-import Image from "next/image";
+import React, { useEffect, useSyncExternalStore } from "react";
 import {
   motion,
   useMotionValue,
@@ -13,6 +12,7 @@ import {
 } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { HeroBrand } from "@/components/brand/HeroBrand";
+import { ConstructionScene } from "@/components/hero/ConstructionScene";
 import { useIntroPhase } from "@/components/intro/IntroProvider";
 import { siteContent } from "@/config/site-content";
 import { heroCondensed, heroSans, heroSerif } from "@/components/landing/hero-fonts";
@@ -57,16 +57,19 @@ const punch: Variants = {
 };
 
 /**
- * HeroSection — editorial split hero with a rising architectural residence.
+ * HeroSection — editorial split hero with an animated construction scene.
  *
  * - Top-left: the LD brand (the intro's mark lands here on first load).
  * - Left: a large editorial headline — "Your Land. / Your Vision." in a heavy didone serif, "OUR EXPERTISE."
  *   in heavy condensed caps (the last word in orange) — revealed word by word after the intro, then a
  *   supporting line and pill CTAs.
- * - Right: the residence rising from the bottom once loaded.
+ * - Right (below the CTAs on phones): ConstructionScene — an inline-SVG house mid-construction with a tower
+ *   crane and three miniature figurine workers, looping every 12s (CSS keyframes). It rises in after the intro.
  * - Large screens: the hero is sticky; as the dark Explore panel slides over it, the hero's layers drift up
- *   at different speeds (text fastest and fading, house slower, grid slowest) — a smooth parallax hand-off
+ *   at different speeds (text fastest and fading, scene slower, grid slowest) — a smooth parallax hand-off
  *   that keeps the hero's own colours (no dimming, so no grey).
+ *
+ * The earlier photo residence (public/assets/images/hero-house.webp) is still used by the Explore Gallery card.
  *
  * Note: the animated ArchitecturalLineArt (handshake & skyline) is intentionally not used here
  * any more. The component is kept at src/components/hero/ArchitecturalLineArt.tsx for later use.
@@ -75,9 +78,6 @@ export const HeroSection: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
   const phase = useIntroPhase();
   const show = phase >= 1 || !!shouldReduceMotion;
-
-  // The residence starts rising only once its image has actually loaded, so the motion is never missed.
-  const [houseLoaded, setHouseLoaded] = useState(false);
 
   // --- Layered parallax while the Explore panel slides over (desktop only) -------------------------
   const isDesktop = useSyncExternalStore(subscribeDesktop, getDesktop, getDesktopServer);
@@ -221,30 +221,22 @@ export const HeroSection: React.FC = () => {
         </div>
         </motion.div>
 
-        {/* Residence layer — slower parallax (outer) + rises from the bottom once loaded (inner) */}
+        {/* Construction scene — slower parallax (outer) + rises from the bottom after the intro (inner).
+            Desktop: its ground stands flush on the Explore panel's top edge (the panel overlaps the hero by
+            lg:-mt-44 minus its 64px tab = 112px; 111px leaves a 1px tuck so no seam shows).
+            Phones: below the CTAs, clear of the Explore tab (bottom margin = the tab's overlap). */}
         <motion.div
-          className="relative lg:absolute z-10 lg:right-[-6%] xl:right-[-3%] lg:bottom-0 w-[122%] -ml-[11%] -mt-8 sm:-mt-12 lg:mt-0 lg:ml-0 lg:w-[60%] xl:w-[64%] pointer-events-none select-none"
+          className="relative lg:absolute z-10 lg:bottom-[111px] lg:right-[1%] w-[104%] -ml-[2%] mt-2 mb-[114px] sm:w-[92%] sm:ml-auto sm:mr-0 sm:mb-[128px] md:w-[84%] lg:mt-0 lg:mb-0 lg:ml-0 lg:w-[50%] xl:w-[55%] lg:max-w-[1040px] pointer-events-none select-none"
           style={driftOn ? { y: houseY } : undefined}
           aria-hidden="true"
         >
         <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 180 }}
-          animate={shouldReduceMotion || (houseLoaded && show) ? { opacity: 1, y: 0 } : { opacity: 0, y: 180 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 140 }}
+          animate={shouldReduceMotion || show ? { opacity: 1, y: 0 } : { opacity: 0, y: 140 }}
           transition={{ duration: 1.4, delay: 0.35, ease }}
           className="w-full"
         >
-          <Image
-            src="/assets/images/hero-house.webp"
-            alt=""
-            width={2304}
-            height={1536}
-            quality={92}
-            loading="eager"
-            fetchPriority="high"
-            sizes="(max-width: 1024px) 122vw, 64vw"
-            onLoad={() => setHouseLoaded(true)}
-            className="w-full h-auto drop-shadow-[0_30px_40px_rgba(33,33,33,0.18)]"
-          />
+          <ConstructionScene />
         </motion.div>
         </motion.div>
       </div>

@@ -1,0 +1,827 @@
+/*
+ * ConstructionScene — ambient 12s loop (CSS keyframes only).
+ *
+ * Every keyframe starts and ends on the same value and every period divides 12s (1.5 / 2 / 3 / 4 / 6 / 12s),
+ * so the whole scene repeats seamlessly. Only transform and opacity are animated.
+ * Figure joint pivots are set inline (transform-origin in each figure's local px) by the rig.
+ */
+
+.root {
+  position: relative;
+}
+
+.layer {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+
+.root * {
+  transform-box: view-box;
+}
+
+/* Pause everything while the scene is scrolled out of view (set by an IntersectionObserver). */
+.root[data-paused="true"] * {
+  animation-play-state: paused !important;
+}
+
+/* ------------------------------------------------------------------ Crane lift ---- */
+
+/*
+ * Timeline (shared by trolley, hoist, load and the banksman):
+ *   0–6%    hook down behind building B at the pick-up, pallet attached (hidden)
+ *   6–24%   hoist up — the pallet rises into view above the roof
+ *   26–46%  trolley carries it 120 to the left
+ *   48–64%  lower — it sinks out of sight behind the building
+ *   64–65%  released (while hidden)
+ *   68–80%  empty hook hoists up
+ *   80–92%  trolley returns to the pick-up
+ *   90–98%  empty hook lowers; the next pallet is attached (hidden) by 99%
+ */
+
+/* Base values = the still frame shown with reduced motion: pallet lifted, half-way across. */
+.trolley {
+  transform: translateX(-60px);
+  animation: trolley 12s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes trolley {
+  0%,
+  26% {
+    transform: translateX(0);
+  }
+  46%,
+  80% {
+    transform: translateX(-120px);
+  }
+  92%,
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Cable 119 → 246 (127 long); hoisted it is 31 long: scale 31/127 = 0.2441, the load rises 96. */
+.hoist {
+  transform-origin: 800px 119px;
+  transform: scaleY(0.2441);
+  animation: hoist 12s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.hoistLoad {
+  transform: translateY(-96px);
+  animation: hoistLoad 12s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes hoist {
+  0%,
+  6% {
+    transform: scaleY(1);
+  }
+  24%,
+  48% {
+    transform: scaleY(0.2441);
+  }
+  64%,
+  68% {
+    transform: scaleY(1);
+  }
+  80%,
+  90% {
+    transform: scaleY(0.2441);
+  }
+  98%,
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes hoistLoad {
+  0%,
+  6% {
+    transform: translateY(0);
+  }
+  24%,
+  48% {
+    transform: translateY(-96px);
+  }
+  64%,
+  68% {
+    transform: translateY(0);
+  }
+  80%,
+  90% {
+    transform: translateY(-96px);
+  }
+  98%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.loadVisible {
+  animation: loadVisible 12s linear infinite;
+}
+
+@keyframes loadVisible {
+  0%,
+  64% {
+    opacity: 1;
+  }
+  65%,
+  98.5% {
+    opacity: 0;
+  }
+  99%,
+  100% {
+    opacity: 1;
+  }
+}
+
+/* A small pendulum about the hook. */
+.swing {
+  transform-origin: 800px 245px;
+  animation: swing 3s ease-in-out infinite;
+}
+
+@keyframes swing {
+  0%,
+  100% {
+    transform: rotate(1.3deg);
+  }
+  50% {
+    transform: rotate(-1.3deg);
+  }
+}
+
+/* ------------------------------------------------------------------ House details ---- */
+
+.glassSweep {
+  transform: translateX(-140px);
+  animation: glassSweep 12s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes glassSweep {
+  0%,
+  10% {
+    transform: translateX(-140px);
+  }
+  34%,
+  100% {
+    transform: translateX(180px);
+  }
+}
+
+/* Mixer drum fins travel one pitch (14) per cycle, so the drum reads as turning. */
+.mixerFins {
+  animation: mixerFins 1.5s linear infinite;
+}
+
+@keyframes mixerFins {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(14px);
+  }
+}
+
+/* ------------------------------------------------------------------ Mason (4s) ---- */
+
+.masonTorso {
+  animation: masonTorso 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.masonShoulder {
+  animation: masonShoulder 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.masonElbow {
+  animation: masonElbow 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.masonWrist {
+  animation: masonWrist 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.masonFarArm {
+  animation: masonFarArm 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.masonHead {
+  animation: masonHead 6s ease-in-out infinite;
+}
+
+@keyframes masonTorso {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  30% {
+    transform: rotate(-1.2deg);
+  }
+  64% {
+    transform: rotate(1deg);
+  }
+}
+@keyframes masonShoulder {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  30% {
+    transform: rotate(-5deg);
+  }
+  64% {
+    transform: rotate(3deg);
+  }
+}
+@keyframes masonElbow {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  30% {
+    transform: rotate(-11deg);
+  }
+  64% {
+    transform: rotate(5deg);
+  }
+}
+@keyframes masonWrist {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  30% {
+    transform: rotate(10deg);
+  }
+  64% {
+    transform: rotate(-7deg);
+  }
+}
+@keyframes masonFarArm {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  30% {
+    transform: rotate(2.5deg);
+  }
+  64% {
+    transform: rotate(-2deg);
+  }
+}
+@keyframes masonHead {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+/* --------------------------------------------------------- Material handler (6s) ---- */
+
+.handlerTorso {
+  animation: handlerTorso 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.handlerArm {
+  animation: handlerArm 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+/* keeps the toolbox hanging plumb: −(torso + arm) */
+.handlerBox {
+  animation: handlerBox 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.handlerFarArm {
+  animation: handlerFarArm 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.handlerHip {
+  animation: handlerHip 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.handlerKnee {
+  animation: handlerKnee 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.handlerAnkle {
+  animation: handlerAnkle 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.handlerHead {
+  animation: handlerHead 6s ease-in-out infinite;
+}
+
+@keyframes handlerTorso {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(1.4deg);
+  }
+}
+@keyframes handlerArm {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+}
+@keyframes handlerBox {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(3.6deg);
+  }
+}
+@keyframes handlerFarArm {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+@keyframes handlerHip {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+@keyframes handlerKnee {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(-6deg);
+  }
+}
+@keyframes handlerAnkle {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+@keyframes handlerHead {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  35% {
+    transform: rotate(-3deg);
+  }
+  70% {
+    transform: rotate(1.5deg);
+  }
+}
+
+/* --------------------------------------------------------- Site supervisor (12s) ---- */
+
+.supervisorTorso {
+  animation: supervisorTorso 12s ease-in-out infinite;
+}
+.supervisorHead {
+  animation: supervisorHead 12s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.supervisorShoulder {
+  animation: supervisorShoulder 12s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.supervisorWrist {
+  animation: supervisorWrist 12s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.supervisorFarArm {
+  animation: supervisorFarArm 12s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes supervisorTorso {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(-0.8deg);
+  }
+}
+@keyframes supervisorHead {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  14%,
+  40% {
+    transform: rotate(5deg);
+  }
+  56%,
+  82% {
+    transform: rotate(-4deg);
+  }
+}
+@keyframes supervisorShoulder {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  14%,
+  40% {
+    transform: rotate(-4deg);
+  }
+  56%,
+  82% {
+    transform: rotate(2deg);
+  }
+}
+@keyframes supervisorWrist {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  20%,
+  40% {
+    transform: rotate(3deg);
+  }
+  60%,
+  82% {
+    transform: rotate(-2deg);
+  }
+}
+@keyframes supervisorFarArm {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  14%,
+  40% {
+    transform: rotate(-2deg);
+  }
+  56%,
+  82% {
+    transform: rotate(1deg);
+  }
+}
+
+/* ------------------------------------------------------------------ Surveyor (6s) ---- */
+
+.surveyHead {
+  animation: surveyHead 6s ease-in-out infinite;
+}
+.surveyTorso {
+  animation: surveyTorso 6s ease-in-out infinite;
+}
+.surveyWrist {
+  animation: surveyWrist 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes surveyHead {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  30% {
+    transform: rotate(2deg);
+  }
+  62% {
+    transform: rotate(-1.5deg);
+  }
+}
+@keyframes surveyTorso {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(1deg);
+  }
+}
+@keyframes surveyWrist {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(14deg);
+  }
+  50% {
+    transform: rotate(-8deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+}
+
+/* ------------------------------------------------------------------ Labourer (3s) ---- */
+
+.shovelTorso {
+  animation: shovelTorso 3s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.shovelHead {
+  animation: shovelHead 3s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.shovelShoulder {
+  animation: shovelShoulder 3s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.shovelElbow {
+  animation: shovelElbow 3s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.shovelFarShoulder {
+  animation: shovelFarShoulder 3s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes shovelTorso {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  40% {
+    transform: rotate(7deg);
+  }
+  72% {
+    transform: rotate(-5deg);
+  }
+}
+@keyframes shovelHead {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  40% {
+    transform: rotate(4deg);
+  }
+  72% {
+    transform: rotate(-2deg);
+  }
+}
+@keyframes shovelShoulder {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  40% {
+    transform: rotate(6deg);
+  }
+  72% {
+    transform: rotate(-10deg);
+  }
+}
+@keyframes shovelElbow {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  40% {
+    transform: rotate(4deg);
+  }
+  72% {
+    transform: rotate(-8deg);
+  }
+}
+@keyframes shovelFarShoulder {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  40% {
+    transform: rotate(5deg);
+  }
+  72% {
+    transform: rotate(-9deg);
+  }
+}
+
+/* ------------------------------------------------- Plasterer (4s, offset phase) ---- */
+
+.plasterTorso {
+  animation: plasterTorso 4s cubic-bezier(0.45, 0, 0.55, 1) -1.3s infinite;
+}
+.plasterShoulder {
+  animation: plasterShoulder 4s cubic-bezier(0.45, 0, 0.55, 1) -1.3s infinite;
+}
+.plasterElbow {
+  animation: plasterElbow 4s cubic-bezier(0.45, 0, 0.55, 1) -1.3s infinite;
+}
+.plasterWrist {
+  animation: plasterWrist 4s cubic-bezier(0.45, 0, 0.55, 1) -1.3s infinite;
+}
+
+@keyframes plasterTorso {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  35% {
+    transform: rotate(-1deg);
+  }
+  70% {
+    transform: rotate(1deg);
+  }
+}
+@keyframes plasterShoulder {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  35% {
+    transform: rotate(-10deg);
+  }
+  70% {
+    transform: rotate(8deg);
+  }
+}
+@keyframes plasterElbow {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  35% {
+    transform: rotate(-12deg);
+  }
+  70% {
+    transform: rotate(10deg);
+  }
+}
+@keyframes plasterWrist {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  35% {
+    transform: rotate(7deg);
+  }
+  70% {
+    transform: rotate(-6deg);
+  }
+}
+
+/* ------------------------------------------------------------------ Carpenter (2s) ---- */
+
+.hammerTorso {
+  animation: hammerTorso 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.hammerHead {
+  animation: hammerHead 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.hammerShoulder {
+  animation: hammerShoulder 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.hammerElbow {
+  animation: hammerElbow 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes hammerTorso {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  55% {
+    transform: rotate(-2deg);
+  }
+  72% {
+    transform: rotate(1.5deg);
+  }
+}
+@keyframes hammerHead {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  72% {
+    transform: rotate(2deg);
+  }
+}
+/* raise slowly, strike quickly, settle */
+@keyframes hammerShoulder {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(-12deg);
+  }
+  60% {
+    transform: rotate(-14deg);
+  }
+  72% {
+    transform: rotate(6deg);
+  }
+  82% {
+    transform: rotate(4deg);
+  }
+}
+@keyframes hammerElbow {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+  60% {
+    transform: rotate(-34deg);
+  }
+  72% {
+    transform: rotate(28deg);
+  }
+  82% {
+    transform: rotate(24deg);
+  }
+}
+
+/* --------------------------------------------------- Banksman (12s, synced to the lift) ---- */
+
+.signalShoulder {
+  animation: signalShoulder 12s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.signalElbow {
+  animation: signalElbow 12s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.signalHead {
+  animation: signalHead 12s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+/* raise → hoist; arm out → travel (beckoning); palm down → lower; rest; ready again */
+@keyframes signalShoulder {
+  0%,
+  6% {
+    transform: rotate(0);
+  }
+  20%,
+  26% {
+    transform: rotate(-38deg);
+  }
+  34% {
+    transform: rotate(18deg);
+  }
+  40% {
+    transform: rotate(6deg);
+  }
+  46% {
+    transform: rotate(18deg);
+  }
+  56% {
+    transform: rotate(40deg);
+  }
+  64% {
+    transform: rotate(58deg);
+  }
+  72%,
+  90% {
+    transform: rotate(96deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+@keyframes signalElbow {
+  0%,
+  28% {
+    transform: rotate(0);
+  }
+  34% {
+    transform: rotate(-26deg);
+  }
+  40% {
+    transform: rotate(0);
+  }
+  46% {
+    transform: rotate(-26deg);
+  }
+  52%,
+  100% {
+    transform: rotate(0);
+  }
+}
+@keyframes signalHead {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  20%,
+  46% {
+    transform: rotate(-4deg);
+  }
+  60% {
+    transform: rotate(3deg);
+  }
+  80% {
+    transform: rotate(1deg);
+  }
+}
+
+/* ------------------------------------------------------------------ Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .root * {
+    animation: none !important;
+  }
+}
