@@ -5,12 +5,8 @@ import { siteAssets } from "@/config/site-assets";
 import { KairosDepthReveal } from "@/components/ui/KairosScrollReveal";
 import { Phone, Mail, MapPin, Clock, MessageCircle, ArrowUpRight } from "lucide-react";
 
-const rawPhone = siteAssets.contact.phonePlaceholder.replace(/[^0-9]/g, "");
-
-/** WhatsApp click-to-chat link with the existing pre-filled consultation message. */
-export const contactWhatsappUrl = `https://wa.me/${rawPhone}?text=${encodeURIComponent(
-  "Hello LD Developers, I am interested in commissioning an architectural and turnkey construction consultation."
-)}`;
+/** WhatsApp click-to-chat link (built in @/lib/contact-links). */
+import { contactWhatsappUrl } from "@/lib/contact-links";
 
 /**
  * ContactInfoCard — Principal studio details (address, phone, email, hours) and WhatsApp CTA.

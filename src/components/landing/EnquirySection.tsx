@@ -4,7 +4,7 @@ import React, { useId, useRef, useState } from "react";
 import { motion, useScroll, useSpring, useTransform, type Variants } from "framer-motion";
 import { ArrowUpRight, CheckCircle2, MessageCircle, RotateCcw } from "lucide-react";
 import { submitPublicEnquiryAction } from "@/app/actions/enquiries";
-import { contactWhatsappUrl } from "@/components/landing/ContactInfoCard";
+import { contactWhatsappUrl } from "@/lib/contact-links";
 import { EnquiryBackdrop } from "@/components/landing/EnquiryBackdrop";
 import { useHydratedReducedMotion } from "@/hooks/useHydrated";
 

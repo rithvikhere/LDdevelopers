@@ -461,4 +461,12 @@ export const siteAssets = {
     whatsappDefaultMessage:
       "Hello [Company Name], I am interested in building a new project with you and would like to schedule a consultation.",
   },
+
+  // Footer social links.
+  // TEMPORARY — these open each site's home page; replace them with the client's own pages before launch.
+  social: {
+    instagram: "https://www.instagram.com/",
+    facebook: "https://www.facebook.com/",
+    justdial: "https://www.justdial.com/",
+  },
 };

@@ -11,6 +11,14 @@ export interface NavLink {
   id: string;
 }
 
+/** A footer link; `soon` items have no page yet and render as plain text with a "soon" pill. */
+export type FooterLink = { label: string; href: string; soon?: false } | { label: string; href?: undefined; soon: true };
+
+export interface FooterColumn {
+  title: string;
+  links: FooterLink[];
+}
+
 export const siteContent = {
   company: {
     name: "[COMPANY NAME]",
@@ -193,5 +201,44 @@ export const siteContent = {
       "Whether you possess land ready for construction or are seeking turnkey development services, connect with our principal team for a confidential architectural consultation.",
     enquiryNotice:
       "Looking for a detailed project quotation? Submit an architectural enquiry or reach us directly via WhatsApp.",
+  },
+
+  // Site footer (homepage + the six pages). Links marked `soon` show a "soon" pill and are not clickable yet.
+  footer: {
+    brandName: "Lakshmi Builders & Developers",
+    tagline: "We plan, design and build homes, villas and commercial spaces, from the first site visit to the handover.",
+    registrationLabel: "RERA no.",
+    columns: [
+      {
+        title: "Explore",
+        links: [
+          { label: "About", href: "/about" },
+          { label: "Services", href: "/services" },
+          { label: "Construction options", href: "/construction-options" },
+          { label: "Gallery", href: "/gallery" },
+          { label: "Achievements", href: "/achievements" },
+        ],
+      },
+      {
+        title: "Get in touch",
+        links: [
+          { label: "Start an enquiry", href: "/#enquiry" },
+          { label: "Contact details", href: "/contact" },
+          { label: "Visit the studio", href: "/#design-desk" },
+        ],
+      },
+      {
+        title: "Portal",
+        links: [
+          { label: "Customer portal", soon: true },
+          { label: "Studio login", href: "/login" },
+        ],
+      },
+    ] as FooterColumn[],
+    legal: [
+      { label: "Privacy policy", soon: true },
+      { label: "Terms of use", soon: true },
+    ] as FooterLink[],
+    rights: "All rights reserved.",
   },
 };

@@ -4,7 +4,7 @@ import React, { useRef, useState, useSyncExternalStore } from "react";
 import { motion, useMotionTemplate, useScroll, useSpring, useTransform, type Variants } from "framer-motion";
 import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { siteAssets } from "@/config/site-assets";
-import { contactWhatsappUrl } from "@/components/landing/ContactInfoCard";
+import { contactWhatsappUrl } from "@/lib/contact-links";
 import { useHydrated, useHydratedReducedMotion } from "@/hooks/useHydrated";
 import { heroCondensed, heroSans, heroSerif } from "@/components/landing/hero-fonts";
 
