@@ -157,8 +157,8 @@ export const EnquiryBackdrop: React.FC<{ className?: string }> = ({ className = 
 
     let time = 7.5; // start mid-flow so the first frame already looks settled
     let last = performance.now();
+    // Sizes are only re-read when the canvas resizes (ResizeObserver below), never per frame.
     const draw = () => {
-      resize();
       gl.uniform2f(uRes, canvas.width, canvas.height);
       gl.uniform1f(uTime, time);
       gl.uniform2f(uPointer, pointer.x, pointer.y);
@@ -168,6 +168,10 @@ export const EnquiryBackdrop: React.FC<{ className?: string }> = ({ className = 
 
     let raf = 0;
     let onScreen = false;
+    // While the page is being scrolled the backdrop holds its last frame (nobody can follow it mid-scroll),
+    // which frees the frame budget for the scroll-linked transitions around it.
+    let scrolling = false;
+    let scrollTimer = 0;
     const frame = (now: number) => {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
@@ -179,7 +183,7 @@ export const EnquiryBackdrop: React.FC<{ className?: string }> = ({ className = 
       raf = requestAnimationFrame(frame);
     };
 
-    const shouldRun = () => onScreen && !document.hidden && !reduceMotion.matches;
+    const shouldRun = () => onScreen && !scrolling && !document.hidden && !reduceMotion.matches;
     const update = () => {
       if (shouldRun()) {
         if (!raf) {
@@ -189,7 +193,7 @@ export const EnquiryBackdrop: React.FC<{ className?: string }> = ({ className = 
       } else {
         if (raf) cancelAnimationFrame(raf);
         raf = 0;
-        draw(); // keep a still frame (reduced motion, offscreen or hidden tab)
+        if (!scrolling) draw(); // keep a still frame (reduced motion, offscreen or hidden tab)
       }
     };
 
@@ -216,21 +220,38 @@ export const EnquiryBackdrop: React.FC<{ className?: string }> = ({ className = 
     };
 
     const ro = new ResizeObserver(() => {
+      resize();
       if (!raf) draw();
     });
     ro.observe(canvas);
 
+    const onScroll = () => {
+      if (!scrolling) {
+        scrolling = true;
+        update();
+      }
+      window.clearTimeout(scrollTimer);
+      scrollTimer = window.setTimeout(() => {
+        scrolling = false;
+        update();
+      }, 160);
+    };
+
     window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     document.documentElement.addEventListener("pointerleave", onPointerLeave);
     document.addEventListener("visibilitychange", update);
     reduceMotion.addEventListener("change", update);
+    resize();
     draw();
 
     return () => {
       if (raf) cancelAnimationFrame(raf);
+      window.clearTimeout(scrollTimer);
       io.disconnect();
       ro.disconnect();
       window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("scroll", onScroll);
       document.documentElement.removeEventListener("pointerleave", onPointerLeave);
       document.removeEventListener("visibilitychange", update);
       reduceMotion.removeEventListener("change", update);

@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef, useState, useSyncExternalStore } from "react";
-import { motion, useMotionTemplate, useScroll, useSpring, useTransform, type Variants } from "framer-motion";
+import React, { useState, useSyncExternalStore } from "react";
+import { motion, type Variants } from "framer-motion";
 import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { siteAssets } from "@/config/site-assets";
 import { contactWhatsappUrl } from "@/lib/contact-links";
@@ -476,38 +476,22 @@ export const DesignDeskSection: React.FC = () => {
       ? { initial: "hidden", animate: "still" }
       : { initial: "hidden", whileInView: "shown", viewport: { once: true, amount } };
 
-  // Zoom-open entrance: as the section rises out of the Enquiry section it grows from an inset, rounder card
-  // to full width while the glow inside zooms out (scroll-linked, spring-smoothed; static for reduced motion).
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "start 0.15"] });
-  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 30, mass: 0.4 });
-  const scale = useTransform(progress, [0, 1], [0.88, 1]);
-  const extraRadius = useTransform(progress, [0, 1], [32, 0]);
-  const radius = useMotionTemplate`calc(var(--desk-r) + ${extraRadius}px)`;
-  const glowScale = useTransform(progress, [0, 1], [1.25, 1]);
-  const glowY = useTransform(progress, [0, 1], [70, 0]);
+  // Zoom-open entrance: as the section rises out of the Enquiry section it grows from an inset card to full
+  // width. Pure CSS scroll-driven animation (.desk-zoom in globals.css): it runs on the compositor, locked to
+  // the scroll, so fast scrolling stays smooth. The glow stays still inside it (moving it under the glass
+  // cards would force a re-blur every frame).
 
   return (
     // While the card zooms open, its sides show the footer's #212121 below the Enquiry section (the first
     // 3rem/4rem stay transparent — that strip overlaps the Enquiry section, which shows through).
     <div className="relative z-10 -mt-12 bg-[linear-gradient(to_bottom,transparent_3rem,#212121_3rem)] sm:-mt-16 sm:bg-[linear-gradient(to_bottom,transparent_4rem,#212121_4rem)]">
-    <motion.section
-      ref={sectionRef}
+    <section
       id="design-desk"
       aria-labelledby="design-desk-heading"
-      className={`${heroSans.className} relative overflow-hidden bg-[#140A11] [--desk-r:32px] rounded-t-[32px] pb-24 pt-20 text-[#F6EEE6] sm:[--desk-r:44px] sm:rounded-t-[44px] sm:pb-32 sm:pt-28`}
-      style={
-        reduce
-          ? undefined
-          : { scale, borderTopLeftRadius: radius, borderTopRightRadius: radius, transformOrigin: "50% 0%" }
-      }
+      className={`${heroSans.className} desk-zoom relative overflow-hidden bg-[#140A11] rounded-t-[32px] pb-24 pt-20 text-[#F6EEE6] sm:rounded-t-[44px] sm:pb-32 sm:pt-28`}
     >
-      {/* the wine → plum glow (zooms out as the section opens) */}
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={reduce ? deskBackground : { ...deskBackground, scale: glowScale, y: glowY }}
-      />
+      {/* the wine → plum glow */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={deskBackground} />
 
       {/* fine film grain over the glow */}
       <div
@@ -586,7 +570,7 @@ export const DesignDeskSection: React.FC = () => {
           </div>
         </motion.div>
       </div>
-    </motion.section>
+    </section>
     </div>
   );
 };

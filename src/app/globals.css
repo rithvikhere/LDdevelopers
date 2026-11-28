@@ -155,6 +155,27 @@
   .desk-plane-bob { animation: none; }
 }
 
+/* Design Desk zoom-open: as the section rises out of the Enquiry section it grows from an inset card to full
+   width. A scroll-driven animation (compositor thread, locked to the scroll), timed
+   from "section top at the viewport bottom" to "section top 15% from the viewport top". Browsers without
+   scroll-driven animations simply show the section in place. */
+@supports (animation-timeline: view()) {
+  .desk-zoom {
+    view-timeline: --desk-zoom block;
+    animation: desk-zoom linear both;
+    animation-timeline: --desk-zoom;
+    animation-range: cover 0% cover 85vh;
+    transform-origin: 50% 0%;
+  }
+}
+@keyframes desk-zoom {
+  from { transform: scale(0.88); }
+  to { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .desk-zoom { animation: none; }
+}
+
 /* Entrance reveals start hidden in the server HTML (opacity 0, offset, blurred). With reduced motion, show
    their final state from the very first paint — before hydration — and keep it there. Mark such elements
    with data-reveal; the components themselves also skip the animation (useHydratedReducedMotion). */
