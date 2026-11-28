@@ -1,8 +1,8 @@
 import { Anton, Bodoni_Moda, Great_Vibes, Instrument_Sans } from "next/font/google";
 
 /**
- * Display fonts used only by the homepage hero headline.
- * Kept out of the root layout so they are preloaded only where the hero renders.
+ * Display fonts for the homepage hero (and the About page headings, which reuse the hero serif).
+ * Kept out of the root layout so they load only on the pages that use them.
  *
  * - heroSerif: heavy, high-contrast didone ("Your Land. / Your Vision.")
  * - heroScript: flowing, continuous cursive ("Our Expertise.")

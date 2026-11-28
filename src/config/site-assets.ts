@@ -65,16 +65,6 @@ export const siteAssets = {
     label: "Sample Architectural Concept",
   },
 
-  // Section 2: About
-  about: {
-    primaryImage:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85",
-    secondaryImage:
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=85",
-    altPrimary: "Architectural Craftsmanship - Minimalist Structure",
-    altSecondary: "Refined Interior Proportions and Natural Light",
-  },
-
   // Section 3: Services (6 Categories strictly following Phase 02 scope)
   services: [
     {
@@ -460,6 +450,17 @@ export const siteAssets = {
     ],
     whatsappDefaultMessage:
       "Hello [Company Name], I am interested in building a new project with you and would like to schedule a consultation.",
+  },
+
+  // About page images. Leave founderPhoto / founderSignature empty to show the placeholders; when the client
+  // sends them, drop the files in public/assets/images/ and put their paths here (a transparent PNG/WebP
+  // cut-out works best for the photo; the signature should be dark ink on a transparent background).
+  aboutPage: {
+    house: { src: "/assets/images/hero-house.webp", width: 2304, height: 1536 },
+    // Tower under construction with its crane: the client-supplied photo with the sky removed (transparent WebP).
+    storyPhoto: { src: "/assets/images/story-construction.webp", width: 1976, height: 2200 },
+    founderPhoto: "",
+    founderSignature: "",
   },
 
   // Footer social links.

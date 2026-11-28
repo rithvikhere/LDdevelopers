@@ -117,35 +117,6 @@ export const siteContent = {
     projectsTarget: "explore",
   },
 
-  about: {
-    tag: "02 / ABOUT US",
-    title: "Rooted in Craftsmanship, Driven by Vision",
-    lead:
-      "At [COMPANY NAME], we believe every structure is an enduring dialogue between architectural ambition and human emotion.",
-    paragraphs: [
-      "[Company Overview Placeholder: Company was founded with a foundational commitment to architectural integrity, uncompromising structural engineering, and transparent client partnerships.]",
-      "We coordinate every discipline—from initial topographical soil analysis and architectural spatial modeling to artisanal detailing and final handover—under one unified standard of excellence.",
-      "Whether envisioning a private villa, a contemporary duplex with dramatic light volumes, or an iconic commercial address, our multidisciplinary team transforms raw land into landmarks of lasting value.",
-    ],
-    pillars: [
-      {
-        title: "Architectural Integrity",
-        description:
-          "Harmonious proportions, natural lighting, and climate-responsive facades designed without aesthetic compromise.",
-      },
-      {
-        title: "Engineering Rigor",
-        description:
-          "High-performance structural frameworks, seismic-resistant engineering, and third-party certified building materials.",
-      },
-      {
-        title: "Transparent Governance",
-        description:
-          "Milestone-based progress reporting, clear documentation, and ethical client consultation from day one.",
-      },
-    ],
-  },
-
   services: {
     tag: "03 / CAPABILITIES",
     title: "Holistic Architectural & Development Services",
@@ -201,6 +172,54 @@ export const siteContent = {
       "Whether you possess land ready for construction or are seeking turnkey development services, connect with our principal team for a confidential architectural consultation.",
     enquiryNotice:
       "Looking for a detailed project quotation? Submit an architectural enquiry or reach us directly via WhatsApp.",
+  },
+
+  // About page (/about). Founder photo, name and signature are placeholders until the client supplies them
+  // (the files go in siteAssets.aboutPage). The founder's message is a TEMPORARY draft — replace it with their own words.
+  aboutPage: {
+    hero: {
+      eyebrow: "About us",
+      title: "Building Better.",
+      titleAccent: "Together.",
+      lead: "At Lakshmi Builders & Developers, we turn land into lasting value, and ideas into homes and spaces people are proud of.",
+      cta: { label: "Our story", href: "#our-story" },
+    },
+    founder: {
+      eyebrow: "Founder\u2019s message",
+      title: ["A Vision to", "Build a Better Tomorrow"],
+      message:
+        "With a deep passion for real estate and a commitment to excellence, I founded Lakshmi Builders & Developers to create quality spaces that stand the test of time.",
+      name: "[Founder name]",
+      role: "Founder & Managing Director",
+      photoLabel: "Founder photo",
+      signatureLabel: "Signature",
+      goal: "Our goal is simple: to build better, for a brighter tomorrow.",
+    },
+    story: {
+      eyebrow: "Our story",
+      title: ["From a Vision", "to a Trusted Name"],
+      body: "What began as a dream to create quality living spaces has grown into a name families trust with their land. Today we keep building with purpose, integrity and a long-term view.",
+      cta: { label: "See our work", href: "/gallery" },
+    },
+    values: {
+      eyebrow: "Our values",
+      items: [
+        { icon: "trust", label: "Trust & transparency" },
+        { icon: "quality", label: "Quality in every detail" },
+        { icon: "innovation", label: "Innovation in development" },
+        { icon: "customer", label: "Customer first" },
+      ] as { icon: "trust" | "quality" | "innovation" | "customer"; label: string }[],
+    },
+    vision: {
+      eyebrow: "Our vision",
+      title: ["Shaping Spaces.", "Creating Opportunities."],
+      body: "To be a leading property developer, known for quality, innovation and the care we give every customer.",
+    },
+    mission: {
+      eyebrow: "Our mission",
+      title: ["Building Value,", "for Generations."],
+      body: "To develop thoughtfully planned spaces that improve everyday life and keep their value for years to come.",
+    },
   },
 
   // Site footer (homepage + the six pages). Links marked `soon` show a "soon" pill and are not clickable yet.
