@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/pages/PageShell";
-import { GallerySection } from "@/components/landing/GallerySection";
+import { GalleryPageContent } from "@/components/pages/gallery/GalleryPageContent";
 
 export const metadata: Metadata = {
-  title: "Gallery — [COMPANY NAME]",
-  description: "A visual collection of architectural and construction imagery.",
+  title: "Gallery — Lakshmi Builders & Developers",
+  description: "Homes, villas and commercial spaces built by Lakshmi Builders & Developers.",
 };
 
 export default function GalleryPage() {
   return (
     <PageShell>
-      <GallerySection compact />
+      <GalleryPageContent />
     </PageShell>
   );
 }

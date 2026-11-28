@@ -149,11 +149,13 @@ export const siteContent = {
       "Uncompromising material selections, advanced building science, and generational durability built into every square foot.",
   },
 
-  gallery: {
-    tag: "07 / VISUAL ARCHIVE",
-    title: "Architectural Perspectives",
-    subtitle:
-      "Immerse yourself in the interplay of light, shadow, natural stone, and sculptural modern geometry.",
+  // Gallery page (/gallery)
+  galleryPage: {
+    eyebrow: "Gallery",
+    title: "Spaces We\u2019ve Shaped.",
+    lead: "Homes, villas and commercial spaces we\u2019ve built, from the first footing to the final finish.",
+    pendingNote: "Project photos are on their way. These tiles hold their places until then.",
+    placeholderCaption: "Photo coming soon",
   },
 
   achievements: {

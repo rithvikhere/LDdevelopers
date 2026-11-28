@@ -13,6 +13,15 @@
  * and does not represent verified completed works of the company.
  */
 
+export interface GalleryPhoto {
+  id: string;
+  src: string;
+  width: number;
+  height: number;
+  title: string;
+  description?: string;
+}
+
 export interface ProjectAsset {
   id: string;
   title: string;
@@ -349,51 +358,11 @@ export const siteAssets = {
     },
   ],
 
-  // Section 7: Gallery (Curated Photography Grid)
-  gallery: [
-    {
-      id: "gal-01",
-      title: "Double-Height Cantilever Lounge",
-      category: "Interior Architecture",
-      image:
-        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      id: "gal-02",
-      title: "Minimalist Stone Facade Detail",
-      category: "Exterior Detail",
-      image:
-        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      id: "gal-03",
-      title: "Travertine Master Ensuite",
-      category: "Bath Architecture",
-      image:
-        "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      id: "gal-04",
-      title: "Reflective Courtyard Pool",
-      category: "Landscape Design",
-      image:
-        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      id: "gal-05",
-      title: "Architectural Staircase Geometry",
-      category: "Structural Detail",
-      image:
-        "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      id: "gal-06",
-      title: "Executive Commercial Boardroom Suite",
-      category: "Commercial Spaces",
-      image:
-        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
-    },
-  ],
+  // Gallery (/gallery). Add the client's project photos here — while this list is empty the page shows
+  // colour-and-shape placeholder tiles. Put the files in public/assets/images/gallery/ and give each its real
+  // pixel size (the masonry uses it for the tile's proportions). Around 1200px on the long side is plenty.
+  // e.g. { id: "villa-01", src: "/assets/images/gallery/villa-01.webp", width: 1200, height: 1600, title: "Villa" }
+  gallery: [] as GalleryPhoto[],
 
   // Section 8: Achievements
   // STRICT RULE: No fake or made-up numbers. All values use clearly marked placeholders until verified by client.
