@@ -142,13 +142,13 @@ export const HeroSection: React.FC = () => {
           <TopographicLines
             trackRef={sectionRef}
             lineColor="rgba(36, 44, 30, 0.55)"
-            levels={11}
+            levels={7}
             scale={220}
             speed={0.7}
             pointerStrength={0.35}
             smoothing={0.05}
             rippleStrength={0.25}
-            className="absolute inset-0 [filter:blur(1px)] [mask-image:radial-gradient(ellipse_92%_85%_at_50%_45%,#000_55%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_92%_85%_at_50%_45%,#000_55%,transparent_100%)]"
+            className="absolute inset-0 [mask-image:radial-gradient(ellipse_92%_85%_at_50%_45%,#000_55%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_92%_85%_at_50%_45%,#000_55%,transparent_100%)]"
           />
         </motion.div>
 
