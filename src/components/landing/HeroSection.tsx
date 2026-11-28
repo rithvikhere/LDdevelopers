@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useSyncExternalStore } from "react";
+import React, { useEffect, useRef, useSyncExternalStore } from "react";
 import {
   motion,
   useMotionValue,
@@ -14,8 +14,9 @@ import { HeroBrand } from "@/components/brand/HeroBrand";
 import { ConstructionScene } from "@/components/hero/ConstructionScene";
 import { useIntroPhase } from "@/components/intro/IntroProvider";
 import { siteContent } from "@/config/site-content";
-import { heroCondensed, heroSans, heroSerif } from "@/components/landing/hero-fonts";
+import { heroSans, heroScript, heroSerif } from "@/components/landing/hero-fonts";
 import { useHydratedReducedMotion } from "@/hooks/useHydrated";
+import { TopographicLines } from "@/components/ui/topographic-lines";
 
 const hero = siteContent.hero;
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -121,18 +122,35 @@ export const HeroSection: React.FC = () => {
   // the final state; otherwise "show" plays the entrance once the intro reveals the site.
   const target = shouldReduceMotion ? "still" : show ? "show" : "hidden";
 
+  // The contour background listens to the whole hero (its content sits above the canvas)
+  const sectionRef = useRef<HTMLElement>(null);
+
   return (
     <section
+      ref={sectionRef}
       id="home"
       className="relative lg:sticky lg:top-0 z-0 min-h-[100svh] text-[#212121]"
     >
       <div className="relative min-h-[100svh] overflow-hidden bg-[#CADCAE]">
-        {/* Low-contrast dark olive architectural grid (slowest parallax layer) */}
+        {/* Slowly breathing topographic contours (slowest parallax layer): softly blurred, faded at the edges,
+            and only gently raised under the cursor — calmer than the component's defaults */}
         <motion.div
-          className="absolute inset-0 bg-hero-grid pointer-events-none"
+          className="absolute inset-0 pointer-events-none"
           aria-hidden="true"
           style={driftOn ? { y: gridY } : undefined}
-        />
+        >
+          <TopographicLines
+            trackRef={sectionRef}
+            lineColor="rgba(36, 44, 30, 0.55)"
+            levels={11}
+            scale={220}
+            speed={0.7}
+            pointerStrength={0.35}
+            smoothing={0.05}
+            rippleStrength={0.25}
+            className="absolute inset-0 [filter:blur(1px)] [mask-image:radial-gradient(ellipse_92%_85%_at_50%_45%,#000_55%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_92%_85%_at_50%_45%,#000_55%,transparent_100%)]"
+          />
+        </motion.div>
 
         {/* Brand + text — fastest parallax layer, fading as the Explore panel arrives */}
         <motion.div className="relative z-20" style={driftOn ? { y: textY, opacity: textOpacity } : undefined}>
@@ -171,8 +189,9 @@ export const HeroSection: React.FC = () => {
                   ))}
                 </span>
               ))}
+              {/* "Our Expertise." in a continuous cursive — "Expertise." in the accent colour */}
               <span
-                className={`${heroCondensed.className} block uppercase leading-[0.9] mt-[0.12em] text-[14.5vw] sm:text-[12vw] lg:text-[8.6vw] 2xl:text-[8.75rem]`}
+                className={`${heroScript.className} block leading-[1.08] mt-[0.02em] text-[17vw] sm:text-[13vw] lg:text-[9vw] 2xl:text-[9rem]`}
               >
                 <motion.span variants={punch} custom={4} data-reveal initial="hidden" animate={target} className="inline-block">
                   {hero.titleLead}

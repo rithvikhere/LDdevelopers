@@ -141,6 +141,20 @@
   50% { opacity: 0; }
 }
 
+/* Design Desk paper plane: a slow, small hover once it has landed pointing at the map */
+@keyframes desk-plane-bob {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-3px, 4px) rotate(-1.5deg); }
+}
+.desk-plane-bob {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: desk-plane-bob 4.5s ease-in-out 2.6s infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .desk-plane-bob { animation: none; }
+}
+
 /* Entrance reveals start hidden in the server HTML (opacity 0, offset, blurred). With reduced motion, show
    their final state from the very first paint — before hydration — and keep it there. Mark such elements
    with data-reveal; the components themselves also skip the animation (useHydratedReducedMotion). */
