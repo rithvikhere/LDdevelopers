@@ -13,7 +13,7 @@
  */
 
 import * as React from "react";
-import { useInView, useReducedMotion } from "motion/react";
+import { useInView, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const subscribe = () => () => {};
@@ -168,7 +168,7 @@ export type TopographicLinesProps = React.ComponentProps<"div"> & {
  * terrain slowly breathes, and pointer movement raises a local peak while
  * clicks send out contour ripples.
  *
- * @requires react, motion/react
+ * @requires react, framer-motion
  */
 export function TopographicLines({
   levels = 13,
